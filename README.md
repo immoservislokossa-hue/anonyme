@@ -29,7 +29,7 @@ Le même prototype peut donc être présenté à différents prix en mettant en 
 | Urgence | `/urgence` | Page statique. Les messages urgents ou de détresse du chat ne passent jamais par le modèle. |
 | Vrai ou faux | `/quiz` | Questions par voie, explications, points. |
 | Chroniques | `/chroniques` | Textes lus à voix haute par la voix du téléphone. Pas d'enregistrements audio. |
-| Trouver un centre ou une pharmacie | `/orientation` | Recherche de centres de santé et de pharmacies autour de la position (ou d'un nom de lieu), avec itinéraire. Source par défaut : OpenStreetMap, sans clé ni carte bancaire. Google Maps (clé officielle) et Scrappa (recherche par nom de lieu) sont optionnels. Filtre des centres partenaires par commune et préparation de la visite. Les cinq centres partenaires sont des emplacements à remplir. |
+| Trouver un centre ou une pharmacie | `/orientation` | Recherche de centres de santé et de pharmacies autour de la position (ou d'un nom de lieu), avec itinéraire. Source par défaut : OpenStreetMap, sans clé ni carte bancaire. Google Maps (clé officielle) et Scrappa (500 recherches gratuites par mois) sont optionnels, et passent avant OpenStreetMap quand leur clé est présente. Filtre des centres partenaires par commune et préparation de la visite. Les cinq centres partenaires sont des emplacements à remplir. |
 | Espace agent | `/pro` | Listes de vérification avec source, version et statut de validation. |
 | Suivi | `/partenaires` | Compteurs agrégés, protégés par `PARTNER_TOKEN`. |
 | Confidentialité, aide | `/consentement`, `/aide` | Pages d'information. |

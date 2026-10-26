@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { buildSearchBody, cleanQuery, distanceKm, isPlaceKind, isValidOrigin, parsePlaces, searchCentres } from "../lib/places";
+import { buildSearchBody, cleanQuery, distanceKm, isPlaceKind, isValidOrigin, parsePlaces, searchCentres, withCountry } from "../lib/places";
 
 const origin = { lat: 6.3703, lng: 2.3912 }; // Cotonou
 
@@ -81,4 +81,11 @@ test("le type de lieu est validé", () => {
   assert.equal(isPlaceKind("pharmacie"), true);
   assert.equal(isPlaceKind("centre"), true);
   assert.equal(isPlaceKind("hopital"), false);
+});
+
+test("le pays est ajouté au lieu une seule fois", () => {
+  assert.equal(withCountry("Parakou", "Bénin"), "Parakou, Bénin");
+  assert.equal(withCountry("Cotonou, Bénin", "Bénin"), "Cotonou, Bénin");
+  assert.equal(withCountry("Parakou"), "Parakou");
+  assert.equal(withCountry("Parakou", "  "), "Parakou");
 });

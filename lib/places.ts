@@ -63,6 +63,13 @@ export function distanceKm(a: Origin, b: Origin): number {
   return 6371 * 2 * Math.asin(Math.sqrt(h));
 }
 
+// Ajoute le pays au lieu cherché pour éviter les homonymes (par exemple « Bénin »). Sans pays, le texte est inchangé.
+export function withCountry(place: string, country?: string): string {
+  const name = country?.trim();
+  if (!name || place.toLowerCase().includes(name.toLowerCase())) return place;
+  return `${place}, ${name}`;
+}
+
 // Texte de recherche en français, commun à tous les fournisseurs fondés sur une recherche par mots.
 export function textQueryFor(kind: PlaceKind | undefined, query?: string): string {
   const subject = kind === "pharmacie" ? "pharmacie" : "centre de santé";

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { beforeEach, test } from "node:test";
-import { buildOverpassQuery, clearOsmCache, geocode, parseOverpass, searchOsm } from "../lib/osm";
+import { buildOverpassQuery, clearOsmCache, geocode, labelFromAddress, parseOverpass, reverseGeocode, searchOsm } from "../lib/osm";
 
 const origin = { lat: 6.3703, lng: 2.3912 }; // Cotonou
 
@@ -115,4 +115,27 @@ test("un lieu introuvable ne déclenche aucune requête Overpass", async () => {
 
   assert.deepEqual(await searchOsm({ query: "xyzzy" }, { fetchImpl: fakeFetch }), []);
   assert.equal(overpassCalls, 0);
+});
+
+test("le nom d'un point est « quartier, ville »", () => {
+  assert.equal(labelFromAddress({ suburb: "Cadjehoun", city: "Cotonou", country: "Bénin" }), "Cadjehoun, Cotonou");
+  assert.equal(labelFromAddress({ town: "Parakou" }), "Parakou");
+  assert.equal(labelFromAddress({ country: "Bénin" }), null);
+  assert.equal(labelFromAddress(undefined), null);
+});
+
+test("la position est transformée en nom de lieu, avec un User-Agent, et mise en cache", async () => {
+  let calls = 0;
+  let url = "";
+  const fakeFetch = (async (u: string) => {
+    calls += 1;
+    url = u;
+    return new Response(JSON.stringify({ address: { suburb: "Cadjehoun", city: "Cotonou" } }), { status: 200 });
+  }) as unknown as typeof fetch;
+
+  assert.equal(await reverseGeocode(origin, fakeFetch, 1000), "Cadjehoun, Cotonou");
+  assert.equal(await reverseGeocode({ lat: 6.37031, lng: 2.39121 }, fakeFetch, 2000), "Cadjehoun, Cotonou");
+  assert.equal(calls, 1);
+  assert.ok(url.startsWith("https://nominatim.openstreetmap.org/reverse?"));
+  assert.ok(url.includes("zoom=14"));
 });

@@ -7,6 +7,7 @@ import { distanceKm, type Centre, type Origin, type PlaceKind } from "@/lib/plac
 
 const OVERPASS_ENDPOINTS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"];
 const NOMINATIM_ENDPOINT = "https://nominatim.openstreetmap.org/search";
+const NOMINATIM_REVERSE_ENDPOINT = "https://nominatim.openstreetmap.org/reverse";
 const USER_AGENT = "Alviosa/0.1 (service d'information en santé, prototype)";
 const RADIUS_METERS = 15_000;
 const MAX_RESULTS = 10;
@@ -17,10 +18,12 @@ const CACHE_MAX_ENTRIES = 300;
 type Cached<T> = { value: T; expiresAt: number };
 const overpassCache = new Map<string, Cached<unknown>>();
 const geocodeCache = new Map<string, Cached<Origin | null>>();
+const reverseCache = new Map<string, Cached<string | null>>();
 
 export function clearOsmCache(): void {
   overpassCache.clear();
   geocodeCache.clear();
+  reverseCache.clear();
 }
 
 function remember<T>(cache: Map<string, Cached<T>>, key: string, value: T, now: number): void {
@@ -123,6 +126,43 @@ export async function geocode(query: string, fetchImpl: typeof fetch = fetch, no
 
   remember(geocodeCache, key, origin, now);
   return origin;
+}
+
+// Nom lisible d'un point : « quartier, ville ». Sert à interroger un service qui ne cherche que par nom de lieu.
+export function labelFromAddress(address: Record<string, string> | undefined): string | null {
+  if (!address) return null;
+  const local = address.suburb ?? address.neighbourhood ?? address.quarter ?? address.city_district;
+  const town = address.city ?? address.town ?? address.village ?? address.municipality ?? address.county;
+  const label = [local, town].filter(Boolean).join(", ");
+  return label || null;
+}
+
+export async function reverseGeocode(
+  origin: Origin,
+  fetchImpl: typeof fetch = fetch,
+  now: number = Date.now(),
+): Promise<string | null> {
+  const key = `${origin.lat.toFixed(3)},${origin.lng.toFixed(3)}`;
+  const hit = reverseCache.get(key);
+  if (hit && hit.expiresAt > now) return hit.value;
+
+  const params = new URLSearchParams({
+    lat: String(origin.lat),
+    lon: String(origin.lng),
+    format: "jsonv2",
+    zoom: "14",
+    "accept-language": "fr",
+  });
+  const response = await timedFetch(fetchImpl, `${NOMINATIM_REVERSE_ENDPOINT}?${params}`, {
+    headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
+  });
+  if (!response.ok) throw new Error(`Nominatim a répondu ${response.status}`);
+
+  const data = (await response.json()) as { address?: Record<string, string> };
+  const label = labelFromAddress(data.address);
+
+  remember(reverseCache, key, label, now);
+  return label;
 }
 
 async function queryOverpass(query: string, fetchImpl: typeof fetch): Promise<unknown> {

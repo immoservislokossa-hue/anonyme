@@ -43,9 +43,10 @@
 - **Lieux (centres de santé, pharmacies)** : `lib/providers.ts` essaie les sources dans l'ordre, et passe à la
   suivante en cas d'erreur ou de réponse vide.
   1. Google Places (clé officielle, carte bancaire exigée par Google), si `GOOGLE_MAPS_API_KEY` est présente.
-  2. Scrappa (API tierce, 500 crédits gratuits par mois, sans carte), pour la recherche par nom de lieu seulement.
-     La recherche par position demande le point d'accès « advanced-search », dont les paramètres de position ne sont pas
-     encore confirmés. Un budget mensuel (`SCRAPPA_MONTHLY_BUDGET`) et un cache de 24 h limitent la dépense. Le compteur
+  2. Scrappa (API tierce, 500 crédits gratuits par mois, sans carte). Seule la recherche par nom de lieu est
+     documentée. Pour une position, elle est d'abord transformée en « quartier, ville » (Nominatim), puis Scrappa cherche
+     ce nom et les résultats sont classés par distance avec leurs coordonnées. Le point d'accès « advanced-search »,
+     qui accepte des coordonnées, pourra remplacer ce détour quand ses paramètres seront confirmés. Un budget mensuel (`SCRAPPA_MONTHLY_BUDGET`) et un cache de 24 h limitent la dépense. Le compteur
      est en mémoire : il est indicatif et repart à zéro au redémarrage.
   3. OpenStreetMap (Overpass et Nominatim), toujours disponible, sans clé. Services publics tenus par des bénévoles :
      appels limités, réponses mises en cache, User-Agent explicite. La complétude de la carte varie selon les villes :
