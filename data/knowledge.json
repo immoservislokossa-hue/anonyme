@@ -1,0 +1,34 @@
+[
+  {
+    "id": "methodes-generales",
+    "theme": "methodes",
+    "title": "Les grandes familles de méthodes contraceptives",
+    "content": "Il existe plusieurs familles de méthodes : les méthodes hormonales (pilule, injectable, implant), les dispositifs intra-utérins (DIU), les préservatifs masculins et féminins, et les méthodes naturelles. Les préservatifs sont les seuls qui protègent aussi contre les infections sexuellement transmissibles. Le choix dépend de la santé, de l'âge, des projets de grossesse et des préférences de la personne. Un professionnel de santé peut présenter les options disponibles dans le centre concerné.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "effets-secondaires-courants",
+    "theme": "effets",
+    "title": "Effets secondaires fréquents et ce qu'il faut savoir",
+    "content": "Certaines méthodes hormonales peuvent provoquer des saignements irréguliers, surtout pendant les premiers mois. Ces changements sont fréquents et ne sont pas toujours dangereux. Il est utile de consulter si les saignements sont très abondants, si la douleur est forte, si de la fièvre apparaît, ou si l'inquiétude persiste. Parler des effets à un professionnel permet souvent de trouver une solution adaptée.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "orientation-service",
+    "theme": "orientation",
+    "title": "Préparer une consultation",
+    "content": "Avant une consultation, il peut être utile de noter ses questions, ses éventuels symptômes et leur date de début, ses méthodes déjà utilisées et les médicaments pris. Il est possible de demander la confidentialité et de poser des questions sans honte. Une personne de confiance peut accompagner, si on le souhaite.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "idees-fausses",
+    "theme": "rumeurs",
+    "title": "Rumeurs fréquentes sur la contraception",
+    "content": "Des rumeurs circulent, par exemple selon lesquelles la contraception rendrait stérile de façon définitive ou ferait grossir fortement. Pour la plupart des méthodes, la fertilité revient après l'arrêt, même si le délai varie selon la méthode. Les prises de poids importantes ne sont pas la règle générale, mais une inquiétude peut être discutée avec un professionnel.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  }
+]

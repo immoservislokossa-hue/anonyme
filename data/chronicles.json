@@ -1,0 +1,29 @@
+[
+  {
+    "id": "rumeur-pilule",
+    "titre": "La rumeur sur la pilule",
+    "theme": "rumeurs",
+    "duree": "Environ 1 minute",
+    "texte": "Une voisine dit que la pilule rend stérile. Tantie Sutura répond calmement : pour la plupart des méthodes, la fertilité revient après l'arrêt. Si vous avez une inquiétude précise, c'est une bonne question à poser à une sage-femme.",
+    "audio": null,
+    "valide": false
+  },
+  {
+    "id": "premiere-visite",
+    "titre": "La première visite au centre",
+    "theme": "orientation",
+    "duree": "Environ 1 minute",
+    "texte": "Avant d'aller au centre, notez vos questions sur un papier. Vous pouvez venir accompagnée. Vous pouvez demander la confidentialité. Personne ne doit vous juger pour vos questions.",
+    "audio": null,
+    "valide": false
+  },
+  {
+    "id": "saignements",
+    "titre": "Des saignements inhabituels",
+    "theme": "effets",
+    "duree": "Environ 1 minute",
+    "texte": "Des saignements irréguliers arrivent souvent au début d'une méthode hormonale. S'ils sont très abondants, s'ils font très mal, ou si de la fièvre apparaît, allez au centre sans attendre.",
+    "audio": null,
+    "valide": false
+  }
+]

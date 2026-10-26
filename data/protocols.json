@@ -1,0 +1,47 @@
+[
+  {
+    "id": "avant-consultation",
+    "titre": "Avant la consultation",
+    "resume": "Liste de vérification à relire avec la personne avant de commencer.",
+    "etapes": [
+      "Demander la langue préférée de la personne",
+      "Expliquer le déroulé de la consultation et la confidentialité",
+      "Noter les méthodes déjà utilisées et les médicaments pris",
+      "Demander si une personne de confiance doit accompagner",
+      "Vérifier que la personne peut poser toutes ses questions"
+    ],
+    "source": "Brouillon à remplacer par le protocole national en vigueur",
+    "dateVersion": "À renseigner",
+    "valide": false
+  },
+  {
+    "id": "effets-secondaires",
+    "titre": "Effets secondaires courants",
+    "resume": "Expliquer les changements fréquents et les signes qui justifient une consultation rapide.",
+    "etapes": [
+      "Rassurer sur les saignements irréguliers fréquents en début de méthode hormonale",
+      "Demander si les saignements sont abondants ou accompagnés de douleur forte",
+      "Demander si de la fièvre ou un malaise est présent",
+      "Orienter vers une consultation rapide si un signe grave est décrit",
+      "Proposer un suivi à la date convenue"
+    ],
+    "source": "Brouillon à remplacer par le protocole national en vigueur",
+    "dateVersion": "À renseigner",
+    "valide": false
+  },
+  {
+    "id": "orientation",
+    "titre": "Orienter vers un service",
+    "resume": "Aider la personne à se rendre dans une structure partenaire.",
+    "etapes": [
+      "Demander la commune de résidence",
+      "Proposer les structures partenaires de cette commune",
+      "Expliquer les étapes pratiques de la première visite",
+      "Remettre le nom et le contact de la structure",
+      "Noter, avec son accord, si la visite a eu lieu"
+    ],
+    "source": "Brouillon à remplacer par la liste officielle des structures partenaires",
+    "dateVersion": "À renseigner",
+    "valide": false
+  }
+]

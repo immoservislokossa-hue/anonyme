@@ -1,0 +1,44 @@
+[
+  {
+    "id": "sterilite",
+    "enonce": "La contraception rend stérile à vie.",
+    "reponse": false,
+    "explication": "Pour la plupart des méthodes, la fertilité revient après l'arrêt. Le délai varie selon la méthode. Une inquiétude précise se discute avec un professionnel.",
+    "valide": false
+  },
+  {
+    "id": "preservatif",
+    "enonce": "Le préservatif protège d'une grossesse et de nombreuses infections sexuellement transmissibles.",
+    "reponse": true,
+    "explication": "C'est la seule méthode de la liste qui protège aussi contre de nombreuses IST. On peut l'associer à une autre méthode.",
+    "valide": false
+  },
+  {
+    "id": "saignements",
+    "enonce": "Des saignements irréguliers sont fréquents au début d'une méthode hormonale.",
+    "reponse": true,
+    "explication": "C'est fréquent et pas toujours dangereux. Consultez si les saignements sont très abondants, si la douleur est forte ou si de la fièvre apparaît.",
+    "valide": false
+  },
+  {
+    "id": "toutes-methodes",
+    "enonce": "Toutes les méthodes conviennent à toutes les personnes.",
+    "reponse": false,
+    "explication": "Le choix dépend de la santé, de l'âge, des projets de grossesse et des préférences. Un professionnel aide à choisir.",
+    "valide": false
+  },
+  {
+    "id": "confidentialite",
+    "enonce": "Vous pouvez poser des questions et demander la confidentialité lors d'une consultation.",
+    "reponse": true,
+    "explication": "Poser des questions fait partie de la consultation. Vous pouvez demander à ce que l'échange reste confidentiel.",
+    "valide": false
+  },
+  {
+    "id": "test-grossesse",
+    "enonce": "Un test de grossesse en pharmacie ou un professionnel de santé peut confirmer une grossesse.",
+    "reponse": true,
+    "explication": "Ce service ne peut pas le faire à votre place. Un test ou un professionnel peut répondre à cette question.",
+    "valide": false
+  }
+]
