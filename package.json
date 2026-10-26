@@ -1,8 +1,8 @@
 {
-  "name": "sutura-ai",
+  "name": "alviosa",
   "version": "0.1.0",
   "private": true,
-  "description": "Prototype SUTURA AI : information et orientation en planification familiale",
+  "description": "Prototype Alviosa : information et orientation en planification familiale",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

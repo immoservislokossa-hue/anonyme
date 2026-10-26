@@ -1,7 +1,7 @@
-# [Nom du projet]
+# Alviosa
 
 Prototype pilote d'un service d'information et d'orientation en planification familiale pour l'Afrique de l'Ouest.
-Le nom est provisoire : il se change dans `lib/brand.ts`.
+Le nom se change dans `lib/brand.ts`.
 
 Ce dépôt est un prototype. Le contenu médical est un brouillon qui doit être validé par des professionnels de
 santé avant tout usage auprès de personnes réelles.

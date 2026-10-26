@@ -1,5 +1,5 @@
-// Identité provisoire. Le nom du projet n'est pas choisi : tout passe par ces constantes.
-export const APP_NAME = "[Nom du projet]";
+// Identité du projet : tout passe par ces constantes.
+export const APP_NAME = "Alviosa";
 export const ASSISTANT_NAME = "Tantie";
 export const TAGLINE = "Une information claire et sûre sur la planification familiale";
 
