@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
-import Logo from "@/components/Logo";
+import Silhouette from "@/components/Silhouette";
 import Reward from "@/components/Reward";
 import Speak from "@/components/Speak";
 import VoiceInput from "@/components/VoiceInput";
 import { useProgress } from "@/components/useProgress";
-import { ASSISTANT_NAME } from "@/lib/brand";
+import { personaFor } from "@/lib/brand";
 import type { Voie } from "@/lib/domain";
 
 type Message = {
@@ -117,6 +117,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
   }
 
   const examples = EXAMPLES[voie ?? "tout"];
+  const persona = personaFor(voie);
 
   return (
     <section aria-label="Conversation" className="chat">
@@ -124,11 +125,11 @@ export default function Chat({ voie }: { voie?: Voie }) {
         {messages.length === 0 && (
           <div className="msg bot">
             <span className="avatar">
-              <Logo size={34} />
+              <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
             </span>
             <div className="intro">
               <p>
-                Bonjour, je suis <strong>{ASSISTANT_NAME}</strong>, la grande sœur. Écrivez ou dictez votre question avec vos propres
+                Bonjour, je suis <strong>{persona.name}</strong>, {persona.role}. {persona.line} Écrivez ou dictez votre question avec vos propres
                 mots. Voici quelques idées :
               </p>
               <div className="examples">
@@ -156,7 +157,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
           return (
             <div key={index} className="msg bot">
               <span className="avatar">
-                <Logo size={34} />
+                <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
               </span>
               <div className="col">
                 <div className={`bubble bot${isAlert ? " urgent" : ""}`}>{message.content}</div>
@@ -178,10 +179,10 @@ export default function Chat({ voie }: { voie?: Voie }) {
         {loading && (
           <div className="msg bot">
             <span className="avatar">
-              <Logo size={34} />
+              <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
             </span>
             <div className="typing-bubble" role="status">
-              <span className="sr-only">{ASSISTANT_NAME} prépare une réponse</span>
+              <span className="sr-only">{persona.name} prépare une réponse</span>
               <i aria-hidden="true" />
               <i aria-hidden="true" />
               <i aria-hidden="true" />

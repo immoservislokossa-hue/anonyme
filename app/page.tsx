@@ -1,14 +1,9 @@
 import Link from "next/link";
 import Icon, { type IconName } from "@/components/Icon";
 import ProgressCard from "@/components/ProgressCard";
-import { ASSISTANT_NAME, TAGLINE } from "@/lib/brand";
-import { VOIES, type Voie } from "@/lib/domain";
-
-const VOIE_ICONS: Record<Voie, IconName> = {
-  sexuelle: "circles",
-  mentale: "heart",
-  "bien-etre": "sun",
-};
+import Silhouette from "@/components/Silhouette";
+import { PERSONAS, TAGLINE, TEAM_NAMES } from "@/lib/brand";
+import { VOIES } from "@/lib/domain";
 
 const tools: { href: string; title: string; text: string; icon: IconName }[] = [
   { href: "/quiz", title: "Vrai ou faux", text: "Testez vos connaissances en 2 minutes et gagnez des points.", icon: "quiz" },
@@ -41,15 +36,18 @@ export default function HomePage() {
       </section>
 
       <section aria-label="Sujets" className="wide">
-        <h2>Choisissez un sujet avec {ASSISTANT_NAME}</h2>
+        <h2>Choisissez un sujet avec {TEAM_NAMES}</h2>
         <div className="cards">
           {VOIES.map((voie) => (
             <Link key={voie.id} href={`/chat?voie=${voie.id}`} className={`card tone-${voie.id}`}>
-              <span className="tile">
-                <Icon name={VOIE_ICONS[voie.id]} size={26} />
+              <span className="sil-tile">
+                <Silhouette voie={voie.id} size={134} framed={false} />
               </span>
               <span className="card-text">
                 <strong>{voie.label}</strong>
+                <em className="who">
+                  {PERSONAS[voie.id].name}, {PERSONAS[voie.id].role}
+                </em>
                 <span>{voie.description}</span>
               </span>
             </Link>

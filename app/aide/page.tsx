@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ASSISTANT_NAME } from "@/lib/brand";
+import { TEAM_NAMES } from "@/lib/brand";
 
 export const metadata: Metadata = { title: "Aide" };
 
@@ -13,7 +13,7 @@ export default function HelpPage() {
       </header>
 
       <section className="panel">
-        <h2>Ce que {ASSISTANT_NAME} ne peut pas faire</h2>
+        <h2>Ce que {TEAM_NAMES} ne peuvent pas faire</h2>
         <ul className="plain">
           <li>Dire si vous êtes enceinte ou malade.</li>
           <li>Vous conseiller un médicament ou une dose.</li>

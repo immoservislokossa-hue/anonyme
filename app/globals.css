@@ -973,6 +973,131 @@ th {
   color: var(--muted);
 }
 
+/* Personnages */
+.persona-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.persona-head > div {
+  min-width: 0;
+}
+
+.sil-tile {
+  display: grid;
+  place-items: end center;
+  width: 96px;
+  height: 118px;
+  border-radius: 18px;
+  background: var(--tone-soft);
+  overflow: hidden;
+}
+
+.sil-tile .sil {
+  margin-bottom: -6px;
+}
+
+.who {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--indigo);
+}
+
+.sil {
+  overflow: visible;
+  flex: none;
+}
+
+.sil-breathe {
+  transform-origin: 60px 160px;
+  animation: breathe 3.6s ease-in-out infinite;
+}
+
+.sil-wave {
+  transform-origin: 78px 66px;
+  animation: wave 1.6s ease-in-out infinite;
+}
+
+.sil-sway {
+  transform-origin: 60px 60px;
+  animation: sway 4.2s ease-in-out infinite;
+}
+
+.sil-heart {
+  transform-origin: 96px 36px;
+  animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+.sil-rays {
+  transform-origin: 60px 40px;
+  animation: spin 16s linear infinite;
+}
+
+.sil-bounce {
+  transform-origin: 60px 160px;
+  animation: bounce 1.8s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  50% {
+    transform: scale(1, 1.02);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(14deg);
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1) translateY(0);
+  }
+  30% {
+    transform: scale(1.25) translateY(-3px);
+  }
+  55% {
+    transform: scale(1.05) translateY(-1px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-7px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}
+
 /* Animations */
 @keyframes rise {
   from {

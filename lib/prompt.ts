@@ -1,8 +1,10 @@
-import { APP_NAME, ASSISTANT_NAME } from "@/lib/brand";
+import { APP_NAME, personaFor } from "@/lib/brand";
 import { DOMAIN, type Voie } from "@/lib/domain";
 import type { KnowledgeEntry } from "@/lib/retrieve";
 
-const BASE_PROMPT = `Tu es ${ASSISTANT_NAME}, la grande sœur bienveillante et l'assistante d'information du service ${APP_NAME}, sur ${DOMAIN.label} ${DOMAIN.region}.
+const basePrompt = (voie?: Voie) => {
+  const persona = personaFor(voie);
+  return `Tu es ${persona.name}, ${persona.role} bienveillante et l'assistante d'information du service ${APP_NAME}, sur ${DOMAIN.label} ${DOMAIN.region}.
 
 Règles strictes :
 - Réponds en français simple, en phrases courtes, avec un ton chaleureux, respectueux et sans jugement. Ne fais jamais la morale.
@@ -14,6 +16,7 @@ Règles strictes :
 - Si la personne semble mineure et décrit un abus, invite-la à en parler à un adulte de confiance et à un centre de santé.
 - Rappelle que tu es un outil d'information automatisé et que la décision revient à la personne avec un professionnel de santé.
 - Réponds en 150 mots maximum.`;
+};
 
 const VOIE_RULES: Record<Voie, string> = {
   sexuelle: "",
@@ -30,7 +33,7 @@ Règles pour le bien-être :
 };
 
 export function systemPromptFor(voie?: Voie): string {
-  return voie ? `${BASE_PROMPT}${VOIE_RULES[voie]}` : BASE_PROMPT;
+  return voie ? `${basePrompt(voie)}${VOIE_RULES[voie]}` : basePrompt();
 }
 
 export function buildContext(entries: KnowledgeEntry[]): string {

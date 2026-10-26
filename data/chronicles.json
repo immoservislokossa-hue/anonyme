@@ -5,7 +5,7 @@
     "titre": "La rumeur sur la pilule",
     "theme": "rumeurs",
     "duree": "Environ 1 minute",
-    "texte": "Une voisine dit que la pilule rend stérile. Benita répond calmement : pour la plupart des méthodes, la fertilité revient après l'arrêt. Si vous avez une inquiétude précise, c'est une bonne question à poser à une sage-femme.",
+    "texte": "Une voisine dit que la pilule rend stérile. Afi répond calmement : pour la plupart des méthodes, la fertilité revient après l'arrêt. Si vous avez une inquiétude précise, c'est une bonne question à poser à une sage-femme.",
     "audio": null,
     "valide": false
   },
@@ -15,7 +15,7 @@
     "titre": "Faire un test, c'est prendre soin de soi",
     "theme": "ist",
     "duree": "Environ 1 minute",
-    "texte": "Afi hésite à faire un test. Benita lui explique : beaucoup d'infections ne se voient pas. Un test dans un centre de santé permet de savoir, et de se soigner si besoin. Y aller, c'est prendre soin de soi et des autres.",
+    "texte": "Séna hésite à faire un test. Afi lui explique : beaucoup d'infections ne se voient pas. Un test dans un centre de santé permet de savoir, et de se soigner si besoin. Y aller, c'est prendre soin de soi et des autres.",
     "audio": null,
     "valide": false
   },
@@ -25,7 +25,7 @@
     "titre": "Dire non, c'est permis",
     "theme": "consentement",
     "duree": "Environ 1 minute",
-    "texte": "Une jeune femme se sent poussée à dire oui. Benita lui rappelle : on peut dire non, à tout moment. Le silence n'est pas un oui. Un partenaire respectueux entend un non.",
+    "texte": "Une jeune femme se sent poussée à dire oui. Afi lui rappelle : on peut dire non, à tout moment. Le silence n'est pas un oui. Un partenaire respectueux entend un non.",
     "audio": null,
     "valide": false
   },
@@ -35,7 +35,7 @@
     "titre": "Un préservatif a craqué",
     "theme": "urgence",
     "duree": "Environ 1 minute",
-    "texte": "Un préservatif a craqué hier soir. Que faire ? Benita répond : n'attendez pas. Une contraception d'urgence existe, et elle est plus efficace quand on la prend tôt. Allez dans un centre de santé ou en pharmacie pour être conseillée.",
+    "texte": "Un préservatif a craqué hier soir. Que faire ? Afi répond : n'attendez pas. Une contraception d'urgence existe, et elle est plus efficace quand on la prend tôt. Allez dans un centre de santé ou en pharmacie pour être conseillée.",
     "audio": null,
     "valide": false
   },
@@ -65,7 +65,7 @@
     "titre": "Quand tout semble lourd",
     "theme": "tristesse",
     "duree": "Environ 1 minute",
-    "texte": "Il y a des jours où tout semble lourd. Benita le dit simplement : en parler à une personne de confiance n'est pas une faiblesse. Si la tristesse dure des semaines, un professionnel de santé peut aider, et cela se soigne.",
+    "texte": "Il y a des jours où tout semble lourd. Fallone le dit simplement : en parler à une personne de confiance n'est pas une faiblesse. Si la tristesse dure des semaines, un professionnel de santé peut aider, et cela se soigne.",
     "audio": null,
     "valide": false
   },
@@ -75,7 +75,7 @@
     "titre": "La honte, ça pèse",
     "theme": "tristesse",
     "duree": "Environ 1 minute",
-    "texte": "Après une relation difficile ou une grossesse non prévue, la honte peut peser lourd. Benita rappelle que ce sentiment est fréquent. Parler à une personne de confiance ou à un professionnel aide, et on peut demander la confidentialité.",
+    "texte": "Après une relation difficile ou une grossesse non prévue, la honte peut peser lourd. Fallone rappelle que ce sentiment est fréquent. Parler à une personne de confiance ou à un professionnel aide, et on peut demander la confidentialité.",
     "audio": null,
     "valide": false
   },
@@ -85,7 +85,7 @@
     "titre": "Le stress avant un examen",
     "theme": "stress",
     "duree": "Environ 1 minute",
-    "texte": "Avant un examen, Afi n'arrive plus à dormir. Benita lui suggère de respirer lentement, de se coucher à heure fixe et d'en parler à quelqu'un. Si le stress dure et l'empêche de vivre, un professionnel peut aider.",
+    "texte": "Avant un examen, Séna n'arrive plus à dormir. Chimène lui suggère de respirer lentement, de se coucher à heure fixe et d'en parler à quelqu'un. Si le stress dure et l'empêche de vivre, un professionnel peut aider.",
     "audio": null,
     "valide": false
   },
