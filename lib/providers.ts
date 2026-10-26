@@ -1,6 +1,6 @@
 import { reverseGeocode, searchOsm } from "@/lib/osm";
-import { distanceKm, searchCentres, withCountry, type Centre, type Origin, type PlaceKind } from "@/lib/places";
-import { DEFAULT_MONTHLY_BUDGET, searchScrappa } from "@/lib/scrappa";
+import { distanceKm, searchCentres, type Centre, type Origin, type PlaceKind } from "@/lib/places";
+import { DEFAULT_MONTHLY_BUDGET, scrappaApiKey, searchScrappa } from "@/lib/scrappa";
 
 // Choix des sources de lieux, dans l'ordre d'essai. OpenStreetMap est toujours disponible en dernier recours :
 // il ne demande ni clé ni carte bancaire.
@@ -15,11 +15,11 @@ export function planProviders(env: Env): PlacesProvider[] {
   const forced = env.PLACES_PROVIDER;
   if (forced === "osm") return ["osm"];
   if (forced === "google" && env.GOOGLE_MAPS_API_KEY) return ["google", "osm"];
-  if (forced === "scrappa" && env.SCRAPPA_API_KEY) return ["scrappa", "osm"];
+  if (forced === "scrappa" && scrappaApiKey(env)) return ["scrappa", "osm"];
 
   const plan: PlacesProvider[] = [];
   if (env.GOOGLE_MAPS_API_KEY) plan.push("google");
-  if (env.SCRAPPA_API_KEY) plan.push("scrappa");
+  if (scrappaApiKey(env)) plan.push("scrappa");
   plan.push("osm");
   return plan;
 }
@@ -51,11 +51,7 @@ export async function searchScrappaPlaces(
   }
   if (!place) return [];
 
-  const centres = await deps.search(
-    { query: withCountry(place, env.PLACES_COUNTRY), kind: input.kind },
-    env.SCRAPPA_API_KEY as string,
-    budget,
-  );
+  const centres = await deps.search({ query: place, kind: input.kind }, scrappaApiKey(env) as string, budget);
 
   const origin = input.origin;
   if (!origin) return centres;
@@ -71,8 +67,7 @@ export type Searchers = Record<PlacesProvider, (input: SearchInput, env: Env) =>
 export const realSearchers: Searchers = {
   google: (input, env) => searchCentres(input, { apiKey: env.GOOGLE_MAPS_API_KEY as string }),
   scrappa: (input, env) => searchScrappaPlaces(input, env),
-  osm: (input, env) =>
-    searchOsm({ ...input, query: input.query ? withCountry(input.query, env.PLACES_COUNTRY) : undefined }),
+  osm: (input) => searchOsm(input),
 };
 
 export type SearchOutcome = { source: PlacesProvider; centres: Centre[] };

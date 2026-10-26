@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { beforeEach, test } from "node:test";
-import { parseScrappa, reserveCredit, resetScrappaState, searchScrappa } from "../lib/scrappa";
+import { parseScrappa, reserveCredit, resetScrappaState, scrappaApiKey, searchScrappa } from "../lib/scrappa";
 
 beforeEach(() => resetScrappaState());
 
@@ -81,4 +81,13 @@ test("l'autre forme de réponse de la documentation est aussi acceptée", () => 
   assert.equal(centres[0].adresse, "Rue 5");
   assert.equal(centres[0].telephone, "+49 30 1");
   assert.equal(centres[0].lat, 52.5);
+});
+
+test("la clé se lit sous le nom standard ou sous SCRAPPA_M…S_API_KEY, et nulle part ailleurs", () => {
+  assert.equal(scrappaApiKey({ SCRAPPA_API_KEY: "a" }), "a");
+  assert.equal(scrappaApiKey({ SCRAPPA_MAPS_API_KEY: "b" }), "b");
+  assert.equal(scrappaApiKey({ SCRAPPA_API_KEY: "a", SCRAPPA_MAPS_API_KEY: "b" }), "a");
+  assert.equal(scrappaApiKey({ SCRAPPA_MONTHLY_BUDGET: "400" }), undefined);
+  assert.equal(scrappaApiKey({ OTHER_API_KEY: "x", SCRAPPA_X: "y" }), undefined);
+  assert.equal(scrappaApiKey({}), undefined);
 });

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { pickProvider } from "@/lib/llm";
+import { scrappaApiKey } from "@/lib/scrappa";
 
 export const runtime = "nodejs";
 
@@ -11,7 +12,7 @@ export function GET() {
     places: {
       osm: true, // toujours disponible, sans clé
       google: Boolean(process.env.GOOGLE_MAPS_API_KEY),
-      scrappa: Boolean(process.env.SCRAPPA_API_KEY),
+      scrappa: Boolean(scrappaApiKey(process.env)),
     },
     partnerPage: Boolean(process.env.PARTNER_TOKEN),
   });

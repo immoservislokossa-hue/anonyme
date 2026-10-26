@@ -11,6 +11,14 @@ const CACHE_TTL_MS = 24 * 60 * 60_000;
 const CACHE_MAX_ENTRIES = 300;
 export const DEFAULT_MONTHLY_BUDGET = 400; // marge de sécurité sous les 500 crédits gratuits
 
+// La clé se lit sous le nom standard SCRAPPA_API_KEY, ou sous un nom de la forme SCRAPPA_M…S_API_KEY
+// (par exemple SCRAPPA_MAPS_API_KEY). Aucune autre variable n'est lue.
+export function scrappaApiKey(env: Record<string, string | undefined>): string | undefined {
+  if (env.SCRAPPA_API_KEY) return env.SCRAPPA_API_KEY;
+  const name = Object.keys(env).find((key) => /^SCRAPPA_M.*S_API_KEY$/.test(key) && env[key]);
+  return name ? env[name] : undefined;
+}
+
 type Cached = { centres: Centre[]; expiresAt: number };
 const cache = new Map<string, Cached>();
 const spent = { month: "", credits: 0 };

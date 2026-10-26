@@ -75,11 +75,11 @@ test("si tout échoue, l'erreur est remontée ; si tout est vide, on renvoie une
 const cotonou = { lat: 6.3703, lng: 2.3912 };
 const place = (id: string, lat: number, lng: number): Centre => ({ ...centre(id, "scrappa"), lat, lng });
 
-test("une position est transformée en nom de quartier, avec le pays, puis les résultats sont classés par distance", async () => {
+test("une position est transformée en nom de quartier, puis les résultats sont classés par distance", async () => {
   let asked = "";
   const found = await searchScrappaPlaces(
     { origin: cotonou, kind: "pharmacie" },
-    { SCRAPPA_API_KEY: "k", PLACES_COUNTRY: "Bénin" },
+    { SCRAPPA_API_KEY: "k" },
     {
       reverse: async () => "Cadjehoun, Cotonou",
       search: async (input) => {
@@ -88,7 +88,7 @@ test("une position est transformée en nom de quartier, avec le pays, puis les r
       },
     },
   );
-  assert.equal(asked, "Cadjehoun, Cotonou, Bénin");
+  assert.equal(asked, "Cadjehoun, Cotonou");
   assert.deepEqual(found.map((c) => c.id), ["pres", "loin"]);
   assert.ok((found[0].distanceKm ?? 99) < 1);
 });
@@ -111,4 +111,8 @@ test("une recherche par nom garde les résultats tels quels, sans distance", asy
     { reverse: async () => null, search: async () => [place("a", 9.33, 2.63)] },
   );
   assert.equal(found[0].distanceKm, null);
+});
+
+test("une clé nommée SCRAPPA_M…S_API_KEY active aussi Scrappa", () => {
+  assert.deepEqual(planProviders({ SCRAPPA_MAPS_API_KEY: "k" }), ["scrappa", "osm"]);
 });
