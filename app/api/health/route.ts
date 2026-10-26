@@ -3,12 +3,16 @@ import { pickProvider } from "@/lib/llm";
 
 export const runtime = "nodejs";
 
-// Indique ce qui est configuré, sans jamais révéler une clé : le fournisseur d'IA retenu et la présence de la clé Google.
+// Indique ce qui est configuré, sans jamais révéler une clé.
 export function GET() {
   return NextResponse.json({
     status: "ok",
     model: pickProvider(),
-    maps: Boolean(process.env.GOOGLE_MAPS_API_KEY),
+    places: {
+      osm: true, // toujours disponible, sans clé
+      google: Boolean(process.env.GOOGLE_MAPS_API_KEY),
+      scrappa: Boolean(process.env.SCRAPPA_API_KEY),
+    },
     partnerPage: Boolean(process.env.PARTNER_TOKEN),
   });
 }

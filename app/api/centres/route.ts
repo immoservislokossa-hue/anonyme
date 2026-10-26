@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { record } from "@/lib/metrics";
-import { cleanQuery, isPlaceKind, isValidOrigin, searchCentres, type Origin } from "@/lib/places";
+import { cleanQuery, isPlaceKind, isValidOrigin, type Origin } from "@/lib/places";
+import { searchWithFallback } from "@/lib/providers";
 import { checkRate } from "@/lib/rateLimit";
 
 export const runtime = "nodejs";
@@ -13,6 +14,7 @@ function clientKey(request: Request): string {
   return `centres:${forwarded?.split(",")[0]?.trim() || "inconnu"}`;
 }
 
+// Les sources et leur ordre sont décidés dans lib/providers.ts. OpenStreetMap, gratuit et sans clé, sert de repli.
 export async function POST(request: Request) {
   const rate = checkRate(clientKey(request), RATE_LIMIT, RATE_WINDOW_MS);
   if (!rate.allowed) {
@@ -33,17 +35,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Position ou lieu manquant." }, { status: 400 });
   }
 
-  const apiKey = process.env.GOOGLE_MAPS_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json({ configured: false, centres: [] });
-  }
-
   try {
-    const centres = await searchCentres({ origin, query, kind }, { apiKey });
+    const { source, centres } = await searchWithFallback({ origin, query, kind });
     record("orientation");
-    return NextResponse.json({ configured: true, centres });
+    return NextResponse.json({ configured: true, source, centres });
   } catch {
-    // On ne renvoie aucun détail : ils pourraient contenir la clé ou la position.
+    // On ne renvoie aucun détail : ils pourraient contenir une clé ou la position.
     return NextResponse.json({ configured: true, centres: [], error: "unavailable" }, { status: 502 });
   }
 }

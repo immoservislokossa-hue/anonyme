@@ -20,6 +20,7 @@ export type Centre = {
   mapsUrl: string;
   itineraireUrl: string;
   distanceKm: number | null;
+  source: "google" | "osm" | "scrappa";
 };
 
 const ENDPOINT = "https://places.googleapis.com/v1/places:searchText";
@@ -62,10 +63,15 @@ export function distanceKm(a: Origin, b: Origin): number {
   return 6371 * 2 * Math.asin(Math.sqrt(h));
 }
 
+// Texte de recherche en français, commun à tous les fournisseurs fondés sur une recherche par mots.
+export function textQueryFor(kind: PlaceKind | undefined, query?: string): string {
+  const subject = kind === "pharmacie" ? "pharmacie" : "centre de santé";
+  return query ? `${subject} ${query}` : subject;
+}
+
 export function buildSearchBody(input: { origin?: Origin; query?: string; kind?: PlaceKind }) {
-  const subject = input.kind === "pharmacie" ? "pharmacie" : "centre de santé";
   const body: Record<string, unknown> = {
-    textQuery: input.query ? `${subject} ${input.query}` : subject,
+    textQuery: textQueryFor(input.kind, input.query),
     languageCode: "fr",
     maxResultCount: MAX_RESULTS,
   };
@@ -112,6 +118,7 @@ export function parsePlaces(json: unknown, origin?: Origin): Centre[] {
       mapsUrl: place.googleMapsUri ?? `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`,
       itineraireUrl: `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`,
       distanceKm: origin ? Math.round(distanceKm(origin, { lat, lng }) * 10) / 10 : null,
+      source: "google",
     });
   }
 

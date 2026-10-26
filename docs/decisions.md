@@ -40,9 +40,21 @@
   le fournisseur applique ses propres règles, et son hébergement peut se trouver hors de la zone du projet. Avant un
   pilote avec de vraies personnes, il faut vérifier les conditions du fournisseur au regard des lois sur les données
   personnelles des pays concernés, ou choisir un fournisseur hébergé dans une région acceptable.
-- **Google Maps (API Places)** : la clé reste sur le serveur. La position est envoyée à Google pour chercher des
-  centres de santé ou des pharmacies, elle n'est ni enregistrée ni journalisée. La couverture de Google varie selon les
-  pays : un lieu absent de la carte n'apparaît pas. Les résultats ne garantissent pas que le lieu propose le service.
+- **Lieux (centres de santé, pharmacies)** : `lib/providers.ts` essaie les sources dans l'ordre, et passe à la
+  suivante en cas d'erreur ou de réponse vide.
+  1. Google Places (clé officielle, carte bancaire exigée par Google), si `GOOGLE_MAPS_API_KEY` est présente.
+  2. Scrappa (API tierce, 500 crédits gratuits par mois, sans carte), pour la recherche par nom de lieu seulement.
+     La recherche par position demande le point d'accès « advanced-search », dont les paramètres de position ne sont pas
+     encore confirmés. Un budget mensuel (`SCRAPPA_MONTHLY_BUDGET`) et un cache de 24 h limitent la dépense. Le compteur
+     est en mémoire : il est indicatif et repart à zéro au redémarrage.
+  3. OpenStreetMap (Overpass et Nominatim), toujours disponible, sans clé. Services publics tenus par des bénévoles :
+     appels limités, réponses mises en cache, User-Agent explicite. La complétude de la carte varie selon les villes :
+     les hôpitaux sont en général présents, les petites pharmacies et dispensaires, les téléphones et les horaires le
+     sont moins. L'attribution « © contributeurs OpenStreetMap » est affichée.
+- **Confidentialité des lieux** : la position (ou le lieu écrit) est envoyée au service de cartes retenu. Elle n'est ni
+  enregistrée ni journalisée par ce service. Scrappa tire ses données de Google Maps par extraction : c'est un
+  fournisseur tiers dont la fiabilité et les conditions d'usage ne sont pas garanties, à revoir avant un pilote.
+- Les résultats ne garantissent pas que le lieu propose le service attendu.
 
 ## Bibliothèque des centres du Partenariat de Ouagadougou (à venir)
 - Les centres partenaires actuels (`data/structures.json`) sont des emplacements à confirmer. Aucun centre ne doit

@@ -8,7 +8,7 @@ type State =
   | { status: "idle" }
   | { status: "locating" }
   | { status: "loading" }
-  | { status: "done"; centres: Centre[]; configured: boolean; byPosition: boolean }
+  | { status: "done"; centres: Centre[]; configured: boolean; byPosition: boolean; source: Centre["source"] }
   | { status: "error"; message: string };
 
 type Search = { lat?: number; lng?: number; query?: string };
@@ -17,6 +17,12 @@ const KINDS: { id: PlaceKind; label: string; singular: string }[] = [
   { id: "centre", label: "Centres de santé", singular: "centre de santé" },
   { id: "pharmacie", label: "Pharmacies", singular: "pharmacie" },
 ];
+
+const SOURCE_NOTES: Record<Centre["source"], string> = {
+  osm: "Données © contributeurs OpenStreetMap, une carte libre : un lieu absent de la carte n'apparaît pas.",
+  google: "Résultats de Google Maps.",
+  scrappa: "Résultats issus de Google Maps, fournis par Scrappa.",
+};
 
 function formatDistance(km: number): string {
   return km < 1 ? `${Math.round(km * 1000)} m` : `${km.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} km`;
@@ -51,12 +57,13 @@ export default function NearbyCentres() {
         return;
       }
 
-      const data = (await response.json()) as { configured?: boolean; centres?: Centre[] };
+      const data = (await response.json()) as { configured?: boolean; centres?: Centre[]; source?: Centre["source"] };
       setState({
         status: "done",
         centres: data.centres ?? [],
         configured: data.configured !== false,
         byPosition: payload.lat !== undefined,
+        source: data.source ?? "osm",
       });
     } catch {
       setState({ status: "error", message: "Pas de connexion. Réessayez, ou voyez nos centres partenaires plus bas." });
@@ -98,8 +105,8 @@ export default function NearbyCentres() {
       <div>
         <h2>Autour de moi</h2>
         <p className="muted">
-          Votre position est envoyée à Google Maps pour trouver les lieux proches. Elle n'est pas enregistrée par ce
-          service. Vous pouvez aussi écrire le nom de votre commune.
+          Votre position est envoyée à un service de cartes pour trouver les lieux proches. Elle n'est pas enregistrée
+          par ce service. Vous pouvez aussi écrire le nom de votre commune.
         </p>
       </div>
 
@@ -197,8 +204,8 @@ export default function NearbyCentres() {
             ))}
           </ul>
           <p className="muted">
-            Résultats de Google Maps. Ils ne garantissent pas que le lieu propose le service : vérifiez les horaires et
-            ce qui est disponible avant de vous déplacer.
+            {SOURCE_NOTES[state.source]} Ils ne garantissent pas que le lieu propose le service : vérifiez les horaires
+            et ce qui est disponible avant de vous déplacer.
             {kind === "pharmacie" &&
               " Selon le pays, une pharmacie peut proposer préservatifs, tests de grossesse et contraception d'urgence : demandez conseil au pharmacien."}
           </p>
