@@ -29,7 +29,7 @@ Le même prototype peut donc être présenté à différents prix en mettant en 
 | Urgence | `/urgence` | Page statique. Les messages urgents ou de détresse du chat ne passent jamais par le modèle. |
 | Vrai ou faux | `/quiz` | Questions par voie, explications, points. |
 | Chroniques | `/chroniques` | Textes lus à voix haute par la voix du téléphone. Pas d'enregistrements audio. |
-| Trouver un centre | `/orientation` | Filtre par commune et préparation de la visite. Les cinq centres sont des emplacements à remplir. |
+| Trouver un centre ou une pharmacie | `/orientation` | Recherche Google Maps autour de la position (ou d'un nom de lieu) pour les centres de santé et les pharmacies, avec itinéraire. Filtre des centres partenaires par commune et préparation de la visite. Les cinq centres partenaires sont des emplacements à remplir. |
 | Espace agent | `/pro` | Listes de vérification avec source, version et statut de validation. |
 | Suivi | `/partenaires` | Compteurs agrégés, protégés par `PARTNER_TOKEN`. |
 | Confidentialité, aide | `/consentement`, `/aide` | Pages d'information. |
@@ -38,6 +38,7 @@ La progression (points, badges, série) est stockée sur l'appareil. Aucun messa
 
 ## Ce qui n'est pas fait
 
+- Bibliothèque des centres en collaboration avec le Partenariat de Ouagadougou, avec filtres (voir `docs/decisions.md`).
 - WhatsApp, appel vocal et rappel téléphonique : il faut des comptes chez un opérateur ou un fournisseur.
 - Langues locales : le prototype est en français uniquement.
 - Stockage durable des compteurs : ils sont en mémoire et repartent à zéro au redémarrage.
@@ -50,11 +51,12 @@ La progression (points, badges, série) est stockée sur l'appareil. Aucun messa
 
 ```bash
 npm install
-cp .env.example .env.local   # renseigner ANTHROPIC_API_KEY et PARTNER_TOKEN
+cp .env.example .env.local   # renseigner DEEPSEEK_API_KEY (ou ANTHROPIC_API_KEY), GOOGLE_MAPS_API_KEY et PARTNER_TOKEN
 npm run dev
 ```
 
-Sans `ANTHROPIC_API_KEY`, le chat répond avec la base de connaissances.
+Sans clé de modèle, le chat répond avec la base de connaissances. Sans `GOOGLE_MAPS_API_KEY`, la recherche autour de moi
+explique qu'elle n'est pas activée et renvoie vers les centres partenaires.
 
 ## Vérifier
 

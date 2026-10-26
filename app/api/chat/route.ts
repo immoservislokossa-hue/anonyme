@@ -1,6 +1,6 @@
-import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { isVoie } from "@/lib/domain";
+import { generateReply, pickProvider } from "@/lib/llm";
 import { record } from "@/lib/metrics";
 import { buildContext, systemPromptFor } from "@/lib/prompt";
 import { checkRate } from "@/lib/rateLimit";
@@ -85,8 +85,8 @@ export async function POST(request: Request) {
   const entries = retrieve(lastUser.content, 3, voie);
   record("question", entries[0]?.theme);
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
+  // Sans fournisseur configuré, on répond avec la base seule.
+  if (pickProvider() === "none") {
     return NextResponse.json({
       reply: fallbackReply(entries),
       kind: "fallback",
@@ -95,22 +95,15 @@ export async function POST(request: Request) {
   }
 
   try {
-    const client = new Anthropic({ apiKey });
-    const response = await client.messages.create({
-      model: process.env.ANTHROPIC_MODEL ?? "claude-sonnet-5-5",
-      max_tokens: 400,
-      system: `${systemPromptFor(voie)}\n\nContexte :\n${buildContext(entries)}`,
-      messages: history.map((m) => ({ role: m.role, content: m.content })),
-    });
-
-    const reply = response.content
-      .map((block) => (block.type === "text" ? block.text : ""))
-      .join("")
-      .trim();
+    const system = `${systemPromptFor(voie)}\n\nContexte :\n${buildContext(entries)}`;
+    const reply = await generateReply(
+      system,
+      history.map((m) => ({ role: m.role, content: m.content })),
+    );
 
     return NextResponse.json({
       reply: reply || fallbackReply(entries),
-      kind: "answer",
+      kind: reply ? "answer" : "fallback",
       sources: entries.map((e) => e.title),
     });
   } catch {

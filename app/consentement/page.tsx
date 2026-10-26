@@ -15,7 +15,8 @@ export default function ConsentPage() {
         <h2>En clair</h2>
         <ul className="plain">
           <li>Vous n'avez pas besoin de donner votre nom, votre numéro ou votre adresse.</li>
-          <li>Vos messages ne sont pas conservés. Ils servent seulement à préparer la réponse.</li>
+          <li>Nous ne conservons pas vos messages. Pour préparer une réponse, votre question est envoyée à un fournisseur d'intelligence artificielle externe, qui applique ses propres règles. N'écrivez ni votre nom ni vos coordonnées.</li>
+          <li>Si vous cherchez un centre autour de vous, votre position est envoyée à Google Maps. Elle n'est pas enregistrée par ce service, et vous pouvez écrire un nom de commune à la place.</li>
           <li>Vos points, badges et réponses au quiz restent sur votre téléphone.</li>
           <li>Nous comptons seulement le nombre de questions par thème, sans savoir qui les a posées.</li>
           <li>Ce service est automatisé. Il ne remplace jamais un professionnel de santé.</li>

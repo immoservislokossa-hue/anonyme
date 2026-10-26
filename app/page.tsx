@@ -21,7 +21,7 @@ const [before, after] = TAGLINE.split("bien-être");
 export default function HomePage() {
   return (
     <>
-      <section className="hero">
+      <section className="hero wide">
         <p className="eyebrow">Bienvenue</p>
         <h1>
           {before}
@@ -40,7 +40,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section aria-label="Sujets">
+      <section aria-label="Sujets" className="wide">
         <h2>Choisissez un sujet avec {ASSISTANT_NAME}</h2>
         <div className="cards">
           {VOIES.map((voie) => (
@@ -59,7 +59,7 @@ export default function HomePage() {
 
       <ProgressCard />
 
-      <section aria-label="Outils">
+      <section aria-label="Outils" className="wide">
         <h2>Pour aller plus loin</h2>
         <div className="cards">
           {tools.map((tool) => (

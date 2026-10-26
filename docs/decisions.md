@@ -32,3 +32,22 @@
 - Les motifs de détection sont une première version. Ils peuvent rater des formulations et doivent être complétés
   et testés avec des professionnels avant toute diffusion.
 - Le contenu de cette voie doit être relu par un psychologue ou un psychiatre avant d'être montré publiquement.
+
+## Services externes
+- **Modèle de langage** : DeepSeek (API compatible OpenAI) pour le prototype, Anthropic en alternative. Le choix se
+  fait par variables d'environnement (`lib/llm.ts`). Sans clé, le chat répond avec la base seule.
+- **Confidentialité** : la question de la personne est envoyée au fournisseur d'IA. Ce service ne la conserve pas, mais
+  le fournisseur applique ses propres règles, et son hébergement peut se trouver hors de la zone du projet. Avant un
+  pilote avec de vraies personnes, il faut vérifier les conditions du fournisseur au regard des lois sur les données
+  personnelles des pays concernés, ou choisir un fournisseur hébergé dans une région acceptable.
+- **Google Maps (API Places)** : la clé reste sur le serveur. La position est envoyée à Google pour chercher des
+  centres de santé ou des pharmacies, elle n'est ni enregistrée ni journalisée. La couverture de Google varie selon les
+  pays : un lieu absent de la carte n'apparaît pas. Les résultats ne garantissent pas que le lieu propose le service.
+
+## Bibliothèque des centres du Partenariat de Ouagadougou (à venir)
+- Les centres partenaires actuels (`data/structures.json`) sont des emplacements à confirmer. Aucun centre ne doit
+  être présenté comme « en collaboration avec le Partenariat de Ouagadougou » sans confirmation écrite.
+- Prévu : un champ de réseau sur chaque structure (par exemple `reseaux: ["partenariat-ouagadougou"]`), un pays, des
+  services, et des filtres par pays, commune, service et réseau, avec une date de vérification.
+- À fournir par les partenaires : la liste confirmée des centres, le critère de « collaboration » et la personne qui
+  valide les mises à jour.

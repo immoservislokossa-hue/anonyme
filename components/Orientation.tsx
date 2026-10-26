@@ -26,7 +26,7 @@ export default function Orientation({ structures }: { structures: Structure[] })
         {visible.length} structure{visible.length > 1 ? "s" : ""} trouvée{visible.length > 1 ? "s" : ""}
       </p>
 
-      <ul className="stack">
+      <ul className="stack cols">
         {visible.map((structure) => (
           <li key={structure.id} className="panel">
             <div className="row-between">
