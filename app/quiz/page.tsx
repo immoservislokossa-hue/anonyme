@@ -1,20 +1,27 @@
 import type { Metadata } from "next";
 import Quiz, { type QuizItem } from "@/components/Quiz";
+import VoieTabs from "@/components/VoieTabs";
 import quizData from "@/data/quiz.json";
+import { isVoie } from "@/lib/domain";
 
 export const metadata: Metadata = { title: "Vrai ou faux" };
 
-const items: QuizItem[] = quizData;
+const allItems = quizData as QuizItem[];
 
-export default function QuizPage() {
+export default async function QuizPage({ searchParams }: { searchParams: Promise<{ voie?: string }> }) {
+  const { voie } = await searchParams;
+  const current = isVoie(voie) ? voie : undefined;
+  const items = current ? allItems.filter((item) => item.voie === current || item.voie === "commun") : allItems;
+
   return (
     <>
       <header>
         <p className="eyebrow">Quiz</p>
         <h1>Vrai ou faux</h1>
-        <p className="lede">Six affirmations fréquentes. Répondez, puis lisez l'explication.</p>
+        <p className="lede">{items.length} affirmations fréquentes. Répondez, puis lisez l'explication.</p>
       </header>
-      <Quiz items={items} />
+      <VoieTabs current={current} basePath="/quiz" />
+      <Quiz key={current ?? "tout"} items={items} />
     </>
   );
 }

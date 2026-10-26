@@ -27,3 +27,23 @@ test("aucune structure n'est présentée comme vérifiée sans date", () => {
     if (structure.verifie) assert.ok(structure.dateVerification, structure.id);
   }
 });
+
+test("une voie ne renvoie que ses entrées et les entrées communes", () => {
+  const sleep = retrieve("comment mieux dormir", 5, "bien-etre");
+  assert.equal(sleep[0]?.id, "sommeil");
+
+  const otherVoie = retrieve("stress anxiété", 5, "sexuelle");
+  for (const entry of otherVoie) {
+    assert.ok(entry.voie === "sexuelle" || entry.voie === "commun", entry.id);
+  }
+});
+
+test("une question sur les infections retrouve la voie santé sexuelle", () => {
+  const results = retrieve("comment savoir si j'ai une infection sexuellement transmissible");
+  assert.equal(results[0]?.theme, "ist");
+});
+
+test("la voie santé mentale retrouve les contenus sur la tristesse", () => {
+  const results = retrieve("je me sens triste depuis des semaines", 3, "mentale");
+  assert.equal(results[0]?.id, "tristesse-persistante");
+});

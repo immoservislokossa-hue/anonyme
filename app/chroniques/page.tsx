@@ -1,13 +1,19 @@
 import type { Metadata } from "next";
 import Chronicles, { type Chronicle } from "@/components/Chronicles";
+import VoieTabs from "@/components/VoieTabs";
 import chroniclesData from "@/data/chronicles.json";
 import { ASSISTANT_NAME } from "@/lib/brand";
+import { isVoie } from "@/lib/domain";
 
 export const metadata: Metadata = { title: "Chroniques" };
 
-const items: Chronicle[] = chroniclesData;
+const allItems = chroniclesData as Chronicle[];
 
-export default function ChroniclesPage() {
+export default async function ChroniclesPage({ searchParams }: { searchParams: Promise<{ voie?: string }> }) {
+  const { voie } = await searchParams;
+  const current = isVoie(voie) ? voie : undefined;
+  const items = current ? allItems.filter((item) => item.voie === current || item.voie === "commun") : allItems;
+
   return (
     <>
       <header>
@@ -18,7 +24,8 @@ export default function ChroniclesPage() {
           téléphone.
         </p>
       </header>
-      <Chronicles items={items} />
+      <VoieTabs current={current} basePath="/chroniques" />
+      <Chronicles key={current ?? "tout"} items={items} />
     </>
   );
 }

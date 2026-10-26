@@ -1,6 +1,7 @@
 [
   {
     "id": "methodes-generales",
+    "voie": "sexuelle",
     "theme": "methodes",
     "title": "Les grandes familles de méthodes contraceptives",
     "content": "Il existe plusieurs familles de méthodes : les méthodes hormonales (pilule, injectable, implant), les dispositifs intra-utérins (DIU), les préservatifs masculins et féminins, et les méthodes naturelles. Les préservatifs sont les seuls qui protègent aussi contre les infections sexuellement transmissibles. Le choix dépend de la santé, de l'âge, des projets de grossesse et des préférences de la personne. Un professionnel de santé peut présenter les options disponibles dans le centre concerné.",
@@ -9,6 +10,7 @@
   },
   {
     "id": "effets-secondaires-courants",
+    "voie": "sexuelle",
     "theme": "effets",
     "title": "Effets secondaires fréquents et ce qu'il faut savoir",
     "content": "Certaines méthodes hormonales peuvent provoquer des saignements irréguliers, surtout pendant les premiers mois. Ces changements sont fréquents et ne sont pas toujours dangereux. Il est utile de consulter si les saignements sont très abondants, si la douleur est forte, si de la fièvre apparaît, ou si l'inquiétude persiste. Parler des effets à un professionnel permet souvent de trouver une solution adaptée.",
@@ -17,6 +19,7 @@
   },
   {
     "id": "orientation-service",
+    "voie": "commun",
     "theme": "orientation",
     "title": "Préparer une consultation",
     "content": "Avant une consultation, il peut être utile de noter ses questions, ses éventuels symptômes et leur date de début, ses méthodes déjà utilisées et les médicaments pris. Il est possible de demander la confidentialité et de poser des questions sans honte. Une personne de confiance peut accompagner, si on le souhaite.",
@@ -25,9 +28,154 @@
   },
   {
     "id": "idees-fausses",
+    "voie": "sexuelle",
     "theme": "rumeurs",
     "title": "Rumeurs fréquentes sur la contraception",
     "content": "Des rumeurs circulent, par exemple selon lesquelles la contraception rendrait stérile de façon définitive ou ferait grossir fortement. Pour la plupart des méthodes, la fertilité revient après l'arrêt, même si le délai varie selon la méthode. Les prises de poids importantes ne sont pas la règle générale, mais une inquiétude peut être discutée avec un professionnel.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "preservatif-usage",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "Bien utiliser un préservatif",
+    "content": "Le préservatif se met avant tout contact, une seule fois, puis se jette. On vérifie la date et l'emballage avant de l'ouvrir. Avec un préservatif en latex, on utilise uniquement un lubrifiant à base d'eau, car les corps gras peuvent l'abîmer. S'il craque ou glisse, il existe une contraception d'urgence : il ne faut pas attendre.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "ist-generalites",
+    "voie": "sexuelle",
+    "theme": "ist",
+    "title": "Les infections sexuellement transmissibles (IST)",
+    "content": "Les infections sexuellement transmissibles (IST) se transmettent lors de rapports sexuels. Beaucoup n'ont aucun signe visible : on peut avoir une IST sans le savoir et la transmettre. Le seul moyen de savoir est de faire un test dans un centre de santé. Beaucoup d'IST se soignent bien quand elles sont dépistées tôt. Le préservatif réduit fortement le risque d'attraper ou de transmettre une IST.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "ist-signes",
+    "voie": "sexuelle",
+    "theme": "ist",
+    "title": "Signes possibles d'une infection",
+    "content": "Des brûlures en urinant, des écoulements inhabituels, des démangeaisons, des boutons ou des plaies sur les parties intimes peuvent être des signes d'une IST, mais pas toujours. Il ne faut pas se soigner seul avec des médicaments pris au hasard. Un test et un traitement adaptés se font dans un centre de santé, pour la personne et pour ses partenaires.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "vih-depistage",
+    "voie": "sexuelle",
+    "theme": "ist",
+    "title": "Dépistage et traitement du VIH",
+    "content": "Le dépistage du VIH est une analyse simple, proposée dans les centres de santé. Une personne qui vit avec le VIH peut, avec un traitement pris régulièrement, rester en bonne santé. Avec ce traitement, la quantité de virus peut devenir si faible qu'il n'est plus transmis. Plus le dépistage est précoce, plus le traitement est efficace. Un professionnel peut aider à choisir le moment et le lieu du test.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "consentement",
+    "voie": "sexuelle",
+    "theme": "consentement",
+    "title": "Le consentement",
+    "content": "Un rapport sexuel n'est respectueux que si les deux personnes sont d'accord, librement, sans pression ni menace, et sans être endormies ou sous l'effet de l'alcool ou de la drogue. On peut dire non à tout moment, même après avoir dit oui. Le silence n'est pas un oui. Si quelqu'un force une personne, ce n'est pas la faute de cette personne.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "contraception-urgence",
+    "voie": "sexuelle",
+    "theme": "urgence",
+    "title": "Après un rapport sans protection ou un préservatif qui a craqué",
+    "content": "Après un rapport sans protection, ou si un préservatif a craqué, il existe une contraception d'urgence. Plus elle est prise tôt, plus elle est efficace. Elle ne protège pas des IST. Un professionnel de santé ou une pharmacie peut dire ce qui est disponible et adapté. En cas de risque d'infection, notamment le VIH, il existe aussi un traitement préventif à commencer le plus tôt possible, idéalement dans les 72 heures : il faut aller vite dans un centre de santé.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "apres-violence",
+    "voie": "sexuelle",
+    "theme": "violences",
+    "title": "Après une relation forcée ou une violence sexuelle",
+    "content": "Si une personne a subi une relation forcée ou une violence sexuelle, ce n'est pas sa faute. Elle peut aller dès que possible dans un centre de santé : on peut la soigner, lui proposer une contraception d'urgence et un traitement préventif contre le VIH, qui doivent être commencés rapidement. Elle peut venir accompagnée. Elle n'a pas à décider seule de la suite.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "grossesse-inattendue",
+    "voie": "sexuelle",
+    "theme": "grossesse",
+    "title": "Une grossesse non prévue",
+    "content": "Si une personne pense être enceinte, un test de grossesse en pharmacie ou un professionnel de santé peut le confirmer. Il est utile d'en parler vite à un professionnel de santé : il peut expliquer les soins et les options prévues par la loi du pays, sans jugement. Un suivi précoce protège la santé.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "stress-anxiete",
+    "voie": "mentale",
+    "theme": "stress",
+    "title": "Le stress et l'anxiété",
+    "content": "Le stress et l'anxiété sont des réactions fréquentes face aux difficultés. Ils peuvent donner des tensions, des difficultés à dormir, ou des pensées qui tournent en boucle. En parler à une personne de confiance aide souvent. Si cela dure, ou si cela empêche de vivre normalement, un professionnel de santé ou de santé mentale peut aider.",
+    "source": "Brouillon à valider par un professionnel de santé mentale",
+    "validated": false
+  },
+  {
+    "id": "tristesse-persistante",
+    "voie": "mentale",
+    "theme": "tristesse",
+    "title": "Quand la tristesse dure",
+    "content": "Se sentir triste après un événement difficile est normal. Quand la tristesse dure plusieurs semaines, que l'on perd l'envie de tout, ou que le sommeil et l'appétit changent fortement, il est important d'en parler à un professionnel de santé. Ce n'est pas une faiblesse, et cela se soigne.",
+    "source": "Brouillon à valider par un professionnel de santé mentale",
+    "validated": false
+  },
+  {
+    "id": "honte-culpabilite",
+    "voie": "mentale",
+    "theme": "tristesse",
+    "title": "La honte et la culpabilité liées à la sexualité",
+    "content": "La honte, la culpabilité ou la peur du jugement après une relation, une grossesse non prévue, une violence ou un test peuvent peser lourd. Ces sentiments sont fréquents. En parler à une personne de confiance ou à un professionnel aide, et on peut demander la confidentialité.",
+    "source": "Brouillon à valider par un professionnel de santé mentale",
+    "validated": false
+  },
+  {
+    "id": "detresse-aide",
+    "voie": "mentale",
+    "theme": "detresse",
+    "title": "Quand on se sent très mal",
+    "content": "Quand tout paraît trop lourd, il ne faut pas rester seul. Parler à une personne de confiance, à un professionnel de santé ou à une ligne d'écoute peut aider. Si une personne pense à se faire du mal, elle doit demander de l'aide tout de suite et appeler le numéro d'urgence de son pays.",
+    "source": "Brouillon à valider par un professionnel de santé mentale",
+    "validated": false
+  },
+  {
+    "id": "sommeil",
+    "voie": "bien-etre",
+    "theme": "sommeil",
+    "title": "Mieux dormir",
+    "content": "Se coucher et se lever à des heures régulières, éviter les écrans et la caféine le soir, et dormir dans un endroit calme aident le sommeil. Si les difficultés de sommeil durent plusieurs semaines, il est utile d'en parler à un professionnel de santé.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "estime-de-soi",
+    "voie": "bien-etre",
+    "theme": "estime",
+    "title": "L'estime de soi",
+    "content": "L'estime de soi se construit avec le temps. Se comparer sans cesse aux autres, notamment sur les réseaux sociaux, peut la fragiliser. Se fixer de petits objectifs, se souvenir de ses réussites et s'entourer de personnes bienveillantes aident à reprendre confiance.",
+    "source": "Brouillon à valider par un professionnel de santé mentale",
+    "validated": false
+  },
+  {
+    "id": "routine-activite",
+    "voie": "bien-etre",
+    "theme": "activite",
+    "title": "Une routine qui fait du bien",
+    "content": "Bouger un peu chaque jour, manger à des heures régulières, boire de l'eau et passer du temps avec des proches ou des amis soutiennent le moral et l'énergie. De petits changements réguliers comptent plus qu'un grand changement difficile à tenir.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "respiration",
+    "voie": "bien-etre",
+    "theme": "stress",
+    "title": "Respirer pour calmer le stress",
+    "content": "Quand le stress monte, respirer lentement peut aider : inspirer par le nez pendant quelques secondes, puis expirer doucement par la bouche, plusieurs fois de suite. Si le stress ou les malaises reviennent souvent, il faut en parler à un professionnel de santé.",
     "source": "Brouillon à valider par un professionnel de santé",
     "validated": false
   }

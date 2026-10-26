@@ -1,6 +1,7 @@
 [
   {
     "id": "sterilite",
+    "voie": "sexuelle",
     "enonce": "La contraception rend stérile à vie.",
     "reponse": false,
     "explication": "Pour la plupart des méthodes, la fertilité revient après l'arrêt. Le délai varie selon la méthode. Une inquiétude précise se discute avec un professionnel.",
@@ -8,37 +9,130 @@
   },
   {
     "id": "preservatif",
+    "voie": "sexuelle",
     "enonce": "Le préservatif protège d'une grossesse et de nombreuses infections sexuellement transmissibles.",
     "reponse": true,
     "explication": "C'est la seule méthode de la liste qui protège aussi contre de nombreuses IST. On peut l'associer à une autre méthode.",
     "valide": false
   },
   {
+    "id": "ist-sans-signe",
+    "voie": "sexuelle",
+    "enonce": "On peut avoir une infection sexuellement transmissible sans aucun signe visible.",
+    "reponse": true,
+    "explication": "Beaucoup d'IST ne se voient pas. On peut les transmettre sans le savoir. Un test dans un centre de santé permet d'être sûr.",
+    "valide": false
+  },
+  {
+    "id": "consentement-silence",
+    "voie": "sexuelle",
+    "enonce": "Quand une personne ne dit rien, cela veut dire qu'elle est d'accord.",
+    "reponse": false,
+    "explication": "Le silence n'est pas un oui. Chacun doit être d'accord, librement, et peut dire non à tout moment.",
+    "valide": false
+  },
+  {
     "id": "saignements",
+    "voie": "sexuelle",
     "enonce": "Des saignements irréguliers sont fréquents au début d'une méthode hormonale.",
     "reponse": true,
     "explication": "C'est fréquent et pas toujours dangereux. Consultez si les saignements sont très abondants, si la douleur est forte ou si de la fièvre apparaît.",
     "valide": false
   },
   {
+    "id": "urgence-tot",
+    "voie": "sexuelle",
+    "enonce": "Après un rapport sans protection, la contraception d'urgence est d'autant plus efficace qu'on la prend tôt.",
+    "reponse": true,
+    "explication": "Il ne faut pas attendre. Un centre de santé ou une pharmacie peut conseiller sur ce qui est disponible.",
+    "valide": false
+  },
+  {
+    "id": "vih-traitement",
+    "voie": "sexuelle",
+    "enonce": "Une personne qui vit avec le VIH et suit son traitement peut rester en bonne santé.",
+    "reponse": true,
+    "explication": "Le traitement, pris régulièrement, permet de vivre en bonne santé. Plus le dépistage est précoce, mieux c'est.",
+    "valide": false
+  },
+  {
     "id": "toutes-methodes",
+    "voie": "sexuelle",
     "enonce": "Toutes les méthodes conviennent à toutes les personnes.",
     "reponse": false,
     "explication": "Le choix dépend de la santé, de l'âge, des projets de grossesse et des préférences. Un professionnel aide à choisir.",
     "valide": false
   },
   {
+    "id": "se-soigner-seul",
+    "voie": "sexuelle",
+    "enonce": "Quand on pense avoir une IST, le mieux est de prendre des médicaments au hasard.",
+    "reponse": false,
+    "explication": "Il ne faut pas se soigner seul. Un test et un traitement adaptés se font dans un centre de santé.",
+    "valide": false
+  },
+  {
+    "id": "test-grossesse",
+    "voie": "sexuelle",
+    "enonce": "Un test de grossesse en pharmacie ou un professionnel de santé peut confirmer une grossesse.",
+    "reponse": true,
+    "explication": "Ce service ne peut pas le faire à votre place. Un test ou un professionnel peut répondre à cette question.",
+    "valide": false
+  },
+  {
     "id": "confidentialite",
+    "voie": "commun",
     "enonce": "Vous pouvez poser des questions et demander la confidentialité lors d'une consultation.",
     "reponse": true,
     "explication": "Poser des questions fait partie de la consultation. Vous pouvez demander à ce que l'échange reste confidentiel.",
     "valide": false
   },
   {
-    "id": "test-grossesse",
-    "enonce": "Un test de grossesse en pharmacie ou un professionnel de santé peut confirmer une grossesse.",
+    "id": "en-parler",
+    "voie": "mentale",
+    "enonce": "En parler à une personne de confiance peut aider quand on se sent mal.",
     "reponse": true,
-    "explication": "Ce service ne peut pas le faire à votre place. Un test ou un professionnel peut répondre à cette question.",
+    "explication": "Parler soulage souvent. Si cela dure, un professionnel de santé peut aider.",
+    "valide": false
+  },
+  {
+    "id": "tristesse-faiblesse",
+    "voie": "mentale",
+    "enonce": "Être triste pendant plusieurs semaines est une faiblesse.",
+    "reponse": false,
+    "explication": "Ce n'est pas une faiblesse. Quand la tristesse dure, il est important d'en parler à un professionnel de santé.",
+    "valide": false
+  },
+  {
+    "id": "idees-noires",
+    "voie": "mentale",
+    "enonce": "Quand on a des idées noires, il vaut mieux attendre que ça passe seul.",
+    "reponse": false,
+    "explication": "Il ne faut pas rester seul. Parlez à une personne de confiance, à un professionnel ou à une ligne d'écoute, et appelez les urgences en cas de danger.",
+    "valide": false
+  },
+  {
+    "id": "sommeil-moral",
+    "voie": "bien-etre",
+    "enonce": "Bien dormir aide le moral.",
+    "reponse": true,
+    "explication": "Un sommeil régulier soutient l'énergie et l'humeur. Si le sommeil reste difficile pendant des semaines, parlez-en à un professionnel.",
+    "valide": false
+  },
+  {
+    "id": "bouger",
+    "voie": "bien-etre",
+    "enonce": "Bouger un peu chaque jour peut aider à se sentir mieux.",
+    "reponse": true,
+    "explication": "De petites activités régulières soutiennent le moral et l'énergie.",
+    "valide": false
+  },
+  {
+    "id": "reseaux-estime",
+    "voie": "bien-etre",
+    "enonce": "Se comparer sans cesse aux autres sur les réseaux sociaux peut fragiliser l'estime de soi.",
+    "reponse": true,
+    "explication": "Les images que l'on voit sont souvent choisies et arrangées. Se concentrer sur ses propres progrès aide.",
     "valide": false
   }
 ]

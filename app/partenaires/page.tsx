@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DOMAIN } from "@/lib/domain";
 import { summary } from "@/lib/metrics";
 
 export const metadata: Metadata = { title: "Suivi des partenaires" };
@@ -12,12 +13,6 @@ const KIND_LABELS: Record<string, string> = {
   orientation: "Orientations",
 };
 
-const THEME_LABELS: Record<string, string> = {
-  methodes: "Méthodes",
-  effets: "Effets secondaires",
-  orientation: "Orientation",
-  rumeurs: "Rumeurs",
-};
 
 function authorized(token: string | undefined): "ok" | "missing-config" | "denied" {
   const expected = process.env.PARTNER_TOKEN;
@@ -96,7 +91,7 @@ export default async function PartnersPage({ searchParams }: { searchParams: Pro
             {themes.map(([theme, count]) => (
               <li key={theme}>
                 <div className="row-between">
-                  <span>{THEME_LABELS[theme] ?? theme}</span>
+                  <span>{DOMAIN.themes[theme] ?? theme}</span>
                   <span>{count}</span>
                 </div>
                 <div className="bar">

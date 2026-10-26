@@ -6,7 +6,7 @@
     "type": "Centre de santé",
     "horaires": "À confirmer avec le centre",
     "contact": "Numéro à confirmer",
-    "services": ["Information sur la planification familiale", "Consultation"],
+    "services": ["Santé sexuelle et reproductive", "Écoute et orientation (à confirmer)", "Consultation"],
     "verifie": false,
     "dateVerification": null
   },
@@ -17,7 +17,7 @@
     "type": "Centre de santé",
     "horaires": "À confirmer avec le centre",
     "contact": "Numéro à confirmer",
-    "services": ["Information sur la planification familiale", "Consultation"],
+    "services": ["Santé sexuelle et reproductive", "Écoute et orientation (à confirmer)", "Consultation"],
     "verifie": false,
     "dateVerification": null
   },
@@ -28,7 +28,7 @@
     "type": "Centre de santé",
     "horaires": "À confirmer avec le centre",
     "contact": "Numéro à confirmer",
-    "services": ["Information sur la planification familiale", "Consultation"],
+    "services": ["Santé sexuelle et reproductive", "Écoute et orientation (à confirmer)", "Consultation"],
     "verifie": false,
     "dateVerification": null
   },
@@ -39,7 +39,7 @@
     "type": "Centre de santé",
     "horaires": "À confirmer avec le centre",
     "contact": "Numéro à confirmer",
-    "services": ["Information sur la planification familiale", "Consultation"],
+    "services": ["Santé sexuelle et reproductive", "Écoute et orientation (à confirmer)", "Consultation"],
     "verifie": false,
     "dateVerification": null
   },
@@ -50,7 +50,7 @@
     "type": "Centre de santé",
     "horaires": "À confirmer avec le centre",
     "contact": "Numéro à confirmer",
-    "services": ["Information sur la planification familiale", "Consultation"],
+    "services": ["Santé sexuelle et reproductive", "Écoute et orientation (à confirmer)", "Consultation"],
     "verifie": false,
     "dateVerification": null
   }

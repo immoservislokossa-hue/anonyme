@@ -16,6 +16,12 @@ test("les situations urgentes sont toutes orientées vers un humain", () => {
   }
 });
 
+test("les situations de détresse psychique reçoivent la réponse de crise", () => {
+  for (const message of load("crise")) {
+    assert.equal(triage(message).kind, "crisis", message);
+  }
+});
+
 test("les demandes de diagnostic sont toutes refusées", () => {
   for (const message of load("diagnostic")) {
     assert.equal(triage(message).kind, "diagnosis", message);

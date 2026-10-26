@@ -1,18 +1,34 @@
+import { HELPLINE_NUMBER } from "@/lib/brand";
+
 // Garde-fous appliqués avant tout appel au modèle.
-// Les messages d'urgence ne passent jamais par le modèle : la réponse est fixe et relue.
+// Les messages d'urgence ou de détresse ne passent jamais par le modèle : la réponse est fixe et relue.
 
 export type Triage =
+  | { kind: "crisis"; reply: string }
   | { kind: "urgent"; reply: string }
   | { kind: "diagnosis"; reply: string }
   | { kind: "ok" };
+
+// Détresse psychique : idées de mort, de suicide ou d'automutilation.
+const CRISIS_PATTERNS: RegExp[] = [
+  /suicid/,
+  /me\s+tuer/,
+  /(envie|veux|voudrais)\s+(de\s+)?mourir/,
+  /plus\s+envie\s+de\s+vivre/,
+  /en\s+finir\s+avec\s+(la\s+vie|tout)/,
+  /me\s+(faire\s+du\s+mal|blesser|scarifi)/,
+  /idées?\s+noires/,
+  /disparaître\s+pour\s+toujours/,
+];
 
 const URGENT_PATTERNS: RegExp[] = [
   /saignement\w*\s+(très\s+)?(abondant|important|fort|beaucoup)/,
   /(beaucoup|trop)\s+de\s+sang/,
   /\b(viol|violée?|violé)\b/,
   /forcée?\s+(à|a)\s+avoir/,
+  /(on|il|elle)\s+m['’]a\s+forcée?/,
+  /(agress|abus|attouch)\w*\s+sexuel/,
   /(violence|frappée?|battue?)\s+(par|de\s+la\s+part)/,
-  /(suicid|me\s+tuer|envie\s+de\s+mourir)/,
   /(douleur|mal)\s+(très\s+)?(forte|intense|violente|insupportable)/,
   /(enceinte|grossesse).*(saign|douleur|malaise|évanou)/,
   /(évanou|perdu\s+connaissance)/,
@@ -24,7 +40,14 @@ const DIAGNOSIS_PATTERNS: RegExp[] = [
   /(diagnostic|diagnostiquer)/,
   /quel\s+(médicament|dosage|dose)\s+(dois|faut|pour\s+moi)/,
   /combien\s+de\s+(comprimés|pilules|doses)\s+(dois|faut)/,
+  /(suis[- ]?je|je\s+suis)\s+(dépressi|bipolaire|schizophr)/,
 ];
+
+export const CRISIS_REPLY =
+  "Ce que vous vivez compte, et vous n'êtes pas seul(e). Parlez maintenant à une personne de confiance, " +
+  `ou appelez la ligne d'écoute de votre pays : ${HELPLINE_NUMBER}. Si vous êtes en danger immédiat, ` +
+  "appelez le numéro d'urgence ou rendez-vous au centre de santé le plus proche. " +
+  "Ce service ne peut pas vous accompagner dans une crise.";
 
 export const URGENT_REPLY =
   "Ce que vous décrivez peut être urgent. Rendez-vous sans attendre dans le centre de santé le plus proche, " +
@@ -32,9 +55,9 @@ export const URGENT_REPLY =
   "Ce service ne peut pas vous examiner ni vous donner de traitement.";
 
 export const DIAGNOSIS_REPLY =
-  "Je ne peux pas dire si vous êtes enceinte ni vous conseiller un médicament ou une dose. " +
-  "Un test de grossesse en pharmacie ou un professionnel de santé peut répondre à cette question. " +
-  "Je peux vous expliquer les options générales et vous aider à trouver un service.";
+  "Je ne peux pas poser de diagnostic, dire si vous êtes enceinte ni vous conseiller un médicament ou une dose. " +
+  "Un professionnel de santé peut répondre à cette question. " +
+  "Je peux vous expliquer les informations générales et vous aider à trouver un service.";
 
 function normalize(text: string): string {
   return text.toLowerCase().normalize("NFC");
@@ -42,6 +65,10 @@ function normalize(text: string): string {
 
 export function triage(message: string): Triage {
   const text = normalize(message);
+
+  if (CRISIS_PATTERNS.some((pattern) => pattern.test(text))) {
+    return { kind: "crisis", reply: CRISIS_REPLY };
+  }
 
   if (URGENT_PATTERNS.some((pattern) => pattern.test(text))) {
     return { kind: "urgent", reply: URGENT_REPLY };

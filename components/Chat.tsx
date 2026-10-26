@@ -7,6 +7,7 @@ import Speak from "@/components/Speak";
 import VoiceInput from "@/components/VoiceInput";
 import { useProgress } from "@/components/useProgress";
 import { ASSISTANT_NAME } from "@/lib/brand";
+import type { Voie } from "@/lib/domain";
 
 type Message = {
   role: "user" | "assistant";
@@ -15,13 +16,30 @@ type Message = {
   sources?: string[];
 };
 
-const EXAMPLES = [
-  "Quels sont les effets secondaires fréquents de la pilule ?",
-  "Qu'est-ce que je dois préparer avant une consultation ?",
-  "On dit que la contraception rend stérile, est-ce vrai ?",
-];
+const EXAMPLES: Record<Voie | "tout", string[]> = {
+  tout: [
+    "Comment savoir si j'ai une infection sexuellement transmissible ?",
+    "Je me sens stressé(e) en permanence, que faire ?",
+    "Comment mieux dormir ?",
+  ],
+  sexuelle: [
+    "Quels sont les effets secondaires fréquents de la pilule ?",
+    "Un préservatif a craqué, que faire ?",
+    "C'est quoi le consentement ?",
+  ],
+  mentale: [
+    "Comment parler à quelqu'un de ce que je ressens ?",
+    "Je me sens triste depuis plusieurs semaines",
+    "J'ai honte après ce qui s'est passé",
+  ],
+  "bien-etre": [
+    "Comment mieux dormir ?",
+    "Comment gérer le stress avant un examen ?",
+    "Comment reprendre confiance en moi ?",
+  ],
+};
 
-export default function Chat() {
+export default function Chat({ voie }: { voie?: Voie }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -50,6 +68,7 @@ export default function Chat() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          voie,
           messages: next.map(({ role, content }) => ({ role, content })),
         }),
       });
@@ -71,7 +90,7 @@ export default function Chat() {
 
       setMessages([...next, { role: "assistant", content: data.reply, kind: data.kind, sources: data.sources }]);
 
-      if (data.kind !== "urgent") {
+      if (data.kind !== "urgent" && data.kind !== "crisis") {
         update((current) => ({ ...current, questionsAsked: current.questionsAsked + 1 }));
         setReward("+10 points. Bonne question");
       }
@@ -86,6 +105,8 @@ export default function Chat() {
     }
   }
 
+  const examples = EXAMPLES[voie ?? "tout"];
+
   return (
     <section aria-label="Conversation">
       <div className="chat-log" aria-live="polite">
@@ -96,7 +117,7 @@ export default function Chat() {
               Voici trois idées pour commencer :
             </p>
             <div className="stack" style={{ marginTop: 12 }}>
-              {EXAMPLES.map((example) => (
+              {examples.map((example) => (
                 <button key={example} type="button" className="btn ghost left" onClick={() => send(example)} disabled={loading}>
                   {example}
                 </button>
@@ -106,10 +127,10 @@ export default function Chat() {
         )}
 
         {messages.map((message, index) => {
-          const isUrgent = message.kind === "urgent";
+          const isAlert = message.kind === "urgent" || message.kind === "crisis";
           const isBot = message.role === "assistant";
           return (
-            <div key={index} className={`bubble ${isBot ? "bot" : "user"}${isUrgent ? " urgent" : ""}`}>
+            <div key={index} className={`bubble ${isBot ? "bot" : "user"}${isAlert ? " urgent" : ""}`}>
               {message.content}
               {isBot && message.sources && message.sources.length > 0 && (
                 <div className="sources">Sources : {message.sources.join(" ; ")}</div>
@@ -117,8 +138,8 @@ export default function Chat() {
               {isBot && (
                 <div className="row" style={{ marginTop: 10 }}>
                   <Speak text={message.content} label="Écouter la réponse" />
-                  <Link className="btn ghost small" href={isUrgent ? "/urgence" : "/orientation"}>
-                    {isUrgent ? "Que faire maintenant" : "Trouver un centre"}
+                  <Link className="btn ghost small" href={isAlert ? "/urgence" : "/orientation"}>
+                    {isAlert ? "Que faire maintenant" : "Trouver un centre"}
                   </Link>
                 </div>
               )}

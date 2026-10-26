@@ -3,10 +3,10 @@
 import { useCallback, useState } from "react";
 import Reward from "@/components/Reward";
 import { useProgress } from "@/components/useProgress";
-import { quizCorrectCount } from "@/lib/progress";
 
 export type QuizItem = {
   id: string;
+  voie: string;
   enonce: string;
   reponse: boolean;
   explication: string;
@@ -46,7 +46,7 @@ export default function Quiz({ items }: { items: QuizItem[] }) {
   }
 
   if (finished) {
-    const total = quizCorrectCount(progress);
+    const total = items.filter((entry) => progress.quizAnswers[entry.id] === true).length;
     return (
       <div className="panel">
         <h2>Bravo, vous avez terminé</h2>

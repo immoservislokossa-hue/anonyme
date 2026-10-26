@@ -1,7 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
+import { isVoie } from "@/lib/domain";
 import { record } from "@/lib/metrics";
-import { buildContext, SYSTEM_PROMPT } from "@/lib/prompt";
+import { buildContext, systemPromptFor } from "@/lib/prompt";
 import { checkRate } from "@/lib/rateLimit";
 import { retrieve, type KnowledgeEntry } from "@/lib/retrieve";
 import { triage } from "@/lib/safety";
@@ -52,7 +53,9 @@ export async function POST(request: Request) {
   }
 
   const body: unknown = await request.json().catch(() => null);
-  const messages = (body as { messages?: unknown } | null)?.messages;
+  const payload = body as { messages?: unknown; voie?: unknown } | null;
+  const messages = payload?.messages;
+  const voie = isVoie(payload?.voie) ? payload.voie : undefined;
 
   if (!isValidHistory(messages) || messages.length === 0) {
     return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
@@ -64,8 +67,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Aucune question trouvée." }, { status: 400 });
   }
 
-  // Les situations urgentes et les demandes de diagnostic ne vont jamais au modèle.
+  // Détresse, urgence et demandes de diagnostic ne vont jamais au modèle, quelle que soit la voie.
   const decision = triage(lastUser.content);
+  if (decision.kind === "crisis") {
+    record("urgence");
+    return NextResponse.json({ reply: decision.reply, kind: "crisis", sources: [] });
+  }
   if (decision.kind === "urgent") {
     record("urgence");
     return NextResponse.json({ reply: decision.reply, kind: "urgent", sources: [] });
@@ -75,7 +82,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ reply: decision.reply, kind: "diagnosis", sources: [] });
   }
 
-  const entries = retrieve(lastUser.content);
+  const entries = retrieve(lastUser.content, 3, voie);
   record("question", entries[0]?.theme);
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -92,7 +99,7 @@ export async function POST(request: Request) {
     const response = await client.messages.create({
       model: process.env.ANTHROPIC_MODEL ?? "claude-sonnet-5-5",
       max_tokens: 400,
-      system: `${SYSTEM_PROMPT}\n\nContexte :\n${buildContext(entries)}`,
+      system: `${systemPromptFor(voie)}\n\nContexte :\n${buildContext(entries)}`,
       messages: history.map((m) => ({ role: m.role, content: m.content })),
     });
 

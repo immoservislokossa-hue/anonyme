@@ -7,6 +7,7 @@ import { useProgress } from "@/components/useProgress";
 
 export type Chronicle = {
   id: string;
+  voie: string;
   titre: string;
   theme: string;
   duree: string;
@@ -20,7 +21,7 @@ export default function Chronicles({ items }: { items: Chronicle[] }) {
   const [reward, setReward] = useState<string | null>(null);
   const clearReward = useCallback(() => setReward(null), []);
 
-  const readCount = progress.chroniclesRead.length;
+  const readCount = items.filter((item) => progress.chroniclesRead.includes(item.id)).length;
 
   function markRead(id: string) {
     if (progress.chroniclesRead.includes(id)) return;
