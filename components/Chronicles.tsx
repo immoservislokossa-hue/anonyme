@@ -56,7 +56,7 @@ export default function Chronicles({ items }: { items: Chronicle[] }) {
               <p style={{ margin: "10px 0" }}>{item.texte}</p>
               {!item.valide && <p className="tag">Contenu à valider</p>}
               <div className="row" style={{ marginTop: 12 }}>
-                <Speak text={item.texte} />
+                <Speak text={item.texte} audio={item.audio} />
                 <button type="button" className="btn" onClick={() => markRead(item.id)} disabled={done}>
                   {done ? "Terminée" : "J'ai terminé"}
                 </button>

@@ -1,27 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
 
-// Lecture à voix haute avec la voix du téléphone. Le rendu dépend de l'appareil et de la langue installée.
-export default function Speak({ text, label = "Écouter" }: { text: string; label?: string }) {
+// Lecture à voix haute. Si un fichier audio enregistré existe, il est joué ; sinon la voix du téléphone
+// prend le relais (le rendu dépend alors de l'appareil et de la langue installée).
+export default function Speak({ text, label = "Écouter", audio }: { text: string; label?: string; audio?: string | null }) {
   const [supported, setSupported] = useState(false);
   const [speaking, setSpeaking] = useState(false);
+  const player = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const available = "speechSynthesis" in window;
     setSupported(available);
     return () => {
       if (available) window.speechSynthesis.cancel();
+      player.current?.pause();
     };
   }, []);
 
-  if (!supported) return null;
+  if (!supported && !audio) return null;
 
-  function toggle() {
-    const synth = window.speechSynthesis;
-    if (speaking) {
-      synth.cancel();
+  function speakWithDevice() {
+    if (!("speechSynthesis" in window)) {
       setSpeaking(false);
       return;
     }
@@ -30,8 +31,30 @@ export default function Speak({ text, label = "Écouter" }: { text: string; labe
     utterance.rate = 0.95;
     utterance.onend = () => setSpeaking(false);
     utterance.onerror = () => setSpeaking(false);
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function stop() {
+    player.current?.pause();
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    setSpeaking(false);
+  }
+
+  function toggle() {
+    if (speaking) {
+      stop();
+      return;
+    }
     setSpeaking(true);
-    synth.speak(utterance);
+    if (audio) {
+      const element = new Audio(audio);
+      player.current = element;
+      element.onended = () => setSpeaking(false);
+      element.onerror = () => speakWithDevice();
+      element.play().catch(() => speakWithDevice());
+      return;
+    }
+    speakWithDevice();
   }
 
   return (
