@@ -128,7 +128,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
             </span>
             <div className="intro">
               <p>
-                Bonjour, je suis <strong>{ASSISTANT_NAME}</strong>. Écrivez ou dictez votre question avec vos propres
+                Bonjour, je suis <strong>{ASSISTANT_NAME}</strong>, la grande sœur. Écrivez ou dictez votre question avec vos propres
                 mots. Voici quelques idées :
               </p>
               <div className="examples">

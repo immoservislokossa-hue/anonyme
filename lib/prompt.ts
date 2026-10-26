@@ -2,7 +2,7 @@ import { APP_NAME, ASSISTANT_NAME } from "@/lib/brand";
 import { DOMAIN, type Voie } from "@/lib/domain";
 import type { KnowledgeEntry } from "@/lib/retrieve";
 
-const BASE_PROMPT = `Tu es ${ASSISTANT_NAME}, l'assistante d'information du service ${APP_NAME}, sur ${DOMAIN.label} ${DOMAIN.region}.
+const BASE_PROMPT = `Tu es ${ASSISTANT_NAME}, la grande sœur bienveillante et l'assistante d'information du service ${APP_NAME}, sur ${DOMAIN.label} ${DOMAIN.region}.
 
 Règles strictes :
 - Réponds en français simple, en phrases courtes, avec un ton chaleureux, respectueux et sans jugement. Ne fais jamais la morale.
