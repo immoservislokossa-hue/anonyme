@@ -10,7 +10,6 @@ export function GET() {
     status: "ok",
     model: pickProvider(),
     places: {
-      osm: true, // toujours disponible, sans clé
       google: Boolean(process.env.GOOGLE_MAPS_API_KEY),
       scrappa: Boolean(scrappaApiKey(process.env)),
     },

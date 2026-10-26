@@ -1,7 +1,7 @@
 // Recherche de lieux Google Maps via Scrappa (https://scrappa.co), une API tierce qui ne demande pas de carte bancaire
 // pour son offre gratuite : 500 crédits par mois, 1 crédit par recherche.
 // Seule la recherche par mots est documentée (paramètre « query »). La recherche autour d'une position n'est pas
-// utilisée tant que le nom du paramètre de position n'est pas confirmé : elle passe par OpenStreetMap.
+// utilisée tant que le nom du paramètre de position n'est pas confirmé : les coordonnées sont écrites dans la recherche (lib/providers.ts).
 
 import { textQueryFor, type Centre, type PlaceKind } from "@/lib/places";
 

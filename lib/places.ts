@@ -20,7 +20,7 @@ export type Centre = {
   mapsUrl: string;
   itineraireUrl: string;
   distanceKm: number | null;
-  source: "google" | "osm" | "scrappa";
+  source: "google" | "scrappa";
 };
 
 const ENDPOINT = "https://places.googleapis.com/v1/places:searchText";

@@ -19,10 +19,14 @@ const KINDS: { id: PlaceKind; label: string; singular: string }[] = [
 ];
 
 const SOURCE_NOTES: Record<Centre["source"], string> = {
-  osm: "Données © contributeurs OpenStreetMap, une carte libre : un lieu absent de la carte n'apparaît pas.",
   google: "Résultats de Google Maps.",
   scrappa: "Résultats issus de Google Maps, fournis par Scrappa.",
 };
+
+function sourceNotes(centres: Centre[]): string {
+  const sources = new Set(centres.map((centre) => centre.source ?? "scrappa"));
+  return [...sources].map((source) => SOURCE_NOTES[source]).join(" ");
+}
 
 function formatDistance(km: number): string {
   return km < 1 ? `${Math.round(km * 1000)} m` : `${km.toLocaleString("fr-FR", { maximumFractionDigits: 1 })} km`;
@@ -33,6 +37,8 @@ export default function NearbyCentres() {
   const [state, setState] = useState<State>({ status: "idle" });
   const [place, setPlace] = useState("");
   const [kind, setKind] = useState<PlaceKind>("centre");
+  // Précision de la position donnée par l'appareil, en mètres (null si la recherche se fait par nom de lieu).
+  const [accuracy, setAccuracy] = useState<number | null>(null);
   // La dernière recherche reste en mémoire le temps de la visite, pour changer de type sans redemander la position.
   const lastSearch = useRef<Search | null>(null);
 
@@ -63,7 +69,7 @@ export default function NearbyCentres() {
         centres: data.centres ?? [],
         configured: data.configured !== false,
         byPosition: payload.lat !== undefined,
-        source: data.source ?? "osm",
+        source: data.source ?? "scrappa",
       });
     } catch {
       setState({ status: "error", message: "Pas de connexion. Réessayez, ou voyez nos centres partenaires plus bas." });
@@ -84,7 +90,10 @@ export default function NearbyCentres() {
 
     setState({ status: "locating" });
     navigator.geolocation.getCurrentPosition(
-      (position) => search({ lat: position.coords.latitude, lng: position.coords.longitude }),
+      (position) => {
+        setAccuracy(Number.isFinite(position.coords.accuracy) ? position.coords.accuracy : null);
+        search({ lat: position.coords.latitude, lng: position.coords.longitude });
+      },
       (error) => {
         const denied = error.code === error.PERMISSION_DENIED;
         setState({
@@ -134,7 +143,10 @@ export default function NearbyCentres() {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          if (place.trim()) search({ query: place });
+          if (place.trim()) {
+            setAccuracy(null);
+            search({ query: place });
+          }
         }}
       >
         <label htmlFor="lieu" className="sr-only">
@@ -154,6 +166,16 @@ export default function NearbyCentres() {
       </form>
 
       <div aria-live="polite">
+        {accuracy !== null && accuracy > 0 && (state.status === "loading" || state.status === "done") && (
+          <p className={accuracy > 1500 ? "notice" : "muted"}>
+            {accuracy > 1500 && <Icon name="alert" size={18} />}
+            <span>
+              Position détectée avec une précision d'environ {formatDistance(accuracy / 1000)}.
+              {accuracy > 1500 &&
+                " C'est trop approximatif : sur ordinateur, la position vient souvent du Wi-Fi ou de l'opérateur. Sur téléphone, activez le GPS, ou écrivez le nom de votre quartier."}
+            </span>
+          </p>
+        )}
         {state.status === "locating" && <p className="muted">Recherche de votre position…</p>}
         {state.status === "loading" && <p className="muted">Recherche de {current.singular === "pharmacie" ? "pharmacies" : "centres"} proches…</p>}
         {state.status === "error" && <p className="urgent">{state.message}</p>}
@@ -204,7 +226,7 @@ export default function NearbyCentres() {
             ))}
           </ul>
           <p className="muted">
-            {SOURCE_NOTES[state.source]} Ils ne garantissent pas que le lieu propose le service : vérifiez les horaires
+            {sourceNotes(state.centres)} Ils ne garantissent pas que le lieu propose le service : vérifiez les horaires
             et ce qui est disponible avant de vous déplacer.
             {kind === "pharmacie" &&
               " Selon le pays, une pharmacie peut proposer préservatifs, tests de grossesse et contraception d'urgence : demandez conseil au pharmacien."}

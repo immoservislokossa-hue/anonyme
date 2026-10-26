@@ -40,21 +40,26 @@
   le fournisseur applique ses propres règles, et son hébergement peut se trouver hors de la zone du projet. Avant un
   pilote avec de vraies personnes, il faut vérifier les conditions du fournisseur au regard des lois sur les données
   personnelles des pays concernés, ou choisir un fournisseur hébergé dans une région acceptable.
-- **Lieux (centres de santé, pharmacies)** : `lib/providers.ts` essaie les sources dans l'ordre, et passe à la
-  suivante en cas d'erreur ou de réponse vide.
-  1. Google Places (clé officielle, carte bancaire exigée par Google), si `GOOGLE_MAPS_API_KEY` est présente.
-  2. Scrappa (API tierce, 500 crédits gratuits par mois, sans carte). Seule la recherche par nom de lieu est
-     documentée. Pour une position, elle est d'abord transformée en « quartier, ville » (Nominatim), puis Scrappa cherche
-     ce nom et les résultats sont classés par distance avec leurs coordonnées. Le point d'accès « advanced-search »,
-     qui accepte des coordonnées, pourra remplacer ce détour quand ses paramètres seront confirmés. Un budget mensuel (`SCRAPPA_MONTHLY_BUDGET`) et un cache de 24 h limitent la dépense. Le compteur
-     est en mémoire : il est indicatif et repart à zéro au redémarrage.
-  3. OpenStreetMap (Overpass et Nominatim), toujours disponible, sans clé. Services publics tenus par des bénévoles :
-     appels limités, réponses mises en cache, User-Agent explicite. La complétude de la carte varie selon les villes :
-     les hôpitaux sont en général présents, les petites pharmacies et dispensaires, les téléphones et les horaires le
-     sont moins. L'attribution « © contributeurs OpenStreetMap » est affichée.
-- **Confidentialité des lieux** : la position (ou le lieu écrit) est envoyée au service de cartes retenu. Elle n'est ni
-  enregistrée ni journalisée par ce service. Scrappa tire ses données de Google Maps par extraction : c'est un
-  fournisseur tiers dont la fiabilité et les conditions d'usage ne sont pas garanties, à revoir avant un pilote.
+- **Lieux (centres de santé, pharmacies)** : `lib/providers.ts` essaie Google Places (clé officielle, carte bancaire
+  exigée par Google) s'il est configuré, puis Scrappa (API tierce, 500 crédits gratuits par mois, sans carte). Une
+  erreur ou une réponse vide passe à la source suivante, et une source qui donne moins de 5 résultats est complétée
+  par la suivante, sans doublons. Il n'y a pas d'autre source : OpenStreetMap a été retiré, sa carte étant trop
+  incomplète pour le pilote.
+  - Avec une position, Scrappa reçoit les coordonnées exactes dans la recherche (« centre de santé près de
+    6.36436,2.41079 »). Aucun nom de quartier n'est deviné : une première version transformait la position en nom de
+    quartier et pouvait chercher au mauvais endroit. Les résultats sont classés par distance réelle, calculée avec
+    leurs coordonnées. **Non vérifié avec une vraie clé** : il faut contrôler que Scrappa comprend bien les coordonnées.
+  - Avec un nom de lieu saisi, Scrappa cherche « centre de santé près de <lieu> » ; s'il y a moins de 5 résultats,
+    une seconde recherche élargit à la ville (1 crédit de plus).
+  - L'écran affiche la précision de la position donnée par l'appareil et avertit au-delà de 1,5 km : sur ordinateur,
+    la position vient souvent du Wi-Fi ou de l'opérateur et peut être très approximative.
+  - Le point d'accès « advanced-search » de Scrappa accepte des coordonnées et un niveau de zoom : il sera plus fiable
+    que des coordonnées dans le texte, dès que ses paramètres seront confirmés.
+  - Un budget mensuel (`SCRAPPA_MONTHLY_BUDGET`) et un cache de 24 h limitent la dépense. Le compteur est en mémoire :
+    il est indicatif et repart à zéro au redémarrage.
+- **Confidentialité des lieux** : la position est envoyée à Scrappa, un fournisseur tiers qui tire ses données de Google
+  Maps par extraction. Elle n'est ni enregistrée ni journalisée par ce service. La fiabilité et les conditions d'usage de
+  Scrappa ne sont pas garanties : à revoir avant un pilote.
 - Les résultats ne garantissent pas que le lieu propose le service attendu.
 
 ## Bibliothèque des centres du Partenariat de Ouagadougou (à venir)

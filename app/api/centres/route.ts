@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { record } from "@/lib/metrics";
 import { cleanQuery, isPlaceKind, isValidOrigin, type Origin } from "@/lib/places";
-import { searchWithFallback } from "@/lib/providers";
+import { planProviders, searchWithFallback } from "@/lib/providers";
 import { checkRate } from "@/lib/rateLimit";
 
 export const runtime = "nodejs";
@@ -14,7 +14,7 @@ function clientKey(request: Request): string {
   return `centres:${forwarded?.split(",")[0]?.trim() || "inconnu"}`;
 }
 
-// Les sources et leur ordre sont décidés dans lib/providers.ts. OpenStreetMap, gratuit et sans clé, sert de repli.
+// Les sources et leur ordre sont décidés dans lib/providers.ts : Google (clé officielle) puis Scrappa.
 export async function POST(request: Request) {
   const rate = checkRate(clientKey(request), RATE_LIMIT, RATE_WINDOW_MS);
   if (!rate.allowed) {
@@ -33,6 +33,11 @@ export async function POST(request: Request) {
 
   if (!origin && !query) {
     return NextResponse.json({ error: "Position ou lieu manquant." }, { status: 400 });
+  }
+
+  // Aucune clé de lieux : la page l'indique et renvoie vers les centres partenaires.
+  if (planProviders(process.env).length === 0) {
+    return NextResponse.json({ configured: false, centres: [] });
   }
 
   try {
