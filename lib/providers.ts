@@ -1,3 +1,4 @@
+import { anchorText, withCountry, type LocationHint } from "@/lib/geo";
 import { distanceKm, searchCentres, type Centre, type Origin, type PlaceKind } from "@/lib/places";
 import { DEFAULT_MONTHLY_BUDGET, scrappaApiKey, searchScrappa } from "@/lib/scrappa";
 
@@ -6,12 +7,14 @@ import { DEFAULT_MONTHLY_BUDGET, scrappaApiKey, searchScrappa } from "@/lib/scra
 
 export type PlacesProvider = "google" | "scrappa";
 type Env = Record<string, string | undefined>;
-export type SearchInput = { origin?: Origin; query?: string; kind?: PlaceKind };
+export type SearchInput = { origin?: Origin; query?: string; kind?: PlaceKind; hint?: LocationHint };
 
 // En dessous de ce nombre de résultats, on cherche plus large et on complète avec la source suivante.
 export const MIN_RESULTS = 5;
 const MAX_RESULTS = 10;
 const SAME_PLACE_KM = 0.5;
+// Les résultats plus loin que cela de la position réelle sont écartés (recherche mal ancrée, pays voisin, etc.).
+export const MAX_DISTANCE_KM = 100;
 
 export function planProviders(env: Env): PlacesProvider[] {
   const forced = env.PLACES_PROVIDER;
@@ -69,14 +72,11 @@ const realScrappaDeps: ScrappaDeps = {
 // « près de » demande à Google une liste de lieux autour d'un endroit, au lieu des lieux dont le nom contient ce mot.
 const near = (place: string) => `près de ${place}`;
 
-// Coordonnées écrites telles que Google Maps les comprend dans une recherche (5 décimales, environ 1 m).
-export function coordinatesText(origin: Origin): string {
-  return `${origin.lat.toFixed(5)},${origin.lng.toFixed(5)}`;
-}
-
-// Scrappa cherche par texte. Avec une position, on lui envoie les coordonnées exactes : aucun nom de quartier
-// n'est deviné, donc aucune erreur de nom ne peut déplacer la recherche. Les résultats sont classés par distance.
-// Avec un nom de lieu saisi, s'il y a peu de résultats, une seconde recherche élargit à la ville (1 crédit de plus).
+// Scrappa cherche par texte. Avec une position, la recherche est ancrée dans la ville et le pays du visiteur (déduits de
+// sa connexion par l'hébergeur), puis les résultats sont classés avec la position réelle de l'appareil, et ceux qui
+// sont à plus de 100 km sont écartés. Sans repère géographique, on ne cherche pas à l'aveugle : le texte seul
+// renvoyait des centres d'autres continents.
+// Avec un nom de lieu saisi, le pays est ajouté ; s'il y a peu de résultats, une seconde recherche élargit à la ville.
 export async function searchScrappaPlaces(
   input: SearchInput,
   env: Env,
@@ -85,11 +85,17 @@ export async function searchScrappaPlaces(
   const budget = Number(env.SCRAPPA_MONTHLY_BUDGET) || DEFAULT_MONTHLY_BUDGET;
   const apiKey = scrappaApiKey(env) as string;
   const origin = input.origin;
+  const hint = input.hint ?? {};
 
   if (origin) {
-    const centres = await deps.search({ query: near(coordinatesText(origin)), kind: input.kind }, apiKey, budget);
+    const anchor = anchorText(hint);
+    if (!anchor) return [];
+
+    const centres = await deps.search({ query: near(anchor), kind: input.kind }, apiKey, budget);
     return finalize(
-      centres.map((centre) => ({ ...centre, distanceKm: Math.round(distanceKm(origin, centre) * 10) / 10 })),
+      centres
+        .map((centre) => ({ ...centre, distanceKm: Math.round(distanceKm(origin, centre) * 10) / 10 }))
+        .filter((centre) => (centre.distanceKm ?? Infinity) <= MAX_DISTANCE_KM),
       true,
     );
   }
@@ -97,13 +103,14 @@ export async function searchScrappaPlaces(
   const place = input.query ?? "";
   if (!place) return [];
 
-  let centres = await deps.search({ query: near(place), kind: input.kind }, apiKey, budget);
+  let centres = await deps.search({ query: near(withCountry(place, hint.country)), kind: input.kind }, apiKey, budget);
 
   if (centres.length < MIN_RESULTS && place.includes(",")) {
     const city = place.split(",").slice(1).join(",").trim();
     if (city) {
       try {
-        centres = mergeCentres(centres, await deps.search({ query: near(city), kind: input.kind }, apiKey, budget));
+        const wider = await deps.search({ query: near(withCountry(city, hint.country)), kind: input.kind }, apiKey, budget);
+        centres = mergeCentres(centres, wider);
       } catch {
         // Budget épuisé ou service occupé : on garde les premiers résultats.
       }

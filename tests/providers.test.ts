@@ -4,7 +4,7 @@ import type { Centre } from "../lib/places";
 import {
   mergeCentres,
   MIN_RESULTS,
-  coordinatesText,
+  MAX_DISTANCE_KM,
   planProviders,
   searchScrappaPlaces,
   searchWithFallback,
@@ -133,15 +133,12 @@ test("avec une position, le résultat final est trié du plus proche au plus loi
 
 const cotonou = { lat: 6.3703, lng: 2.3912 };
 const place = (id: string, lat: number, lng: number): Centre => ({ ...centre(id, "scrappa", { nom: id }), lat, lng });
+const benin = { country: "Bénin", city: "Cotonou" };
 
-test("les coordonnées sont écrites avec 5 décimales", () => {
-  assert.equal(coordinatesText(cotonou), "6.37030,2.39120");
-});
-
-test("une position est envoyée en coordonnées exactes, sans nom de quartier, et classée par distance réelle", async () => {
+test("une position cherche « près de » la ville du visiteur, et classe par la distance réelle", async () => {
   const queries: string[] = [];
   const found = await searchScrappaPlaces(
-    { origin: cotonou, kind: "pharmacie" },
+    { origin: cotonou, kind: "pharmacie", hint: benin },
     { SCRAPPA_API_KEY: "k" },
     {
       search: async (input) => {
@@ -150,37 +147,63 @@ test("une position est envoyée en coordonnées exactes, sans nom de quartier, e
       },
     },
   );
-  assert.deepEqual(queries, ["près de 6.37030,2.39120"]);
+  assert.deepEqual(queries, ["près de Cotonou, Bénin"]);
   assert.deepEqual(found.map((c) => c.id), ["pres", "loin"]);
   assert.ok((found[0].distanceKm ?? 99) < 1);
-  assert.ok((found[1].distanceKm ?? 0) > 10);
 });
 
-test("avec une position, une seule recherche est lancée, même s'il y a peu de résultats", async () => {
-  let calls = 0;
+test("les résultats à plus de 100 km sont écartés (centres d'un autre pays)", async () => {
+  const found = await searchScrappaPlaces(
+    { origin: cotonou, hint: benin },
+    { SCRAPPA_API_KEY: "k" },
+    {
+      search: async () => [
+        place("perpignan", 42.69, 2.9),
+        place("saint-denis", 48.93, 2.36),
+        place("pres", 6.371, 2.392),
+      ],
+    },
+  );
+  assert.deepEqual(found.map((c) => c.id), ["pres"]);
+  assert.ok(MAX_DISTANCE_KM <= 100);
+});
+
+test("avec le pays seul, la recherche est ancrée sur le pays", async () => {
+  const queries: string[] = [];
   await searchScrappaPlaces(
+    { origin: cotonou, hint: { country: "Bénin" } },
+    { SCRAPPA_API_KEY: "k" },
+    { search: async (input) => { queries.push(input.query); return []; } },
+  );
+  assert.deepEqual(queries, ["près de Bénin"]);
+});
+
+test("avec une position mais sans repère géographique, aucune recherche à l'aveugle et aucun crédit dépensé", async () => {
+  let called = false;
+  const found = await searchScrappaPlaces(
     { origin: cotonou },
     { SCRAPPA_API_KEY: "k" },
-    { search: async () => { calls += 1; return [place("a", 6.371, 2.392)]; } },
+    { search: async () => { called = true; return []; } },
   );
-  assert.equal(calls, 1);
+  assert.deepEqual(found, []);
+  assert.equal(called, false);
 });
 
-test("un nom de lieu saisi cherche « près de » ce lieu, puis élargit à la ville s'il y a peu de résultats", async () => {
+test("un nom de lieu saisi reçoit le pays, puis la recherche s'élargit à la ville s'il y a peu de résultats", async () => {
   const queries: string[] = [];
   const found = await searchScrappaPlaces(
-    { query: "Cadjehoun, Cotonou", kind: "centre" },
+    { query: "Cadjehoun, Cotonou", kind: "centre", hint: { country: "Bénin" } },
     { SCRAPPA_API_KEY: "k" },
     {
       search: async (input) => {
         queries.push(input.query);
-        return input.query === "près de Cadjehoun, Cotonou"
+        return input.query === "près de Cadjehoun, Cotonou, Bénin"
           ? [place("a", 6.371, 2.392)]
           : [place("b", 6.5, 2.5), place("a", 6.371, 2.392)];
       },
     },
   );
-  assert.deepEqual(queries, ["près de Cadjehoun, Cotonou", "près de Cotonou"]);
+  assert.deepEqual(queries, ["près de Cadjehoun, Cotonou, Bénin", "près de Cotonou, Bénin"]);
   assert.deepEqual(found.map((c) => c.id), ["a", "b"]);
   assert.equal(found[0].distanceKm, null);
 });

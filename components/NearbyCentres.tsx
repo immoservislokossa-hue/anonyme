@@ -114,8 +114,8 @@ export default function NearbyCentres() {
       <div>
         <h2>Autour de moi</h2>
         <p className="muted">
-          Votre position est envoyée à un service de cartes pour trouver les lieux proches. Elle n'est pas enregistrée
-          par ce service. Vous pouvez aussi écrire le nom de votre commune.
+          Votre position sert à calculer les distances sur votre appareil. Rien n'est enregistré par ce service. Vous
+          pouvez aussi écrire le nom de votre commune.
         </p>
       </div>
 

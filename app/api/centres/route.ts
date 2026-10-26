@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { hintFromHeaders } from "@/lib/geo";
 import { record } from "@/lib/metrics";
 import { cleanQuery, isPlaceKind, isValidOrigin, type Origin } from "@/lib/places";
 import { planProviders, searchWithFallback } from "@/lib/providers";
@@ -41,7 +42,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { source, centres } = await searchWithFallback({ origin, query, kind });
+    const { source, centres } = await searchWithFallback({ origin, query, kind, hint: hintFromHeaders(request.headers) });
     record("orientation");
     return NextResponse.json({ configured: true, source, centres });
   } catch {

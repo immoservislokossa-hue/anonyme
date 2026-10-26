@@ -16,7 +16,7 @@ export default function ConsentPage() {
         <ul className="plain">
           <li>Vous n'avez pas besoin de donner votre nom, votre numéro ou votre adresse.</li>
           <li>Nous ne conservons pas vos messages. Pour préparer une réponse, votre question est envoyée à un fournisseur d'intelligence artificielle externe, qui applique ses propres règles. N'écrivez ni votre nom ni vos coordonnées.</li>
-          <li>Si vous cherchez un centre ou une pharmacie, votre position est envoyée à un fournisseur de cartes (Google Maps via Scrappa) pour trouver les lieux proches. Elle n'est pas enregistrée par ce service, et vous pouvez écrire un nom de commune à la place.</li>
+          <li>Si vous cherchez un centre ou une pharmacie, votre pays et votre ville approximatifs, déduits de votre connexion par l'hébergeur du site, sont envoyés à un fournisseur de cartes (Google Maps via Scrappa) pour trouver les lieux. Votre position exacte reste sur votre appareil, qui s'en sert pour calculer les distances. Rien n'est enregistré par ce service, et vous pouvez écrire un nom de commune à la place.</li>
           <li>Vos points, badges et réponses au quiz restent sur votre téléphone.</li>
           <li>Nous comptons seulement le nombre de questions par thème, sans savoir qui les a posées.</li>
           <li>Ce service est automatisé. Il ne remplace jamais un professionnel de santé.</li>
