@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Icon, { type IconName } from "@/components/Icon";
 
-const items = [
-  { href: "/", label: "Accueil" },
-  { href: "/chat", label: "Parler" },
-  { href: "/quiz", label: "Quiz" },
-  { href: "/orientation", label: "Centres" },
-  { href: "/urgence", label: "Urgence" },
+const items: { href: string; label: string; icon: IconName }[] = [
+  { href: "/", label: "Accueil", icon: "home" },
+  { href: "/chat", label: "Parler", icon: "chat" },
+  { href: "/quiz", label: "Quiz", icon: "quiz" },
+  { href: "/orientation", label: "Centres", icon: "pin" },
+  { href: "/urgence", label: "Urgence", icon: "alert" },
 ];
 
 export default function BottomNav() {
@@ -25,7 +26,8 @@ export default function BottomNav() {
             aria-current={active ? "page" : undefined}
             className={`${active ? "active" : ""}${item.href === "/urgence" ? " alert" : ""}`}
           >
-            {item.label}
+            <Icon name={item.icon} size={22} />
+            <span>{item.label}</span>
           </Link>
         );
       })}

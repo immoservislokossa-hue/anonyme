@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Icon from "@/components/Icon";
 
 type RecognitionResultEvent = { results: ArrayLike<ArrayLike<{ transcript: string }>> };
 
@@ -65,12 +66,12 @@ export default function VoiceInput({ onText }: { onText: (text: string) => void 
   return (
     <button
       type="button"
-      className="btn ghost"
+      className={`icon-btn ghost${listening ? " on" : ""}`}
       onClick={toggle}
       aria-pressed={listening}
       aria-label={listening ? "Arrêter la dictée" : "Dicter ma question"}
     >
-      {listening ? "J'écoute…" : "Parler"}
+      <Icon name="mic" size={22} />
     </button>
   );
 }

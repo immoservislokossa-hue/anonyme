@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import Icon from "@/components/Icon";
+import Logo from "@/components/Logo";
 import Reward from "@/components/Reward";
 import Speak from "@/components/Speak";
 import VoiceInput from "@/components/VoiceInput";
@@ -47,11 +49,20 @@ export default function Chat({ voie }: { voie?: Voie }) {
   const [reward, setReward] = useState<string | null>(null);
   const { update } = useProgress();
   const endRef = useRef<HTMLDivElement | null>(null);
+  const areaRef = useRef<HTMLTextAreaElement | null>(null);
   const clearReward = useCallback(() => setReward(null), []);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages, loading]);
+
+  // La zone de saisie grandit avec le texte, jusqu'à une hauteur limite.
+  useEffect(() => {
+    const area = areaRef.current;
+    if (!area) return;
+    area.style.height = "auto";
+    area.style.height = `${Math.min(area.scrollHeight, 140)}px`;
+  }, [input]);
 
   async function send(text: string) {
     const question = text.trim();
@@ -108,46 +119,75 @@ export default function Chat({ voie }: { voie?: Voie }) {
   const examples = EXAMPLES[voie ?? "tout"];
 
   return (
-    <section aria-label="Conversation">
+    <section aria-label="Conversation" className="chat">
       <div className="chat-log" aria-live="polite">
         {messages.length === 0 && (
-          <div className="panel">
-            <p>
-              Bonjour, je suis {ASSISTANT_NAME}. Vous pouvez écrire ou dicter votre question avec vos propres mots.
-              Voici trois idées pour commencer :
-            </p>
-            <div className="stack" style={{ marginTop: 12 }}>
-              {examples.map((example) => (
-                <button key={example} type="button" className="btn ghost left" onClick={() => send(example)} disabled={loading}>
-                  {example}
-                </button>
-              ))}
+          <div className="msg bot">
+            <span className="avatar">
+              <Logo size={34} />
+            </span>
+            <div className="intro">
+              <p>
+                Bonjour, je suis <strong>{ASSISTANT_NAME}</strong>. Écrivez ou dictez votre question avec vos propres
+                mots. Voici quelques idées :
+              </p>
+              <div className="examples">
+                {examples.map((example) => (
+                  <button key={example} type="button" className="example" onClick={() => send(example)} disabled={loading}>
+                    {example}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         )}
 
         {messages.map((message, index) => {
           const isAlert = message.kind === "urgent" || message.kind === "crisis";
-          const isBot = message.role === "assistant";
+
+          if (message.role === "user") {
+            return (
+              <div key={index} className="msg user">
+                <div className="bubble user">{message.content}</div>
+              </div>
+            );
+          }
+
           return (
-            <div key={index} className={`bubble ${isBot ? "bot" : "user"}${isAlert ? " urgent" : ""}`}>
-              {message.content}
-              {isBot && message.sources && message.sources.length > 0 && (
-                <div className="sources">Sources : {message.sources.join(" ; ")}</div>
-              )}
-              {isBot && (
-                <div className="row" style={{ marginTop: 10 }}>
-                  <Speak text={message.content} label="Écouter la réponse" />
-                  <Link className="btn ghost small" href={isAlert ? "/urgence" : "/orientation"}>
+            <div key={index} className="msg bot">
+              <span className="avatar">
+                <Logo size={34} />
+              </span>
+              <div className="col">
+                <div className={`bubble bot${isAlert ? " urgent" : ""}`}>{message.content}</div>
+                {message.sources && message.sources.length > 0 && (
+                  <div className="sources">Sources : {message.sources.join(" ; ")}</div>
+                )}
+                <div className="chips">
+                  <Speak text={message.content} label="Écouter" />
+                  <Link className="chip-btn" href={isAlert ? "/urgence" : "/orientation"}>
+                    <Icon name={isAlert ? "alert" : "pin"} size={18} />
                     {isAlert ? "Que faire maintenant" : "Trouver un centre"}
                   </Link>
                 </div>
-              )}
+              </div>
             </div>
           );
         })}
 
-        {loading && <p className="muted">{ASSISTANT_NAME} prépare une réponse…</p>}
+        {loading && (
+          <div className="msg bot">
+            <span className="avatar">
+              <Logo size={34} />
+            </span>
+            <div className="typing-bubble" role="status">
+              <span className="sr-only">{ASSISTANT_NAME} prépare une réponse</span>
+              <i aria-hidden="true" />
+              <i aria-hidden="true" />
+              <i aria-hidden="true" />
+            </div>
+          </div>
+        )}
         {error && <p className="urgent">{error}</p>}
         <div ref={endRef} />
       </div>
@@ -164,15 +204,22 @@ export default function Chat({ voie }: { voie?: Voie }) {
         </label>
         <textarea
           id="question"
+          ref={areaRef}
           value={input}
           maxLength={1000}
           onChange={(event) => setInput(event.target.value)}
-          placeholder="Écrivez votre question ici"
-          rows={2}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" && !event.shiftKey) {
+              event.preventDefault();
+              send(input);
+            }
+          }}
+          placeholder="Écrivez votre question"
+          rows={1}
         />
         <VoiceInput onText={(text) => setInput((current) => `${current} ${text}`.trim())} />
-        <button className="btn indigo" type="submit" disabled={loading || input.trim().length === 0}>
-          Envoyer
+        <button className="icon-btn primary" type="submit" aria-label="Envoyer" disabled={loading || input.trim().length === 0}>
+          <Icon name="send" size={20} />
         </button>
       </form>
 

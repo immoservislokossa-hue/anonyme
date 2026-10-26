@@ -12,8 +12,9 @@ export default function VoieTabs({ current, basePath }: { current?: Voie; basePa
           key={tab.id ?? "tout"}
           href={tab.id ? `${basePath}?voie=${tab.id}` : basePath}
           aria-current={tab.id === current ? "page" : undefined}
-          className={tab.id === current ? "tab active" : "tab"}
+          className={`tab${tab.id === current ? " active" : ""}${tab.id ? ` tone-${tab.id}` : ""}`}
         >
+          {tab.id && <span className="dot" aria-hidden="true" />}
           {tab.label}
         </Link>
       ))}

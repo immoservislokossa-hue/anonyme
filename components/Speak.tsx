@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Icon from "@/components/Icon";
 
 // Lecture à voix haute avec la voix du téléphone. Le rendu dépend de l'appareil et de la langue installée.
 export default function Speak({ text, label = "Écouter" }: { text: string; label?: string }) {
@@ -34,7 +35,8 @@ export default function Speak({ text, label = "Écouter" }: { text: string; labe
   }
 
   return (
-    <button type="button" className="btn ghost small" onClick={toggle} aria-pressed={speaking}>
+    <button type="button" className={`chip-btn${speaking ? " on" : ""}`} onClick={toggle} aria-pressed={speaking}>
+      <Icon name="speaker" size={18} />
       {speaking ? "Arrêter" : label}
     </button>
   );
