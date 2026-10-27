@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Icon, { type IconName } from "@/components/Icon";
+import OtherChannels from "@/components/OtherChannels";
 
 const entries: { href: string; icon: IconName; title: string; text: string }[] = [
   { href: "/chat?voie=sexuelle", icon: "chat", title: "Parler", text: "Pose ta question à Afi." },
@@ -34,6 +35,8 @@ export default function HomePage() {
           </li>
         ))}
       </ul>
+
+      <OtherChannels />
 
       <p className="home-note">
         <Link href="/urgence">C'est urgent ? Que faire maintenant</Link>
