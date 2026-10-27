@@ -1,5 +1,29 @@
 [
   {
+    "id": "pf-implant-retrait",
+    "voie": "sexuelle",
+    "enonce": "On peut faire retirer un implant quand on le souhaite.",
+    "reponse": true,
+    "explication": "Un professionnel peut le retirer à tout moment. La fertilité revient ensuite.",
+    "valide": false
+  },
+  {
+    "id": "pf-celibataire",
+    "voie": "sexuelle",
+    "enonce": "La planification familiale est réservée aux personnes mariées.",
+    "reponse": false,
+    "explication": "Toute personne qui a des rapports sexuels peut avoir besoin d'informations et de méthodes, mariée ou non. On peut demander la confidentialité.",
+    "valide": false
+  },
+  {
+    "id": "pf-urgence-tot",
+    "voie": "sexuelle",
+    "enonce": "La contraception d'urgence agit mieux quand on la prend le plus tôt possible.",
+    "reponse": true,
+    "explication": "Plus on attend, moins elle est efficace. Un centre de santé ou une pharmacie peut vous aider rapidement.",
+    "valide": false
+  },
+  {
     "id": "sterilite",
     "voie": "sexuelle",
     "enonce": "La contraception rend stérile à vie.",

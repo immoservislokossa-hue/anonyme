@@ -12,7 +12,8 @@ export function personaFor(voie?: "sexuelle" | "mentale" | "bien-etre"): Persona
   return PERSONAS[voie ?? "sexuelle"];
 }
 export const TEAM_NAMES = "Afi, Fallone et Chimène";
-export const TAGLINE = "Santé sexuelle, santé mentale et bien-être : des réponses claires, sans jugement";
+export const TAGLINE = "Planification familiale pour les jeunes : choisir sa méthode et trouver un centre près de chez soi, sans jugement";
+export const ALSO = "Alviosa accompagne aussi la santé mentale et le bien-être.";
 
 // À remplacer par pays avant le déploiement : les numéros doivent être vérifiés localement.
 export const EMERGENCY_NUMBER = "[numéro d'urgence du pays]";

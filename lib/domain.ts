@@ -4,7 +4,7 @@
 export type Voie = "sexuelle" | "mentale" | "bien-etre";
 
 export const VOIES: { id: Voie; label: string; description: string }[] = [
-  { id: "sexuelle", label: "Santé sexuelle", description: "Contraception, infections, consentement" },
+  { id: "sexuelle", label: "Planification familiale", description: "Contraception, choisir sa méthode, infections, consentement" },
   { id: "mentale", label: "Santé mentale", description: "Stress, tristesse, parler de ce qui pèse" },
   { id: "bien-etre", label: "Bien-être", description: "Sommeil, estime de soi, équilibre" },
 ];
@@ -14,7 +14,7 @@ export function isVoie(value: unknown): value is Voie {
 }
 
 export const DOMAIN = {
-  label: "la santé sexuelle, la santé mentale et le bien-être",
+  label: "la planification familiale, la santé sexuelle, la santé mentale et le bien-être",
   region: "en Afrique de l'Ouest",
   // Libellés des thèmes utilisés dans data/knowledge.json et dans le suivi agrégé.
   themes: {

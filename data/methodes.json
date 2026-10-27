@@ -1,0 +1,79 @@
+[
+  {
+    "id": "preservatif",
+    "nom": "Préservatif",
+    "type": "Barrière",
+    "comment": "Une gaine qui retient le sperme. Il existe pour les hommes et pour les femmes.",
+    "duree": "À chaque rapport",
+    "ist": true,
+    "professionnel": false,
+    "a_savoir": "Seule méthode qui protège aussi de nombreuses infections. Se met avant tout contact, à usage unique.",
+    "a_discuter": "Comment bien le mettre, où en trouver gratuitement ou à petit prix."
+  },
+  {
+    "id": "pilule",
+    "nom": "Pilule",
+    "type": "Hormonale",
+    "comment": "Un comprimé à prendre chaque jour, à peu près à la même heure.",
+    "duree": "Chaque jour",
+    "ist": false,
+    "professionnel": true,
+    "a_savoir": "Une prise oubliée peut réduire la protection. Des nausées ou des saignements légers sont fréquents au début.",
+    "a_discuter": "Quelle pilule convient, que faire en cas d'oubli."
+  },
+  {
+    "id": "injectable",
+    "nom": "Injectable",
+    "type": "Hormonale",
+    "comment": "Une piqûre faite par un professionnel, qui protège plusieurs semaines.",
+    "duree": "Environ 3 mois par injection",
+    "ist": false,
+    "professionnel": true,
+    "a_savoir": "Les règles peuvent devenir irrégulières ou disparaître. Le retour de la fertilité peut prendre quelques mois après l'arrêt.",
+    "a_discuter": "Le calendrier des rendez-vous et ce qui se passe si on est en retard."
+  },
+  {
+    "id": "implant",
+    "nom": "Implant",
+    "type": "Hormonale",
+    "comment": "Un petit bâtonnet placé sous la peau du bras par un professionnel.",
+    "duree": "Plusieurs années selon le modèle",
+    "ist": false,
+    "professionnel": true,
+    "a_savoir": "Se retire à tout moment par un professionnel, la fertilité revient ensuite. Les saignements irréguliers sont fréquents.",
+    "a_discuter": "La durée du modèle disponible et les effets possibles."
+  },
+  {
+    "id": "diu",
+    "nom": "Stérilet (DIU)",
+    "type": "Dispositif intra-utérin",
+    "comment": "Un petit dispositif placé dans l'utérus par un professionnel.",
+    "duree": "Plusieurs années selon le modèle",
+    "ist": false,
+    "professionnel": true,
+    "a_savoir": "Existe avec ou sans hormones. Peut être retiré à tout moment. Les règles peuvent être plus abondantes avec le modèle au cuivre.",
+    "a_discuter": "Le modèle proposé, la pose et le suivi."
+  },
+  {
+    "id": "urgence",
+    "nom": "Contraception d'urgence",
+    "type": "Après un rapport",
+    "comment": "Un comprimé à prendre le plus tôt possible après un rapport non protégé, ou un stérilet posé par un professionnel.",
+    "duree": "Dans les jours qui suivent le rapport",
+    "ist": false,
+    "professionnel": false,
+    "a_savoir": "Plus on la prend tôt, mieux elle agit. Ce n'est pas une méthode régulière, et elle ne protège pas des infections.",
+    "a_discuter": "Où l'obtenir rapidement, et quelle méthode choisir ensuite."
+  },
+  {
+    "id": "naturelles",
+    "nom": "Méthodes naturelles",
+    "type": "Suivi du cycle",
+    "comment": "Repérer les jours fertiles pour éviter les rapports sans protection ces jours-là.",
+    "duree": "Suivi continu",
+    "ist": false,
+    "professionnel": false,
+    "a_savoir": "Elles demandent de bien apprendre la méthode et sont moins fiables si le cycle est irrégulier.",
+    "a_discuter": "Se faire expliquer la méthode par un professionnel avant de s'y fier."
+  }
+]

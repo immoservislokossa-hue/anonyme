@@ -1372,3 +1372,118 @@ th {
     text-align: center;
   }
 }
+
+/* Planification familiale */
+.hero-urgent {
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+}
+
+.hero-urgent a {
+  color: #b0105a;
+  font-weight: 700;
+}
+
+.meet {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+  background: var(--tone-soft);
+  border-radius: 28px;
+  padding: 20px;
+}
+
+.meet h2 {
+  margin-top: 4px;
+}
+
+.sil-tile.big {
+  width: 130px;
+  height: 160px;
+  background: #fff;
+}
+
+.barrier {
+  display: block;
+}
+
+.methods {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.method {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.method h2 {
+  margin: 0;
+}
+
+.method-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.method dl {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.method dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-top: 1px solid var(--beige);
+  padding-top: 6px;
+}
+
+.method dt {
+  color: var(--muted);
+}
+
+.method dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+}
+
+.tag {
+  background: var(--bg);
+  border: 1px solid var(--beige);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--indigo);
+  white-space: nowrap;
+}
+
+.steps {
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 520px) {
+  .meet {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+}
+
+.cards.four {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+@media (max-width: 520px) {
+  .hero::after {
+    display: none;
+  }
+}

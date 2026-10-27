@@ -178,5 +178,86 @@
     "content": "Quand le stress monte, respirer lentement peut aider : inspirer par le nez pendant quelques secondes, puis expirer doucement par la bouche, plusieurs fois de suite. Si le stress ou les malaises reviennent souvent, il faut en parler à un professionnel de santé.",
     "source": "Brouillon à valider par un professionnel de santé",
     "validated": false
+  },
+  {
+    "id": "pilule-usage",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "La pilule : comment elle s'utilise",
+    "content": "La pilule se prend chaque jour, à peu près à la même heure. Si une prise est oubliée, la protection peut baisser : la notice ou un professionnel de santé explique quoi faire selon le type de pilule. La pilule ne protège pas des infections sexuellement transmissibles. Des nausées ou de légers saignements peuvent apparaître au début.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "injectable-usage",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "L'injectable",
+    "content": "L'injectable est une piqûre faite par un professionnel de santé, répétée à intervalles réguliers, environ tous les trois mois selon le produit. Les règles peuvent devenir irrégulières ou s'arrêter. Après l'arrêt, le retour de la fertilité peut prendre quelques mois. Il ne protège pas des infections sexuellement transmissibles.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "implant-usage",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "L'implant contraceptif",
+    "content": "L'implant est un petit bâtonnet placé sous la peau du bras par un professionnel. Il protège pendant plusieurs années selon le modèle et peut être retiré à tout moment, après quoi la fertilité revient. Des saignements irréguliers sont fréquents. Il ne protège pas des infections sexuellement transmissibles.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "diu-usage",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "Le stérilet (DIU)",
+    "content": "Le stérilet, ou dispositif intra-utérin, est posé dans l'utérus par un professionnel et protège pendant plusieurs années. Il existe avec ou sans hormones. Il peut être retiré à tout moment. Avec le modèle au cuivre, les règles peuvent être plus abondantes. Il ne protège pas des infections sexuellement transmissibles.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "methodes-naturelles",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "Les méthodes naturelles",
+    "content": "Les méthodes naturelles consistent à repérer les jours fertiles du cycle. Elles demandent un bon apprentissage et sont moins fiables quand les cycles sont irréguliers. Un professionnel de santé peut expliquer la méthode et dire si elle convient.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "choisir-methode",
+    "voie": "sexuelle",
+    "theme": "orientation",
+    "title": "Comment choisir une méthode",
+    "content": "Il n'existe pas une seule méthode idéale. Le choix dépend de la santé, de l'âge, de la fréquence des rapports, du désir de grossesse plus tard, des effets possibles et de ce qui est facile à obtenir près de chez soi. Un professionnel de santé peut présenter les options et répondre aux questions. On peut changer de méthode si elle ne convient pas.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "jeunes-droit-information",
+    "voie": "sexuelle",
+    "theme": "orientation",
+    "title": "Jeunes, célibataires et confidentialité",
+    "content": "Les jeunes et les personnes non mariées ont aussi besoin d'informations et de services de planification familiale. On peut demander la confidentialité et venir accompagné(e). Si un accueil est jugeant ou refuse sans explication, on peut essayer un autre centre. Les règles exactes dépendent du pays et du centre : se renseigner sur place.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "partenaire-decision",
+    "voie": "sexuelle",
+    "theme": "consentement",
+    "title": "En parler avec son partenaire",
+    "content": "Choisir une méthode est une décision personnelle. On peut en parler avec son partenaire, mais personne ne doit être forcé d'utiliser ou de ne pas utiliser une méthode. En cas de pression ou de violence, un centre de santé peut aider et la confidentialité peut être demandée.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "apres-accouchement",
+    "voie": "sexuelle",
+    "theme": "grossesse",
+    "title": "Contraception après un accouchement",
+    "content": "Après un accouchement, la fertilité peut revenir plus vite qu'on ne le pense, même en allaitant. Certaines méthodes conviennent pendant l'allaitement, d'autres non. Un professionnel de santé peut conseiller la méthode adaptée et le bon moment pour la commencer.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
   }
 ]
