@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { isActive } from "@/lib/nav";
 import Icon, { type IconName } from "@/components/Icon";
 
-const items: { href: string; label: string; icon: IconName }[] = [
-  { href: "/chat", label: "Parler", icon: "chat" },
-  { href: "/apprendre", label: "Apprendre", icon: "book" },
-  { href: "/orientation", label: "Centres", icon: "pin" },
+const items: { href: string; label: string; icon: IconName; tour: string }[] = [
+  { href: "/chat", label: "Parler", icon: "chat", tour: "tab-chat" },
+  { href: "/apprendre", label: "Apprendre", icon: "book", tour: "tab-learn" },
+  { href: "/orientation", label: "Centres", icon: "pin", tour: "tab-centres" },
 ];
 
 export default function BottomNav() {
@@ -24,6 +24,7 @@ export default function BottomNav() {
         return (
           <Link
             key={item.href}
+            data-tour={item.tour}
             href={item.href}
             aria-current={active ? "page" : undefined}
             className={`${active ? "active" : ""}${item.href === "/urgence" ? " alert" : ""}`}

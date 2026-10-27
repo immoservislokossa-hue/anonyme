@@ -1,9 +1,8 @@
 import type { Lang } from "@/lib/i18n";
 
-// Visuels des étapes de la présentation : un dessin simple suffit à suivre sans savoir lire.
-export type Visual = "afi" | "chat" | "learn" | "pin" | "alert" | "lock" | "speaker";
-
-export type Step = { visual: Visual; fr: string };
+// Une étape : une phrase lue à voix haute pendant qu'on entoure l'élément concerné à l'écran.
+// `target` est un sélecteur CSS ; sans cible (ou si l'élément est absent), la phrase s'affiche au centre.
+export type Step = { fr: string; target?: string };
 
 export type Guide = {
   id: string;
@@ -16,28 +15,46 @@ export type Guide = {
   audio?: Partial<Record<Lang, string[]>>;
 };
 
+const T = {
+  chat: '[data-tour="tab-chat"]',
+  learn: '[data-tour="tab-learn"]',
+  centres: '[data-tour="tab-centres"]',
+  urgent: '[data-tour="urgent"]',
+  audio: '[data-tour="audio"]',
+  ask: '[data-tour="ask"]',
+};
+
 export const TOUR: Guide = {
   id: "global",
   title: "Bienvenue sur Alviosa",
   steps: [
-    { visual: "afi", fr: "Bonjour et bienvenue sur Alviosa. Ici, tu peux poser tes questions sur la contraception, sans honte et sans que personne ne te juge." },
-    { visual: "chat", fr: "Pour parler à Afi, appuie sur « Parler ». Tu peux écrire, ou appuyer sur le petit micro et dire ta question à voix haute." },
-    { visual: "learn", fr: "Dans « Apprendre », tu trouves les méthodes expliquées simplement, des histoires à écouter ou à regarder, et un jeu de vrai ou faux." },
-    { visual: "pin", fr: "Dans « Centres », tu trouves un centre de santé ou une pharmacie près de toi. Autorise la position, ou écris le nom de ton quartier." },
-    { visual: "alert", fr: "Si tu es en danger, ou après un rapport sans protection, appuie sur le bouton rose en haut. Il te dit quoi faire tout de suite." },
-    { visual: "lock", fr: "Ici, personne ne voit ce que tu fais. Il n'y a pas de compte et tes messages ne sont pas gardés." },
-    { visual: "speaker", fr: "Tu peux réécouter cette présentation à tout moment avec le bouton haut-parleur en haut de l'écran. Appuie sur « Commencer »." },
+    { fr: "Bonjour ! Bienvenue sur Alviosa. Je vais te montrer comment ça marche. Écoute, et regarde ce que j'entoure." },
+    { fr: "Quand tu appuies ici, tu parles à Afi. Tu peux écrire, ou dire ta question à voix haute.", target: T.chat },
+    { fr: "Quand tu appuies ici, tu apprends : les méthodes, des histoires et un jeu de vrai ou faux.", target: T.learn },
+    { fr: "Quand tu appuies ici, tu trouves un centre de santé ou une pharmacie près de toi.", target: T.centres },
+    { fr: "Ce bouton rose, c'est pour les urgences. Appuie dessus si tu es en danger, ou après un rapport sans protection.", target: T.urgent },
+    { fr: "Ce bouton haut-parleur répète l'explication de la page où tu es.", target: T.audio },
+    { fr: "Maintenant, appuie ici pour poser ta première question. Ici, personne ne te juge et personne ne voit ce que tu fais.", target: T.ask },
   ],
   translations: {
-    // DÉMONSTRATION : traduction d'essai, non validée. À faire relire et enregistrer par un locuteur.
+    // DÉMONSTRATIONS : traductions d'essai, non validées. À faire relire et enregistrer par des locuteurs.
     yo: [
-      "Ẹ káàbọ̀ sí Alviosa. Níbí, o lè béèrè ìbéèrè nípa ètò ìdílé láìsí ìtìjú, láìsí ẹni tó máa dá ọ lẹ́bi.",
-      "Láti bá Afi sọ̀rọ̀, tẹ « Parler ». O lè kọ ìbéèrè rẹ, tàbí tẹ ohun èlò gbohùngbohùn kí o sì sọ̀rọ̀.",
-      "Nínú « Apprendre », o máa rí àlàyé àwọn ọ̀nà ìdènà oyún, àwọn ìtàn, àti eré òótọ́ tàbí irọ́.",
-      "Nínú « Centres », o máa rí ilé ìwòsàn tàbí ilé oògùn tó sún mọ́ ọ.",
-      "Tí o bá wà nínú ewu, tẹ bọ́tìnì pinki ní òkè. Yóò sọ ohun tí o gbọ́dọ̀ ṣe lẹ́sẹ̀kẹsẹ̀.",
-      "Níbí, ẹnikẹ́ni kò rí ohun tí ò ń ṣe. Kò sí àkọọ́lẹ̀, a kò sì fi ọ̀rọ̀ rẹ pamọ́.",
-      "O lè tún gbọ́ ìfihàn yìí nígbàkigbà pẹ̀lú bọ́tìnì ohùn ní òkè. Tẹ « Commencer ».",
+      "Ẹ káàbọ̀ sí Alviosa! Mo máa fi bí ó ṣe ń ṣiṣẹ́ hàn ọ́. Gbọ́, kí o sì wo ohun tí mo yí ká.",
+      "Tí o bá tẹ ibí, o máa bá Afi sọ̀rọ̀. O lè kọ, tàbí sọ ìbéèrè rẹ jáde.",
+      "Tí o bá tẹ ibí, o máa kọ́ nípa àwọn ọ̀nà ìdènà oyún, àwọn ìtàn àti eré òótọ́ tàbí irọ́.",
+      "Tí o bá tẹ ibí, o máa rí ilé ìwòsàn tàbí ilé oògùn tó sún mọ́ ọ.",
+      "Bọ́tìnì pinki yìí wà fún ìgbà pàjáwìrì. Tẹ̀ ẹ́ tí o bá wà nínú ewu, tàbí lẹ́yìn ìbálòpọ̀ láìsí ààbò.",
+      "Bọ́tìnì ohùn yìí ń tún àlàyé ojú ewé tí o wà ṣe.",
+      "Báyìí, tẹ ibí láti béèrè ìbéèrè àkọ́kọ́ rẹ. Níbí, ẹnikẹ́ni kò ní dá ọ lẹ́bi, ẹnikẹ́ni kò sì rí ohun tí ò ń ṣe.",
+    ],
+    ha: [
+      "Barka da zuwa Alviosa! Zan nuna maka yadda yake aiki. Ka saurara, ka kuma duba abin da na kewaye.",
+      "Idan ka danna nan, za ka yi magana da Afi. Za ka iya rubuta, ko ka fadi tambayarka da murya.",
+      "Idan ka danna nan, za ka koyi hanyoyin tazarar haihuwa, labarai da wasan gaskiya ko karya.",
+      "Idan ka danna nan, za ka sami cibiyar lafiya ko kantin magani kusa da kai.",
+      "Wannan maɓallin ruwan hoda na gaggawa ne. Danna shi idan kana cikin haɗari, ko bayan jima'i ba tare da kariya ba.",
+      "Wannan maɓallin lasifika yana maimaita bayanin shafin da kake ciki.",
+      "Yanzu danna nan ka yi tambayarka ta farko. A nan babu wanda zai hukunta ka, kuma babu wanda yake ganin abin da kake yi.",
     ],
   },
 };
@@ -47,78 +64,83 @@ const PAGE_GUIDES: Record<string, Guide> = {
     id: "home",
     title: "Page d'accueil",
     steps: [
-      { visual: "afi", fr: "Tu es sur la page d'accueil. Appuie sur « Poser ma question » pour parler à Afi." },
-      { visual: "learn", fr: "Appuie sur « Voir les méthodes » pour comprendre les méthodes de contraception." },
-      { visual: "alert", fr: "En cas d'urgence, appuie sur le lien rose, ou sur le bouton rose en haut de l'écran." },
+      { fr: "Tu es sur la page d'accueil. Appuie ici pour poser ta question à Afi.", target: T.ask },
+      { fr: "Appuie ici pour comprendre les méthodes de contraception.", target: '[data-tour="methods"]' },
+      { fr: "En cas d'urgence, appuie sur ce lien rose, ou sur le bouton rose en haut de l'écran.", target: ".hero-urgent a" },
     ],
   },
   chat: {
     id: "chat",
     title: "Parler à Afi",
     steps: [
-      { visual: "chat", fr: "Ici, tu parles à Afi. Écris ta question dans la zone en bas, ou appuie sur le micro pour parler." },
-      { visual: "speaker", fr: "Sous chaque réponse, appuie sur « Écouter » pour l'entendre à voix haute." },
-      { visual: "learn", fr: "Tu peux changer de sujet avec les boutons en haut : planification familiale, santé mentale ou bien-être." },
+      { fr: "Ici, tu parles à Afi. Écris ta question dans cette zone.", target: ".composer" },
+      { fr: "Ou appuie sur le micro et dis ta question à voix haute.", target: ".composer .icon-btn.ghost" },
+      { fr: "Quand tu as fini, appuie sur ce bouton pour envoyer.", target: ".composer .icon-btn.primary" },
+      { fr: "Ici, tu peux changer de sujet : planification familiale, santé mentale ou bien-être.", target: ".chat-page .tabs" },
     ],
   },
   apprendre: {
     id: "apprendre",
     title: "Apprendre",
     steps: [
-      { visual: "learn", fr: "Choisis ce que tu veux faire. « Les méthodes » explique chaque méthode de contraception." },
-      { visual: "afi", fr: "« Les histoires » raconte des situations vraies, avec Afi, Fallone et Chimène." },
-      { visual: "chat", fr: "« Vrai ou faux » teste ce que tu sais. Tu gagnes des points à chaque bonne réponse." },
+      { fr: "Quand tu appuies ici, tu vois chaque méthode de contraception expliquée simplement.", target: ".learn-list li:nth-child(1)" },
+      { fr: "Ici, des histoires vraies, avec Afi, Fallone et Chimène.", target: ".learn-list li:nth-child(2)" },
+      { fr: "Ici, un jeu de vrai ou faux. Tu gagnes des points à chaque bonne réponse.", target: ".learn-list li:nth-child(3)" },
     ],
   },
   methodes: {
     id: "methodes",
     title: "Les méthodes",
     steps: [
-      { visual: "learn", fr: "Voici les méthodes de contraception. Pour chacune, tu vois comment elle marche et combien de temps elle protège." },
-      { visual: "lock", fr: "Tu vois aussi si elle protège des infections, et si un professionnel doit la poser." },
-      { visual: "chat", fr: "Appuie sur « Poser une question » si tu veux en savoir plus. Un professionnel de santé t'aide à choisir." },
+      { fr: "Chaque carte explique une méthode : comment elle marche, combien de temps elle protège, et si elle protège des infections.", target: ".methods article:first-child" },
+      { fr: "Appuie ici si tu veux poser une question sur cette méthode.", target: ".methods article:first-child .chip-btn" },
     ],
   },
   histoires: {
     id: "histoires",
     title: "Les histoires",
     steps: [
-      { visual: "afi", fr: "Choisis comment vivre une histoire : en images, en faisant des choix, ou en dessin animé." },
-      { visual: "speaker", fr: "Dans le dessin animé, appuie sur « Activer la voix » pour entendre les personnages." },
-      { visual: "learn", fr: "À la fin, tu vois ce qu'il faut retenir, et un bouton pour agir." },
+      { fr: "Choisis ici comment tu aimes apprendre : en images, en faisant des choix, ou en dessin animé.", target: ".format-picker" },
+      { fr: "Appuie ici pour commencer une histoire.", target: ".story-item:first-child .btn" },
+    ],
+  },
+  histoire: {
+    id: "histoire",
+    title: "Une histoire",
+    steps: [
+      { fr: "Ici, tu changes la façon de vivre l'histoire : en images, en choix ou en dessin animé.", target: '.tabs[role="tablist"]' },
+      { fr: "Dans le dessin animé, appuie sur « Activer la voix » pour entendre les personnages." },
     ],
   },
   quiz: {
     id: "quiz",
     title: "Vrai ou faux",
     steps: [
-      { visual: "learn", fr: "Lis chaque phrase, puis dis si elle est vraie ou fausse." },
-      { visual: "chat", fr: "Tu vois l'explication juste après. Tu gagnes des points à chaque bonne réponse." },
+      { fr: "Lis la phrase, puis appuie sur Vrai ou Faux. Tu vois l'explication juste après.", target: "main .panel .row" },
     ],
   },
   orientation: {
     id: "orientation",
     title: "Trouver un centre",
     steps: [
-      { visual: "pin", fr: "Cette page t'aide à trouver un centre de santé ou une pharmacie. Appuie sur « Utiliser ma position »." },
-      { visual: "pin", fr: "Si tu préfères, écris le nom de ton quartier. Choisis « Centres » ou « Pharmacies »." },
-      { visual: "alert", fr: "Appelle avant d'y aller pour vérifier les horaires, et demande la confidentialité." },
+      { fr: "Appuie ici pour utiliser ta position et voir les centres les plus proches.", target: ".nearby .btn.indigo" },
+      { fr: "Si tu préfères, écris le nom de ton quartier ici.", target: ".nearby input" },
     ],
   },
   urgence: {
     id: "urgence",
     title: "Urgence",
     steps: [
-      { visual: "alert", fr: "Si tu as un saignement très abondant, une douleur très forte, de la fièvre, un malaise, ou si tu as subi une violence : va tout de suite au centre de santé le plus proche." },
-      { visual: "chat", fr: "Demande à une personne de confiance de t'accompagner. Tu n'es pas seul." },
+      { fr: "Si tu as un saignement très abondant, une douleur très forte, de la fièvre, un malaise, ou si tu as subi une violence : va tout de suite au centre de santé le plus proche.", target: ".urgent" },
+      { fr: "Demande à une personne de confiance de t'accompagner. Tu n'es pas seul." },
     ],
   },
   default: {
     id: "default",
     title: "Aide",
     steps: [
-      { visual: "learn", fr: "Utilise le menu en bas pour aller à Parler, Apprendre ou Centres." },
-      { visual: "alert", fr: "Le bouton rose en haut sert pour les urgences." },
+      { fr: "Utilise le menu en bas pour aller à Parler, Apprendre ou Centres.", target: ".bottom-nav" },
+      { fr: "Le bouton rose en haut sert pour les urgences.", target: T.urgent },
     ],
   },
 };
@@ -128,7 +150,8 @@ export function guideForPath(pathname: string): Guide {
   if (pathname.startsWith("/chat")) return PAGE_GUIDES.chat;
   if (pathname.startsWith("/apprendre")) return PAGE_GUIDES.apprendre;
   if (pathname.startsWith("/methodes")) return PAGE_GUIDES.methodes;
-  if (pathname.startsWith("/chroniques") || pathname.startsWith("/histoires")) return PAGE_GUIDES.histoires;
+  if (pathname.startsWith("/histoires/")) return PAGE_GUIDES.histoire;
+  if (pathname.startsWith("/chroniques")) return PAGE_GUIDES.histoires;
   if (pathname.startsWith("/quiz")) return PAGE_GUIDES.quiz;
   if (pathname.startsWith("/orientation")) return PAGE_GUIDES.orientation;
   if (pathname.startsWith("/urgence")) return PAGE_GUIDES.urgence;

@@ -21,7 +21,8 @@ test("les traductions ont autant de phrases que le français", () => {
 test("chaque page a son guide, avec un guide par défaut", () => {
   assert.equal(guideForPath("/").id, "home");
   assert.equal(guideForPath("/chat").id, "chat");
-  assert.equal(guideForPath("/histoires/quelle-methode").id, "histoires");
+  assert.equal(guideForPath("/histoires/quelle-methode").id, "histoire");
+  assert.equal(guideForPath("/chroniques").id, "histoires");
   assert.equal(guideForPath("/consentement").id, "default");
 });
 
@@ -32,6 +33,7 @@ test("sans traduction, la lecture se fait en français et le signale", () => {
   assert.equal(ff.translated, false);
   assert.deepEqual(ff.lines, fr.lines);
   assert.equal(linesFor(TOUR, "yo").translated, true);
+  assert.equal(linesFor(TOUR, "ha").translated, true);
 });
 
 test("chaque pays du Partenariat a deux langues locales connues", () => {

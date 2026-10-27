@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <DesktopNav />
             <div className="topbar-actions">
               <AudioHelp />
-              <Link href="/urgence" className="urgent-btn" aria-label="Urgence : que faire maintenant">
+              <Link href="/urgence" className="urgent-btn" data-tour="urgent" aria-label="Urgence : que faire maintenant">
                 <Icon name="alert" size={20} />
                 <span>Urgence</span>
               </Link>

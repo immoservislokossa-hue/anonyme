@@ -74,7 +74,7 @@ export function useNarrator(lines: string[], lang: Lang, recordings?: string[]) 
       utterance.rate = 0.92;
       utterance.onend = () => {
         window.clearTimeout(timer.current);
-        timer.current = window.setTimeout(advance, 450);
+        timer.current = window.setTimeout(advance, 250);
       };
       // Voix en échec (langue non prise en charge, par exemple) : on laisse le temps de lire à l'écran.
       utterance.onerror = () => {

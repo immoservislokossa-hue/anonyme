@@ -27,11 +27,11 @@ export default function HomePage() {
           que tu fais ici.
         </p>
         <div className="row hero-actions">
-          <Link href="/chat?voie=sexuelle" className="btn indigo big">
+          <Link href="/chat?voie=sexuelle" className="btn indigo big" data-tour="ask">
             <Icon name="chat" size={20} />
             Poser ma question
           </Link>
-          <Link href="/methodes" className="btn ghost big">
+          <Link href="/methodes" className="btn ghost big" data-tour="methods">
             Voir les méthodes
           </Link>
         </div>
