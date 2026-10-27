@@ -2451,3 +2451,59 @@ th {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.coach-line.dim {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.coach-line.local {
+  font-size: 1.05rem;
+  border-left: 3px solid var(--indigo);
+  padding-left: 10px;
+}
+
+.mini {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  border-radius: 14px;
+  background: var(--sable-soft);
+  border: 1px solid var(--beige);
+  font-size: 0.85rem;
+}
+
+.mini-bubble {
+  max-width: 88%;
+  padding: 6px 10px;
+  border-radius: 12px;
+}
+
+.mini-bubble.me {
+  align-self: flex-end;
+  background: var(--indigo);
+  color: #fff;
+}
+
+.mini-bubble.bot {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid var(--beige);
+}
+
+.mini-row {
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--beige);
+  font-weight: 700;
+}
+
+.mini-alert {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #ffe9f1;
+  color: #7a0a36;
+  font-weight: 700;
+}

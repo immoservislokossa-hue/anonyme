@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { ALL_GUIDES, TOUR, guideForPath, linesFor } from "../lib/guides";
-import { COUNTRY_LANGS, LANGS, languagesForCountry, pickVoice } from "../lib/i18n";
+import { ALL_GUIDES, TOUR, guideForPath, hasTranslation, stepTexts } from "../lib/guides";
+import { COUNTRY_LANGS, LANGS, defaultLangFor, languagesForCountry, pickVoice } from "../lib/i18n";
 
 test("chaque guide a des phrases en français non vides", () => {
   for (const guide of ALL_GUIDES) {
@@ -26,14 +26,27 @@ test("chaque page a son guide, avec un guide par défaut", () => {
   assert.equal(guideForPath("/consentement").id, "default");
 });
 
-test("sans traduction, la lecture se fait en français et le signale", () => {
-  const fr = linesFor(TOUR, "fr");
-  assert.equal(fr.translated, true);
-  const ff = linesFor(TOUR, "ff");
-  assert.equal(ff.translated, false);
-  assert.deepEqual(ff.lines, fr.lines);
-  assert.equal(linesFor(TOUR, "yo").translated, true);
-  assert.equal(linesFor(TOUR, "ha").translated, true);
+test("avec une traduction, chaque étape se dit en français puis dans la langue choisie", () => {
+  const yo = stepTexts(TOUR, "yo");
+  assert.equal(yo.length, TOUR.steps.length);
+  for (const step of yo) assert.ok(step.fr && step.local);
+  assert.equal(hasTranslation(TOUR, "yo"), true);
+  assert.equal(hasTranslation(TOUR, "ha"), true);
+  assert.equal(hasTranslation(TOUR, "hac"), true);
+});
+
+test("sans traduction, seule la phrase française est lue", () => {
+  assert.equal(hasTranslation(TOUR, "ff"), false);
+  for (const step of stepTexts(TOUR, "ff")) assert.equal(step.local, undefined);
+  for (const step of stepTexts(TOUR, "fr")) assert.equal(step.local, undefined);
+});
+
+test("la langue proposée d'office est la première langue locale qui a un texte", () => {
+  assert.equal(defaultLangFor("BJ"), "yo");
+  assert.equal(defaultLangFor("NE"), "ha");
+  assert.equal(defaultLangFor("MR"), "hac");
+  assert.equal(defaultLangFor("SN"), "fr");
+  assert.equal(defaultLangFor(null), "fr");
 });
 
 test("chaque pays du Partenariat a deux langues locales connues", () => {
@@ -45,9 +58,9 @@ test("chaque pays du Partenariat a deux langues locales connues", () => {
 });
 
 test("les langues proposées commencent par le français", () => {
-  assert.deepEqual(languagesForCountry("BJ"), ["fr", "fon", "yo"]);
-  assert.deepEqual(languagesForCountry("xx"), ["fr"]);
-  assert.deepEqual(languagesForCountry(null), ["fr"]);
+  assert.deepEqual(languagesForCountry("BJ"), ["fr", "fon", "yo", "hac", "ha"]);
+  assert.deepEqual(languagesForCountry("xx"), ["fr", "yo", "hac", "ha"]);
+  assert.deepEqual(languagesForCountry(null), ["fr", "yo", "hac", "ha"]);
 });
 
 test("une langue sans voix sur l'appareil se lit avec la voix française, signalée comme approximative", () => {

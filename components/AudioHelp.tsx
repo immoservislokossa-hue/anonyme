@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Coach from "@/components/Coach";
 import Icon from "@/components/Icon";
 import { useLang } from "@/components/useLang";
+import { defaultLangFor } from "@/lib/i18n";
 import { TOUR, guideForPath, type Guide } from "@/lib/guides";
 
 const TOUR_KEY = "tour-v2";
@@ -46,13 +47,29 @@ function warmVoices() {
 
 export default function AudioHelp() {
   const pathname = usePathname();
-  const { lang, setLang } = useLang();
+  const { lang: chosenLang, setLang, chosen } = useLang();
+  const [geoLang, setGeoLang] = useState<ReturnType<typeof defaultLangFor>>("fr");
+  // Sans choix de la personne, on propose la langue locale de son pays (déduit par l'hébergeur).
+  const lang = chosen && chosenLang ? chosenLang : geoLang;
   const [session, setSession] = useState<Session | null>(null);
   const pending = useRef<Guide | null>(null);
 
   const eligible = !(pathname.startsWith("/urgence") || pathname.startsWith("/pro") || pathname.startsWith("/partenaires"));
 
   useEffect(warmVoices, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/geo")
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data: { country?: string | null } | null) => {
+        if (!cancelled && data) setGeoLang(defaultLangFor(data.country));
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Première visite : l'explication démarre d'elle-même, une seule fois. D'abord la présentation de
   // l'application, puis, la première fois qu'on arrive sur une page, ce qu'elle permet de faire.

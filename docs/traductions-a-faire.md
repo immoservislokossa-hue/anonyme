@@ -9,12 +9,12 @@ Langues par pays (les deux plus parlées) :
 - Côte d'Ivoire (CI) : Dioula, Baoulé
 - Guinée (GN) : Pular / Peul, Malinké
 - Mali (ML) : Bambara, Pular / Peul
-- Mauritanie (MR) : Hassaniya, Pular / Peul
+- Mauritanie (MR) : Hassaniya (arabe), Pular / Peul
 - Niger (NE) : Haoussa, Zarma
 - Sénégal (SN) : Wolof, Pular / Peul
 - Togo (TG) : Éwé, Kabiyè
 
-Déjà en démonstration, non validées : Yoruba et Haoussa (présentation d'accueil seulement).
+Déjà en démonstration, non validées : Yoruba, Haoussa et arabe (Hassaniya), pour la présentation d'accueil seulement.
 
 Fichier à compléter : `lib/guides.ts` (champ `translations`), et enregistrements dans `public/audio/guides/<langue>/<guide>-<numéro>.mp3` (champ `audio`).
 

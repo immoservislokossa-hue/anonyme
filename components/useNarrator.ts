@@ -3,9 +3,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { LANGS, pickVoice, type Lang } from "@/lib/i18n";
 
-// Lit une suite de phrases l'une après l'autre : un enregistrement s'il existe, sinon la voix de l'appareil.
-// Un minuteur de secours fait avancer la lecture si la voix ne signale pas la fin d'une phrase.
-export function useNarrator(lines: string[], lang: Lang, recordings?: string[]) {
+export type Line = { text: string; lang: Lang; audio?: string };
+
+// Lit une suite de phrases l'une après l'autre, chacune dans sa langue : un enregistrement s'il existe,
+// sinon la voix de l'appareil. Un minuteur de secours fait avancer la lecture si la voix ne signale
+// pas la fin d'une phrase.
+export function useNarrator(lines: Line[]) {
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [done, setDone] = useState(false);
@@ -44,19 +47,7 @@ export function useNarrator(lines: string[], lang: Lang, recordings?: string[]) 
       window.clearTimeout(timer.current);
       goNext(index);
     };
-    const fallbackMs = 1800 + line.length * 90;
-
-    const recording = recordings?.[index];
-    if (recording) {
-      const element = new Audio(recording);
-      audio.current = element;
-      element.onended = advance;
-      element.onerror = () => speak();
-      element.play().catch(() => speak());
-      timer.current = window.setTimeout(advance, 60000);
-    } else {
-      speak();
-    }
+    const fallbackMs = 1800 + line.text.length * 90;
 
     function speak() {
       if (!("speechSynthesis" in window)) {
@@ -65,10 +56,10 @@ export function useNarrator(lines: string[], lang: Lang, recordings?: string[]) 
       }
       const synth = window.speechSynthesis;
       synth.cancel();
-      const tag = LANGS[lang].tts;
+      const tag = LANGS[line.lang].tts;
       const choice = pickVoice(synth.getVoices(), tag);
       setApprox(choice.approx);
-      const utterance = new SpeechSynthesisUtterance(line);
+      const utterance = new SpeechSynthesisUtterance(line.text);
       utterance.lang = choice.voice?.lang ?? (choice.approx ? "fr-FR" : tag);
       if (choice.voice) utterance.voice = choice.voice;
       utterance.rate = 0.92;
@@ -79,18 +70,29 @@ export function useNarrator(lines: string[], lang: Lang, recordings?: string[]) 
       // Voix en échec (langue non prise en charge, par exemple) : on laisse le temps de lire à l'écran.
       utterance.onerror = () => {
         window.clearTimeout(timer.current);
-        timer.current = window.setTimeout(advance, 1500 + line.length * 55);
+        timer.current = window.setTimeout(advance, 1500 + line.text.length * 55);
       };
       synth.speak(utterance);
       window.clearTimeout(timer.current);
       timer.current = window.setTimeout(advance, fallbackMs * 1.6);
     }
 
+    if (line.audio) {
+      const element = new Audio(line.audio);
+      audio.current = element;
+      element.onended = advance;
+      element.onerror = () => speak();
+      element.play().catch(() => speak());
+      timer.current = window.setTimeout(advance, 60000);
+    } else {
+      speak();
+    }
+
     return () => {
       advanced = true;
       stopSound();
     };
-  }, [playing, index, lines, lang, recordings, goNext, stopSound]);
+  }, [playing, index, lines, goNext, stopSound]);
 
   useEffect(() => stopSound, [stopSound]);
 
@@ -103,14 +105,13 @@ export function useNarrator(lines: string[], lang: Lang, recordings?: string[]) 
     setPlaying(false);
     stopSound();
   }, [stopSound]);
-  const next = useCallback(() => {
-    setDone(false);
-    setIndex((i) => Math.min(total - 1, i + 1));
-  }, [total]);
-  const prev = useCallback(() => {
-    setDone(false);
-    setIndex((i) => Math.max(0, i - 1));
-  }, []);
+  const jump = useCallback(
+    (to: number) => {
+      setDone(false);
+      setIndex(Math.max(0, Math.min(total - 1, to)));
+    },
+    [total],
+  );
   const reset = useCallback(() => {
     stopSound();
     setPlaying(false);
@@ -118,5 +119,5 @@ export function useNarrator(lines: string[], lang: Lang, recordings?: string[]) 
     setIndex(0);
   }, [stopSound]);
 
-  return { index, playing, done, approx, play, pause, next, prev, reset, total };
+  return { index, playing, done, approx, play, pause, jump, reset, total };
 }

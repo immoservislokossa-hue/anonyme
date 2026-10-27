@@ -4,8 +4,8 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { createPortal } from "react-dom";
 import Icon from "@/components/Icon";
 import { useOfferedLanguages } from "@/components/useLang";
-import { useNarrator } from "@/components/useNarrator";
-import { linesFor, type Guide } from "@/lib/guides";
+import { useNarrator, type Line } from "@/components/useNarrator";
+import { hasTranslation, stepTexts, type Guide, type Preview } from "@/lib/guides";
 import { LANGS, type Lang } from "@/lib/i18n";
 
 type Box = { top: number; left: number; width: number; height: number };
@@ -28,6 +28,34 @@ function measure(el: HTMLElement): Box {
   return { top: r.top - PAD, left: r.left - PAD, width: r.width + PAD * 2, height: r.height + PAD * 2 };
 }
 
+// Petit aperçu de ce qui se passe quand on appuie, pour le montrer sans quitter la page.
+function MiniPreview({ kind }: { kind: Preview }) {
+  return (
+    <div className={`mini mini-${kind}`} aria-hidden="true">
+      {kind === "chat" && (
+        <>
+          <span className="mini-bubble me">Quelle méthode choisir ?</span>
+          <span className="mini-bubble bot">Je t'explique les méthodes simplement.</span>
+        </>
+      )}
+      {kind === "learn" && (
+        <>
+          <span className="mini-row">Les méthodes</span>
+          <span className="mini-row">Les histoires</span>
+          <span className="mini-row">Vrai ou faux</span>
+        </>
+      )}
+      {kind === "centres" && (
+        <>
+          <span className="mini-row">Centre de santé · 800 m</span>
+          <span className="mini-row">Pharmacie · 1,2 km</span>
+        </>
+      )}
+      {kind === "urgent" && <span className="mini-alert">Va tout de suite au centre de santé le plus proche.</span>}
+    </div>
+  );
+}
+
 // Visite guidée : la voix explique chaque élément pendant qu'il est entouré à l'écran, puis passe au suivant.
 export default function Coach({
   guide,
@@ -46,8 +74,25 @@ export default function Coach({
   onClose: (completed: boolean) => void;
   onTour: () => void;
 }) {
-  const { lines, translated, audio } = useMemo(() => linesFor(guide, lang), [guide, lang]);
-  const narrator = useNarrator(lines, lang, audio);
+  const texts = useMemo(() => stepTexts(guide, lang), [guide, lang]);
+  // Pour chaque étape : le français d'abord, puis la langue choisie, avant de passer à l'élément suivant.
+  const { lines, stepOfLine, firstLine } = useMemo(() => {
+    const lines: Line[] = [];
+    const stepOfLine: number[] = [];
+    const firstLine: number[] = [];
+    texts.forEach((t, i) => {
+      firstLine.push(lines.length);
+      lines.push({ text: t.fr, lang: "fr", audio: t.frAudio });
+      stepOfLine.push(i);
+      if (t.local) {
+        lines.push({ text: t.local, lang, audio: t.localAudio });
+        stepOfLine.push(i);
+      }
+    });
+    return { lines, stepOfLine, firstLine };
+  }, [texts, lang]);
+  const translated = hasTranslation(guide, lang);
+  const narrator = useNarrator(lines);
   const { play, reset } = narrator;
   const [waiting, setWaiting] = useState(needsTap);
   const [box, setBox] = useState<Box | null>(null);
@@ -56,8 +101,10 @@ export default function Coach({
   const closing = useRef(false);
   const offered = useOfferedLanguages(showLangs);
 
-  const step = guide.steps[narrator.index];
-  const last = narrator.index === narrator.total - 1;
+  const stepIndex = stepOfLine[narrator.index] ?? 0;
+  const step = guide.steps[stepIndex];
+  const text = texts[stepIndex];
+  const last = stepIndex === guide.steps.length - 1;
 
   // La voix démarre tout de suite, sauf si le navigateur exige d'abord un toucher.
   useEffect(() => {
@@ -126,7 +173,7 @@ export default function Coach({
       window.removeEventListener("resize", onChange);
       window.removeEventListener("scroll", onChange, true);
     };
-  }, [step?.target, narrator.index]);
+  }, [step?.target, stepIndex]);
 
   const cardW = Math.min(CARD_MAX, viewport.w - 24);
   let cardStyle: React.CSSProperties = {};
@@ -147,7 +194,7 @@ export default function Coach({
         <div className="coach-head">
           <div className="ah-dots" aria-hidden="true">
             {guide.steps.map((_, i) => (
-              <span key={i} className={i === narrator.index ? "on" : i < narrator.index ? "past" : ""} />
+              <span key={i} className={i === stepIndex ? "on" : i < stepIndex ? "past" : ""} />
             ))}
           </div>
           <button type="button" className="chip-btn" onClick={() => finish(false)}>
@@ -155,9 +202,16 @@ export default function Coach({
           </button>
         </div>
 
-        <p className="coach-line" aria-live="polite">
-          {lines[narrator.index]}
+        {step?.preview && <MiniPreview kind={step.preview} />}
+
+        <p className={`coach-line${text?.local && narrator.index !== firstLine[stepIndex] ? " dim" : ""}`} aria-live="polite">
+          {text?.fr}
         </p>
+        {text?.local && (
+          <p className={`coach-line local${narrator.index === firstLine[stepIndex] ? " dim" : ""}`} lang={lang}>
+            {text.local}
+          </p>
+        )}
 
         {!translated && <p className="muted">Cette langue arrive bientôt. Lecture en français.</p>}
         {translated && lang !== "fr" && (
@@ -171,14 +225,14 @@ export default function Coach({
           </button>
         ) : (
           <div className="coach-controls">
-            <button type="button" className="chip-btn" onClick={narrator.prev} disabled={narrator.index === 0}>
+            <button type="button" className="chip-btn" onClick={() => narrator.jump(firstLine[Math.max(0, stepIndex - 1)])} disabled={stepIndex === 0}>
               Précédent
             </button>
             <button type="button" className="chip-btn" onClick={() => (narrator.playing ? narrator.pause() : narrator.play())}>
               <Icon name="speaker" size={18} />
               {narrator.playing ? "Pause" : "Reprendre"}
             </button>
-            <button type="button" className="btn indigo" onClick={() => (last ? finish(true) : narrator.next())}>
+            <button type="button" className="btn indigo" onClick={() => (last ? finish(true) : narrator.jump(firstLine[stepIndex + 1]))}>
               {last ? "Compris" : "Suivant"}
             </button>
           </div>

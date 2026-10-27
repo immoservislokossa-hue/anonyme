@@ -5,18 +5,18 @@ import { LANG_KEY, isLang, languagesForCountry, type Lang } from "@/lib/i18n";
 
 const EVENT = "lang-change";
 
-function read(): Lang {
+function read(): Lang | null {
   try {
     const value = window.localStorage.getItem(LANG_KEY);
-    return isLang(value) ? value : "fr";
+    return isLang(value) ? value : null;
   } catch {
-    return "fr";
+    return null;
   }
 }
 
 // Langue de l'audio choisie par la personne, gardée sur son appareil.
 export function useLang() {
-  const [lang, setLangState] = useState<Lang>("fr");
+  const [lang, setLangState] = useState<Lang | null>(null);
 
   useEffect(() => {
     setLangState(read());
@@ -35,12 +35,13 @@ export function useLang() {
     window.dispatchEvent(new Event(EVENT));
   }, []);
 
-  return { lang, setLang };
+  // `chosen` : la personne a choisi une langue elle-même. Sinon, on propose celle de son pays.
+  return { lang, setLang, chosen: lang !== null };
 }
 
 // Langues proposées selon le pays détecté par l'hébergeur ; le français seul si on ne sait pas.
 export function useOfferedLanguages(active: boolean): Lang[] {
-  const [langs, setLangs] = useState<Lang[]>(["fr"]);
+  const [langs, setLangs] = useState<Lang[]>(languagesForCountry(null));
 
   useEffect(() => {
     if (!active) return;

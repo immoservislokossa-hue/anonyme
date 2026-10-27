@@ -2,7 +2,9 @@ import type { Lang } from "@/lib/i18n";
 
 // Une étape : une phrase lue à voix haute pendant qu'on entoure l'élément concerné à l'écran.
 // `target` est un sélecteur CSS ; sans cible (ou si l'élément est absent), la phrase s'affiche au centre.
-export type Step = { fr: string; target?: string };
+// `preview` montre à quoi ressemble ce qui se passe quand on appuie, dans la carte d'explication.
+export type Preview = "chat" | "learn" | "centres" | "urgent";
+export type Step = { fr: string; target?: string; preview?: Preview };
 
 export type Guide = {
   id: string;
@@ -29,10 +31,10 @@ export const TOUR: Guide = {
   title: "Bienvenue sur Alviosa",
   steps: [
     { fr: "Bonjour ! Bienvenue sur Alviosa. Je vais te montrer comment ça marche. Écoute, et regarde ce que j'entoure." },
-    { fr: "Quand tu appuies ici, tu parles à Afi. Tu peux écrire, ou dire ta question à voix haute.", target: T.chat },
-    { fr: "Quand tu appuies ici, tu apprends : les méthodes, des histoires et un jeu de vrai ou faux.", target: T.learn },
-    { fr: "Quand tu appuies ici, tu trouves un centre de santé ou une pharmacie près de toi.", target: T.centres },
-    { fr: "Ce bouton rose, c'est pour les urgences. Appuie dessus si tu es en danger, ou après un rapport sans protection.", target: T.urgent },
+    { fr: "Quand tu appuies ici, tu parles à Afi. Tu peux écrire, ou dire ta question à voix haute.", target: T.chat, preview: "chat" },
+    { fr: "Quand tu appuies ici, tu apprends : les méthodes, des histoires et un jeu de vrai ou faux.", target: T.learn, preview: "learn" },
+    { fr: "Quand tu appuies ici, tu trouves un centre de santé ou une pharmacie près de toi.", target: T.centres, preview: "centres" },
+    { fr: "Ce bouton rose, c'est pour les urgences. Appuie dessus si tu es en danger, ou après un rapport sans protection.", target: T.urgent, preview: "urgent" },
     { fr: "Ce bouton haut-parleur répète l'explication de la page où tu es.", target: T.audio },
     { fr: "Maintenant, appuie ici pour poser ta première question. Ici, personne ne te juge et personne ne voit ce que tu fais.", target: T.ask },
   ],
@@ -46,6 +48,15 @@ export const TOUR: Guide = {
       "Bọ́tìnì pinki yìí wà fún ìgbà pàjáwìrì. Tẹ̀ ẹ́ tí o bá wà nínú ewu, tàbí lẹ́yìn ìbálòpọ̀ láìsí ààbò.",
       "Bọ́tìnì ohùn yìí ń tún àlàyé ojú ewé tí o wà ṣe.",
       "Báyìí, tẹ ibí láti béèrè ìbéèrè àkọ́kọ́ rẹ. Níbí, ẹnikẹ́ni kò ní dá ọ lẹ́bi, ẹnikẹ́ni kò sì rí ohun tí ò ń ṣe.",
+    ],
+    hac: [
+      "مرحبًا بك في ألفيوسا! سأريك كيف يعمل. استمع، وانظر إلى ما أحيط به.",
+      "عندما تضغط هنا، تتحدث مع أفي. يمكنك أن تكتب، أو أن تقول سؤالك بصوت عالٍ.",
+      "عندما تضغط هنا، تتعلم: الطرق، وقصصًا، ولعبة صح أو خطأ.",
+      "عندما تضغط هنا، تجد مركزًا صحيًا أو صيدلية قريبة منك.",
+      "هذا الزر الوردي للطوارئ. اضغط عليه إذا كنت في خطر، أو بعد علاقة بلا حماية.",
+      "زر مكبّر الصوت هذا يعيد شرح الصفحة التي أنت فيها.",
+      "الآن اضغط هنا لتطرح سؤالك الأول. هنا لا أحد يحكم عليك، ولا أحد يرى ما تفعله.",
     ],
     ha: [
       "Barka da zuwa Alviosa! Zan nuna maka yadda yake aiki. Ka saurara, ka kuma duba abin da na kewaye.",
@@ -160,13 +171,20 @@ export function guideForPath(pathname: string): Guide {
 
 export const ALL_GUIDES: Guide[] = [TOUR, ...Object.values(PAGE_GUIDES)];
 
-// Phrases à lire pour une langue donnée, avec repli sur le français quand il n'y a pas de traduction.
-export function linesFor(guide: Guide, lang: Lang): { lines: string[]; translated: boolean; audio?: string[] } {
+// Pour chaque étape : la phrase en français, puis la traduction si elle existe pour la langue choisie.
+// La lecture dit d'abord le français, puis la langue locale, avant de passer à l'élément suivant.
+export function stepTexts(guide: Guide, lang: Lang): { fr: string; local?: string; frAudio?: string; localAudio?: string }[] {
   const translation = guide.translations?.[lang];
-  const ok = translation && translation.length === guide.steps.length;
-  return {
-    lines: ok ? translation : guide.steps.map((step) => step.fr),
-    translated: lang === "fr" || Boolean(ok),
-    audio: guide.audio?.[lang],
-  };
+  const ok = lang !== "fr" && translation && translation.length === guide.steps.length;
+  return guide.steps.map((step, i) => ({
+    fr: step.fr,
+    local: ok ? translation[i] : undefined,
+    frAudio: guide.audio?.fr?.[i],
+    localAudio: ok ? guide.audio?.[lang]?.[i] : undefined,
+  }));
+}
+
+export function hasTranslation(guide: Guide, lang: Lang): boolean {
+  const translation = guide.translations?.[lang];
+  return lang === "fr" || Boolean(translation && translation.length === guide.steps.length);
 }
