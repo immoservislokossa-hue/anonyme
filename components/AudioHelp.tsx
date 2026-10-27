@@ -86,7 +86,7 @@ function Player({ guide, lang, autoStart, onFinish, finishLabel }: { guide: Guid
         </button>
         <button type="button" className="btn indigo" onClick={() => (narrator.playing ? narrator.pause() : narrator.play())}>
           <Icon name="speaker" size={18} />
-          {narrator.playing ? "Pause" : narrator.done ? "Réécouter" : "Écouter"}
+          {narrator.playing ? "Pause" : narrator.done ? "Réécouter" : narrator.index > 0 ? "Reprendre" : "Écouter"}
         </button>
         <button type="button" className="chip-btn" onClick={narrator.next} disabled={last}>
           Suivant
