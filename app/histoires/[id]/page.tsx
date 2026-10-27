@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Crumbs from "@/components/Crumbs";
 import StoryPlayer from "@/components/StoryPlayer";
 import { getStory, isFormat, stories } from "@/lib/stories";
 
@@ -28,9 +29,10 @@ export default async function StoryPage({
 
   return (
     <>
+      <Crumbs current="Histoire" />
       <header>
         <p className="eyebrow">
-          <Link href="/chroniques">Histoires</Link> · {story.duree}
+          <Link href="/chroniques">Toutes les histoires</Link> · {story.duree}
         </p>
         <h1>{story.titre}</h1>
         <p className="lede">{story.accroche}</p>

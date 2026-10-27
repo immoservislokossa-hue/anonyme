@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "/chroniques", label: "Histoires" },
-  { href: "/quiz", label: "Vrai ou faux" },
   { href: "/ia", label: "Comment fonctionne l'IA" },
   { href: "/consentement", label: "Confidentialité" },
   { href: "/aide", label: "Aide" },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ProgressCard from "@/components/ProgressCard";
+import Crumbs from "@/components/Crumbs";
 import StoriesHub from "@/components/StoriesHub";
 import Chronicles, { type Chronicle } from "@/components/Chronicles";
 import VoieTabs from "@/components/VoieTabs";
@@ -19,6 +20,7 @@ export default async function ChroniclesPage({ searchParams }: { searchParams: P
 
   return (
     <>
+      <Crumbs current="Histoires" />
       <header>
         <p className="eyebrow">Histoires de {TEAM_NAMES}</p>
         <h1>Des histoires à vivre</h1>

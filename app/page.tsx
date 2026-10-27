@@ -10,8 +10,7 @@ const steps = [
 ];
 
 const more = [
-  { href: "/chroniques", label: "Histoires à vivre" },
-  { href: "/quiz", label: "Vrai ou faux" },
+  { href: "/apprendre", label: "Apprendre : méthodes, histoires, quiz" },
   { href: "/chat?voie=mentale", label: "Santé mentale" },
   { href: "/chat?voie=bien-etre", label: "Bien-être" },
   { href: "/ia", label: "Comment fonctionne l'IA" },

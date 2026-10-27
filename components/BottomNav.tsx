@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { isActive } from "@/lib/nav";
 import Icon, { type IconName } from "@/components/Icon";
 
 const items: { href: string; label: string; icon: IconName }[] = [
   { href: "/chat", label: "Parler", icon: "chat" },
-  { href: "/methodes", label: "Méthodes", icon: "shield" },
+  { href: "/apprendre", label: "Apprendre", icon: "book" },
   { href: "/orientation", label: "Centres", icon: "pin" },
 ];
 
@@ -19,7 +20,7 @@ export default function BottomNav() {
   return (
     <nav className="bottom-nav" aria-label="Navigation principale">
       {items.map((item) => {
-        const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+        const active = isActive(pathname, item.href);
         return (
           <Link
             key={item.href}
@@ -27,8 +28,10 @@ export default function BottomNav() {
             aria-current={active ? "page" : undefined}
             className={`${active ? "active" : ""}${item.href === "/urgence" ? " alert" : ""}`}
           >
-            <Icon name={item.icon} size={20} />
-            <span>{item.label}</span>
+            <span className="tab-icon">
+              <Icon name={item.icon} size={24} />
+            </span>
+            <span className="tab-label">{item.label}</span>
           </Link>
         );
       })}

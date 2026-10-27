@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Icon from "@/components/Icon";
+import Crumbs from "@/components/Crumbs";
 import methodes from "@/data/methodes.json";
 
 export const metadata: Metadata = { title: "Quelle méthode ?" };
@@ -10,6 +11,7 @@ type Methode = (typeof methodes)[number];
 export default function MethodesPage() {
   return (
     <>
+      <Crumbs current="Méthodes" />
       <header>
         <p className="eyebrow">Planification familiale</p>
         <h1>Les méthodes, en clair</h1>

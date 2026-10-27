@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { isActive } from "@/lib/nav";
 import Icon, { type IconName } from "@/components/Icon";
 
 const items: { href: string; label: string; icon: IconName }[] = [
   { href: "/chat", label: "Parler", icon: "chat" },
-  { href: "/methodes", label: "Méthodes", icon: "shield" },
-  { href: "/chroniques", label: "Histoires", icon: "book" },
+  { href: "/apprendre", label: "Apprendre", icon: "book" },
   { href: "/orientation", label: "Centres", icon: "pin" },
   { href: "/urgence", label: "Urgence", icon: "alert" },
 ];
@@ -19,7 +19,7 @@ export default function DesktopNav() {
   return (
     <nav className="desktop-nav" aria-label="Menu principal">
       {items.map((item) => {
-        const active = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+        const active = isActive(pathname, item.href);
         return (
           <Link
             key={item.href}

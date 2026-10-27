@@ -19,7 +19,7 @@
   --shadow-sm: 0 1px 2px rgba(30, 29, 58, 0.06), 0 2px 8px rgba(30, 29, 58, 0.05);
   --shadow-md: 0 4px 12px rgba(30, 29, 58, 0.08), 0 14px 32px rgba(30, 29, 58, 0.08);
   --radius: 22px;
-  --nav-h: 54px;
+  --nav-h: 64px;
   color-scheme: light;
 }
 
@@ -187,8 +187,8 @@ main {
   background: rgba(255, 255, 255, 0.94);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border-top: 1px solid var(--beige);
-  padding: 2px max(8px, env(safe-area-inset-right, 0px)) calc(2px + env(safe-area-inset-bottom, 0px))
+  border-top: 1px solid #e8e6f2;
+  padding: 0 max(8px, env(safe-area-inset-right, 0px)) env(safe-area-inset-bottom, 0px)
     max(8px, env(safe-area-inset-left, 0px));
   z-index: 20;
 }
@@ -198,24 +198,36 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
-  padding: 6px 2px 4px;
-  border-radius: 10px;
-  font-size: 0.7rem;
-  font-weight: 800;
+  gap: 2px;
+  padding: 8px 2px 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--muted);
   text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.tab-icon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 30px;
+  border-radius: 15px;
+  transition: background 0.18s ease;
+}
+
+.bottom-nav a:active .tab-icon {
+  background: #eeeefd;
 }
 
 .bottom-nav a.active {
-  background: transparent;
-  color: var(--indigo);
-  box-shadow: inset 0 3px 0 var(--indigo);
+  color: var(--text);
+  font-weight: 800;
 }
 
-.bottom-nav a.alert:not(.active) {
-  color: #b0105a;
+.bottom-nav a.active .tab-icon {
+  background: #e3e3fb;
+  color: var(--indigo);
 }
 
 /* Accueil */
@@ -2159,4 +2171,107 @@ th {
   .urgent-btn {
     display: none;
   }
+}
+
+/* Apprendre : une page qui mène aux méthodes, aux histoires et au quiz */
+.learn-list {
+  list-style: none;
+  padding: 0;
+  margin-block: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.learn-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--beige);
+  border-radius: 16px;
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.learn-card:hover,
+.learn-card:focus-visible {
+  border-color: var(--indigo);
+  box-shadow: var(--shadow-sm);
+}
+
+.learn-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eeeefd;
+  color: var(--indigo);
+}
+
+.learn-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.learn-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.learn-title strong {
+  font-size: 1.1rem;
+}
+
+.learn-hint {
+  font-style: normal;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--indigo);
+  background: #eeeefd;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.learn-text {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.learn-meta {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.chevron {
+  flex: none;
+  color: var(--muted);
+}
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-bottom: -12px;
+}
+
+.crumbs a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  text-decoration: underline;
 }

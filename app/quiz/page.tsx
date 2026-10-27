@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Quiz, { type QuizItem } from "@/components/Quiz";
+import Crumbs from "@/components/Crumbs";
 import VoieTabs from "@/components/VoieTabs";
 import quizData from "@/data/quiz.json";
 import { isVoie } from "@/lib/domain";
@@ -15,6 +16,7 @@ export default async function QuizPage({ searchParams }: { searchParams: Promise
 
   return (
     <>
+      <Crumbs current="Vrai ou faux" />
       <header>
         <p className="eyebrow">Quiz</p>
         <h1>Vrai ou faux</h1>
