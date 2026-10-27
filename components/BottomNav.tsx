@@ -15,6 +15,9 @@ const items: { href: string; label: string; icon: IconName }[] = [
 export default function BottomNav() {
   const pathname = usePathname();
 
+  // Dans la conversation, la barre du bas laisse la place à la zone de saisie.
+  if (pathname.startsWith("/chat")) return null;
+
   return (
     <nav className="bottom-nav" aria-label="Navigation principale">
       {items.map((item) => {
