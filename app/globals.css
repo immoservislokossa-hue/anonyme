@@ -826,7 +826,7 @@ select:focus {
 .reward {
   position: fixed;
   left: 50%;
-  top: calc(12px + env(safe-area-inset-top, 0px));
+  top: calc(var(--topbar-h, 58px) + 10px + env(safe-area-inset-top, 0px));
   transform: translateX(-50%);
   background: var(--indigo);
   color: #fff;
@@ -2854,4 +2854,36 @@ h1 {
   .chat-page .examples {
     gap: 10px;
   }
+}
+
+/* Réponses mises en forme */
+.rich > * + * {
+  margin-top: 10px;
+}
+
+.rich p {
+  margin: 0;
+}
+
+.rich ul,
+.rich ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.rich li + li {
+  margin-top: 4px;
+}
+
+.quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.quick-replies .example {
+  width: auto;
+  padding: 10px 14px;
+  font-size: 0.95rem;
 }

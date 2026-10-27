@@ -5,10 +5,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
 import Silhouette from "@/components/Silhouette";
 import Reward from "@/components/Reward";
+import RichText from "@/components/RichText";
 import Speak from "@/components/Speak";
 import VoiceInput from "@/components/VoiceInput";
 import { useProgress } from "@/components/useProgress";
 import { personaFor } from "@/lib/brand";
+import { extractChoices, toPlain } from "@/lib/richtext";
 import type { Voie } from "@/lib/domain";
 
 type Message = {
@@ -16,6 +18,7 @@ type Message = {
   content: string;
   kind?: string;
   sources?: string[];
+  choices?: string[];
 };
 
 const EXAMPLES: Record<Voie | "tout", string[]> = {
@@ -99,7 +102,8 @@ export default function Chat({ voie }: { voie?: Voie }) {
         throw new Error(data.error ?? "Le service n'a pas répondu.");
       }
 
-      setMessages([...next, { role: "assistant", content: data.reply, kind: data.kind, sources: data.sources }]);
+      const { text: cleaned, choices } = extractChoices(data.reply);
+      setMessages([...next, { role: "assistant", content: cleaned, kind: data.kind, sources: data.sources, choices }]);
 
       if (data.kind !== "urgent" && data.kind !== "crisis") {
         update((current) => ({ ...current, questionsAsked: current.questionsAsked + 1 }));
@@ -159,12 +163,23 @@ export default function Chat({ voie }: { voie?: Voie }) {
                 <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
               </span>
               <div className="col">
-                <div className={`bubble bot${isAlert ? " urgent" : ""}`}>{message.content}</div>
+                <div className={`bubble bot${isAlert ? " urgent" : ""}`}>
+                  <RichText text={message.content} />
+                </div>
                 {message.sources && message.sources.length > 0 && (
                   <div className="sources">Sources : {message.sources.join(" ; ")}</div>
                 )}
+                {index === messages.length - 1 && message.choices && message.choices.length > 0 && !loading && (
+                  <div className="quick-replies" role="group" aria-label="Réponses rapides">
+                    {message.choices.map((choice) => (
+                      <button key={choice} type="button" className="example" onClick={() => send(choice)}>
+                        {choice}
+                      </button>
+                    ))}
+                  </div>
+                )}
                 <div className="chips">
-                  <Speak text={message.content} label="Écouter" />
+                  <Speak text={toPlain(message.content)} label="Écouter" />
                   <Link className="chip-btn" href={isAlert ? "/urgence" : "/orientation"}>
                     <Icon name={isAlert ? "alert" : "pin"} size={18} />
                     {isAlert ? "Que faire maintenant" : "Trouver un centre"}

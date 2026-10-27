@@ -40,7 +40,12 @@ function fallbackReply(entries: KnowledgeEntry[]): string {
   if (entries.length === 0) {
     return "Je n'ai pas trouvé d'information sur ce point. Un professionnel de santé peut t'aider.";
   }
-  return `${entries[0].content} (Information à vérifier avec un professionnel de santé.)`;
+  // Les rubriques du guide (« Ce que c'est : », « À retenir : »…) deviennent des titres en gras.
+  const formatted = entries[0].content.replace(
+    /\s*(Ce que c'est|Comment l'utiliser|Ce qui peut arriver|À retenir|Où aller|Mode d'emploi) :\s*/g,
+    "\n\n**$1**\n",
+  );
+  return `${formatted}\n\nInformation à vérifier avec un professionnel de santé.`;
 }
 
 export async function POST(request: Request) {
