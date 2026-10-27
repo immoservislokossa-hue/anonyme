@@ -2275,3 +2275,20 @@ th {
 .crumbs a:hover {
   text-decoration: underline;
 }
+
+/* Confort tactile pour les plus jeunes comme pour les adultes : cibles d'au moins 44 px */
+.btn,
+.chip-btn,
+.tab,
+.example,
+.format-chip,
+.link-list a {
+  min-height: 44px;
+}
+
+.chip-btn,
+.tab,
+.link-list a {
+  display: inline-flex;
+  align-items: center;
+}

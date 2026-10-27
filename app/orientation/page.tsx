@@ -13,8 +13,8 @@ export default function OrientationPage() {
         <p className="eyebrow">Orientation</p>
         <h1>Trouver un centre de santé</h1>
         <p className="lede">
-          Cherchez un centre près de vous, ou voyez nos centres partenaires. Les informations marquées « À confirmer »
-          doivent être vérifiées avant de vous déplacer.
+          Cherche un centre près de toi, ou vois nos centres partenaires. Les informations marquées « À confirmer »
+          doivent être vérifiées avant de te déplacer.
         </p>
       </header>
 

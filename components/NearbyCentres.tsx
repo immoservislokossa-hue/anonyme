@@ -55,11 +55,11 @@ export default function NearbyCentres() {
       });
 
       if (response.status === 429) {
-        setState({ status: "error", message: "Trop de recherches en peu de temps. Réessayez dans une minute." });
+        setState({ status: "error", message: "Trop de recherches en peu de temps. Réessaie dans une minute." });
         return;
       }
       if (!response.ok) {
-        setState({ status: "error", message: "La recherche ne fonctionne pas pour le moment. Voyez nos centres partenaires plus bas." });
+        setState({ status: "error", message: "La recherche ne fonctionne pas pour le moment. Vois nos centres partenaires plus bas." });
         return;
       }
 
@@ -72,7 +72,7 @@ export default function NearbyCentres() {
         source: data.source ?? "scrappa",
       });
     } catch {
-      setState({ status: "error", message: "Pas de connexion. Réessayez, ou voyez nos centres partenaires plus bas." });
+      setState({ status: "error", message: "Pas de connexion. Réessaie, ou vois nos centres partenaires plus bas." });
     }
   }
 
@@ -84,7 +84,7 @@ export default function NearbyCentres() {
 
   function useMyPosition() {
     if (!("geolocation" in navigator)) {
-      setState({ status: "error", message: "Votre appareil ne permet pas de partager la position. Écrivez le nom de votre commune." });
+      setState({ status: "error", message: "Ton appareil ne permet pas de partager la position. Écris le nom de ta commune." });
       return;
     }
 
@@ -99,8 +99,8 @@ export default function NearbyCentres() {
         setState({
           status: "error",
           message: denied
-            ? "Vous avez refusé de partager votre position. Pas de problème : écrivez le nom de votre commune."
-            : "Votre position n'a pas pu être trouvée. Écrivez le nom de votre commune.",
+            ? "Tu as refusé de partager ta position. Pas de problème : écris le nom de ta commune."
+            : "Ta position n'a pas pu être trouvée. Écris le nom de ta commune.",
         });
       },
       { enableHighAccuracy: false, timeout: 10_000, maximumAge: 60_000 },
@@ -114,8 +114,8 @@ export default function NearbyCentres() {
       <div>
         <h2>Autour de moi</h2>
         <p className="muted">
-          Votre position sert à calculer les distances sur votre appareil. Rien n'est enregistré par ce service. Vous
-          pouvez aussi écrire le nom de votre commune.
+          Ta position sert à calculer les distances sur ton téléphone. Rien n'est enregistré par ce service. Tu
+          peux aussi écrire le nom de ta commune.
         </p>
       </div>
 
@@ -172,18 +172,18 @@ export default function NearbyCentres() {
             <span>
               Position détectée avec une précision d'environ {formatDistance(accuracy / 1000)}.
               {accuracy > 1500 &&
-                " C'est trop approximatif : sur ordinateur, la position vient souvent du Wi-Fi ou de l'opérateur. Sur téléphone, activez le GPS, ou écrivez le nom de votre quartier."}
+                " C'est trop approximatif : sur ordinateur, la position vient souvent du Wi-Fi ou de l'opérateur. Sur téléphone, active le GPS, ou écris le nom de ton quartier."}
             </span>
           </p>
         )}
-        {state.status === "locating" && <p className="muted">Recherche de votre position…</p>}
+        {state.status === "locating" && <p className="muted">Recherche de ta position…</p>}
         {state.status === "loading" && <p className="muted">Recherche de {current.singular === "pharmacie" ? "pharmacies" : "centres"} proches…</p>}
         {state.status === "error" && <p className="urgent">{state.message}</p>}
 
         {state.status === "done" && !state.configured && (
           <p className="notice">
             <Icon name="shield" size={18} />
-            <span>La recherche Google Maps n'est pas encore activée. Voyez nos centres partenaires plus bas.</span>
+            <span>La recherche Google Maps n'est pas encore activée. Vois nos centres partenaires plus bas.</span>
           </p>
         )}
 
@@ -191,7 +191,7 @@ export default function NearbyCentres() {
           <p className="notice">
             <Icon name="shield" size={18} />
             <span>
-              Aucun résultat. Essayez un autre nom de lieu, ou voyez nos centres partenaires plus bas.
+              Aucun résultat. Essaie un autre nom de lieu, ou vois nos centres partenaires plus bas.
             </span>
           </p>
         )}
@@ -226,10 +226,10 @@ export default function NearbyCentres() {
             ))}
           </ul>
           <p className="muted">
-            {sourceNotes(state.centres)} Ils ne garantissent pas que le lieu propose le service : vérifiez les horaires
-            et ce qui est disponible avant de vous déplacer.
+            {sourceNotes(state.centres)} Ils ne garantissent pas que le lieu propose le service : vérifie les horaires
+            et ce qui est disponible avant de te déplacer.
             {kind === "pharmacie" &&
-              " Selon le pays, une pharmacie peut proposer préservatifs, tests de grossesse et contraception d'urgence : demandez conseil au pharmacien."}
+              " Selon le pays, une pharmacie peut proposer préservatifs, tests de grossesse et contraception d'urgence : demande conseil au pharmacien."}
           </p>
         </>
       )}

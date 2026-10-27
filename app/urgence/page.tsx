@@ -9,18 +9,18 @@ export default function UrgencePage() {
     <>
       <header>
         <p className="eyebrow">Urgence</p>
-        <h1>Si c'est urgent, n'attendez pas</h1>
+        <h1>Si c'est urgent, n'attends pas</h1>
       </header>
 
       <div className="urgent">
         <p>
-          <strong>Allez tout de suite au centre de santé le plus proche.</strong> Si vous ne pouvez pas vous déplacer,
-          appelez le numéro d'urgence : {EMERGENCY_NUMBER}.
+          <strong>Va tout de suite au centre de santé le plus proche.</strong> Si tu ne peux pas te déplacer,
+          appelle le numéro d'urgence : {EMERGENCY_NUMBER}.
         </p>
       </div>
 
       <section className="panel">
-        <h2>Allez au centre sans attendre si vous avez</h2>
+        <h2>Va au centre sans attendre si tu as</h2>
         <ul className="plain">
           <li>des saignements très abondants</li>
           <li>une douleur très forte ou qui ne passe pas</li>
@@ -30,14 +30,14 @@ export default function UrgencePage() {
           <li>subi une violence ou une relation forcée</li>
         </ul>
         <p className="muted" style={{ marginTop: 10 }}>
-          Cette liste n'est pas complète. Si vous avez un doute, allez au centre.
+          Cette liste n'est pas complète. Si tu as un doute, va au centre.
         </p>
       </section>
 
       <section className="panel">
-        <h2>Vous n'êtes pas seule</h2>
+        <h2>Tu n'es pas seul(e)</h2>
         <p>
-          Demandez à une personne de confiance de vous accompagner. Vous pouvez aussi{" "}
+          Demande à une personne de confiance de t'accompagner. Tu peux aussi{" "}
           <Link href="/orientation">trouver un centre partenaire</Link>.
         </p>
       </section>

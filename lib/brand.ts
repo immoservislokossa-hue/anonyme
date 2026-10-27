@@ -4,9 +4,9 @@ export const APP_NAME = "Alviosa";
 // Trois personnages, un par voie. Afi est aussi la voix par défaut quand aucun sujet n'est choisi.
 export type Persona = { name: string; role: string; line: string };
 export const PERSONAS: Record<"sexuelle" | "mentale" | "bien-etre", Persona> = {
-  sexuelle: { name: "Afi", role: "la grande sœur", line: "Je réponds à vos questions sur la santé sexuelle." },
+  sexuelle: { name: "Afi", role: "la grande sœur", line: "Je réponds à tes questions sur la contraception et la santé sexuelle." },
   mentale: { name: "Fallone", role: "l'amie", line: "Je suis là pour écouter ce qui pèse, sans jugement." },
-  "bien-etre": { name: "Chimène", role: "la sœur", line: "Je vous aide à retrouver du calme et de l'énergie." },
+  "bien-etre": { name: "Chimène", role: "la sœur", line: "Je t'aide à retrouver du calme et de l'énergie." },
 };
 export function personaFor(voie?: "sexuelle" | "mentale" | "bien-etre"): Persona {
   return PERSONAS[voie ?? "sexuelle"];

@@ -74,10 +74,10 @@ export default function IaPage() {
       </section>
 
       <section className="panel">
-        <h2>Vos données</h2>
+        <h2>Tes données</h2>
         <ul className="plain">
-          <li>Vos messages ne sont pas conservés par Alviosa. Il n'y a pas de compte.</li>
-          <li>Pour répondre, votre question est envoyée à un fournisseur de modèle de langage, sans nom ni numéro.</li>
+          <li>Tes messages ne sont pas gardés par Alviosa. Il n'y a pas de compte.</li>
+          <li>Pour répondre, ta question est envoyée à un fournisseur de modèle de langage, sans nom ni numéro.</li>
           <li>Seuls des chiffres agrégés (par thème) servent à mesurer l'usage.</li>
         </ul>
       </section>
@@ -85,7 +85,7 @@ export default function IaPage() {
       <section className="panel">
         <h2>Ses limites</h2>
         <ul className="plain">
-          <li>L'IA peut se tromper. En cas de doute, consultez un professionnel.</li>
+          <li>L'IA peut se tromper. En cas de doute, demande à un professionnel.</li>
           <li>Elle ne remplace ni une consultation ni un numéro d'urgence.</li>
           <li>Le contenu est en cours de validation par des professionnels de santé.</li>
         </ul>

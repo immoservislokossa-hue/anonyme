@@ -63,7 +63,7 @@ export default function MethodesPage() {
         <Icon name="shield" size={18} />
         <span>
           Contenu en cours de validation par des professionnels de santé. Chaque situation est différente : un professionnel
-          vous aide à choisir.
+          t'aide à choisir.
         </span>
       </p>
       <Link className="btn indigo" href="/orientation">

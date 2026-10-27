@@ -12,12 +12,12 @@ export default function Orientation({ structures }: { structures: Structure[] })
   return (
     <section aria-label="Structures partenaires">
       <div className="field">
-        <label htmlFor="commune">Votre commune</label>
+        <label htmlFor="commune">Ta commune</label>
         <input
           id="commune"
           value={commune}
           onChange={(event) => setCommune(event.target.value)}
-          placeholder="Écrivez le nom de votre commune"
+          placeholder="Écris le nom de ta commune"
           autoComplete="off"
         />
       </div>
@@ -53,7 +53,7 @@ export default function Orientation({ structures }: { structures: Structure[] })
       </ul>
 
       {visible.length === 0 && (
-        <p className="panel">Aucune structure partenaire pour cette commune. Allez au centre de santé le plus proche.</p>
+        <p className="panel">Aucune structure partenaire pour cette commune. Va au centre de santé le plus proche.</p>
       )}
     </section>
   );

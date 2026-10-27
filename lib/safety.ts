@@ -44,20 +44,20 @@ const DIAGNOSIS_PATTERNS: RegExp[] = [
 ];
 
 export const CRISIS_REPLY =
-  "Ce que vous vivez compte, et vous n'êtes pas seul(e). Parlez maintenant à une personne de confiance, " +
-  `ou appelez la ligne d'écoute de votre pays : ${HELPLINE_NUMBER}. Si vous êtes en danger immédiat, ` +
-  "appelez le numéro d'urgence ou rendez-vous au centre de santé le plus proche. " +
-  "Ce service ne peut pas vous accompagner dans une crise.";
+  "Ce que tu vis compte, et tu n'es pas seul(e). Parle maintenant à une personne de confiance, " +
+  `ou appelle la ligne d'écoute de ton pays : ${HELPLINE_NUMBER}. Si tu es en danger immédiat, ` +
+  "appelle le numéro d'urgence ou va au centre de santé le plus proche. " +
+  "Ce service ne peut pas t'accompagner dans une crise.";
 
 export const URGENT_REPLY =
-  "Ce que vous décrivez peut être urgent. Rendez-vous sans attendre dans le centre de santé le plus proche, " +
-  "ou appelez le numéro d'urgence de votre pays. Si quelqu'un est avec vous, demandez-lui de vous accompagner. " +
-  "Ce service ne peut pas vous examiner ni vous donner de traitement.";
+  "Ce que tu décris peut être urgent. Va sans attendre dans le centre de santé le plus proche, " +
+  "ou appelle le numéro d'urgence de ton pays. Si quelqu'un est avec toi, demande-lui de t'accompagner. " +
+  "Ce service ne peut pas t'examiner ni te donner de traitement.";
 
 export const DIAGNOSIS_REPLY =
-  "Je ne peux pas poser de diagnostic, dire si vous êtes enceinte ni vous conseiller un médicament ou une dose. " +
+  "Je ne peux pas poser de diagnostic, dire si tu es enceinte ni te conseiller un médicament ou une dose. " +
   "Un professionnel de santé peut répondre à cette question. " +
-  "Je peux vous expliquer les informations générales et vous aider à trouver un service.";
+  "Je peux t'expliquer les informations générales et t'aider à trouver un service.";
 
 function normalize(text: string): string {
   return text.toLowerCase().normalize("NFC");

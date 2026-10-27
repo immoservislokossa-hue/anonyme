@@ -85,7 +85,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
       });
 
       if (response.status === 429) {
-        throw new Error("Trop de questions en peu de temps. Réessayez dans une minute.");
+        throw new Error("Trop de questions en peu de temps. Réessaie dans une minute.");
       }
 
       const data = (await response.json()) as {
@@ -109,7 +109,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
       setError(
         caught instanceof Error && caught.message.startsWith("Trop")
           ? caught.message
-          : "Le service ne répond pas pour le moment. Si votre question est urgente, allez au centre de santé le plus proche.",
+          : "Le service ne répond pas pour le moment. Si ta question est urgente, va au centre de santé le plus proche.",
       );
     } finally {
       setLoading(false);
@@ -129,7 +129,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
             </span>
             <div className="intro">
               <p>
-                Bonjour, je suis <strong>{persona.name}</strong>, {persona.role}. {persona.line} Écrivez ou dictez votre question avec vos propres
+                Bonjour, je suis <strong>{persona.name}</strong>, {persona.role}. {persona.line} Écris ou dicte ta question avec tes propres
                 mots. Voici quelques idées :
               </p>
               <div className="examples">
@@ -201,7 +201,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
         }}
       >
         <label htmlFor="question" className="sr-only">
-          Votre question
+          Ta question
         </label>
         <textarea
           id="question"
@@ -215,7 +215,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
               send(input);
             }
           }}
-          placeholder="Écrivez votre question"
+          placeholder="Écris ta question"
           rows={1}
         />
         <VoiceInput onText={(text) => setInput((current) => `${current} ${text}`.trim())} />

@@ -5,7 +5,7 @@
     "titre": "La rumeur sur la pilule",
     "theme": "rumeurs",
     "duree": "Environ 1 minute",
-    "texte": "Une voisine dit que la pilule rend stérile. Afi répond calmement : pour la plupart des méthodes, la fertilité revient après l'arrêt. Si vous avez une inquiétude précise, c'est une bonne question à poser à une sage-femme.",
+    "texte": "Une voisine dit que la pilule rend stérile. Afi répond calmement : pour la plupart des méthodes, la fertilité revient après l'arrêt. Si tu as une inquiétude précise, c'est une bonne question à poser à une sage-femme.",
     "audio": null,
     "valide": false
   },
@@ -35,7 +35,7 @@
     "titre": "Un préservatif a craqué",
     "theme": "urgence",
     "duree": "Environ 1 minute",
-    "texte": "Un préservatif a craqué hier soir. Que faire ? Afi répond : n'attendez pas. Une contraception d'urgence existe, et elle est plus efficace quand on la prend tôt. Allez dans un centre de santé ou en pharmacie pour être conseillée.",
+    "texte": "Un préservatif a craqué hier soir. Que faire ? Afi répond : n'attends pas. Une contraception d'urgence existe, et elle est plus efficace quand on la prend tôt. Va dans un centre de santé ou en pharmacie pour être conseillée.",
     "audio": null,
     "valide": false
   },
@@ -45,7 +45,7 @@
     "titre": "La première visite au centre",
     "theme": "orientation",
     "duree": "Environ 1 minute",
-    "texte": "Avant d'aller au centre, notez vos questions sur un papier. Vous pouvez venir accompagné(e). Vous pouvez demander la confidentialité. Personne ne doit vous juger pour vos questions.",
+    "texte": "Avant d'aller au centre, note tes questions sur un papier. Tu peux venir accompagné(e). Tu peux demander la confidentialité. Personne ne doit te juger pour tes questions.",
     "audio": null,
     "valide": false
   },
@@ -55,7 +55,7 @@
     "titre": "Des saignements inhabituels",
     "theme": "effets",
     "duree": "Environ 1 minute",
-    "texte": "Des saignements irréguliers arrivent souvent au début d'une méthode hormonale. S'ils sont très abondants, s'ils font très mal, ou si de la fièvre apparaît, allez au centre sans attendre.",
+    "texte": "Des saignements irréguliers arrivent souvent au début d'une méthode hormonale. S'ils sont très abondants, s'ils font très mal, ou si de la fièvre apparaît, va au centre sans attendre.",
     "audio": null,
     "valide": false
   },
@@ -95,7 +95,7 @@
     "titre": "Mieux dormir, simplement",
     "theme": "sommeil",
     "duree": "Environ 1 minute",
-    "texte": "Des horaires réguliers, moins d'écrans le soir et un endroit calme aident à mieux dormir. Si le sommeil reste difficile pendant des semaines, parlez-en à un professionnel de santé.",
+    "texte": "Des horaires réguliers, moins d'écrans le soir et un endroit calme aident à mieux dormir. Si le sommeil reste difficile pendant des semaines, parles-en à un professionnel de santé.",
     "audio": null,
     "valide": false
   }

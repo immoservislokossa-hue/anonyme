@@ -38,7 +38,7 @@ function clientKey(request: Request): string {
 // Réponse de secours sans clé API : on renvoie l'entrée la plus pertinente, telle quelle.
 function fallbackReply(entries: KnowledgeEntry[]): string {
   if (entries.length === 0) {
-    return "Je n'ai pas trouvé d'information sur ce point. Un professionnel de santé peut vous aider.";
+    return "Je n'ai pas trouvé d'information sur ce point. Un professionnel de santé peut t'aider.";
   }
   return `${entries[0].content} (Information à vérifier avec un professionnel de santé.)`;
 }

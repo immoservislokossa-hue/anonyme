@@ -20,10 +20,10 @@ export default function ProgressCard() {
   const percent = Math.round(current.ratio * 100);
 
   return (
-    <section className="panel progress" aria-label="Votre parcours">
+    <section className="panel progress" aria-label="Ton parcours">
       <div className="progress-head">
         <div>
-          <p className="eyebrow">Votre parcours</p>
+          <p className="eyebrow">Ton parcours</p>
           <h2>{current.label}</h2>
           <p className="muted">
             {total} points
@@ -52,7 +52,7 @@ export default function ProgressCard() {
           </li>
         ))}
       </ul>
-      <p className="muted small-note">Vos points restent sur cet appareil. Personne d'autre ne les voit.</p>
+      <p className="muted small-note">Tes points restent sur cet appareil. Personne d'autre ne les voit.</p>
     </section>
   );
 }

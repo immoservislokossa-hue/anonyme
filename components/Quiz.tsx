@@ -49,7 +49,7 @@ export default function Quiz({ items }: { items: QuizItem[] }) {
     const total = items.filter((entry) => progress.quizAnswers[entry.id] === true).length;
     return (
       <div className="panel">
-        <h2>Bravo, vous avez terminé</h2>
+        <h2>Bravo, tu as terminé</h2>
         <p>
           {total} bonne{total > 1 ? "s" : ""} réponse{total > 1 ? "s" : ""} sur {items.length}.
         </p>

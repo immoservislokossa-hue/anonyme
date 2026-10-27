@@ -20,7 +20,7 @@
     "voie": "sexuelle",
     "enonce": "La contraception d'urgence agit mieux quand on la prend le plus tôt possible.",
     "reponse": true,
-    "explication": "Plus on attend, moins elle est efficace. Un centre de santé ou une pharmacie peut vous aider rapidement.",
+    "explication": "Plus on attend, moins elle est efficace. Un centre de santé ou une pharmacie peut t'aider rapidement.",
     "valide": false
   },
   {
@@ -60,7 +60,7 @@
     "voie": "sexuelle",
     "enonce": "Des saignements irréguliers sont fréquents au début d'une méthode hormonale.",
     "reponse": true,
-    "explication": "C'est fréquent et pas toujours dangereux. Consultez si les saignements sont très abondants, si la douleur est forte ou si de la fièvre apparaît.",
+    "explication": "C'est fréquent et pas toujours dangereux. Va consulter si les saignements sont très abondants, si la douleur est forte ou si de la fièvre apparaît.",
     "valide": false
   },
   {
@@ -100,15 +100,15 @@
     "voie": "sexuelle",
     "enonce": "Un test de grossesse en pharmacie ou un professionnel de santé peut confirmer une grossesse.",
     "reponse": true,
-    "explication": "Ce service ne peut pas le faire à votre place. Un test ou un professionnel peut répondre à cette question.",
+    "explication": "Ce service ne peut pas le faire à ta place. Un test ou un professionnel peut répondre à cette question.",
     "valide": false
   },
   {
     "id": "confidentialite",
     "voie": "commun",
-    "enonce": "Vous pouvez poser des questions et demander la confidentialité lors d'une consultation.",
+    "enonce": "Tu peux poser des questions et demander la confidentialité lors d'une consultation.",
     "reponse": true,
-    "explication": "Poser des questions fait partie de la consultation. Vous pouvez demander à ce que l'échange reste confidentiel.",
+    "explication": "Poser des questions fait partie de la consultation. Tu peux demander que l'échange reste confidentiel.",
     "valide": false
   },
   {
@@ -132,7 +132,7 @@
     "voie": "mentale",
     "enonce": "Quand on a des idées noires, il vaut mieux attendre que ça passe seul.",
     "reponse": false,
-    "explication": "Il ne faut pas rester seul. Parlez à une personne de confiance, à un professionnel ou à une ligne d'écoute, et appelez les urgences en cas de danger.",
+    "explication": "Il ne faut pas rester seul. Parle à une personne de confiance, à un professionnel ou à une ligne d'écoute, et appelle les urgences en cas de danger.",
     "valide": false
   },
   {
@@ -140,7 +140,7 @@
     "voie": "bien-etre",
     "enonce": "Bien dormir aide le moral.",
     "reponse": true,
-    "explication": "Un sommeil régulier soutient l'énergie et l'humeur. Si le sommeil reste difficile pendant des semaines, parlez-en à un professionnel.",
+    "explication": "Un sommeil régulier soutient l'énergie et l'humeur. Si le sommeil reste difficile pendant des semaines, parles-en à un professionnel.",
     "valide": false
   },
   {

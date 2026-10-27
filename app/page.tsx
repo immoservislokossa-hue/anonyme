@@ -4,9 +4,9 @@ import Silhouette from "@/components/Silhouette";
 import { PERSONAS } from "@/lib/brand";
 
 const steps = [
-  { title: "Comprendre", text: "Posez vos questions : méthodes, effets, rumeurs, droits.", href: "/chat?voie=sexuelle" },
-  { title: "Choisir", text: "Comparez les méthodes et préparez vos questions.", href: "/methodes" },
-  { title: "Y aller", text: "Trouvez un centre ou une pharmacie près de vous.", href: "/orientation" },
+  { title: "Comprendre", text: "Pose tes questions : méthodes, effets, rumeurs, droits.", href: "/chat?voie=sexuelle" },
+  { title: "Choisir", text: "Compare les méthodes et prépare tes questions.", href: "/methodes" },
+  { title: "Y aller", text: "Trouve un centre ou une pharmacie près de toi.", href: "/orientation" },
 ];
 
 const more = [
@@ -23,8 +23,8 @@ export default function HomePage() {
         <p className="eyebrow">Planification familiale pour les jeunes</p>
         <h1>Choisir sa contraception, sans honte et sans jugement.</h1>
         <p className="lede">
-          Des réponses claires à vos questions, un guide des méthodes et les centres près de chez vous. Personne ne voit ce
-          que vous faites ici.
+          Des réponses claires à tes questions, un guide des méthodes et les centres près de chez toi. Personne ne voit ce
+          que tu fais ici.
         </p>
         <div className="row hero-actions">
           <Link href="/chat?voie=sexuelle" className="btn indigo big">
@@ -63,9 +63,9 @@ export default function HomePage() {
           <p className="eyebrow">
             {PERSONAS.sexuelle.name}, {PERSONAS.sexuelle.role}
           </p>
-          <h2>Les questions qu'on n'ose pas poser, posez-les ici.</h2>
+          <h2>Les questions qu'on n'ose pas poser, pose-les ici.</h2>
           <p className="muted">
-            Afi explique les méthodes et démonte les rumeurs. Elle ne pose pas de diagnostic et vous oriente vers un
+            Afi explique les méthodes et démonte les rumeurs. Elle ne pose pas de diagnostic et t'oriente vers un
             professionnel quand il le faut.
           </p>
           <Link href="/chat?voie=sexuelle" className="btn indigo">

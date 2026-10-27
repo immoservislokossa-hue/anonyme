@@ -42,7 +42,7 @@ export default async function ChroniclesPage({ searchParams }: { searchParams: P
       <section aria-label="Chroniques">
         <h2>Chroniques à écouter</h2>
         <p className="muted">
-          Des récits d'une minute. Appuyez sur « Écouter » pour les entendre avec la voix de votre téléphone.
+          Des récits d'une minute. Appuie sur « Écouter » pour les entendre avec la voix de ton téléphone.
         </p>
         <VoieTabs current={current} basePath="/chroniques" />
         <Chronicles key={current ?? "tout"} items={items} />

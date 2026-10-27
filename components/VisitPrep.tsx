@@ -9,7 +9,7 @@ const STEPS = [
   "J'ai noté mes questions sur un papier",
   "J'ai noté les méthodes que j'ai déjà utilisées",
   "J'ai noté les médicaments que je prends",
-  "Je sais si je viens seule ou accompagnée",
+  "Je sais si je viens seul(e) ou accompagné(e)",
   "Je sais que je peux demander la confidentialité",
 ];
 
@@ -28,7 +28,7 @@ export default function VisitPrep() {
     <section className="panel" aria-label="Préparer ma visite">
       <h2>Préparer ma visite</h2>
       <p className="muted" style={{ marginBottom: 12 }}>
-        Cochez ce qui est prêt. Cette liste reste sur votre téléphone.
+        Coche ce qui est prêt. Cette liste reste sur ton téléphone.
       </p>
       <Checklist id="visite" steps={STEPS} />
       <button

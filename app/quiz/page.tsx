@@ -20,7 +20,7 @@ export default async function QuizPage({ searchParams }: { searchParams: Promise
       <header>
         <p className="eyebrow">Quiz</p>
         <h1>Vrai ou faux</h1>
-        <p className="lede">{items.length} affirmations fréquentes. Répondez, puis lisez l'explication.</p>
+        <p className="lede">{items.length} affirmations fréquentes. Réponds, puis lis l'explication.</p>
       </header>
       <VoieTabs current={current} basePath="/quiz" />
       <Quiz key={current ?? "tout"} items={items} />
