@@ -8,7 +8,6 @@ const items: { href: string; label: string; icon: IconName }[] = [
   { href: "/chat", label: "Parler", icon: "chat" },
   { href: "/methodes", label: "Méthodes", icon: "shield" },
   { href: "/orientation", label: "Centres", icon: "pin" },
-  { href: "/urgence", label: "Urgence", icon: "alert" },
 ];
 
 export default function BottomNav() {

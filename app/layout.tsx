@@ -3,6 +3,7 @@ import { Figtree } from "next/font/google";
 import Link from "next/link";
 import BottomNav from "@/components/BottomNav";
 import DesktopNav from "@/components/DesktopNav";
+import Icon from "@/components/Icon";
 import Logo from "@/components/Logo";
 import MoreMenu from "@/components/MoreMenu";
 import RegisterSW from "@/components/RegisterSW";
@@ -51,7 +52,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span>{APP_NAME}</span>
             </Link>
             <DesktopNav />
-            <MoreMenu />
+            <div className="topbar-actions">
+              <Link href="/urgence" className="urgent-btn" aria-label="Urgence : que faire maintenant">
+                <Icon name="alert" size={20} />
+                <span>Urgence</span>
+              </Link>
+              <MoreMenu />
+            </div>
           </header>
 
           <main id="contenu">{children}</main>

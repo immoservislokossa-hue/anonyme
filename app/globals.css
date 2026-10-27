@@ -2018,7 +2018,6 @@ th {
 }
 
 @media (max-width: 899px) {
-  .page:has(.chat-page) .topbar,
   .page:has(.chat-page) .footer {
     display: none;
   }
@@ -2102,6 +2101,62 @@ th {
 
 @media (min-width: 900px) {
   .more-menu {
+    display: none;
+  }
+}
+
+/* En-tête fixe sur toutes les pages, avec l'accès à l'urgence */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 25;
+  margin-inline: -16px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.94);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--beige);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.urgent-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #ffe9f1;
+  color: #b0105a;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.urgent-btn span {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .urgent-btn span {
+    display: inline;
+  }
+}
+
+@media (min-width: 900px) {
+  .topbar {
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+
+  .urgent-btn {
     display: none;
   }
 }
