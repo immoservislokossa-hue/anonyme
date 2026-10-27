@@ -2801,17 +2801,6 @@ h1 {
   font-size: 0.92rem;
 }
 
-.chronicles-more > summary {
-  cursor: pointer;
-  font-weight: 800;
-  padding: 14px 0;
-  color: var(--indigo);
-}
-
-.chronicles-more[open] > summary {
-  margin-bottom: 12px;
-}
-
 /* Conversation : l'écran se divise en deux, les messages qui défilent et la saisie collée en bas */
 @media (max-width: 899px) {
   .page:has(.chat-page) {
