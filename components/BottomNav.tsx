@@ -28,7 +28,7 @@ export default function BottomNav() {
             aria-current={active ? "page" : undefined}
             className={`${active ? "active" : ""}${item.href === "/urgence" ? " alert" : ""}`}
           >
-            <Icon name={item.icon} size={22} />
+            <Icon name={item.icon} size={20} />
             <span>{item.label}</span>
           </Link>
         );
