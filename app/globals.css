@@ -1835,3 +1835,7 @@ th {
     font-size: 0.95rem;
   }
 }
+
+.sil.bust {
+  overflow: hidden;
+}

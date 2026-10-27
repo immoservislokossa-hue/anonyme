@@ -164,7 +164,7 @@ export default function Silhouette({
 
   return (
     <svg
-      className={`sil sil-${voie}${talking ? " talking" : ""}`}
+      className={`sil sil-${voie}${talking ? " talking" : ""}${bust ? " bust" : ""}`}
       width={width}
       height={bust ? (size * 100) / 104 : size}
       viewBox={viewBox}
