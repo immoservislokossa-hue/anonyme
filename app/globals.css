@@ -2,9 +2,9 @@
    Chaque voie a sa couleur : santé sexuelle = turquoise, santé mentale = indigo, bien-être = soleil. */
 :root {
   --bg: #ffffff;
-  --sable: #f5ebdd;
-  --sable-soft: #fbf6ee;
-  --beige: #e9d7c0;
+  --sable: #f3f4f8;
+  --sable-soft: #f8f9fb;
+  --beige: #e6e8ef;
   --text: #1e1d3a;
   --muted: #5f5d7a;
   --indigo: #3d3bd9;
@@ -2616,4 +2616,242 @@ details.method > *:last-child {
 
 .m-source {
   margin-top: 10px;
+}
+
+/* Sobriété et espace : une page = une idée. Palette froide, une seule couleur d'action. */
+:root {
+  --topbar-h: 58px;
+}
+
+main {
+  gap: 40px;
+}
+
+.page {
+  gap: 32px;
+}
+
+h1 {
+  letter-spacing: -0.01em;
+}
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding-top: 24px;
+}
+
+.home-hero h1 {
+  font-size: clamp(1.9rem, 6vw, 2.8rem);
+  line-height: 1.12;
+  max-width: 18ch;
+}
+
+.home-hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.home-entries {
+  list-style: none;
+  padding: 0;
+  margin-block: 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.home-entries a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--beige);
+  border-radius: 16px;
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.home-entries a:hover {
+  border-color: var(--indigo);
+}
+
+.home-entries a > span:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-entries a > span:last-child span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.home-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eeeefd;
+  color: var(--indigo);
+}
+
+.home-note {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-block: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.home-note a {
+  color: #b0105a;
+  font-weight: 700;
+}
+
+.learn-card {
+  padding: 24px 22px;
+}
+
+.learn-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.learn-body strong {
+  font-size: 1.15rem;
+}
+
+.learn-body span {
+  color: var(--muted);
+}
+
+.stories-hub {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.format-ask h2 {
+  margin: 0 0 12px;
+}
+
+.format-line {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.format-line strong {
+  color: var(--text);
+}
+
+.story-rows {
+  list-style: none;
+  padding: 0;
+  margin-block: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--beige);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.story-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 20px;
+  color: var(--text);
+  text-decoration: none;
+  border-top: 1px solid var(--beige);
+}
+
+.story-rows li:first-child .story-row {
+  border-top: none;
+}
+
+.story-row:hover {
+  background: var(--sable-soft);
+}
+
+.story-row-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.story-row-body span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.chronicles-more > summary {
+  cursor: pointer;
+  font-weight: 800;
+  padding: 14px 0;
+  color: var(--indigo);
+}
+
+.chronicles-more[open] > summary {
+  margin-bottom: 12px;
+}
+
+/* Conversation : l'écran se divise en deux, les messages qui défilent et la saisie collée en bas */
+@media (max-width: 899px) {
+  .page:has(.chat-page) {
+    padding-bottom: 0;
+    gap: 0;
+  }
+
+  .page:has(.chat-page) main {
+    gap: 0;
+  }
+
+  .chat-page {
+    height: calc(100dvh - var(--topbar-h) - 8px);
+    gap: 10px;
+    padding-top: 12px;
+  }
+
+  .chat-page > .chat {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-page .chat-log {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    gap: 16px;
+    padding-bottom: 12px;
+    overscroll-behavior: contain;
+  }
+
+  .chat-page .composer {
+    position: static;
+    flex: none;
+    margin: 6px 0 calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .chat-page .examples {
+    gap: 10px;
+  }
 }

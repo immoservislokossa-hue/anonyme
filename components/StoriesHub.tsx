@@ -1,68 +1,69 @@
 "use client";
 
 import Link from "next/link";
-import Silhouette from "@/components/Silhouette";
+import { useState } from "react";
 import { useFormat } from "@/components/useFormat";
 import { useProgress } from "@/components/useProgress";
-import { voieOf, FORMATS, stories } from "@/lib/stories";
+import { FORMATS, stories } from "@/lib/stories";
 
-// Liste des histoires, avec le choix de la façon préférée de les vivre (gardé sur l'appareil).
+// Un seul choix, une fois : la façon préférée de vivre les histoires. Ensuite, chaque histoire s'ouvre dans ce format.
 export default function StoriesHub() {
   const { format, ready, choose } = useFormat();
   const { progress } = useProgress();
+  const [changing, setChanging] = useState(false);
+  const current = FORMATS.find((item) => item.id === format);
+  const picking = ready && (!current || changing);
 
   return (
-    <section aria-label="Histoires" className="stories-hub">
-      <div className="panel">
-        <h2>Comment aimes-tu apprendre ?</h2>
-        <p className="muted">Choisis ta façon préférée. Tu pourras la changer à tout moment.</p>
-        <div className="format-picker">
-          {FORMATS.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              className={`format-chip${ready && format === item.id ? " on" : ""}`}
-              aria-pressed={ready && format === item.id}
-              onClick={() => choose(item.id)}
-            >
-              <strong>{item.label}</strong>
-              <span>{item.hint}</span>
-            </button>
-          ))}
+    <section aria-label="Histoires" className="stories-hub" id="format">
+      {picking ? (
+        <div className="format-ask">
+          <h2>Quel format préfères-tu ?</h2>
+          <div className="format-picker">
+            {FORMATS.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`format-chip${format === item.id ? " on" : ""}`}
+                aria-pressed={format === item.id}
+                onClick={() => {
+                  choose(item.id);
+                  setChanging(false);
+                }}
+              >
+                <strong>{item.label}</strong>
+                <span>{item.hint}</span>
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        ready &&
+        current && (
+          <p className="format-line">
+            Format : <strong>{current.label}</strong>
+            <button type="button" className="link-btn" onClick={() => setChanging(true)}>
+              Changer
+            </button>
+          </p>
+        )
+      )}
 
-      <ul className="story-list">
+      <ul className="story-rows">
         {stories.map((story) => {
           const done = progress.chroniclesRead.includes(`histoire-${story.id}`);
-          const main = ready && format ? format : "cartes";
           return (
-            <li key={story.id} className="story-item panel">
-              <div className="story-cast" aria-hidden="true">
-                {story.cast.slice(0, 3).map((who) => {
-                  const v = voieOf(who);
-                  return v ? <Silhouette key={who} voie={v} size={44} bust framed={false} /> : null;
-                })}
-              </div>
-              <div className="story-info">
-                <div className="row-between">
-                  <h3>{story.titre}</h3>
-                  {done && <span className="tag vert">Terminée</span>}
-                </div>
-                <p className="muted">
-                  {story.accroche} · {story.duree}
-                </p>
-                <div className="row">
-                  <Link className="btn indigo" href={`/histoires/${story.id}?format=${main}`}>
-                    {ready && format ? `Pour toi : ${FORMATS.find((f) => f.id === main)?.label}` : "Commencer"}
-                  </Link>
-                  {FORMATS.filter((f) => f.id !== main).map((f) => (
-                    <Link key={f.id} className="chip-btn" href={`/histoires/${story.id}?format=${f.id}`}>
-                      {f.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
+            <li key={story.id}>
+              <Link href={`/histoires/${story.id}`} className="story-row">
+                <span className="story-row-body">
+                  <strong>{story.titre}</strong>
+                  <span>{story.accroche}</span>
+                </span>
+                {done && <span className="tag vert">Terminée</span>}
+                <svg className="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="m9 5 7 7-7 7" />
+                </svg>
+              </Link>
             </li>
           );
         })}

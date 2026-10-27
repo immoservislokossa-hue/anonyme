@@ -14,7 +14,7 @@ Langues par pays (les deux plus parlées) :
 - Sénégal (SN) : Wolof, Pular / Peul
 - Togo (TG) : Éwé, Kabiyè
 
-Déjà en démonstration, non validées : Yoruba, Haoussa et arabe (Hassaniya), pour la présentation d'accueil seulement.
+Seuls le français et le yoruba (démonstration, non validé) sont en service.
 
 Fichier à compléter : `lib/guides.ts` (champ `translations`), et enregistrements dans `public/audio/guides/<langue>/<guide>-<numéro>.mp3` (champ `audio`).
 

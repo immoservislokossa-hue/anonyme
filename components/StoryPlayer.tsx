@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import Reward from "@/components/Reward";
 import StoryCards from "@/components/StoryCards";
@@ -10,7 +11,7 @@ import { useProgress } from "@/components/useProgress";
 import { FORMATS, type Format, type Story } from "@/lib/stories";
 
 export default function StoryPlayer({ story, requested }: { story: Story; requested: Format | null }) {
-  const { format: preferred, ready, choose } = useFormat();
+  const { format: preferred, ready } = useFormat();
   const { progress, update } = useProgress();
   const [format, setFormat] = useState<Format>(requested ?? "cartes");
   const [reward, setReward] = useState<string | null>(null);
@@ -30,30 +31,16 @@ export default function StoryPlayer({ story, requested }: { story: Story; reques
     setReward("+15 points. Histoire terminée");
   }, [progress.chroniclesRead, doneId, update]);
 
-  function pick(next: Format) {
-    setFormat(next);
-    choose(next);
-  }
-
   return (
     <>
-      <div className="tabs" role="tablist" aria-label="Choisir le format">
-        {FORMATS.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            role="tab"
-            aria-selected={format === item.id}
-            className={`tab${format === item.id ? " active" : ""}`}
-            onClick={() => pick(item.id)}
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
-      <p className="muted">{FORMATS.find((item) => item.id === format)?.hint}</p>
+      <p className="format-line">
+        Format : <strong>{FORMATS.find((item) => item.id === format)?.label}</strong>
+        <Link className="link-btn" href="/chroniques#format">
+          Changer
+        </Link>
+      </p>
 
-      {format === "cartes" && <StoryCards key="cartes" story={story} onDone={finish} onSwitch={() => pick("jeu")} />}
+      {format === "cartes" && <StoryCards key="cartes" story={story} onDone={finish} onSwitch={() => setFormat("jeu")} />}
       {format === "jeu" && <StoryGame key="jeu" story={story} onDone={finish} />}
       {format === "anime" && <StoryCartoon key="anime" story={story} onDone={finish} />}
 

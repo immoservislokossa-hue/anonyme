@@ -1,5 +1,5 @@
 // Pages regroupées sous « Apprendre » : une seule entrée dans les menus.
-export const LEARN_PATHS = ["/apprendre", "/methodes", "/chroniques", "/histoires", "/quiz"];
+export const LEARN_PATHS = ["/apprendre", "/methodes", "/chroniques", "/histoires"];
 
 export function isActive(pathname: string, href: string): boolean {
   if (href === "/") return pathname === "/";

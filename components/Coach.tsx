@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Icon from "@/components/Icon";
 import { useOfferedLanguages } from "@/components/useLang";
 import { useNarrator, type Line } from "@/components/useNarrator";
-import { hasTranslation, stepTexts, type Guide, type Preview } from "@/lib/guides";
+import { hasTranslation, stepTexts, type Guide } from "@/lib/guides";
 import { LANGS, type Lang } from "@/lib/i18n";
 
 type Box = { top: number; left: number; width: number; height: number };
@@ -28,51 +28,19 @@ function measure(el: HTMLElement): Box {
   return { top: r.top - PAD, left: r.left - PAD, width: r.width + PAD * 2, height: r.height + PAD * 2 };
 }
 
-// Petit aperçu de ce qui se passe quand on appuie, pour le montrer sans quitter la page.
-function MiniPreview({ kind }: { kind: Preview }) {
-  return (
-    <div className={`mini mini-${kind}`} aria-hidden="true">
-      {kind === "chat" && (
-        <>
-          <span className="mini-bubble me">Quelle méthode choisir ?</span>
-          <span className="mini-bubble bot">Je t'explique les méthodes simplement.</span>
-        </>
-      )}
-      {kind === "learn" && (
-        <>
-          <span className="mini-row">Les méthodes</span>
-          <span className="mini-row">Les histoires</span>
-          <span className="mini-row">Vrai ou faux</span>
-        </>
-      )}
-      {kind === "centres" && (
-        <>
-          <span className="mini-row">Centre de santé · 800 m</span>
-          <span className="mini-row">Pharmacie · 1,2 km</span>
-        </>
-      )}
-      {kind === "urgent" && <span className="mini-alert">Va tout de suite au centre de santé le plus proche.</span>}
-    </div>
-  );
-}
-
 // Visite guidée : la voix explique chaque élément pendant qu'il est entouré à l'écran, puis passe au suivant.
 export default function Coach({
   guide,
   lang,
   setLang,
   needsTap,
-  replay,
   onClose,
-  onTour,
 }: {
   guide: Guide;
   lang: Lang;
   setLang: (lang: Lang) => void;
   needsTap: boolean;
-  replay: boolean;
   onClose: (completed: boolean) => void;
-  onTour: () => void;
 }) {
   const texts = useMemo(() => stepTexts(guide, lang), [guide, lang]);
   // Pour chaque étape : le français d'abord, puis la langue choisie, avant de passer à l'élément suivant.
@@ -202,8 +170,6 @@ export default function Coach({
           </button>
         </div>
 
-        {step?.preview && <MiniPreview kind={step.preview} />}
-
         <p className={`coach-line${text?.local && narrator.index !== firstLine[stepIndex] ? " dim" : ""}`} aria-live="polite">
           {text?.fr}
         </p>
@@ -242,11 +208,6 @@ export default function Coach({
           <button type="button" className="link-btn" onClick={() => setShowLangs((v) => !v)} aria-expanded={showLangs}>
             Langue : {LANGS[lang].label}
           </button>
-          {replay && guide.id !== "global" && (
-            <button type="button" className="link-btn" onClick={onTour}>
-              Revoir la présentation
-            </button>
-          )}
         </div>
         {showLangs && (
           <div className="ah-langs" role="group" aria-label="Langue de l'audio">
@@ -254,7 +215,6 @@ export default function Coach({
               <button key={code} type="button" className={`chip-btn${lang === code ? " on" : ""}`} aria-pressed={lang === code} onClick={() => setLang(code)}>
                 {LANGS[code].label}
                 {LANGS[code].status === "demo" && <em>démo</em>}
-                {LANGS[code].status === "bientot" && <em>bientôt</em>}
               </button>
             ))}
           </div>

@@ -84,7 +84,7 @@ export default function IaPage() {
         </ul>
         <p className="muted">
           Nos textes s'appuient sur ces documents. Ils ne sont pas validés par ces organisations : ils sont en cours de validation par
-          des professionnels de santé de ton pays. Chaque réponse du quiz et de la page « Les méthodes » cite sa source et sa page.
+          des professionnels de santé de ton pays. Chaque fiche de la page « Les méthodes » cite sa source et sa page.
         </p>
       </section>
 

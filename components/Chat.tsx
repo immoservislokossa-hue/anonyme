@@ -129,8 +129,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
             </span>
             <div className="intro">
               <p>
-                Bonjour, je suis <strong>{persona.name}</strong>, {persona.role}. {persona.line} Écris ou dicte ta question avec tes propres
-                mots. Voici quelques idées :
+                Bonjour, je suis <strong>{persona.name}</strong>, {persona.role}. Pose ta question avec tes mots, ou choisis une idée :
               </p>
               <div className="examples">
                 {examples.map((example) => (

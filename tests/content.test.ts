@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import methodes from "../data/methodes.json";
 import protocols from "../data/protocols.json";
-import quiz from "../data/quiz.json";
 import { retrieve } from "../lib/retrieve";
 
 test("chaque méthode suit le plan du guide : ce que c'est, comment l'utiliser, ce qui peut arriver, à retenir, où aller", () => {
@@ -34,12 +33,6 @@ test("les chiffres du guide de l'OMS sont repris tels quels", () => {
   assert.match(text("injectables"), /3 mois/);
   assert.match(text("contraception-urgence"), /5 jours/);
   assert.match(text("jours-fixes"), /8e au 19e/);
-});
-
-test("les questions de quiz sur la planification familiale citent leur source", () => {
-  const family = quiz.filter((q) => "source" in q);
-  assert.ok(family.length >= 15);
-  for (const q of family) assert.ok(String((q as { source: string }).source).length > 10, q.id);
 });
 
 test("les aide-mémoire pour les professionnels citent le guide et restent à valider", () => {
