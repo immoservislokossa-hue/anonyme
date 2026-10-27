@@ -31,9 +31,7 @@ export const viewport: Viewport = {
 };
 
 const footerLinks = [
-  { href: "/chroniques", label: "Chroniques" },
-  { href: "/pro", label: "Espace agent" },
-  { href: "/partenaires", label: "Suivi" },
+  { href: "/ia", label: "Comment fonctionne l'IA" },
   { href: "/consentement", label: "Confidentialité" },
   { href: "/aide", label: "Aide" },
 ];

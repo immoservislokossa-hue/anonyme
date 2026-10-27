@@ -41,7 +41,7 @@ export default function StoriesHub() {
               <div className="story-cast" aria-hidden="true">
                 {story.cast.slice(0, 3).map((who) => {
                   const v = voieOf(who);
-                  return v ? <Silhouette key={who} voie={v} size={56} bust framed /> : null;
+                  return v ? <Silhouette key={who} voie={v} size={44} bust framed={false} /> : null;
                 })}
               </div>
               <div className="story-info">

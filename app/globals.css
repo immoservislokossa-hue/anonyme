@@ -1389,8 +1389,6 @@ th {
   grid-template-columns: auto 1fr;
   gap: 20px;
   align-items: center;
-  background: var(--tone-soft);
-  border-radius: 28px;
   padding: 20px;
 }
 
@@ -1838,4 +1836,111 @@ th {
 
 .sil.bust {
   overflow: hidden;
+}
+
+/* Sobriété : surfaces claires, une seule couleur d'action */
+.hero {
+  background: var(--sable-soft);
+  box-shadow: none;
+  border: 1px solid var(--beige);
+}
+
+.hero::after {
+  display: none;
+}
+
+.panel {
+  background: var(--bg);
+}
+
+.steps-row {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.steps-row a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  padding: 16px;
+  border: 1px solid var(--beige);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  background: var(--bg);
+}
+
+.steps-row a:hover {
+  border-color: var(--indigo);
+}
+
+.steps-row span:not(.step-num) {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.step-num {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--indigo);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.meet {
+  background: var(--bg);
+  border: 1px solid var(--beige);
+  border-radius: var(--radius);
+}
+
+.meet-fig {
+  line-height: 0;
+}
+
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.link-list a {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid var(--beige);
+  border-radius: 999px;
+  color: var(--indigo);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.link-list a:hover {
+  border-color: var(--indigo);
+}
+
+.b2b {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.b2b-banner {
+  margin: 0;
+  padding: 8px 12px;
+  border-left: 4px solid var(--indigo);
+  background: var(--sable-soft);
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 700;
 }
