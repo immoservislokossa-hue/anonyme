@@ -1487,3 +1487,351 @@ th {
     display: none;
   }
 }
+
+/* Histoires : hub, cartes, jeu, dessin animé */
+.format-picker {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  margin-top: 12px;
+}
+
+.format-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 2px solid var(--beige);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.format-chip span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.format-chip.on {
+  border-color: var(--indigo);
+  background: #eeeefd;
+}
+
+.story-list {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.story-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.story-cast {
+  display: flex;
+  gap: 8px;
+}
+
+.story-cast .sil {
+  border-radius: 14px;
+}
+
+.story-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.story-info h3 {
+  margin: 0;
+}
+
+.seg-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.seg-bar span {
+  flex: 1;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--beige);
+}
+
+.seg-bar span.on {
+  background: var(--indigo);
+}
+
+.card-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-face {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+  min-height: 330px;
+  padding: 24px 20px;
+  border: none;
+  border-radius: 28px;
+  background: var(--sable);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  animation: rise 0.25s ease-out;
+}
+
+.card-face .speaker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.card-face .speaker strong,
+.card-face .speaker em {
+  display: block;
+}
+
+.card-face .speaker em {
+  font-style: normal;
+  color: var(--muted);
+}
+
+.said {
+  font-size: 1.3rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.narration {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--muted);
+  text-align: center;
+}
+
+.tap-hint {
+  margin-top: auto;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.story-controls,
+.cartoon-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.story-end {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.story-end h2 {
+  margin: 0;
+}
+
+.narrator-dot {
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--sable);
+  color: var(--indigo);
+  flex: none;
+}
+
+.game-log {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.who-name {
+  margin: 0 0 2px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.pop-in {
+  animation: rise 0.3s ease-out;
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.choices .example {
+  text-align: left;
+}
+
+.stage {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  min-height: 300px;
+  background: var(--sable);
+  box-shadow: var(--shadow-md);
+}
+
+.decor {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.actors {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 74px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.actor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
+  transform-origin: bottom center;
+}
+
+.actor.active {
+  transform: scale(1.08);
+}
+
+.actor.dim {
+  opacity: 0.6;
+  filter: saturate(0.7);
+}
+
+.actor-name {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 999px;
+  padding: 1px 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.stage-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.stage-overlay h2 {
+  margin: 0;
+}
+
+.stage-overlay p {
+  margin: 0;
+}
+
+.caption {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: rgba(30, 29, 58, 0.92);
+  color: #fff;
+  border-radius: 18px;
+  padding: 10px 14px;
+  min-height: 62px;
+}
+
+.caption strong {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--soleil);
+}
+
+.caption strong em {
+  font-style: normal;
+  font-weight: 400;
+  color: #d9d8f5;
+  margin-left: 6px;
+}
+
+.caption p {
+  margin: 2px 0 0;
+  line-height: 1.4;
+}
+
+.caption.narr p {
+  font-style: italic;
+  text-align: center;
+}
+
+.cartoon-bar {
+  flex-basis: 100%;
+}
+
+.sil.talking .sil-mouth {
+  transform-origin: 60px 47px;
+  animation: talk 0.28s ease-in-out infinite;
+}
+
+@keyframes talk {
+  50% {
+    transform: scale(1.1, 1.9);
+  }
+}
+
+@media (max-width: 520px) {
+  .stage {
+    aspect-ratio: auto;
+    height: 340px;
+    min-height: 0;
+  }
+
+  .actors {
+    gap: 0;
+    bottom: 104px;
+  }
+
+  .actors .sil {
+    width: 100px;
+    height: auto;
+  }
+
+  .caption {
+    min-height: 92px;
+    font-size: 0.95rem;
+  }
+}

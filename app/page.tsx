@@ -19,7 +19,7 @@ const barriers = [
 
 const tools: { href: string; title: string; text: string; icon: IconName }[] = [
   { href: "/quiz", title: "Vrai ou faux", text: "Testez vos connaissances en 2 minutes et gagnez des points.", icon: "quiz" },
-  { href: "/chroniques", title: "Écouter les chroniques", text: "De courts récits sur des situations du quotidien.", icon: "book" },
+  { href: "/chroniques", title: "Histoires à vivre", text: "En images, en jeu à choix ou en dessin animé : trois amies, des situations vraies.", icon: "book" },
   { href: "/ia", title: "Comment fonctionne l'IA", text: "Ce qu'elle fait, ce qu'elle ne fait pas, comment elle est testée.", icon: "circles" },
 ];
 

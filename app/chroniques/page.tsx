@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import StoriesHub from "@/components/StoriesHub";
 import Chronicles, { type Chronicle } from "@/components/Chronicles";
 import VoieTabs from "@/components/VoieTabs";
 import chroniclesData from "@/data/chronicles.json";
 import { TEAM_NAMES } from "@/lib/brand";
 import { isVoie } from "@/lib/domain";
 
-export const metadata: Metadata = { title: "Chroniques" };
+export const metadata: Metadata = { title: "Histoires et chroniques" };
 
 const allItems = chroniclesData as Chronicle[];
 
@@ -17,15 +18,24 @@ export default async function ChroniclesPage({ searchParams }: { searchParams: P
   return (
     <>
       <header>
-        <p className="eyebrow">Chroniques de {TEAM_NAMES}</p>
-        <h1>De courts récits à écouter</h1>
+        <p className="eyebrow">Histoires de {TEAM_NAMES}</p>
+        <h1>Des histoires à vivre</h1>
         <p className="lede">
-          Chaque chronique prend environ une minute. Appuyez sur « Écouter » pour l'entendre avec la voix de votre
-          téléphone.
+          Trois amies parlent de ce qui se passe vraiment dans la vie. Vis l'histoire en images, en faisant tes choix ou en
+          dessin animé.
         </p>
       </header>
-      <VoieTabs current={current} basePath="/chroniques" />
-      <Chronicles key={current ?? "tout"} items={items} />
+
+      <StoriesHub />
+
+      <section aria-label="Chroniques">
+        <h2>Chroniques à écouter</h2>
+        <p className="muted">
+          Des récits d'une minute. Appuyez sur « Écouter » pour les entendre avec la voix de votre téléphone.
+        </p>
+        <VoieTabs current={current} basePath="/chroniques" />
+        <Chronicles key={current ?? "tout"} items={items} />
+      </section>
     </>
   );
 }

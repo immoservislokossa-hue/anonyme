@@ -32,10 +32,9 @@ function Face({ skin, smile = 1 }: { skin: string; smile?: number }) {
       <circle cx="67.3" cy="36" r="0.9" fill="#fff" />
       <path d="M50.5 35.2 L49 33.8 M69.5 35.2 L71 33.8" stroke={INK} strokeWidth="1.2" strokeLinecap="round" />
       <path d="M60 39 Q59 43 61 43.5" stroke={INK} strokeWidth="1" fill="none" opacity="0.35" strokeLinecap="round" />
-      <path
-        d={`M54 ${47} Q60 ${47 + 5 * smile} 66 47 Q60 ${48.5 + 1.5 * smile} 54 47 Z`}
-        fill={LIPS}
-      />
+      <g className="sil-mouth">
+        <path d={`M54 ${47} Q60 ${47 + 5 * smile} 66 47 Q60 ${48.5 + 1.5 * smile} 54 47 Z`} fill={LIPS} />
+      </g>
       <circle cx="44.8" cy="43" r="2.2" fill={GOLD} />
       <circle cx="75.2" cy="43" r="2.2" fill={GOLD} />
     </>
@@ -150,11 +149,13 @@ export default function Silhouette({
   size = 96,
   bust = false,
   framed = true,
+  talking = false,
 }: {
   voie: Voie;
   size?: number;
   bust?: boolean;
   framed?: boolean;
+  talking?: boolean;
 }) {
   const c = PALETTES[voie];
   const persona = personaFor(voie);
@@ -163,7 +164,7 @@ export default function Silhouette({
 
   return (
     <svg
-      className={`sil sil-${voie}`}
+      className={`sil sil-${voie}${talking ? " talking" : ""}`}
       width={width}
       height={bust ? (size * 100) / 104 : size}
       viewBox={viewBox}

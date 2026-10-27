@@ -1,0 +1,582 @@
+[
+  {
+    "id": "rumeur-voisine",
+    "titre": "La rumeur de la voisine",
+    "accroche": "« La pilule rend stérile », vraiment ?",
+    "decor": "cour",
+    "duree": "2 min",
+    "cast": [
+      "chimene",
+      "fallone",
+      "afi"
+    ],
+    "scenes": [
+      {
+        "who": "narrateur",
+        "text": "Samedi après-midi, dans la cour. Trois amies discutent."
+      },
+      {
+        "who": "chimene",
+        "text": "Ma voisine m'a dit que si je prends la pilule, je ne pourrai plus jamais avoir d'enfant. J'ai trop peur."
+      },
+      {
+        "who": "fallone",
+        "text": "Moi aussi j'ai entendu ça. Et qu'on grossit énormément."
+      },
+      {
+        "who": "afi",
+        "text": "Je comprends que ça fasse peur. Mais pour la plupart des méthodes, la fertilité revient après l'arrêt. Le délai varie selon la méthode."
+      },
+      {
+        "who": "chimene",
+        "text": "Même avec l'injection ?"
+      },
+      {
+        "who": "afi",
+        "text": "Avec l'injection, le retour peut prendre quelques mois. Ce n'est pas « plus jamais ». Une infirmière peut t'expliquer ce qui correspond à ta situation."
+      },
+      {
+        "who": "fallone",
+        "text": "Et le poids ? Ma cousine dit qu'elle a pris dix kilos."
+      },
+      {
+        "who": "afi",
+        "text": "Certaines personnes prennent du poids, d'autres non. Ce n'est pas la règle. Si ça t'inquiète, on le dit au centre : on peut changer de méthode."
+      },
+      {
+        "who": "chimene",
+        "text": "Donc je peux poser mes questions sans être obligée de choisir ce jour-là ?"
+      },
+      {
+        "who": "afi",
+        "text": "Exactement. Poser des questions, ce n'est pas s'engager. Et tu peux venir accompagnée."
+      },
+      {
+        "who": "narrateur",
+        "text": "Chimène sourit. Pour la première fois, elle n'a plus peur de poser ses questions."
+      }
+    ],
+    "lecon": "Une rumeur n'est pas une information. Pose tes questions à un professionnel avant de décider.",
+    "action": {
+      "label": "Poser ma question à Afi",
+      "href": "/chat?voie=sexuelle"
+    },
+    "jeu": {
+      "start": "debut",
+      "nodes": {
+        "debut": {
+          "who": "chimene",
+          "text": "La voisine dit que la pilule rend stérile à vie. J'ai peur. Qu'est-ce que je fais ?",
+          "choices": [
+            {
+              "label": "Je la crois et j'évite toute méthode",
+              "next": "evite"
+            },
+            {
+              "label": "Je cherche une réponse sur les réseaux",
+              "next": "reseaux"
+            },
+            {
+              "label": "Je demande à quelqu'un qui connaît",
+              "next": "demander"
+            }
+          ]
+        },
+        "evite": {
+          "who": "afi",
+          "text": "Éviter une méthode à cause d'une rumeur, c'est risqué : sans protection, une grossesse non prévue reste possible. Il vaut mieux vérifier avant de décider.",
+          "choices": [
+            {
+              "label": "Je vais demander à un professionnel",
+              "next": "demander"
+            },
+            {
+              "label": "Je parle d'abord à une amie de confiance",
+              "next": "amie"
+            }
+          ]
+        },
+        "reseaux": {
+          "who": "fallone",
+          "text": "J'ai regardé : chacun dit quelque chose de différent. Je ne sais plus qui croire.",
+          "choices": [
+            {
+              "label": "Je demande à un professionnel",
+              "next": "demander"
+            },
+            {
+              "label": "Je continue à chercher seule",
+              "next": "evite"
+            }
+          ]
+        },
+        "amie": {
+          "who": "fallone",
+          "text": "Parler aide, mais ton amie n'est pas infirmière. Elle peut t'accompagner, pas remplacer un professionnel.",
+          "choices": [
+            {
+              "label": "Je vais au centre avec elle",
+              "next": "demander"
+            }
+          ]
+        },
+        "demander": {
+          "who": "afi",
+          "text": "Bon réflexe. Pour la plupart des méthodes, la fertilité revient après l'arrêt, avec un délai variable. Tu peux demander ce qui te convient, sans t'engager.",
+          "choices": [
+            {
+              "label": "Je pose toutes mes questions au centre",
+              "next": "fin"
+            },
+            {
+              "label": "Je note mes questions avant d'y aller",
+              "next": "fin"
+            }
+          ]
+        },
+        "fin": {
+          "who": "afi",
+          "text": "Tu as remplacé une rumeur par une vraie information. Bravo.",
+          "end": "bien",
+          "lesson": "Une rumeur n'est pas une information : demande à un professionnel."
+        }
+      }
+    },
+    "valide": false
+  },
+  {
+    "id": "preservatif-craque",
+    "titre": "Le préservatif a craqué",
+    "accroche": "Que faire quand ça arrive, et à qui en parler",
+    "decor": "chambre",
+    "duree": "2 min",
+    "cast": [
+      "fallone",
+      "afi",
+      "chimene"
+    ],
+    "scenes": [
+      {
+        "who": "narrateur",
+        "text": "Dimanche matin. Fallone appelle Afi, la voix tremblante."
+      },
+      {
+        "who": "fallone",
+        "text": "Hier soir, le préservatif a craqué. Je panique. Je n'ose le dire à personne."
+      },
+      {
+        "who": "afi",
+        "text": "Merci de me l'avoir dit. Tu n'as rien fait de mal. On va voir quoi faire, calmement."
+      },
+      {
+        "who": "afi",
+        "text": "Il existe une contraception d'urgence. Elle agit mieux quand on la prend le plus tôt possible après le rapport."
+      },
+      {
+        "who": "fallone",
+        "text": "C'est un avortement ?"
+      },
+      {
+        "who": "afi",
+        "text": "Non. Elle sert à éviter une grossesse. Elle n'interrompt pas une grossesse déjà commencée."
+      },
+      {
+        "who": "chimene",
+        "text": "Je viens avec toi à la pharmacie ou au centre. Tu n'y vas pas seule."
+      },
+      {
+        "who": "afi",
+        "text": "Au centre, on pourra aussi parler d'un test pour les infections, et de la méthode à utiliser ensuite."
+      },
+      {
+        "who": "fallone",
+        "text": "Merci. J'avais honte, mais je me sens moins seule."
+      },
+      {
+        "who": "narrateur",
+        "text": "Elles partent ensemble, sans attendre."
+      }
+    ],
+    "lecon": "Après un risque, il ne faut pas attendre : la contraception d'urgence agit mieux tôt. Il n'y a pas de honte.",
+    "action": {
+      "label": "Que faire maintenant",
+      "href": "/urgence"
+    },
+    "jeu": {
+      "start": "debut",
+      "nodes": {
+        "debut": {
+          "who": "fallone",
+          "text": "Hier soir, le préservatif a craqué. Qu'est-ce que je fais ?",
+          "choices": [
+            {
+              "label": "J'attends de voir si mes règles arrivent",
+              "next": "attendre"
+            },
+            {
+              "label": "Je vais vite au centre ou à la pharmacie",
+              "next": "vite"
+            },
+            {
+              "label": "Je n'en parle à personne, j'ai honte",
+              "next": "honte"
+            }
+          ]
+        },
+        "attendre": {
+          "who": "afi",
+          "text": "Attendre fait perdre du temps : la contraception d'urgence agit mieux quand on la prend tôt.",
+          "choices": [
+            {
+              "label": "D'accord, j'y vais maintenant",
+              "next": "vite"
+            },
+            {
+              "label": "Je demande à une copine ce qu'elle a pris",
+              "next": "copine"
+            }
+          ]
+        },
+        "copine": {
+          "who": "afi",
+          "text": "Chaque situation est différente, et ce qui a convenu à une amie peut ne pas te convenir. Un pharmacien ou une infirmière te dira quoi prendre.",
+          "choices": [
+            {
+              "label": "Je vais voir un professionnel",
+              "next": "vite"
+            }
+          ]
+        },
+        "honte": {
+          "who": "chimene",
+          "text": "Tu n'as pas à avoir honte. Ça arrive à beaucoup de monde. Parler à quelqu'un de confiance, c'est déjà avancer.",
+          "choices": [
+            {
+              "label": "Je me confie et je vais au centre",
+              "next": "vite"
+            }
+          ]
+        },
+        "vite": {
+          "who": "afi",
+          "text": "Bon réflexe. Raconte simplement ce qui s'est passé, tu peux demander la confidentialité. Demande aussi pour un test et pour la méthode à utiliser ensuite.",
+          "choices": [
+            {
+              "label": "J'y vais avec une amie",
+              "next": "fin"
+            },
+            {
+              "label": "J'y vais seule, mais je pose mes questions",
+              "next": "fin"
+            }
+          ]
+        },
+        "fin": {
+          "who": "afi",
+          "text": "Tu as agi à temps. C'est exactement ça.",
+          "end": "bien",
+          "lesson": "Ne pas attendre, ne pas avoir honte : un centre ou une pharmacie peut aider vite."
+        }
+      }
+    },
+    "valide": false
+  },
+  {
+    "id": "premiere-visite",
+    "titre": "Première visite au centre",
+    "accroche": "Y aller sans peur, avec ses questions",
+    "decor": "centre",
+    "duree": "2 min",
+    "cast": [
+      "fallone",
+      "afi",
+      "chimene"
+    ],
+    "scenes": [
+      {
+        "who": "narrateur",
+        "text": "Devant le centre de santé. Fallone hésite à entrer."
+      },
+      {
+        "who": "fallone",
+        "text": "Et si on me juge ? Je ne suis pas mariée."
+      },
+      {
+        "who": "afi",
+        "text": "Tu as le droit de demander des informations, mariée ou non. Tu peux aussi demander la confidentialité."
+      },
+      {
+        "who": "chimene",
+        "text": "Moi, j'ai écrit mes questions sur un papier. Comme ça, je ne les oublie pas."
+      },
+      {
+        "who": "afi",
+        "text": "Bonne idée. Tu peux demander : quelles méthodes existent ? Quels effets possibles ? Combien ça coûte ? Et si ça ne me convient pas ?"
+      },
+      {
+        "who": "fallone",
+        "text": "Et si on me propose quelque chose et que je ne suis pas sûre ?"
+      },
+      {
+        "who": "afi",
+        "text": "Tu peux dire « je veux y réfléchir ». Personne ne doit te forcer. Tu peux repartir sans rien décider."
+      },
+      {
+        "who": "chimene",
+        "text": "Et si l'accueil est désagréable, on essaie un autre centre. Tu as le droit d'être respectée."
+      },
+      {
+        "who": "fallone",
+        "text": "D'accord. J'entre. Mais vous restez avec moi ?"
+      },
+      {
+        "who": "narrateur",
+        "text": "Les trois amies poussent la porte ensemble."
+      }
+    ],
+    "lecon": "On peut venir sans être mariée, avec ses questions, accompagnée, et repartir sans rien décider.",
+    "action": {
+      "label": "Trouver un centre près de moi",
+      "href": "/orientation"
+    },
+    "jeu": {
+      "start": "debut",
+      "nodes": {
+        "debut": {
+          "who": "fallone",
+          "text": "Je voudrais des informations sur la contraception, mais j'ai peur d'être jugée. Que faire ?",
+          "choices": [
+            {
+              "label": "Je reste chez moi, c'est trop gênant",
+              "next": "chez"
+            },
+            {
+              "label": "J'écris mes questions et j'y vais",
+              "next": "ecrire"
+            },
+            {
+              "label": "J'y vais sans rien préparer",
+              "next": "sans"
+            }
+          ]
+        },
+        "chez": {
+          "who": "afi",
+          "text": "Je comprends. Mais sans information, il est plus difficile de choisir. Tu peux commencer par poser tes questions ici, puis y aller accompagnée.",
+          "choices": [
+            {
+              "label": "J'écris mes questions et j'y vais",
+              "next": "ecrire"
+            }
+          ]
+        },
+        "sans": {
+          "who": "chimene",
+          "text": "Ça peut marcher, mais on oublie souvent l'essentiel sur place. Un petit papier aide beaucoup.",
+          "choices": [
+            {
+              "label": "J'écris mes questions",
+              "next": "ecrire"
+            }
+          ]
+        },
+        "ecrire": {
+          "who": "afi",
+          "text": "Bien. Au centre, l'agent te propose une méthode tout de suite. Que fais-tu ?",
+          "choices": [
+            {
+              "label": "J'accepte pour faire plaisir",
+              "next": "accepte"
+            },
+            {
+              "label": "Je demande des explications et je réfléchis",
+              "next": "fin"
+            },
+            {
+              "label": "Je pars sans rien demander",
+              "next": "pars"
+            }
+          ]
+        },
+        "accepte": {
+          "who": "afi",
+          "text": "Accepter sans être sûre, ce n'est pas idéal. Tu as le droit de dire « je veux d'abord comprendre ». Une bonne méthode est celle qui te convient.",
+          "choices": [
+            {
+              "label": "Je demande des explications",
+              "next": "fin"
+            }
+          ]
+        },
+        "pars": {
+          "who": "chimene",
+          "text": "Dommage : tu aurais pu poser tes questions. Tu peux retourner ou essayer un autre centre.",
+          "choices": [
+            {
+              "label": "Je retourne avec mes questions",
+              "next": "fin"
+            }
+          ]
+        },
+        "fin": {
+          "who": "afi",
+          "text": "Voilà. Tu as posé tes questions, compris les options et gardé ton droit de décider.",
+          "end": "bien",
+          "lesson": "Tu as le droit de poser des questions, de réfléchir et de refuser."
+        }
+      }
+    },
+    "valide": false
+  },
+  {
+    "id": "quelle-methode",
+    "titre": "Quelle méthode me convient ?",
+    "accroche": "Comparer sans se perdre",
+    "decor": "rue",
+    "duree": "2 min",
+    "cast": [
+      "chimene",
+      "afi",
+      "fallone"
+    ],
+    "scenes": [
+      {
+        "who": "narrateur",
+        "text": "En rentrant du marché, Chimène pose une question à ses amies."
+      },
+      {
+        "who": "chimene",
+        "text": "Il y a la pilule, l'injection, l'implant, le stérilet… Comment on choisit ?"
+      },
+      {
+        "who": "afi",
+        "text": "Il n'y a pas une méthode parfaite pour tout le monde. On regarde ce qui compte pour toi."
+      },
+      {
+        "who": "fallone",
+        "text": "Moi, je ne veux pas y penser tous les jours."
+      },
+      {
+        "who": "afi",
+        "text": "Alors tu peux demander les méthodes qui durent plus longtemps : l'injection, l'implant ou le stérilet. Un professionnel dira si elles te conviennent."
+      },
+      {
+        "who": "chimene",
+        "text": "Et pour se protéger des infections ?"
+      },
+      {
+        "who": "afi",
+        "text": "Le préservatif est le seul qui protège aussi des infections. On peut l'associer à une autre méthode."
+      },
+      {
+        "who": "fallone",
+        "text": "Et si je veux arrêter ?"
+      },
+      {
+        "who": "afi",
+        "text": "La pilule ou le préservatif, on arrête tout de suite. L'implant et le stérilet se retirent à tout moment par un professionnel."
+      },
+      {
+        "who": "chimene",
+        "text": "Donc je peux changer si ça ne me va pas ?"
+      },
+      {
+        "who": "afi",
+        "text": "Oui. Le bon choix, c'est celui qui te convient, fait avec un professionnel."
+      },
+      {
+        "who": "narrateur",
+        "text": "Chimène sort son téléphone et note ses questions pour le centre."
+      }
+    ],
+    "lecon": "Il n'y a pas de méthode parfaite : la meilleure est celle qui te convient, choisie avec un professionnel. On peut changer.",
+    "action": {
+      "label": "Comparer les méthodes",
+      "href": "/methodes"
+    },
+    "jeu": {
+      "start": "debut",
+      "nodes": {
+        "debut": {
+          "who": "afi",
+          "text": "Pour choisir une méthode, qu'est-ce qui compte le plus pour toi ?",
+          "choices": [
+            {
+              "label": "Ne pas y penser tous les jours",
+              "next": "longue"
+            },
+            {
+              "label": "Me protéger aussi des infections",
+              "next": "ist"
+            },
+            {
+              "label": "Pouvoir arrêter vite",
+              "next": "arret"
+            }
+          ]
+        },
+        "longue": {
+          "who": "afi",
+          "text": "Tu peux demander les méthodes de longue durée : injection, implant, stérilet. Un professionnel dira si elles conviennent à ta santé.",
+          "choices": [
+            {
+              "label": "Et si la méthode ne me convient pas ?",
+              "next": "changer"
+            }
+          ]
+        },
+        "ist": {
+          "who": "afi",
+          "text": "Le préservatif est le seul qui protège aussi des infections. On peut l'utiliser avec une autre méthode.",
+          "choices": [
+            {
+              "label": "Et si la méthode ne me convient pas ?",
+              "next": "changer"
+            }
+          ]
+        },
+        "arret": {
+          "who": "afi",
+          "text": "Le préservatif et la pilule s'arrêtent tout de suite. L'implant et le stérilet se retirent à tout moment par un professionnel.",
+          "choices": [
+            {
+              "label": "Et si la méthode ne me convient pas ?",
+              "next": "changer"
+            }
+          ]
+        },
+        "changer": {
+          "who": "fallone",
+          "text": "Si la méthode ne te va pas, que fais-tu ?",
+          "choices": [
+            {
+              "label": "Je l'arrête seule sans rien dire à personne",
+              "next": "seule"
+            },
+            {
+              "label": "J'en parle au centre pour en changer",
+              "next": "fin"
+            }
+          ]
+        },
+        "seule": {
+          "who": "afi",
+          "text": "Si tu arrêtes sans autre protection, une grossesse non prévue reste possible. Mieux vaut en parler : on peut souvent changer de méthode.",
+          "choices": [
+            {
+              "label": "J'en parle au centre",
+              "next": "fin"
+            }
+          ]
+        },
+        "fin": {
+          "who": "afi",
+          "text": "Voilà : tu choisis, tu essaies, et tu peux changer. Tu restes maîtresse de ta décision.",
+          "end": "bien",
+          "lesson": "La meilleure méthode est celle qui te convient. On peut en changer."
+        }
+      }
+    },
+    "valide": false
+  }
+]
