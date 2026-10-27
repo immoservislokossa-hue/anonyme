@@ -3,6 +3,7 @@ import { Figtree } from "next/font/google";
 import Link from "next/link";
 import BottomNav from "@/components/BottomNav";
 import DesktopNav from "@/components/DesktopNav";
+import AudioHelp from "@/components/AudioHelp";
 import Icon from "@/components/Icon";
 import Logo from "@/components/Logo";
 import MoreMenu from "@/components/MoreMenu";
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <DesktopNav />
             <div className="topbar-actions">
+              <AudioHelp />
               <Link href="/urgence" className="urgent-btn" aria-label="Urgence : que faire maintenant">
                 <Icon name="alert" size={20} />
                 <span>Urgence</span>

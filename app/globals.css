@@ -2292,3 +2292,186 @@ th {
   display: inline-flex;
   align-items: center;
 }
+
+/* Aide audio et présentation */
+.audio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 44px;
+  height: 40px;
+  padding: 0 10px;
+  border: none;
+  border-radius: 999px;
+  background: #eeeefd;
+  color: var(--indigo);
+  font: inherit;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.audio-btn span {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .audio-btn span {
+    display: inline;
+  }
+}
+
+.ah-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(30, 29, 58, 0.45);
+}
+
+.ah-dialog {
+  width: 100%;
+  max-width: 520px;
+  max-height: 94vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 20px calc(20px + env(safe-area-inset-bottom, 0px));
+  background: var(--bg);
+  border-radius: 24px 24px 0 0;
+}
+
+@media (min-width: 600px) {
+  .ah-backdrop {
+    align-items: center;
+  }
+
+  .ah-dialog {
+    border-radius: 24px;
+  }
+}
+
+.ah-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ah-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.ah-intro h2 {
+  margin: 0;
+}
+
+.ah-bigplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 120px;
+  height: 120px;
+  border: none;
+  border-radius: 50%;
+  background: var(--indigo);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.ah-langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.ah-langs .chip-btn.on {
+  background: var(--indigo);
+  border-color: var(--indigo);
+  color: #fff;
+}
+
+.ah-langs em {
+  font-style: normal;
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
+
+.ah-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.ah-visual {
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+}
+
+.ah-icon {
+  width: 130px;
+  height: 130px;
+  min-height: 0;
+  border-radius: 50%;
+  background: #eeeefd;
+  color: var(--indigo);
+}
+
+.ah-icon.alert {
+  background: #ffe9f1;
+  color: #b0105a;
+}
+
+.ah-line {
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.ah-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.ah-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--beige);
+}
+
+.ah-dots span.past {
+  background: #b7b6f0;
+}
+
+.ah-dots span.on {
+  background: var(--indigo);
+  transform: scale(1.3);
+}
+
+.ah-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
