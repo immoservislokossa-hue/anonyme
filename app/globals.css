@@ -2036,3 +2036,71 @@ th {
     display: none;
   }
 }
+
+/* Menu « plus » (téléphone) : pages secondaires dans l'en-tête */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.more-menu {
+  position: relative;
+}
+
+.more-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.more-btn:hover {
+  background: var(--sable-soft);
+}
+
+.more-scrim {
+  position: fixed;
+  inset: 0;
+  border: none;
+  background: rgba(30, 29, 58, 0.25);
+  z-index: 30;
+}
+
+.more-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 31;
+  min-width: 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  background: var(--bg);
+  border: 1px solid var(--beige);
+  border-radius: 18px;
+  box-shadow: var(--shadow-md);
+}
+
+.more-panel a {
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.more-panel a:hover {
+  background: var(--sable-soft);
+}
+
+@media (min-width: 900px) {
+  .more-menu {
+    display: none;
+  }
+}

@@ -7,7 +7,6 @@ import Icon, { type IconName } from "@/components/Icon";
 const items: { href: string; label: string; icon: IconName }[] = [
   { href: "/chat", label: "Parler", icon: "chat" },
   { href: "/methodes", label: "Méthodes", icon: "shield" },
-  { href: "/chroniques", label: "Histoires", icon: "book" },
   { href: "/orientation", label: "Centres", icon: "pin" },
   { href: "/urgence", label: "Urgence", icon: "alert" },
 ];

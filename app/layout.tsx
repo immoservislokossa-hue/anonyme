@@ -4,6 +4,7 @@ import Link from "next/link";
 import BottomNav from "@/components/BottomNav";
 import DesktopNav from "@/components/DesktopNav";
 import Logo from "@/components/Logo";
+import MoreMenu from "@/components/MoreMenu";
 import RegisterSW from "@/components/RegisterSW";
 import { APP_NAME, TAGLINE } from "@/lib/brand";
 import "./globals.css";
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span>{APP_NAME}</span>
             </Link>
             <DesktopNav />
+            <MoreMenu />
           </header>
 
           <main id="contenu">{children}</main>
