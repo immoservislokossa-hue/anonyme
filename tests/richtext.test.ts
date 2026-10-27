@@ -45,3 +45,13 @@ test("la contraception d'urgence ne sort que si la personne en parle", () => {
   assert.equal(retrieve("la pilule d'urgence", 1, "sexuelle")[0]?.id, "contraception-urgence");
   assert.equal(retrieve("le préservatif a craqué", 3, "sexuelle").some((e) => e.id === "contraception-urgence"), true);
 });
+
+test("les consignes demandent un français très facile, avec des mots simples pour les termes médicaux", async () => {
+  const { systemPromptFor } = await import("../lib/prompt");
+  for (const voie of [undefined, "sexuelle", "mentale", "bien-etre"] as const) {
+    const prompt = systemPromptFor(voie);
+    assert.match(prompt, /enfant de 11 ans/);
+    assert.match(prompt, /12 mots au maximum/);
+    assert.match(prompt, /ovulation/);
+  }
+});
