@@ -1,46 +1,10 @@
 [
   {
-    "id": "methodes-generales",
-    "voie": "sexuelle",
-    "theme": "methodes",
-    "title": "Les grandes familles de méthodes contraceptives",
-    "content": "Il existe plusieurs familles de méthodes : les méthodes hormonales (pilule, injectable, implant), les dispositifs intra-utérins (DIU), les préservatifs masculins et féminins, et les méthodes naturelles. Les préservatifs sont les seuls qui protègent aussi contre les infections sexuellement transmissibles. Le choix dépend de la santé, de l'âge, des projets de grossesse et des préférences de la personne. Un professionnel de santé peut présenter les options disponibles dans le centre concerné.",
-    "source": "Brouillon à valider par un professionnel de santé",
-    "validated": false
-  },
-  {
-    "id": "effets-secondaires-courants",
-    "voie": "sexuelle",
-    "theme": "effets",
-    "title": "Effets secondaires fréquents et ce qu'il faut savoir",
-    "content": "Certaines méthodes hormonales peuvent provoquer des saignements irréguliers, surtout pendant les premiers mois. Ces changements sont fréquents et ne sont pas toujours dangereux. Il est utile de consulter si les saignements sont très abondants, si la douleur est forte, si de la fièvre apparaît, ou si l'inquiétude persiste. Parler des effets à un professionnel permet souvent de trouver une solution adaptée.",
-    "source": "Brouillon à valider par un professionnel de santé",
-    "validated": false
-  },
-  {
     "id": "orientation-service",
     "voie": "commun",
     "theme": "orientation",
     "title": "Préparer une consultation",
     "content": "Avant une consultation, il peut être utile de noter ses questions, ses éventuels symptômes et leur date de début, ses méthodes déjà utilisées et les médicaments pris. Il est possible de demander la confidentialité et de poser des questions sans honte. Une personne de confiance peut accompagner, si on le souhaite.",
-    "source": "Brouillon à valider par un professionnel de santé",
-    "validated": false
-  },
-  {
-    "id": "idees-fausses",
-    "voie": "sexuelle",
-    "theme": "rumeurs",
-    "title": "Rumeurs fréquentes sur la contraception",
-    "content": "Des rumeurs circulent, par exemple selon lesquelles la contraception rendrait stérile de façon définitive ou ferait grossir fortement. Pour la plupart des méthodes, la fertilité revient après l'arrêt, même si le délai varie selon la méthode. Les prises de poids importantes ne sont pas la règle générale, mais une inquiétude peut être discutée avec un professionnel.",
-    "source": "Brouillon à valider par un professionnel de santé",
-    "validated": false
-  },
-  {
-    "id": "preservatif-usage",
-    "voie": "sexuelle",
-    "theme": "methodes",
-    "title": "Bien utiliser un préservatif",
-    "content": "Le préservatif se met avant tout contact, une seule fois, puis se jette. On vérifie la date et l'emballage avant de l'ouvrir. Avec un préservatif en latex, on utilise uniquement un lubrifiant à base d'eau, car les corps gras peuvent l'abîmer. S'il craque ou glisse, il existe une contraception d'urgence : il ne faut pas attendre.",
     "source": "Brouillon à valider par un professionnel de santé",
     "validated": false
   },
@@ -77,15 +41,6 @@
     "theme": "consentement",
     "title": "Le consentement",
     "content": "Un rapport sexuel n'est respectueux que si les deux personnes sont d'accord, librement, sans pression ni menace, et sans être endormies ou sous l'effet de l'alcool ou de la drogue. On peut dire non à tout moment, même après avoir dit oui. Le silence n'est pas un oui. Si quelqu'un force une personne, ce n'est pas la faute de cette personne.",
-    "source": "Brouillon à valider par un professionnel de santé",
-    "validated": false
-  },
-  {
-    "id": "contraception-urgence",
-    "voie": "sexuelle",
-    "theme": "urgence",
-    "title": "Après un rapport sans protection ou un préservatif qui a craqué",
-    "content": "Après un rapport sans protection, ou si un préservatif a craqué, il existe une contraception d'urgence. Plus elle est prise tôt, plus elle est efficace. Elle ne protège pas des IST. Un professionnel de santé ou une pharmacie peut dire ce qui est disponible et adapté. En cas de risque d'infection, notamment le VIH, il existe aussi un traitement préventif à commencer le plus tôt possible, idéalement dans les 72 heures : il faut aller vite dans un centre de santé.",
     "source": "Brouillon à valider par un professionnel de santé",
     "validated": false
   },
@@ -180,57 +135,183 @@
     "validated": false
   },
   {
+    "id": "implants-usage",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "Les implants",
+    "content": "Les implants. Sans risque. L'une des méthodes les plus efficaces. Durent 3 à 5 ans. Peuvent être retirés à tout moment si tu veux avoir un enfant. Ce que c'est : Ce sont de petits tubes, placés sous la peau, sur la face intérieure du haut du bras. Les hormones contenues dans les tubes empêchent l'ovulation et la rencontre du spermatozoïde et de l'ovule. Comment l'utiliser : Les implants doivent être posés et retirés par un prestataire qualifié. Il n'y a rien à se rappeler après la pose. Ce qui peut arriver : La modification des règles (règles irrégulières, saignotements, règles plus abondantes ou absence de règles) est courante et sans gravité. À retenir : Si tu attends un rendez-vous pour te faire poser des implants, utilise une autre méthode pendant ce temps. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Au centre de santé ou à l'hôpital.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 9. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "sterilet-usage",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "Le stérilet",
+    "content": "Le stérilet. Sans risque. L'une des méthodes les plus efficaces. Peut être utilisé pendant 12 ans. Peut être retiré à tout moment si tu veux avoir un enfant. Ce que c'est : C'est un petit dispositif en plastique souple, en forme de « T », équipé d'un fil de cuivre, placé dans l'utérus. Il empêche la rencontre du spermatozoïde et de l'ovule. Comment l'utiliser : Le stérilet doit être posé et retiré par un prestataire qualifié. Il peut être posé juste après l'accouchement, ou à partir de quatre semaines après l'accouchement, ou encore à tout autre moment en dehors de la grossesse. Il n'y a rien à se rappeler après la pose. Ce qui peut arriver : Quelques crampes et des règles plus abondantes pendant les premiers mois. À retenir : Si tu attends un rendez-vous pour te faire poser un stérilet, utilise une autre méthode pendant ce temps. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Au centre de santé ou à l'hôpital.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 10. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "sterilisation-feminine",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "La stérilisation féminine",
+    "content": "La stérilisation féminine. Méthode sans risque et définitive, pour les femmes ou les couples qui ne veulent plus avoir d'enfants. L'une des méthodes les plus efficaces. L'opération est simple. Ce que c'est : Un prestataire qualifié pratique une ou deux petites incisions pour accéder aux canaux qui transportent les ovules vers l'utérus (les trompes). Il coupe ou bouche les trompes. Il n'enlève pas l'utérus. La stérilisation est possible juste après l'accouchement, ou à partir de six semaines après l'accouchement, ou encore à d'autres moments en dehors de la grossesse. Comment l'utiliser : Après l'opération, il n'y a rien à se rappeler et il n'y a pas d'effets secondaires. L'intervention ne nécessite pas d'anesthésie générale. Généralement, le retour à domicile est possible quelques heures après l'intervention. Ce qui peut arriver : Douleurs possibles pendant quelques jours après l'intervention. Les règles ne seront pas modifiées. À retenir : C'est une méthode définitive : elle ne convient pas si tu veux avoir un enfant un jour. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Au centre de santé ou à l'hôpital.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 11. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "vasectomie",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "La vasectomie",
+    "content": "La vasectomie. Méthode sans risque et définitive, pour les hommes ou les couples qui ne veulent plus avoir d'enfants. L'une des méthodes les plus efficaces. L'opération est simple. Il faut utiliser une autre méthode pendant les 3 mois qui suivent l'opération. Ce que c'est : Un prestataire qualifié pratique deux petites incisions pour accéder aux canaux qui transportent les spermatozoïdes. Il coupe les canaux. Il n'enlève pas les testicules. Après une vasectomie, le sperme ne contient plus de spermatozoïdes. Comment l'utiliser : La vasectomie sera efficace au bout de 3 mois. En attendant, le couple doit utiliser une autre méthode. Au bout de trois mois, il n'y a plus rien à se rappeler. Ce qui peut arriver : L'intervention ne nécessite pas d'anesthésie générale. Généralement, le retour à domicile est possible quelques heures après l'intervention. Petits caillots sous la peau et douleurs possibles pendant quelques jours après l'intervention. À retenir : Elle ne diminue ni la libido, ni l'érection, ni l'éjaculation. C'est une méthode définitive. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Au centre de santé ou à l'hôpital.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 12. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
     "id": "pilule-usage",
     "voie": "sexuelle",
     "theme": "methodes",
-    "title": "La pilule : comment elle s'utilise",
-    "content": "La pilule se prend chaque jour, à peu près à la même heure. Si une prise est oubliée, la protection peut baisser : la notice ou un professionnel de santé explique quoi faire selon le type de pilule. La pilule ne protège pas des infections sexuellement transmissibles. Des nausées ou de légers saignements peuvent apparaître au début.",
-    "source": "Brouillon à valider par un professionnel de santé",
+    "title": "La pilule",
+    "content": "La pilule. Sans risque. Efficace si on prend une pilule par jour. Règles moins abondantes et moins de crampes. Ce que c'est : C'est une pilule qui contient des hormones, à prendre tous les jours. Elle empêche l'ovulation et la rencontre du spermatozoïde et de l'ovule. Comment l'utiliser : Prendre une pilule par jour. Lorsqu'on finit une boîte de pilules, il faut en entamer une nouvelle le lendemain. En cas d'oubli : il faut prendre la pilule dès que possible. On peut prendre 2 pilules à la fois. En cas d'oubli pendant plus de 2 jours consécutifs, utilise le préservatif pendant 7 jours et continue à prendre la pilule. En cas d'oubli au cours de la 3e semaine, NE PAS prendre les pilules inactives et entamer une nouvelle boîte. Ce qui peut arriver : Parfois, saignements irréguliers dans un premier temps, suivis de règles moins abondantes et d'une diminution des crampes. Certaines femmes ont des embarras gastriques ou de légers maux de tête, qui disparaissent au bout de quelques mois. À retenir : Il faut prendre une pilule par jour. Assure-toi d'avoir assez de pilules. Réapprovisionne-toi avant d'en manquer. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Auprès d'un agent de santé communautaire ou d'un centre de santé.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 4. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "pilule-minidosee-usage",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "La pilule minidosée",
+    "content": "La pilule minidosée. Sans risque. Plus efficace pendant l'allaitement. Ce que c'est : C'est une pilule qui contient une hormone, à prendre tous les jours. Elle empêche la rencontre du spermatozoïde et de l'ovule. Comment l'utiliser : En cas d'allaitement maternel, on peut commencer 6 semaines après l'accouchement. Prendre une pilule chaque jour à la même heure. Lorsque la boîte de pilules est finie, en entamer une nouvelle le lendemain. En cas de retard dans la prise de la pilule, quand la femme allaite : prendre la pilule dès que possible et continuer à la prendre. En cas de retard, quand la femme n'allaite pas : si tu prends la pilule avec plus de 3 heures de retard, utilise le préservatif pendant les 2 jours suivants et continue à prendre la pilule. Ce qui peut arriver : Quand la femme n'allaite pas : la modification des règles (règles irrégulières, saignotements, règles plus abondantes ou absence de règles) est courante et sans gravité. À retenir : Si tu allaites, tu peux commencer la pilule minidosée 6 semaines après l'accouchement. Il faut prendre une pilule chaque jour à la même heure. Assure-toi d'avoir suffisamment de pilules. Réapprovisionne-toi avant d'en manquer. Pense à la méthode que tu utiliseras quand tu n'allaiteras plus. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Auprès d'un agent de santé communautaire ou d'un centre de santé.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 5. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
     "validated": false
   },
   {
     "id": "injectable-usage",
     "voie": "sexuelle",
     "theme": "methodes",
-    "title": "L'injectable",
-    "content": "L'injectable est une piqûre faite par un professionnel de santé, répétée à intervalles réguliers, environ tous les trois mois selon le produit. Les règles peuvent devenir irrégulières ou s'arrêter. Après l'arrêt, le retour de la fertilité peut prendre quelques mois. Il ne protège pas des infections sexuellement transmissibles.",
-    "source": "Brouillon à valider par un professionnel de santé",
+    "title": "Les contraceptifs injectables",
+    "content": "Les contraceptifs injectables. Sans risque. Injection d'hormones tous les 2 mois (NET-EN) ou tous les 3 mois (DMPA). Très efficace quand les injections sont faites à temps. Cette méthode peut être utilisée sans que les autres ne le sachent. Ce que c'est : C'est une injection d'hormones. Elle empêche l'ovulation. Comment l'utiliser : Injection tous les 2 mois (NET-EN) ou tous les 3 mois (DMPA). En cas d'allaitement maternel, on peut commencer 6 semaines après l'accouchement. C'est plus efficace si les injections sont faites à temps. En cas de retard : DMPA, il est encore possible de faire une injection jusqu'à 4 semaines de retard. NET-EN, jusqu'à 2 semaines de retard. En cas de retard plus long, utilise le préservatif et reviens pour une injection le plus tôt possible. Ce qui peut arriver : Règles irrégulières dans un premier temps, puis saignotements ou absence de règles. Ces effets sont courants et sans gravité. Légère prise ou perte de poids éventuelle. Après l'arrêt des injections, il faut parfois plusieurs mois avant de pouvoir tomber enceinte. À retenir : Les injections n'entraînent pas de stérilité. Les injections doivent être faites à temps. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Auprès d'un agent de santé communautaire ou d'un centre de santé.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 6. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
     "validated": false
   },
   {
-    "id": "implant-usage",
+    "id": "mama",
     "voie": "sexuelle",
     "theme": "methodes",
-    "title": "L'implant contraceptif",
-    "content": "L'implant est un petit bâtonnet placé sous la peau du bras par un professionnel. Il protège pendant plusieurs années selon le modèle et peut être retiré à tout moment, après quoi la fertilité revient. Des saignements irréguliers sont fréquents. Il ne protège pas des infections sexuellement transmissibles.",
-    "source": "Brouillon à valider par un professionnel de santé",
+    "title": "L'allaitement maternel (MAMA)",
+    "content": "L'allaitement maternel (MAMA). Sans risque ni effets secondaires. Efficace si : tu allaites souvent, jour et nuit, sans donner à ton enfant aucun autre aliment solide ou liquide ; ton enfant a moins de 6 mois ; tes règles ne sont pas revenues. Ce que c'est : L'allaitement maternel est l'une des façons de prévenir la grossesse. Il empêche l'ovulation. Comment l'utiliser : Allaiter souvent, jour et nuit, sans donner aucune autre nourriture solide ou liquide (allaiter exclusivement). Si tu allaites moins, si tes règles reviennent ou si ton enfant a plus de 6 mois, cette méthode ne sera pas efficace. Ce qui peut arriver : Absence de règles (c'est une condition pour continuer à utiliser la méthode). À retenir : Très efficace pendant 6 mois après l'accouchement en cas d'allaitement exclusif. Prépare-toi à utiliser une autre méthode au bout de 6 mois, ou même avant si tes règles reviennent ou si l'allaitement diminue. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Auprès d'un agent de santé communautaire ou d'un centre de santé.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 13. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
     "validated": false
   },
   {
-    "id": "diu-usage",
+    "id": "preservatif-usage",
     "voie": "sexuelle",
     "theme": "methodes",
-    "title": "Le stérilet (DIU)",
-    "content": "Le stérilet, ou dispositif intra-utérin, est posé dans l'utérus par un professionnel et protège pendant plusieurs années. Il existe avec ou sans hormones. Il peut être retiré à tout moment. Avec le modèle au cuivre, les règles peuvent être plus abondantes. Il ne protège pas des infections sexuellement transmissibles.",
-    "source": "Brouillon à valider par un professionnel de santé",
+    "title": "Le préservatif masculin",
+    "content": "Le préservatif masculin. Prévient la grossesse et les infections sexuellement transmissibles, dont le VIH/sida. Efficace s'il est utilisé correctement à chaque rapport sexuel. Facile à obtenir et à utiliser. Ce que c'est : C'est un fin capuchon en caoutchouc que l'on place sur le pénis en érection. Il empêche le sperme de pénétrer dans le vagin. Comment l'utiliser : Mettre un préservatif neuf sur le pénis en érection avant chaque rapport sexuel. Après le rapport, le jeter à la poubelle ou dans une latrine. Ce qui peut arriver : Pas d'effets secondaires. À retenir : Il peut être utilisé en même temps que d'autres méthodes de planification familiale pour prévenir les infections sexuellement transmissibles, y compris le VIH. Il est important de l'utiliser correctement à chaque rapport sexuel. Fais attention à ne pas déchirer le préservatif en le mettant ou en ouvrant l'emballage. Les deux partenaires doivent être d'accord de l'utiliser. En cas de rupture ou d'oubli du préservatif, il est possible d'avoir recours à la contraception d'urgence. Où aller : Auprès d'un agent de santé communautaire ou d'un centre de santé. Mode d'emploi : 1. Utilise un préservatif neuf à chaque rapport sexuel. 2. Avant tout contact, place le préservatif à la pointe du pénis en érection, la partie à dérouler à l'extérieur. 3. Déroule complètement le préservatif jusqu'à la base du pénis. 4. Après l'éjaculation, tiens le bord pour que le préservatif ne glisse pas et retire le pénis du vagin pendant qu'il est encore en érection. 5. Le préservatif est à usage unique. Jette le préservatif usagé à la poubelle.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 7. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
     "validated": false
   },
   {
-    "id": "methodes-naturelles",
+    "id": "preservatif-feminin-usage",
     "voie": "sexuelle",
     "theme": "methodes",
-    "title": "Les méthodes naturelles",
-    "content": "Les méthodes naturelles consistent à repérer les jours fertiles du cycle. Elles demandent un bon apprentissage et sont moins fiables quand les cycles sont irréguliers. Un professionnel de santé peut expliquer la méthode et dire si elle convient.",
-    "source": "Brouillon à valider par un professionnel de santé",
+    "title": "Le préservatif féminin",
+    "content": "Le préservatif féminin. Prévient la grossesse et les infections sexuellement transmissibles, dont le VIH/sida. Efficace s'il est utilisé correctement à chaque rapport sexuel. Ce que c'est : C'est une gaine en plastique que l'on insère dans le vagin avant le rapport sexuel. Elle empêche le sperme de pénétrer dans le vagin. Comment l'utiliser : Insérer un préservatif féminin neuf dans le vagin avant chaque rapport sexuel. Après le rapport, le jeter à la poubelle ou dans une latrine. Ce qui peut arriver : Pas d'effets secondaires. À retenir : Il peut être utilisé en même temps que d'autres méthodes de planification familiale pour prévenir les infections sexuellement transmissibles, y compris le VIH. Il est important de l'utiliser correctement à chaque rapport sexuel. Il faut veiller à ce que le pénis entre dans l'anneau du préservatif et reste dedans pendant tout le rapport sexuel. Les deux partenaires doivent être d'accord de l'utiliser. Si le préservatif glisse ou n'est pas utilisé correctement, il est possible d'avoir recours à la contraception d'urgence. Où aller : Auprès d'un agent de santé communautaire ou d'un centre de santé. Mode d'emploi : 1. Utilise un préservatif neuf chaque fois. Ouvre délicatement l'emballage. Assure-toi que l'intérieur du préservatif est bien lubrifié. 2. Choisis une position confortable. 3. Presse l'anneau intérieur, à l'extrémité fermée. 4. Place délicatement l'anneau intérieur dans le vagin. Mets l'index à l'intérieur du préservatif et pousse l'anneau intérieur au maximum vers le haut. Assure-toi que l'anneau extérieur est hors du vagin et que le préservatif n'est pas entortillé. Vérifie que le pénis entre dans le préservatif et y reste pendant tout le rapport. 5. Pour enlever le préservatif, attrape l'anneau extérieur et tire délicatement en tournant. Jette le préservatif à la poubelle.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 8. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "jours-fixes",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "La méthode des jours fixes (collier du cycle)",
+    "content": "La méthode des jours fixes (collier du cycle). Te permet de savoir quels jours du mois tu pourrais tomber enceinte. Ces jours-là, pour ne pas tomber enceinte, évite les rapports sexuels OU utilise le préservatif. Cette méthode est plus efficace chez les femmes qui ont des règles régulières. Ce que c'est : La méthode permet de savoir quels jours du mois tu peux tomber enceinte (jours fertiles). Il faut éviter les rapports sexuels ou utiliser un préservatif ces jours-là. Comment l'utiliser : Utilise un « collier du cycle » ou un calendrier pour compter les jours du cycle, en commençant le premier jour des règles. Tu peux tomber enceinte du 8e au 19e jour du cycle. Évite les rapports sexuels non protégés ces jours-là. Il faut éviter les rapports sexuels ou utiliser un préservatif pendant 12 jours consécutifs chaque mois. Ce qui peut arriver : Pas d'effets secondaires. À retenir : Les deux partenaires doivent être d'accord d'éviter les rapports sexuels ou d'utiliser un préservatif les jours fertiles. Si tes règles deviennent irrégulières, il vaut mieux choisir une autre méthode. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Auprès d'un agent de santé communautaire ou d'un centre de santé. Mode d'emploi : 1. Le premier jour des règles, mets l'anneau en caoutchouc sur la perle ROUGE. 2. Tous les matins, même quand tu as tes règles, déplace l'anneau sur la perle suivante. 3. Quand l'anneau est sur une perle BLANCHE, utilise le préservatif ou abstiens-toi d'avoir des rapports sexuels. 4. Les perles MARRON correspondent aux jours où tu ne tomberas pas enceinte. 5. Au premier jour des règles suivantes, remets l'anneau sur la perle rouge. 6. Vérifie toujours que tes règles se situent entre la perle marron foncé et la dernière perle marron.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 14. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "retrait",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "Le retrait",
+    "content": "Le retrait. Aucun matériel nécessaire. Pas d'effets secondaires. Applicable à tout moment. Pas aussi efficace que les autres méthodes. Ce que c'est : L'homme retire son pénis du vagin de sa partenaire et éjacule en dehors. Le sperme ne pénètre pas dans le corps de la femme. Comment l'utiliser : L'homme retire son pénis du vagin lorsqu'il sent qu'il va bientôt éjaculer. Apprendre à appliquer correctement la méthode peut prendre du temps. Cette méthode n'est pas adaptée aux hommes qui éjaculent rapidement. Ce qui peut arriver : Pas d'effets secondaires. À retenir : Pour la plupart des gens, les autres méthodes protègent davantage de la grossesse. En cas d'éjaculation avant le retrait, il est possible d'avoir recours à la contraception d'urgence. Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida. Où aller : Auprès d'un agent de santé communautaire ou d'un centre de santé.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 15. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "contraception-urgence",
+    "voie": "sexuelle",
+    "theme": "urgence",
+    "title": "La contraception d'urgence",
+    "content": "La contraception d'urgence. Prévient la grossesse après un rapport sexuel non protégé. À prendre dès que possible et jusqu'à 5 jours après le rapport sexuel. Ne provoque pas d'avortement. Ce que c'est : Ce sont des pilules à prendre après un rapport sexuel non protégé pour éviter la grossesse. Elles empêchent ou retardent l'ovulation. Elles ne provoquent pas d'avortement. Comment l'utiliser : À prendre jusqu'à 5 jours après un rapport sexuel non protégé. La méthode est plus efficace quand les pilules sont prises dès que possible après un rapport sexuel non protégé. Ce qui peut arriver : Parfois, nausées, vomissements, saignotements ou saignements vaginaux pendant quelques jours. À retenir : Elle ne prévient pas la grossesse lors de rapports sexuels ultérieurs. La contraception régulière est plus efficace. Aimerais-tu utiliser régulièrement une méthode contraceptive ? Si tu risques d'avoir été exposée aux IST ou au VIH, fais-toi soigner. Où aller : À la pharmacie, auprès d'un agent de santé communautaire ou au centre de santé.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 16. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "pourquoi-planification",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "Pourquoi utiliser la planification familiale ?",
+    "content": "Tu as le droit de choisir combien d'enfants tu auras et quand tu les auras. Avantages : la mère et les enfants sont en meilleure santé lorsque les grossesses à risque sont évitées. Les familles qui ont peu d'enfants ont plus d'argent et de nourriture pour chaque enfant. Les parents ont plus de temps pour travailler et peuvent passer plus de temps avec leur famille. Si les jeunes filles retardent la première ou la deuxième grossesse, elles peuvent rester scolarisées. Points à prendre en considération : de nombreux jeunes ont besoin d'une contraception pour retarder la grossesse. Idéalement, les jeunes femmes et les jeunes hommes ne devraient pas avoir d'enfants avant l'âge de 18 ans ou avant d'avoir terminé leurs études et d'y être prêts. Après avoir eu un enfant, il est plus sain d'attendre au moins 2 ans avant d'essayer d'en avoir un autre. Au-delà de 4 grossesses, l'accouchement est plus risqué.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 1. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
     "validated": false
   },
   {
     "id": "choisir-methode",
     "voie": "sexuelle",
     "theme": "orientation",
-    "title": "Comment choisir une méthode",
-    "content": "Il n'existe pas une seule méthode idéale. Le choix dépend de la santé, de l'âge, de la fréquence des rapports, du désir de grossesse plus tard, des effets possibles et de ce qui est facile à obtenir près de chez soi. Un professionnel de santé peut présenter les options et répondre aux questions. On peut changer de méthode si elle ne convient pas.",
-    "source": "Brouillon à valider par un professionnel de santé",
+    "title": "Comment choisir une méthode ?",
+    "content": "Il existe de nombreuses méthodes et tu peux en choisir une qui te convient. Pour t'aider à réfléchir : As-tu des enfants ? Veux-tu avoir (d'autres) enfants ? Veux-tu éviter une grossesse maintenant ? Utilises-tu une méthode actuellement ? As-tu déjà utilisé une méthode ? Y a-t-il une méthode que tu souhaiterais utiliser ? Qu'est-ce qui te plaît dans cette méthode ? Allaites-tu un nourrisson de moins de 6 mois ? Préfères-tu que ton partenaire ou tes parents ne sachent pas que tu utilises une méthode contraceptive ? As-tu parlé de la planification familiale avec ton partenaire ? As-tu des inquiétudes vis-à-vis des IST ou du VIH/sida ? As-tu des problèmes de santé ? Certaines méthodes sont plus efficaces que d'autres, certaines sont plus faciles à utiliser. Les méthodes plus difficiles à utiliser sont parfois moins efficaces si elles ne sont pas utilisées correctement.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 2. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "comparaison-methodes",
+    "voie": "sexuelle",
+    "theme": "methodes",
+    "title": "Comparaison des méthodes de planification familiale",
+    "content": "Les méthodes les plus efficaces et les plus faciles à gérer : la stérilisation féminine, la vasectomie, le stérilet et les implants. Les méthodes très efficaces mais qui nécessitent plus d'attention : la méthode de l'allaitement maternel, les pilules et les contraceptifs injectables. Les méthodes efficaces mais qui nécessitent plus d'attention : les préservatifs masculin et féminin, et la connaissance de la fécondité (méthode des jours fixes). IMPORTANT : seuls les préservatifs protègent à la fois de la grossesse et des IST, dont le VIH/sida. Dans la communauté, on peut en général trouver : le préservatif, la pilule, les contraceptifs injectables, des conseils sur la méthode de l'allaitement maternel, sur la méthode des jours fixes, sur le retrait, et la pilule pour la contraception d'urgence. Au centre de santé ou à l'hôpital : les implants, le stérilet, la stérilisation féminine et la vasectomie. Ce que propose chaque service peut varier : demande sur place.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 3. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "effets-secondaires-courants",
+    "voie": "sexuelle",
+    "theme": "effets",
+    "title": "Les effets secondaires fréquents",
+    "content": "Ce qui peut arriver dépend de la méthode. Pilule : parfois saignements irréguliers dans un premier temps, puis règles moins abondantes et moins de crampes ; certaines femmes ont des embarras gastriques ou de légers maux de tête qui disparaissent au bout de quelques mois. Injectables : règles irrégulières dans un premier temps, puis saignotements ou absence de règles, légère prise ou perte de poids éventuelle ; ces effets sont courants et sans gravité. Implants : modification des règles, courante et sans gravité. Stérilet : quelques crampes et des règles plus abondantes pendant les premiers mois. Préservatifs, retrait, jours fixes, allaitement : pas d'effets secondaires. Si un effet te gêne, dis-le à un professionnel : les effets sont courants, sans gravité, et disparaissent souvent spontanément. Si tu veux changer de méthode, on peut t'aider à en choisir une autre.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 4 à 16. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "idees-fausses",
+    "voie": "sexuelle",
+    "theme": "rumeurs",
+    "title": "Rumeurs fréquentes sur la planification familiale",
+    "content": "Les méthodes de planification familiale rendent-elles stériles ? NON. Seules la stérilisation féminine et la vasectomie sont définitives. Avec toutes les autres méthodes, on peut avoir un enfant peu après l'arrêt de la contraception. Après les injections, il faut parfois plusieurs mois. Provoquent-elles le cancer ? NON. Certaines méthodes permettent même de prévenir certains cancers. Provoquent-elles des malformations congénitales ? NON. Aucune méthode n'en provoque, même si elle est utilisée pendant la grossesse. Font-elles grossir ? Certaines femmes qui utilisent des méthodes hormonales prennent du poids et d'autres en perdent. Ces changements sont en général faibles. Les jeunes peuvent-ils utiliser une méthode sans danger ? OUI. Les jeunes peuvent utiliser les méthodes qui ne sont pas définitives, puis avoir des enfants quand ils arrêtent la contraception. Quelle différence entre vasectomie et castration ? La castration consiste à enlever les testicules. Dans la vasectomie, on ne touche pas aux testicules : on sectionne les canaux qui acheminent les spermatozoïdes, sans incidence sur la fonction sexuelle ou l'éjaculation.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 21 et 22. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "mythes-grossesse",
+    "voie": "sexuelle",
+    "theme": "rumeurs",
+    "title": "Fausses croyances sur la grossesse",
+    "content": "Ces affirmations sont fausses : il n'y a pas de risque de grossesse lors de la première relation sexuelle avec pénétration ; il n'y a pas de risque de grossesse pendant les règles ; avoir froid aux ovaires évite la grossesse ; les douches vaginales évitent les grossesses. Allaiter un bébé n'évite pas toujours une grossesse : l'allaitement ne protège que si trois conditions sont réunies (allaitement exclusif jour et nuit, bébé de moins de 6 mois, règles non revenues). Le retrait (« marche arrière ») est moins efficace que les autres méthodes. Il y a des jours fertiles, mais une grossesse peut aussi arriver à d'autres moments du cycle, y compris pendant les règles.",
+    "source": "Guide fondamental de la contraception, Govern de les Illes Balears (2009), p. 7 et 10-11, et Guide de la planification familiale, OMS (2012), p. 13 et 15. Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "mythes-pilule",
+    "voie": "sexuelle",
+    "theme": "rumeurs",
+    "title": "Fausses croyances sur la pilule",
+    "content": "Ces affirmations sont fausses : la pilule fait grossir ; la pilule rend stérile ; la pilule fait pousser la barbe et la moustache ; la pilule fait tomber les cheveux ; il est avantageux de faire des pauses quand on prend la pilule. Pour la plupart des femmes, la fertilité revient après l'arrêt. La prise de poids, quand elle existe, est en général faible. Si tu as une inquiétude, parles-en à un professionnel.",
+    "source": "Guide fondamental de la contraception, Govern de les Illes Balears (2009), p. 10, et Guide de la planification familiale, OMS (2012), p. 21-22. Brouillon à valider par un professionnel de santé",
     "validated": false
   },
   {
@@ -238,17 +319,8 @@
     "voie": "sexuelle",
     "theme": "orientation",
     "title": "Jeunes, célibataires et confidentialité",
-    "content": "Les jeunes et les personnes non mariées ont aussi besoin d'informations et de services de planification familiale. On peut demander la confidentialité et venir accompagné(e). Si un accueil est jugeant ou refuse sans explication, on peut essayer un autre centre. Les règles exactes dépendent du pays et du centre : se renseigner sur place.",
-    "source": "Brouillon à valider par un professionnel de santé",
-    "validated": false
-  },
-  {
-    "id": "partenaire-decision",
-    "voie": "sexuelle",
-    "theme": "consentement",
-    "title": "En parler avec son partenaire",
-    "content": "Choisir une méthode est une décision personnelle. On peut en parler avec son partenaire, mais personne ne doit être forcé d'utiliser ou de ne pas utiliser une méthode. En cas de pression ou de violence, un centre de santé peut aider et la confidentialité peut être demandée.",
-    "source": "Brouillon à valider par un professionnel de santé",
+    "content": "Les personnes jeunes peuvent utiliser toutes les méthodes. Il faut insister sur la protection contre les IST et le VIH/sida. Tu as le droit de choisir combien d'enfants tu auras et quand tu les auras, mariée ou non. Tu peux demander la confidentialité et venir accompagné(e). Les règles exactes dépendent du pays et du centre : renseigne-toi sur place. Si l'accueil te juge ou te refuse sans explication, essaie un autre centre.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 18. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
     "validated": false
   },
   {
@@ -256,8 +328,35 @@
     "voie": "sexuelle",
     "theme": "grossesse",
     "title": "Contraception après un accouchement",
-    "content": "Après un accouchement, la fertilité peut revenir plus vite qu'on ne le pense, même en allaitant. Certaines méthodes conviennent pendant l'allaitement, d'autres non. Un professionnel de santé peut conseiller la méthode adaptée et le bon moment pour la commencer.",
-    "source": "Brouillon à valider par un professionnel de santé",
+    "content": "La méthode de l'allaitement est efficace pendant 6 mois au maximum si elle est appliquée correctement. Pour les autres méthodes : le stérilet, juste après l'accouchement ou à partir de 4 semaines après. La stérilisation féminine, juste après l'accouchement ou à partir de 6 semaines. La vasectomie, idéalement trois mois avant l'accouchement car elle est efficace au bout de 3 mois. La pilule minidosée, les contraceptifs injectables et les implants : 6 semaines après l'accouchement en cas d'allaitement, sinon immédiatement après l'accouchement. La pilule : 6 mois après l'accouchement en cas d'allaitement, sinon 6 semaines après l'accouchement.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 17. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "vih-methodes",
+    "voie": "sexuelle",
+    "theme": "ist",
+    "title": "Méthodes de planification familiale et VIH/sida",
+    "content": "Séropositivité (sans sida) : toutes les méthodes peuvent être utilisées, sauf les spermicides. Traitement antirétroviral ou vivant avec le sida : la plupart des méthodes peuvent en général être utilisées ; une personne orientée vers un centre de référence pourra préciser. Le préservatif est recommandé pour éviter la transmission du VIH, même en cas d'utilisation d'une autre méthode.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 17. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "problemes-sante-methodes",
+    "voie": "sexuelle",
+    "theme": "orientation",
+    "title": "Problèmes de santé et choix de la méthode",
+    "content": "Certains problèmes de santé rendent certaines méthodes hormonales inadaptées. Dis-le à un professionnel avant de choisir : hypertension artérielle ; fumer et avoir plus de 35 ans ; graves maux de tête à répétition (migraine) ; prise régulière de médicaments contre la tuberculose ou l'épilepsie, ou de ritonavir dans un traitement ARV ; saignements inhabituels entre les règles ou après un rapport sexuel ; antécédents de cardiopathie grave ou d'accident vasculaire cérébral ; diabète depuis plus de 20 ans ; antécédents de caillot dans les jambes ou dans les poumons ; antécédents de cancer du sein ; maladie grave du foie ou jaunisse. Le professionnel te dira quelles méthodes tu peux utiliser.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 19. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "apres-viol-pf",
+    "voie": "sexuelle",
+    "theme": "urgence",
+    "title": "Après un viol ou une violence",
+    "content": "Si aucune méthode régulière n'est utilisée, on peut recourir à la contraception d'urgence, jusqu'à 5 jours après. Il faut aussi être orienté vers un centre de référence pour des conseils sur les IST et le VIH/sida. Tu n'es pas responsable de ce qui t'est arrivé.",
+    "source": "Guide de la planification familiale, OMS (2012), p. 18. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
     "validated": false
   }
 ]

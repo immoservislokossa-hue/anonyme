@@ -1,43 +1,183 @@
 [
   {
-    "id": "pf-implant-retrait",
+    "id": "sterilite",
     "voie": "sexuelle",
-    "enonce": "On peut faire retirer un implant quand on le souhaite.",
-    "reponse": true,
-    "explication": "Un professionnel peut le retirer à tout moment. La fertilité revient ensuite.",
-    "valide": false
+    "enonce": "Les méthodes de planification familiale rendent stérile.",
+    "reponse": false,
+    "explication": "NON. Seules la stérilisation féminine et la vasectomie sont définitives. Avec les autres méthodes, on peut avoir un enfant peu après l'arrêt. Après les injections, il faut parfois plusieurs mois.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 6 et 21"
+  },
+  {
+    "id": "cancer",
+    "voie": "sexuelle",
+    "enonce": "Les méthodes de planification familiale provoquent le cancer.",
+    "reponse": false,
+    "explication": "NON. Certaines méthodes permettent même de prévenir certains cancers.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 21"
+  },
+  {
+    "id": "malformations",
+    "voie": "sexuelle",
+    "enonce": "Une méthode de planification familiale peut provoquer des malformations chez le bébé.",
+    "reponse": false,
+    "explication": "NON. Aucune méthode ne provoque de malformations congénitales, même si elle est utilisée pendant la grossesse.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 21"
+  },
+  {
+    "id": "poids",
+    "voie": "sexuelle",
+    "enonce": "Les méthodes hormonales font toujours beaucoup grossir.",
+    "reponse": false,
+    "explication": "Certaines femmes prennent du poids et d'autres en perdent. Ces changements sont en général faibles. Si ça t'inquiète, parles-en à un professionnel.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 22"
+  },
+  {
+    "id": "jeunes",
+    "voie": "sexuelle",
+    "enonce": "Les jeunes ne peuvent pas utiliser de méthode de planification familiale.",
+    "reponse": false,
+    "explication": "OUI, ils peuvent. Les jeunes peuvent utiliser les méthodes qui ne sont pas définitives, puis avoir des enfants quand ils arrêtent la contraception.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 18 et 22"
   },
   {
     "id": "pf-celibataire",
     "voie": "sexuelle",
     "enonce": "La planification familiale est réservée aux personnes mariées.",
     "reponse": false,
-    "explication": "Toute personne qui a des rapports sexuels peut avoir besoin d'informations et de méthodes, mariée ou non. On peut demander la confidentialité.",
-    "valide": false
-  },
-  {
-    "id": "pf-urgence-tot",
-    "voie": "sexuelle",
-    "enonce": "La contraception d'urgence agit mieux quand on la prend le plus tôt possible.",
-    "reponse": true,
-    "explication": "Plus on attend, moins elle est efficace. Un centre de santé ou une pharmacie peut t'aider rapidement.",
-    "valide": false
-  },
-  {
-    "id": "sterilite",
-    "voie": "sexuelle",
-    "enonce": "La contraception rend stérile à vie.",
-    "reponse": false,
-    "explication": "Pour la plupart des méthodes, la fertilité revient après l'arrêt. Le délai varie selon la méthode. Une inquiétude précise se discute avec un professionnel.",
-    "valide": false
+    "explication": "Tu as le droit de choisir combien d'enfants tu auras et quand tu les auras, mariée ou non. Tu peux demander la confidentialité.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 1"
   },
   {
     "id": "preservatif",
     "voie": "sexuelle",
-    "enonce": "Le préservatif protège d'une grossesse et de nombreuses infections sexuellement transmissibles.",
+    "enonce": "Seuls les préservatifs protègent à la fois de la grossesse et des IST, dont le VIH/sida.",
     "reponse": true,
-    "explication": "C'est la seule méthode de la liste qui protège aussi contre de nombreuses IST. On peut l'associer à une autre méthode.",
-    "valide": false
+    "explication": "C'est vrai. On peut les utiliser en même temps qu'une autre méthode.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 3 et 7"
+  },
+  {
+    "id": "urgence-5-jours",
+    "voie": "sexuelle",
+    "enonce": "La contraception d'urgence peut se prendre jusqu'à 5 jours après un rapport non protégé, et elle est plus efficace quand on la prend dès que possible.",
+    "reponse": true,
+    "explication": "C'est vrai. Plus tôt tu la prends, mieux elle agit. Va vite dans une pharmacie ou un centre de santé.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 16"
+  },
+  {
+    "id": "urgence-avortement",
+    "voie": "sexuelle",
+    "enonce": "La contraception d'urgence provoque un avortement.",
+    "reponse": false,
+    "explication": "NON. Elle empêche ou retarde l'ovulation. Elle ne provoque pas d'avortement.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 16"
+  },
+  {
+    "id": "pf-implant-retrait",
+    "voie": "sexuelle",
+    "enonce": "Un implant peut être retiré à tout moment si tu veux avoir un enfant.",
+    "reponse": true,
+    "explication": "C'est vrai. Il doit être retiré par un prestataire qualifié. Les implants durent 3 à 5 ans.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 9"
+  },
+  {
+    "id": "sterilet-duree",
+    "voie": "sexuelle",
+    "enonce": "Le stérilet peut être utilisé pendant 12 ans.",
+    "reponse": true,
+    "explication": "C'est vrai. Il peut être retiré à tout moment si tu veux avoir un enfant. Il doit être posé et retiré par un prestataire qualifié.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 10"
+  },
+  {
+    "id": "pilule-quotidienne",
+    "voie": "sexuelle",
+    "enonce": "La pilule est efficace si on prend une pilule par jour.",
+    "reponse": true,
+    "explication": "C'est vrai. Prends-la chaque jour, et réapprovisionne-toi avant d'en manquer.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 4"
+  },
+  {
+    "id": "pilule-oubli",
+    "voie": "sexuelle",
+    "enonce": "Si tu oublies ta pilule, tu peux la prendre dès que possible, même deux à la fois.",
+    "reponse": true,
+    "explication": "C'est vrai. En cas d'oubli pendant plus de 2 jours consécutifs, utilise le préservatif pendant 7 jours et continue à prendre la pilule.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 4"
+  },
+  {
+    "id": "premier-rapport",
+    "voie": "sexuelle",
+    "enonce": "Il n'y a pas de risque de grossesse lors du premier rapport sexuel.",
+    "reponse": false,
+    "explication": "FAUX. Une grossesse peut arriver dès le premier rapport sexuel.",
+    "valide": false,
+    "source": "Guide fondamental de la contraception, Govern de les Illes Balears (2009), p. 11"
+  },
+  {
+    "id": "regles-risque",
+    "voie": "sexuelle",
+    "enonce": "Il n'y a pas de risque de grossesse pendant les règles.",
+    "reponse": false,
+    "explication": "FAUX. Il y a des jours plus fertiles, mais une grossesse peut arriver à d'autres moments du cycle, y compris pendant les règles.",
+    "valide": false,
+    "source": "Guide fondamental de la contraception, Govern de les Illes Balears (2009), p. 7 et 11"
+  },
+  {
+    "id": "allaitement-evite",
+    "voie": "sexuelle",
+    "enonce": "Allaiter un bébé évite toujours une grossesse.",
+    "reponse": false,
+    "explication": "Pas toujours. L'allaitement ne protège que si tu allaites souvent jour et nuit sans autre aliment, si ton bébé a moins de 6 mois et si tes règles ne sont pas revenues.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 13 ; Guide fondamental de la contraception, Govern de les Illes Balears (2009), p. 11"
+  },
+  {
+    "id": "retrait-efficace",
+    "voie": "sexuelle",
+    "enonce": "Le retrait est aussi efficace que le préservatif ou la pilule.",
+    "reponse": false,
+    "explication": "NON. Le retrait n'est pas aussi efficace que les autres méthodes, et il ne protège pas des IST.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 15"
+  },
+  {
+    "id": "douche",
+    "voie": "sexuelle",
+    "enonce": "Une douche vaginale après un rapport évite la grossesse.",
+    "reponse": false,
+    "explication": "FAUX. Les douches vaginales n'évitent pas les grossesses.",
+    "valide": false,
+    "source": "Guide fondamental de la contraception, Govern de les Illes Balears (2009), p. 11"
+  },
+  {
+    "id": "saignements",
+    "voie": "sexuelle",
+    "enonce": "Des saignements irréguliers au début d'une méthode hormonale sont courants et sans gravité.",
+    "reponse": true,
+    "explication": "C'est courant et sans gravité avec la pilule, les injectables et les implants. Si ça te gêne, ou si tu t'inquiètes, va au centre : on peut t'aider à changer de méthode.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 4, 6 et 9"
+  },
+  {
+    "id": "toutes-methodes",
+    "voie": "sexuelle",
+    "enonce": "Toutes les méthodes conviennent à toutes les personnes.",
+    "reponse": false,
+    "explication": "Non. Certains problèmes de santé (tension élevée, migraines fortes, tabac après 35 ans, antécédents de caillot…) rendent certaines méthodes inadaptées. Dis-le à un professionnel.",
+    "valide": false,
+    "source": "Guide de la planification familiale, OMS (2012), p. 19"
   },
   {
     "id": "ist-sans-signe",
@@ -56,35 +196,11 @@
     "valide": false
   },
   {
-    "id": "saignements",
-    "voie": "sexuelle",
-    "enonce": "Des saignements irréguliers sont fréquents au début d'une méthode hormonale.",
-    "reponse": true,
-    "explication": "C'est fréquent et pas toujours dangereux. Va consulter si les saignements sont très abondants, si la douleur est forte ou si de la fièvre apparaît.",
-    "valide": false
-  },
-  {
-    "id": "urgence-tot",
-    "voie": "sexuelle",
-    "enonce": "Après un rapport sans protection, la contraception d'urgence est d'autant plus efficace qu'on la prend tôt.",
-    "reponse": true,
-    "explication": "Il ne faut pas attendre. Un centre de santé ou une pharmacie peut conseiller sur ce qui est disponible.",
-    "valide": false
-  },
-  {
     "id": "vih-traitement",
     "voie": "sexuelle",
     "enonce": "Une personne qui vit avec le VIH et suit son traitement peut rester en bonne santé.",
     "reponse": true,
     "explication": "Le traitement, pris régulièrement, permet de vivre en bonne santé. Plus le dépistage est précoce, mieux c'est.",
-    "valide": false
-  },
-  {
-    "id": "toutes-methodes",
-    "voie": "sexuelle",
-    "enonce": "Toutes les méthodes conviennent à toutes les personnes.",
-    "reponse": false,
-    "explication": "Le choix dépend de la santé, de l'âge, des projets de grossesse et des préférences. Un professionnel aide à choisir.",
     "valide": false
   },
   {

@@ -75,3 +75,11 @@
   services, et des filtres par pays, commune, service et réseau, avec une date de vérification.
 - À fournir par les partenaires : la liste confirmée des centres, le critère de « collaboration » et la personne qui
   valide les mises à jour.
+
+## Sources du contenu sur la planification familiale
+
+- Base : *Guide de la planification familiale à l'usage des agents de santé communautaires et de leurs clients*, OMS (2012), adapté de l'*Outil d'aide à la prise de décision* de l'OMS. Complément (fausses croyances, anatomie) : *Guide fondamental de la contraception*, Govern de les Illes Balears (2009).
+- Les fiches « Les méthodes », la base de réponses de l'assistante, le quiz et les aide-mémoire de l'espace pro reprennent le plan du guide (ce que c'est, comment l'utiliser, ce qui peut arriver, à retenir, où aller), ses chiffres et ses mots, avec la page d'origine. Le tutoiement remplace le vouvoiement du guide, pour s'adresser à des personnes de 12 à 25 ans.
+- Nous disons « s'appuie sur », jamais « validé par l'OMS ». Aucun contenu n'est présenté comme validé tant qu'un professionnel de santé du pays ne l'a pas relu.
+- **Droits** : l'OMS demande une autorisation pour reproduire ou traduire ses publications (formulaire de licence sur who.int). À obtenir avant un lancement public. Ne pas reproduire leurs illustrations ; les nôtres sont dessinées pour ce projet. Même démarche pour le guide des Baléares.
+- Le guide des Baléares décrit des méthodes peu disponibles en Afrique de l'Ouest (anneau, patch, diaphragme) : elles ne sont pas reprises. Là où les deux guides divergent (méthodes naturelles, allaitement), nous suivons l'OMS en précisant les conditions.

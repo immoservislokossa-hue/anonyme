@@ -170,7 +170,7 @@
       },
       {
         "who": "afi",
-        "text": "Il existe une contraception d'urgence. Elle agit mieux quand on la prend le plus tôt possible après le rapport."
+        "text": "Il existe une contraception d'urgence. On peut la prendre jusqu'à 5 jours après le rapport, mais elle agit mieux quand on la prend le plus tôt possible."
       },
       {
         "who": "fallone",
@@ -225,7 +225,7 @@
         },
         "attendre": {
           "who": "afi",
-          "text": "Attendre fait perdre du temps : la contraception d'urgence agit mieux quand on la prend tôt.",
+          "text": "Attendre fait perdre du temps : on peut la prendre jusqu'à 5 jours après, mais la contraception d'urgence agit mieux quand on la prend le plus tôt possible.",
           "choices": [
             {
               "label": "D'accord, j'y vais maintenant",
@@ -311,7 +311,7 @@
       },
       {
         "who": "afi",
-        "text": "Bonne idée. Tu peux demander : quelles méthodes existent ? Quels effets possibles ? Combien ça coûte ? Et si ça ne me convient pas ?"
+        "text": "Bonne idée. Tu peux demander : quelles méthodes existent ? Quels effets possibles ? Où trouver des préservatifs et la pilule d'urgence ? Quand revenir ? Et si ça ne me convient pas ?"
       },
       {
         "who": "fallone",

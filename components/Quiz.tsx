@@ -11,6 +11,7 @@ export type QuizItem = {
   reponse: boolean;
   explication: string;
   valide: boolean;
+  source?: string;
 };
 
 export default function Quiz({ items }: { items: QuizItem[] }) {
@@ -105,6 +106,7 @@ export default function Quiz({ items }: { items: QuizItem[] }) {
               C'est {item.reponse ? "vrai" : "faux"}.
             </p>
             <p style={{ marginTop: 6 }}>{item.explication}</p>
+            {item.source && <p className="muted" style={{ marginTop: 6 }}>Source : {item.source}</p>}
             {!item.valide && <p className="tag" style={{ marginTop: 8 }}>Contenu à valider</p>}
             <button type="button" className="btn indigo" style={{ marginTop: 12 }} onClick={next}>
               {index + 1 === items.length ? "Voir mon résultat" : "Question suivante"}

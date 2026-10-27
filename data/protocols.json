@@ -1,47 +1,132 @@
 [
   {
-    "id": "avant-consultation",
-    "titre": "Avant la consultation",
-    "resume": "Liste de vérification à relire avec la personne avant de commencer.",
+    "id": "choisir-methode",
+    "titre": "Aider la personne à choisir une méthode",
+    "resume": "Questions à explorer avec la personne, avant de présenter les méthodes.",
     "etapes": [
-      "Demander la langue préférée de la personne",
-      "Expliquer le déroulé de la consultation et la confidentialité",
-      "Noter les méthodes déjà utilisées et les médicaments pris",
-      "Demander si une personne de confiance doit accompagner",
-      "Vérifier que la personne peut poser toutes ses questions"
+      "Demander si la personne a des enfants et si elle veut avoir (d'autres) enfants",
+      "Demander si elle veut éviter une grossesse maintenant",
+      "Demander si elle utilise une méthode actuellement, et si elle en a déjà utilisé une",
+      "Demander s'il y a une méthode qu'elle souhaiterait utiliser, et ce qui lui plaît dans cette méthode",
+      "Demander si elle (ou sa partenaire) allaite un nourrisson de moins de 6 mois",
+      "Demander si elle préfère que son partenaire ou ses parents ne sachent pas qu'elle utilise une méthode",
+      "Demander si elle a parlé de planification familiale avec son partenaire",
+      "Demander si elle a des inquiétudes vis-à-vis des IST ou du VIH/sida",
+      "Demander si elle a des problèmes de santé (voir la fiche « Problèmes de santé »)"
     ],
-    "source": "Brouillon à remplacer par le protocole national en vigueur",
-    "dateVersion": "À renseigner",
+    "source": "Guide de la planification familiale, OMS (2012), p. 2",
+    "dateVersion": "Brouillon établi à partir du guide, à valider",
     "valide": false
   },
   {
-    "id": "effets-secondaires",
-    "titre": "Effets secondaires courants",
-    "resume": "Expliquer les changements fréquents et les signes qui justifient une consultation rapide.",
+    "id": "ecarter-grossesse",
+    "titre": "Écarter une grossesse éventuelle",
+    "resume": "Si la cliente répond NON à TOUTES les questions, une grossesse n'est pas à exclure : elle doit attendre jusqu'aux prochaines règles (et éviter les rapports sexuels ou utiliser le préservatif) ou subir un test de grossesse. Si elle répond OUI à une question au moins, et si elle ne présente ni signes ni symptômes de grossesse, proposer une méthode.",
     "etapes": [
-      "Rassurer sur les saignements irréguliers fréquents en début de méthode hormonale",
-      "Demander si les saignements sont abondants ou accompagnés de douleur forte",
-      "Demander si de la fièvre ou un malaise est présent",
-      "Orienter vers une consultation rapide si un signe grave est décrit",
-      "Proposer un suivi à la date convenue"
+      "Avez-vous accouché au cours des 6 derniers mois, allaité exclusivement et n'avez pas eu de règles depuis ?",
+      "N'avez-vous pas eu de rapports sexuels depuis vos dernières règles ou votre dernier accouchement ?",
+      "Avez-vous accouché au cours des 4 dernières semaines ?",
+      "Vos règles ont-elles commencé au cours des 7 derniers jours ?",
+      "Avez-vous eu une fausse couche ou subi un avortement au cours des 7 derniers jours ?",
+      "Avez-vous utilisé systématiquement et correctement une méthode contraceptive fiable ?",
+      "Signes précoces de grossesse : retard de règles, seins douloureux, nausées, vomissements, urines plus fréquentes, modification du poids, lassitude permanente, fluctuations de l'humeur, modification des habitudes alimentaires",
+      "Signes plus tardifs : augmentation du volume des seins, mamelons plus foncés, pertes vaginales plus abondantes, augmentation de la taille de l'abdomen, mouvements du fœtus",
+      "En cas de doute : test de grossesse ou examen clinique"
     ],
-    "source": "Brouillon à remplacer par le protocole national en vigueur",
-    "dateVersion": "À renseigner",
+    "source": "Guide de la planification familiale, OMS (2012), p. 20",
+    "dateVersion": "Brouillon établi à partir du guide, à valider",
     "valide": false
   },
   {
-    "id": "orientation",
-    "titre": "Orienter vers un service",
-    "resume": "Aider la personne à se rendre dans une structure partenaire.",
+    "id": "problemes-sante-hormonal",
+    "titre": "Problèmes de santé : pilule, injectables, pilule minidosée",
+    "resume": "Demander à la personne si elle a de graves problèmes de santé. Si elle signale un problème, vérifier s'il figure dans cette liste, et voir quelles méthodes elle peut utiliser.",
     "etapes": [
-      "Demander la commune de résidence",
-      "Proposer les structures partenaires de cette commune",
-      "Expliquer les étapes pratiques de la première visite",
-      "Remettre le nom et le contact de la structure",
-      "Noter, avec son accord, si la visite a eu lieu"
+      "Hypertension artérielle : pas de pilule ; contraceptifs injectables ou pilule minidosée possibles",
+      "Fume et a plus de 35 ans : pas de pilule ; contraceptifs injectables ou pilule minidosée possibles",
+      "Graves maux de tête à répétition (migraine) : pas de pilule ; contraceptifs injectables ou pilule minidosée possibles",
+      "Prend régulièrement des médicaments contre la tuberculose ou l'épilepsie, ou du ritonavir dans le cadre d'un traitement ARV : pas de pilule ; contraceptifs injectables ou pilule minidosée possibles",
+      "Saignements inhabituels entre les règles ou saignements après un rapport sexuel : pas de contraceptifs injectables ; pilule ou pilule minidosée possibles",
+      "Antécédents de cardiopathie grave ou d'accident vasculaire cérébral : ni pilule ni contraceptifs injectables ; pilule minidosée possible",
+      "Diabète depuis plus de 20 ans : ni pilule ni contraceptifs injectables ; pilule minidosée possible",
+      "Antécédents de caillot dans les jambes ou dans les poumons : ni pilule, ni contraceptifs injectables, ni pilule minidosée ; préservatif ou autres méthodes non hormonales (orienter si nécessaire)",
+      "Antécédents de cancer du sein : ni pilule, ni contraceptifs injectables, ni pilule minidosée ; préservatif ou autres méthodes non hormonales (orienter vers un centre de référence si nécessaire)",
+      "Maladie grave du foie ou jaunisse : ni pilule, ni contraceptifs injectables, ni pilule minidosée ; préservatif ou autres méthodes non hormonales (orienter vers un centre de référence si nécessaire)"
     ],
-    "source": "Brouillon à remplacer par la liste officielle des structures partenaires",
-    "dateVersion": "À renseigner",
+    "source": "Guide de la planification familiale, OMS (2012), p. 19",
+    "dateVersion": "Brouillon établi à partir du guide, à valider",
+    "valide": false
+  },
+  {
+    "id": "apres-accouchement",
+    "titre": "Après un accouchement : quand commencer",
+    "resume": "La méthode de l'allaitement est efficace pendant 6 mois au maximum si elle est appliquée correctement.",
+    "etapes": [
+      "Stérilet : juste après l'accouchement ou à partir de 4 semaines après",
+      "Stérilisation féminine : juste après l'accouchement ou à partir de 6 semaines après",
+      "Vasectomie : idéalement, trois mois avant l'accouchement car elle est efficace au bout de 3 mois",
+      "Pilule minidosée, contraceptifs injectables, implants : 6 semaines après l'accouchement en cas d'allaitement, sinon immédiatement après l'accouchement",
+      "Pilule : 6 mois après l'accouchement en cas d'allaitement, sinon 6 semaines après l'accouchement"
+    ],
+    "source": "Guide de la planification familiale, OMS (2012), p. 17",
+    "dateVersion": "Brouillon établi à partir du guide, à valider",
+    "valide": false
+  },
+  {
+    "id": "situations-particulieres",
+    "titre": "Situations particulières",
+    "resume": "Âge, VIH/sida, après un avortement, après un viol.",
+    "etapes": [
+      "Personnes jeunes : toutes les méthodes peuvent être utilisées. Insister sur la protection contre les IST et le VIH/sida",
+      "Personnes plus âgées : toutes les méthodes peuvent être utilisées. Envisager les méthodes définitives et de longue durée",
+      "Hommes et femmes qui ne veulent plus d'enfants : envisager une méthode définitive (stérilisation féminine ou vasectomie) et des méthodes de longue durée (stérilet, implant)",
+      "Séropositivité (sans sida) : toutes les méthodes peuvent être utilisées, sauf les spermicides",
+      "Traitement antirétroviral ou vivant avec le sida : la plupart des méthodes peuvent en général être utilisées. Orienter vers le centre de référence",
+      "Le préservatif est recommandé pour éviter la transmission du VIH, même en cas d'utilisation d'une autre méthode",
+      "Après un avortement : toutes les méthodes peuvent être utilisées immédiatement. En cas d'infection, attendre la guérison avant de poser un stérilet",
+      "Après un viol : si aucune méthode régulière n'est utilisée, recourir à la contraception d'urgence. Orienter vers un centre de référence pour des conseils sur les IST et le VIH/sida",
+      "Personnes handicapées : toutes les méthodes peuvent être utilisées. Aborder la planification familiale et la prévention des IST et du VIH/sida"
+    ],
+    "source": "Guide de la planification familiale, OMS (2012), p. 17-18",
+    "dateVersion": "Brouillon établi à partir du guide, à valider",
+    "valide": false
+  },
+  {
+    "id": "liste-nouveau-client",
+    "titre": "Liste de contrôle : nouveau client",
+    "resume": "À relire avant la fin de la consultation.",
+    "etapes": [
+      "Avez-vous aidé le client à choisir une méthode qui lui conviendra ?",
+      "Avez-vous abordé les effets secondaires éventuels de la méthode ?",
+      "Si possible, avez-vous donné au client la méthode qu'il veut, ou l'avez-vous orienté vers un endroit où il peut l'obtenir ?",
+      "Vous êtes-vous assuré que le client qui souhaite être orienté pour obtenir une méthode peut en utiliser une autre en attendant ?",
+      "Avez-vous donné la méthode, des informations et un dépliant ?",
+      "Vous êtes-vous assuré que le client a des préservatifs et des pilules pour la contraception d'urgence si nécessaire ?",
+      "Avez-vous abordé la prévention des IST et du VIH/sida et donné des préservatifs si nécessaire ?",
+      "Avez-vous expliqué quand il faut venir, soit pour se réapprovisionner, soit en cas de problème, avant d'arrêter d'utiliser la méthode ?",
+      "Avez-vous répondu à toutes les questions ?",
+      "Avez-vous invité le client à revenir quand il le souhaite ?"
+    ],
+    "source": "Guide de la planification familiale, OMS (2012), p. 27",
+    "dateVersion": "Brouillon établi à partir du guide, à valider",
+    "valide": false
+  },
+  {
+    "id": "liste-client-retour",
+    "titre": "Liste de contrôle : client de retour",
+    "resume": "À relire à chaque visite de suivi.",
+    "etapes": [
+      "Avez-vous vérifié que le client est satisfait de la méthode ?",
+      "Avez-vous vérifié que le client utilise la méthode correctement ?",
+      "Avez-vous répondu aux préoccupations du client (oubli de la pilule, problèmes avec les préservatifs, problèmes avec le ou la partenaire, modification des règles, autres effets secondaires) ?",
+      "Si les effets secondaires gênent : dire qu'ils sont courants et sans gravité et qu'ils disparaissent souvent spontanément. Si la personne veut changer de méthode, l'aider à en choisir une autre",
+      "Avez-vous vérifié que le client n'a pas d'autres problèmes ou questions ?",
+      "Avez-vous aidé la cliente à choisir une méthode à utiliser pendant ou après l'allaitement, si elle est enceinte ou vient d'avoir un enfant ?",
+      "Vous êtes-vous assuré que le client a des préservatifs et des pilules pour la contraception d'urgence si nécessaire ?",
+      "Avez-vous donné le matériel nécessaire en quantité suffisante ?"
+    ],
+    "source": "Guide de la planification familiale, OMS (2012), p. 28",
+    "dateVersion": "Brouillon établi à partir du guide, à valider",
     "valide": false
   }
 ]

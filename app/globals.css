@@ -2507,3 +2507,113 @@ th {
   color: #7a0a36;
   font-weight: 700;
 }
+
+/* Méthodes : plan du guide OMS (ce que c'est, comment l'utiliser, ce qui peut arriver, à retenir) */
+.why p {
+  margin: 0 0 8px;
+}
+
+.notice.important {
+  background: #e3f6ea;
+  color: #124a2b;
+}
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tier-title {
+  margin: 0;
+  padding-left: 12px;
+  border-left: 5px solid var(--indigo);
+  font-size: 1.15rem;
+}
+
+.tier-1 {
+  border-color: #ff7a3d;
+}
+
+.tier-2 {
+  border-color: #3a7bd5;
+}
+
+.tier-3 {
+  border-color: #7a3fb5;
+}
+
+.tier-4 {
+  border-color: #9a98b8;
+}
+
+.tier-0 {
+  border-color: #00c9b1;
+}
+
+details.method {
+  display: block;
+  padding: 0;
+  gap: 0;
+}
+
+details.method > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 16px 18px;
+  cursor: pointer;
+  list-style: none;
+}
+
+details.method > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.method > summary::after {
+  content: "+";
+  margin-left: auto;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--indigo);
+}
+
+details.method[open] > summary::after {
+  content: "–";
+}
+
+.method-name {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+details.method > *:not(summary) {
+  margin-inline: 18px;
+}
+
+details.method > *:last-child {
+  margin-bottom: 18px;
+}
+
+.m-resume,
+.m-block ul,
+.m-block ol {
+  margin: 0 0 10px;
+  padding-left: 20px;
+}
+
+.m-block h4 {
+  margin: 12px 0 4px;
+  font-size: 0.95rem;
+  color: var(--indigo);
+}
+
+.m-where {
+  margin: 12px 18px 10px;
+}
+
+.m-source {
+  margin-top: 10px;
+}

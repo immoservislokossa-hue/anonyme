@@ -35,7 +35,9 @@ export function tokenize(text: string): string[] {
 
 export function scoreEntry(query: string[], entry: KnowledgeEntry): number {
   const haystack = new Set(tokenize(`${entry.title} ${entry.content} ${entry.theme}`));
-  return query.reduce((score, token) => score + (haystack.has(token) ? 1 : 0), 0);
+  const title = new Set(tokenize(entry.title));
+  // Un mot présent dans le titre compte double : le titre dit de quoi parle l'entrée.
+  return query.reduce((score, token) => score + (haystack.has(token) ? 1 : 0) + (title.has(token) ? 1 : 0), 0);
 }
 
 // Recherche lexicale simple. Elle sera remplacée par une recherche vectorielle (pgvector) à l'étape suivante.

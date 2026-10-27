@@ -103,8 +103,9 @@ const PAGE_GUIDES: Record<string, Guide> = {
     id: "methodes",
     title: "Les méthodes",
     steps: [
-      { fr: "Chaque carte explique une méthode : comment elle marche, combien de temps elle protège, et si elle protège des infections.", target: ".methods article:first-child" },
-      { fr: "Appuie ici si tu veux poser une question sur cette méthode.", target: ".methods article:first-child .chip-btn" },
+      { fr: "Les méthodes sont classées de la plus efficace à la moins efficace. Appuie sur une méthode pour l'ouvrir.", target: ".methods details:first-child summary" },
+      { fr: "Tu y vois ce que c'est, comment l'utiliser, ce qui peut arriver, et ce qu'il faut retenir.", target: ".methods details:first-child summary" },
+      { fr: "Important : seuls les préservatifs protègent à la fois de la grossesse et des infections.", target: ".notice.important" },
     ],
   },
   histoires: {

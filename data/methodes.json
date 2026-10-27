@@ -1,79 +1,464 @@
 [
   {
-    "id": "preservatif",
-    "nom": "Préservatif",
-    "type": "Barrière",
-    "comment": "Une gaine qui retient le sperme. Il existe pour les hommes et pour les femmes.",
-    "duree": "À chaque rapport",
-    "ist": true,
-    "professionnel": false,
-    "a_savoir": "Seule méthode qui protège aussi de nombreuses infections. Se met avant tout contact, à usage unique.",
-    "a_discuter": "Comment bien le mettre, où en trouver gratuitement ou à petit prix."
+    "id": "implants",
+    "nom": "Les implants",
+    "niveau": 1,
+    "page": 9,
+    "ist": false,
+    "ou_aller": "Au centre de santé ou à l'hôpital",
+    "resume": [
+      "Sans risque",
+      "L'une des méthodes les plus efficaces",
+      "Durent 3 à 5 ans",
+      "Peuvent être retirés à tout moment si tu veux avoir un enfant"
+    ],
+    "ce_que_cest": [
+      "Ce sont de petits tubes, placés sous la peau, sur la face intérieure du haut du bras.",
+      "Les hormones contenues dans les tubes empêchent l'ovulation et la rencontre du spermatozoïde et de l'ovule."
+    ],
+    "comment": [
+      "Les implants doivent être posés et retirés par un prestataire qualifié.",
+      "Il n'y a rien à se rappeler après la pose."
+    ],
+    "peut_arriver": [
+      "La modification des règles (règles irrégulières, saignotements, règles plus abondantes ou absence de règles) est courante et sans gravité."
+    ],
+    "a_retenir": [
+      "Si tu attends un rendez-vous pour te faire poser des implants, utilise une autre méthode pendant ce temps.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "niveau_label": "Les plus efficaces et les plus faciles à gérer",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
+  },
+  {
+    "id": "sterilet",
+    "nom": "Le stérilet",
+    "niveau": 1,
+    "page": 10,
+    "ist": false,
+    "ou_aller": "Au centre de santé ou à l'hôpital",
+    "resume": [
+      "Sans risque",
+      "L'une des méthodes les plus efficaces",
+      "Peut être utilisé pendant 12 ans",
+      "Peut être retiré à tout moment si tu veux avoir un enfant"
+    ],
+    "ce_que_cest": [
+      "C'est un petit dispositif en plastique souple, en forme de « T », équipé d'un fil de cuivre, placé dans l'utérus.",
+      "Il empêche la rencontre du spermatozoïde et de l'ovule."
+    ],
+    "comment": [
+      "Le stérilet doit être posé et retiré par un prestataire qualifié.",
+      "Il peut être posé juste après l'accouchement, ou à partir de quatre semaines après l'accouchement, ou encore à tout autre moment en dehors de la grossesse.",
+      "Il n'y a rien à se rappeler après la pose."
+    ],
+    "peut_arriver": [
+      "Quelques crampes et des règles plus abondantes pendant les premiers mois."
+    ],
+    "a_retenir": [
+      "Si tu attends un rendez-vous pour te faire poser un stérilet, utilise une autre méthode pendant ce temps.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "niveau_label": "Les plus efficaces et les plus faciles à gérer",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
+  },
+  {
+    "id": "sterilisation-feminine",
+    "nom": "La stérilisation féminine",
+    "niveau": 1,
+    "page": 11,
+    "ist": false,
+    "ou_aller": "Au centre de santé ou à l'hôpital",
+    "resume": [
+      "Méthode sans risque et définitive, pour les femmes ou les couples qui ne veulent plus avoir d'enfants",
+      "L'une des méthodes les plus efficaces",
+      "L'opération est simple"
+    ],
+    "ce_que_cest": [
+      "Un prestataire qualifié pratique une ou deux petites incisions pour accéder aux canaux qui transportent les ovules vers l'utérus (les trompes).",
+      "Il coupe ou bouche les trompes. Il n'enlève pas l'utérus.",
+      "La stérilisation est possible juste après l'accouchement, ou à partir de six semaines après l'accouchement, ou encore à d'autres moments en dehors de la grossesse."
+    ],
+    "comment": [
+      "Après l'opération, il n'y a rien à se rappeler et il n'y a pas d'effets secondaires.",
+      "L'intervention ne nécessite pas d'anesthésie générale.",
+      "Généralement, le retour à domicile est possible quelques heures après l'intervention."
+    ],
+    "peut_arriver": [
+      "Douleurs possibles pendant quelques jours après l'intervention.",
+      "Les règles ne seront pas modifiées."
+    ],
+    "a_retenir": [
+      "C'est une méthode définitive : elle ne convient pas si tu veux avoir un enfant un jour.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "niveau_label": "Les plus efficaces et les plus faciles à gérer",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
+  },
+  {
+    "id": "vasectomie",
+    "nom": "La vasectomie",
+    "niveau": 1,
+    "page": 12,
+    "ist": false,
+    "ou_aller": "Au centre de santé ou à l'hôpital",
+    "resume": [
+      "Méthode sans risque et définitive, pour les hommes ou les couples qui ne veulent plus avoir d'enfants",
+      "L'une des méthodes les plus efficaces",
+      "L'opération est simple",
+      "Il faut utiliser une autre méthode pendant les 3 mois qui suivent l'opération"
+    ],
+    "ce_que_cest": [
+      "Un prestataire qualifié pratique deux petites incisions pour accéder aux canaux qui transportent les spermatozoïdes.",
+      "Il coupe les canaux. Il n'enlève pas les testicules.",
+      "Après une vasectomie, le sperme ne contient plus de spermatozoïdes."
+    ],
+    "comment": [
+      "La vasectomie sera efficace au bout de 3 mois. En attendant, le couple doit utiliser une autre méthode.",
+      "Au bout de trois mois, il n'y a plus rien à se rappeler."
+    ],
+    "peut_arriver": [
+      "L'intervention ne nécessite pas d'anesthésie générale.",
+      "Généralement, le retour à domicile est possible quelques heures après l'intervention.",
+      "Petits caillots sous la peau et douleurs possibles pendant quelques jours après l'intervention."
+    ],
+    "a_retenir": [
+      "Elle ne diminue ni la libido, ni l'érection, ni l'éjaculation.",
+      "C'est une méthode définitive.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "niveau_label": "Les plus efficaces et les plus faciles à gérer",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
   },
   {
     "id": "pilule",
-    "nom": "Pilule",
-    "type": "Hormonale",
-    "comment": "Un comprimé à prendre chaque jour, à peu près à la même heure.",
-    "duree": "Chaque jour",
+    "nom": "La pilule",
+    "niveau": 2,
+    "page": 4,
     "ist": false,
-    "professionnel": true,
-    "a_savoir": "Une prise oubliée peut réduire la protection. Des nausées ou des saignements légers sont fréquents au début.",
-    "a_discuter": "Quelle pilule convient, que faire en cas d'oubli."
+    "ou_aller": "Auprès d'un agent de santé communautaire ou d'un centre de santé",
+    "resume": [
+      "Sans risque",
+      "Efficace si on prend une pilule par jour",
+      "Règles moins abondantes et moins de crampes"
+    ],
+    "ce_que_cest": [
+      "C'est une pilule qui contient des hormones, à prendre tous les jours.",
+      "Elle empêche l'ovulation et la rencontre du spermatozoïde et de l'ovule."
+    ],
+    "comment": [
+      "Prendre une pilule par jour.",
+      "Lorsqu'on finit une boîte de pilules, il faut en entamer une nouvelle le lendemain.",
+      "En cas d'oubli : il faut prendre la pilule dès que possible. On peut prendre 2 pilules à la fois.",
+      "En cas d'oubli pendant plus de 2 jours consécutifs, utilise le préservatif pendant 7 jours et continue à prendre la pilule. En cas d'oubli au cours de la 3e semaine, NE PAS prendre les pilules inactives et entamer une nouvelle boîte."
+    ],
+    "peut_arriver": [
+      "Parfois, saignements irréguliers dans un premier temps, suivis de règles moins abondantes et d'une diminution des crampes.",
+      "Certaines femmes ont des embarras gastriques ou de légers maux de tête, qui disparaissent au bout de quelques mois."
+    ],
+    "a_retenir": [
+      "Il faut prendre une pilule par jour.",
+      "Assure-toi d'avoir assez de pilules. Réapprovisionne-toi avant d'en manquer.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "niveau_label": "Très efficaces, mais qui demandent plus d'attention",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
   },
   {
-    "id": "injectable",
-    "nom": "Injectable",
-    "type": "Hormonale",
-    "comment": "Une piqûre faite par un professionnel, qui protège plusieurs semaines.",
-    "duree": "Environ 3 mois par injection",
+    "id": "pilule-minidosee",
+    "nom": "La pilule minidosée",
+    "niveau": 2,
+    "page": 5,
     "ist": false,
-    "professionnel": true,
-    "a_savoir": "Les règles peuvent devenir irrégulières ou disparaître. Le retour de la fertilité peut prendre quelques mois après l'arrêt.",
-    "a_discuter": "Le calendrier des rendez-vous et ce qui se passe si on est en retard."
+    "ou_aller": "Auprès d'un agent de santé communautaire ou d'un centre de santé",
+    "resume": [
+      "Sans risque",
+      "Plus efficace pendant l'allaitement"
+    ],
+    "ce_que_cest": [
+      "C'est une pilule qui contient une hormone, à prendre tous les jours.",
+      "Elle empêche la rencontre du spermatozoïde et de l'ovule."
+    ],
+    "comment": [
+      "En cas d'allaitement maternel, on peut commencer 6 semaines après l'accouchement.",
+      "Prendre une pilule chaque jour à la même heure.",
+      "Lorsque la boîte de pilules est finie, en entamer une nouvelle le lendemain.",
+      "En cas de retard dans la prise de la pilule, quand la femme allaite : prendre la pilule dès que possible et continuer à la prendre.",
+      "En cas de retard, quand la femme n'allaite pas : si tu prends la pilule avec plus de 3 heures de retard, utilise le préservatif pendant les 2 jours suivants et continue à prendre la pilule."
+    ],
+    "peut_arriver": [
+      "Quand la femme n'allaite pas : la modification des règles (règles irrégulières, saignotements, règles plus abondantes ou absence de règles) est courante et sans gravité."
+    ],
+    "a_retenir": [
+      "Si tu allaites, tu peux commencer la pilule minidosée 6 semaines après l'accouchement.",
+      "Il faut prendre une pilule chaque jour à la même heure.",
+      "Assure-toi d'avoir suffisamment de pilules. Réapprovisionne-toi avant d'en manquer.",
+      "Pense à la méthode que tu utiliseras quand tu n'allaiteras plus.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "niveau_label": "Très efficaces, mais qui demandent plus d'attention",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
   },
   {
-    "id": "implant",
-    "nom": "Implant",
-    "type": "Hormonale",
-    "comment": "Un petit bâtonnet placé sous la peau du bras par un professionnel.",
-    "duree": "Plusieurs années selon le modèle",
+    "id": "injectables",
+    "nom": "Les contraceptifs injectables",
+    "niveau": 2,
+    "page": 6,
     "ist": false,
-    "professionnel": true,
-    "a_savoir": "Se retire à tout moment par un professionnel, la fertilité revient ensuite. Les saignements irréguliers sont fréquents.",
-    "a_discuter": "La durée du modèle disponible et les effets possibles."
+    "ou_aller": "Auprès d'un agent de santé communautaire ou d'un centre de santé",
+    "resume": [
+      "Sans risque",
+      "Injection d'hormones tous les 2 mois (NET-EN) ou tous les 3 mois (DMPA)",
+      "Très efficace quand les injections sont faites à temps",
+      "Cette méthode peut être utilisée sans que les autres ne le sachent"
+    ],
+    "ce_que_cest": [
+      "C'est une injection d'hormones.",
+      "Elle empêche l'ovulation."
+    ],
+    "comment": [
+      "Injection tous les 2 mois (NET-EN) ou tous les 3 mois (DMPA).",
+      "En cas d'allaitement maternel, on peut commencer 6 semaines après l'accouchement.",
+      "C'est plus efficace si les injections sont faites à temps.",
+      "En cas de retard : DMPA, il est encore possible de faire une injection jusqu'à 4 semaines de retard. NET-EN, jusqu'à 2 semaines de retard.",
+      "En cas de retard plus long, utilise le préservatif et reviens pour une injection le plus tôt possible."
+    ],
+    "peut_arriver": [
+      "Règles irrégulières dans un premier temps, puis saignotements ou absence de règles. Ces effets sont courants et sans gravité.",
+      "Légère prise ou perte de poids éventuelle.",
+      "Après l'arrêt des injections, il faut parfois plusieurs mois avant de pouvoir tomber enceinte."
+    ],
+    "a_retenir": [
+      "Les injections n'entraînent pas de stérilité.",
+      "Les injections doivent être faites à temps.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "niveau_label": "Très efficaces, mais qui demandent plus d'attention",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
   },
   {
-    "id": "diu",
-    "nom": "Stérilet (DIU)",
-    "type": "Dispositif intra-utérin",
-    "comment": "Un petit dispositif placé dans l'utérus par un professionnel.",
-    "duree": "Plusieurs années selon le modèle",
+    "id": "mama",
+    "nom": "L'allaitement maternel (MAMA)",
+    "niveau": 2,
+    "page": 13,
     "ist": false,
-    "professionnel": true,
-    "a_savoir": "Existe avec ou sans hormones. Peut être retiré à tout moment. Les règles peuvent être plus abondantes avec le modèle au cuivre.",
-    "a_discuter": "Le modèle proposé, la pose et le suivi."
+    "ou_aller": "Auprès d'un agent de santé communautaire ou d'un centre de santé",
+    "resume": [
+      "Sans risque ni effets secondaires",
+      "Efficace si : tu allaites souvent, jour et nuit, sans donner à ton enfant aucun autre aliment solide ou liquide ; ton enfant a moins de 6 mois ; tes règles ne sont pas revenues"
+    ],
+    "ce_que_cest": [
+      "L'allaitement maternel est l'une des façons de prévenir la grossesse.",
+      "Il empêche l'ovulation."
+    ],
+    "comment": [
+      "Allaiter souvent, jour et nuit, sans donner aucune autre nourriture solide ou liquide (allaiter exclusivement).",
+      "Si tu allaites moins, si tes règles reviennent ou si ton enfant a plus de 6 mois, cette méthode ne sera pas efficace."
+    ],
+    "peut_arriver": [
+      "Absence de règles (c'est une condition pour continuer à utiliser la méthode)."
+    ],
+    "a_retenir": [
+      "Très efficace pendant 6 mois après l'accouchement en cas d'allaitement exclusif.",
+      "Prépare-toi à utiliser une autre méthode au bout de 6 mois, ou même avant si tes règles reviennent ou si l'allaitement diminue.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "niveau_label": "Très efficaces, mais qui demandent plus d'attention",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
   },
   {
-    "id": "urgence",
-    "nom": "Contraception d'urgence",
-    "type": "Après un rapport",
-    "comment": "Un comprimé à prendre le plus tôt possible après un rapport non protégé, ou un stérilet posé par un professionnel.",
-    "duree": "Dans les jours qui suivent le rapport",
-    "ist": false,
-    "professionnel": false,
-    "a_savoir": "Plus on la prend tôt, mieux elle agit. Ce n'est pas une méthode régulière, et elle ne protège pas des infections.",
-    "a_discuter": "Où l'obtenir rapidement, et quelle méthode choisir ensuite."
+    "id": "preservatif-masculin",
+    "nom": "Le préservatif masculin",
+    "niveau": 3,
+    "page": 7,
+    "ist": true,
+    "ou_aller": "Auprès d'un agent de santé communautaire ou d'un centre de santé",
+    "resume": [
+      "Prévient la grossesse et les infections sexuellement transmissibles, dont le VIH/sida",
+      "Efficace s'il est utilisé correctement à chaque rapport sexuel",
+      "Facile à obtenir et à utiliser"
+    ],
+    "ce_que_cest": [
+      "C'est un fin capuchon en caoutchouc que l'on place sur le pénis en érection.",
+      "Il empêche le sperme de pénétrer dans le vagin."
+    ],
+    "comment": [
+      "Mettre un préservatif neuf sur le pénis en érection avant chaque rapport sexuel.",
+      "Après le rapport, le jeter à la poubelle ou dans une latrine."
+    ],
+    "peut_arriver": [
+      "Pas d'effets secondaires."
+    ],
+    "a_retenir": [
+      "Il peut être utilisé en même temps que d'autres méthodes de planification familiale pour prévenir les infections sexuellement transmissibles, y compris le VIH.",
+      "Il est important de l'utiliser correctement à chaque rapport sexuel.",
+      "Fais attention à ne pas déchirer le préservatif en le mettant ou en ouvrant l'emballage.",
+      "Les deux partenaires doivent être d'accord de l'utiliser.",
+      "En cas de rupture ou d'oubli du préservatif, il est possible d'avoir recours à la contraception d'urgence."
+    ],
+    "mode_emploi": [
+      "Utilise un préservatif neuf à chaque rapport sexuel.",
+      "Avant tout contact, place le préservatif à la pointe du pénis en érection, la partie à dérouler à l'extérieur.",
+      "Déroule complètement le préservatif jusqu'à la base du pénis.",
+      "Après l'éjaculation, tiens le bord pour que le préservatif ne glisse pas et retire le pénis du vagin pendant qu'il est encore en érection.",
+      "Le préservatif est à usage unique. Jette le préservatif usagé à la poubelle."
+    ],
+    "niveau_label": "Efficaces, mais qui demandent plus d'attention",
+    "source": "Guide de la planification familiale, OMS (2012)"
   },
   {
-    "id": "naturelles",
-    "nom": "Méthodes naturelles",
-    "type": "Suivi du cycle",
-    "comment": "Repérer les jours fertiles pour éviter les rapports sans protection ces jours-là.",
-    "duree": "Suivi continu",
+    "id": "preservatif-feminin",
+    "nom": "Le préservatif féminin",
+    "niveau": 3,
+    "page": 8,
+    "ist": true,
+    "ou_aller": "Auprès d'un agent de santé communautaire ou d'un centre de santé",
+    "resume": [
+      "Prévient la grossesse et les infections sexuellement transmissibles, dont le VIH/sida",
+      "Efficace s'il est utilisé correctement à chaque rapport sexuel"
+    ],
+    "ce_que_cest": [
+      "C'est une gaine en plastique que l'on insère dans le vagin avant le rapport sexuel.",
+      "Elle empêche le sperme de pénétrer dans le vagin."
+    ],
+    "comment": [
+      "Insérer un préservatif féminin neuf dans le vagin avant chaque rapport sexuel.",
+      "Après le rapport, le jeter à la poubelle ou dans une latrine."
+    ],
+    "peut_arriver": [
+      "Pas d'effets secondaires."
+    ],
+    "a_retenir": [
+      "Il peut être utilisé en même temps que d'autres méthodes de planification familiale pour prévenir les infections sexuellement transmissibles, y compris le VIH.",
+      "Il est important de l'utiliser correctement à chaque rapport sexuel.",
+      "Il faut veiller à ce que le pénis entre dans l'anneau du préservatif et reste dedans pendant tout le rapport sexuel.",
+      "Les deux partenaires doivent être d'accord de l'utiliser.",
+      "Si le préservatif glisse ou n'est pas utilisé correctement, il est possible d'avoir recours à la contraception d'urgence."
+    ],
+    "mode_emploi": [
+      "Utilise un préservatif neuf chaque fois. Ouvre délicatement l'emballage. Assure-toi que l'intérieur du préservatif est bien lubrifié.",
+      "Choisis une position confortable.",
+      "Presse l'anneau intérieur, à l'extrémité fermée.",
+      "Place délicatement l'anneau intérieur dans le vagin. Mets l'index à l'intérieur du préservatif et pousse l'anneau intérieur au maximum vers le haut. Assure-toi que l'anneau extérieur est hors du vagin et que le préservatif n'est pas entortillé. Vérifie que le pénis entre dans le préservatif et y reste pendant tout le rapport.",
+      "Pour enlever le préservatif, attrape l'anneau extérieur et tire délicatement en tournant. Jette le préservatif à la poubelle."
+    ],
+    "niveau_label": "Efficaces, mais qui demandent plus d'attention",
+    "source": "Guide de la planification familiale, OMS (2012)"
+  },
+  {
+    "id": "jours-fixes",
+    "nom": "La méthode des jours fixes (collier du cycle)",
+    "niveau": 3,
+    "page": 14,
     "ist": false,
-    "professionnel": false,
-    "a_savoir": "Elles demandent de bien apprendre la méthode et sont moins fiables si le cycle est irrégulier.",
-    "a_discuter": "Se faire expliquer la méthode par un professionnel avant de s'y fier."
+    "ou_aller": "Auprès d'un agent de santé communautaire ou d'un centre de santé",
+    "resume": [
+      "Te permet de savoir quels jours du mois tu pourrais tomber enceinte",
+      "Ces jours-là, pour ne pas tomber enceinte, évite les rapports sexuels OU utilise le préservatif",
+      "Cette méthode est plus efficace chez les femmes qui ont des règles régulières"
+    ],
+    "ce_que_cest": [
+      "La méthode permet de savoir quels jours du mois tu peux tomber enceinte (jours fertiles).",
+      "Il faut éviter les rapports sexuels ou utiliser un préservatif ces jours-là."
+    ],
+    "comment": [
+      "Utilise un « collier du cycle » ou un calendrier pour compter les jours du cycle, en commençant le premier jour des règles.",
+      "Tu peux tomber enceinte du 8e au 19e jour du cycle.",
+      "Évite les rapports sexuels non protégés ces jours-là.",
+      "Il faut éviter les rapports sexuels ou utiliser un préservatif pendant 12 jours consécutifs chaque mois."
+    ],
+    "peut_arriver": [
+      "Pas d'effets secondaires."
+    ],
+    "a_retenir": [
+      "Les deux partenaires doivent être d'accord d'éviter les rapports sexuels ou d'utiliser un préservatif les jours fertiles.",
+      "Si tes règles deviennent irrégulières, il vaut mieux choisir une autre méthode.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "mode_emploi": [
+      "Le premier jour des règles, mets l'anneau en caoutchouc sur la perle ROUGE.",
+      "Tous les matins, même quand tu as tes règles, déplace l'anneau sur la perle suivante.",
+      "Quand l'anneau est sur une perle BLANCHE, utilise le préservatif ou abstiens-toi d'avoir des rapports sexuels.",
+      "Les perles MARRON correspondent aux jours où tu ne tomberas pas enceinte.",
+      "Au premier jour des règles suivantes, remets l'anneau sur la perle rouge.",
+      "Vérifie toujours que tes règles se situent entre la perle marron foncé et la dernière perle marron."
+    ],
+    "niveau_label": "Efficaces, mais qui demandent plus d'attention",
+    "source": "Guide de la planification familiale, OMS (2012)"
+  },
+  {
+    "id": "retrait",
+    "nom": "Le retrait",
+    "niveau": 4,
+    "page": 15,
+    "ist": false,
+    "ou_aller": "Auprès d'un agent de santé communautaire ou d'un centre de santé",
+    "resume": [
+      "Aucun matériel nécessaire",
+      "Pas d'effets secondaires",
+      "Applicable à tout moment",
+      "Pas aussi efficace que les autres méthodes"
+    ],
+    "ce_que_cest": [
+      "L'homme retire son pénis du vagin de sa partenaire et éjacule en dehors.",
+      "Le sperme ne pénètre pas dans le corps de la femme."
+    ],
+    "comment": [
+      "L'homme retire son pénis du vagin lorsqu'il sent qu'il va bientôt éjaculer.",
+      "Apprendre à appliquer correctement la méthode peut prendre du temps.",
+      "Cette méthode n'est pas adaptée aux hommes qui éjaculent rapidement."
+    ],
+    "peut_arriver": [
+      "Pas d'effets secondaires."
+    ],
+    "a_retenir": [
+      "Pour la plupart des gens, les autres méthodes protègent davantage de la grossesse.",
+      "En cas d'éjaculation avant le retrait, il est possible d'avoir recours à la contraception d'urgence.",
+      "Utilise le préservatif si tu dois te protéger des IST ou du VIH/sida."
+    ],
+    "niveau_label": "Moins efficace que les autres méthodes",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
+  },
+  {
+    "id": "contraception-urgence",
+    "nom": "La contraception d'urgence",
+    "niveau": 0,
+    "page": 16,
+    "ist": false,
+    "ou_aller": "À la pharmacie, auprès d'un agent de santé communautaire ou au centre de santé",
+    "resume": [
+      "Prévient la grossesse après un rapport sexuel non protégé",
+      "À prendre dès que possible et jusqu'à 5 jours après le rapport sexuel",
+      "Ne provoque pas d'avortement"
+    ],
+    "ce_que_cest": [
+      "Ce sont des pilules à prendre après un rapport sexuel non protégé pour éviter la grossesse.",
+      "Elles empêchent ou retardent l'ovulation.",
+      "Elles ne provoquent pas d'avortement."
+    ],
+    "comment": [
+      "À prendre jusqu'à 5 jours après un rapport sexuel non protégé.",
+      "La méthode est plus efficace quand les pilules sont prises dès que possible après un rapport sexuel non protégé."
+    ],
+    "peut_arriver": [
+      "Parfois, nausées, vomissements, saignotements ou saignements vaginaux pendant quelques jours."
+    ],
+    "a_retenir": [
+      "Elle ne prévient pas la grossesse lors de rapports sexuels ultérieurs.",
+      "La contraception régulière est plus efficace. Aimerais-tu utiliser régulièrement une méthode contraceptive ?",
+      "Si tu risques d'avoir été exposée aux IST ou au VIH, fais-toi soigner."
+    ],
+    "niveau_label": "Après un rapport non protégé",
+    "source": "Guide de la planification familiale, OMS (2012)",
+    "mode_emploi": []
   }
 ]

@@ -26,7 +26,7 @@ function evaluate() {
 
 const STEPS = [
   { title: "Vérification de sécurité", text: "Avant toute réponse, un contrôle repère les situations d'urgence, de violence ou de détresse. Dans ces cas, une réponse fixe oriente vers un humain. L'IA n'intervient pas." },
-  { title: "Recherche dans des sources contrôlées", text: "Le système retrouve les extraits pertinents d'une base d'informations rédigée pour être relue et validée par des professionnels de santé." },
+  { title: "Recherche dans des sources contrôlées", text: "Le système retrouve les extraits pertinents d'une base d'informations établie à partir du Guide de la planification familiale de l'OMS, en cours de relecture par des professionnels de santé." },
   { title: "Réponse rédigée par l'IA", text: "Un modèle de langage reformule ces extraits en phrases simples et chaleureuses. Il a l'interdiction de diagnostiquer, de recommander un médicament ou une dose, et de sortir des extraits fournis." },
   { title: "Orientation", text: "Chaque réponse propose de trouver un centre ou une pharmacie proche, et de préparer la visite." },
 ];
@@ -70,6 +70,21 @@ export default function IaPage() {
         <p className="muted">
           Ces tests portent sur un petit nombre de phrases écrites par l'équipe. Ils ne prouvent pas que toutes les situations réelles
           sont couvertes. Une évaluation avec des professionnels est prévue pendant le pilote.
+        </p>
+      </section>
+
+      <section className="panel">
+        <h2>Nos sources</h2>
+        <ul className="plain">
+          <li>
+            Guide de la planification familiale à l'usage des agents de santé communautaires et de leurs clients, Organisation
+            mondiale de la Santé (2012).
+          </li>
+          <li>Guide fondamental de la contraception, Govern de les Illes Balears (2009), pour les fausses croyances et le corps humain.</li>
+        </ul>
+        <p className="muted">
+          Nos textes s'appuient sur ces documents. Ils ne sont pas validés par ces organisations : ils sont en cours de validation par
+          des professionnels de santé de ton pays. Chaque réponse du quiz et de la page « Les méthodes » cite sa source et sa page.
         </p>
       </section>
 
