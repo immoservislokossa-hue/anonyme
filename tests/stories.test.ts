@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { parseFormat } from "../lib/format";
-import { checkStory, readingTime, speakerInfo, stories } from "../lib/stories";
+import { checkStory, nextEpisode, readingTime, speakerInfo, stageScenes, stories } from "../lib/stories";
 
 test("chaque histoire est cohérente dans les trois formats", () => {
-  assert.ok(stories.length >= 4);
+  assert.ok(stories.length >= 6);
   for (const story of stories) {
     assert.deepEqual(checkStory(story), [], story.id);
   }
@@ -35,4 +35,42 @@ test("un format enregistré invalide est ignoré", () => {
   assert.equal(parseFormat("jeu"), "jeu");
   assert.equal(parseFormat("autre"), null);
   assert.equal(parseFormat(null), null);
+});
+
+test("la série a des épisodes numérotés 1, 2, 3… sans trou", () => {
+  assert.deepEqual(
+    stories.map((s) => s.episode),
+    stories.map((_, i) => i + 1),
+  );
+  assert.equal(nextEpisode(stories[0])?.id, stories[1].id);
+  assert.equal(nextEpisode(stories[stories.length - 1]), undefined);
+});
+
+test("chaque épisode finit sur une action et annonce la suite", () => {
+  for (const story of stories) {
+    assert.ok(story.teaser.length > 10, story.id);
+    assert.ok(story.action.href.startsWith("/"), story.id);
+    assert.ok(story.resume.length > 10, story.id);
+  }
+});
+
+test("la mise en scène garde le personnage qui parle à l'écran", () => {
+  for (const story of stories) {
+    for (const step of stageScenes(story)) {
+      if (step.scene.who !== "narrateur") assert.ok(step.present.includes(step.scene.who), `${story.id}: ${step.scene.text}`);
+      assert.ok(step.present.length >= 1, story.id);
+    }
+  }
+});
+
+test("le plan s'adapte : gros plan sur une émotion forte, plan large pour la narration", () => {
+  const steps = stageScenes(stories[0]);
+  assert.equal(steps[0].shot, "large");
+  assert.ok(steps.some((s) => s.shot === "gros"));
+});
+
+test("une humeur inconnue est détectée", () => {
+  const broken = structuredClone(stories[0]);
+  broken.scenes[1].mood = "bizarre" as never;
+  assert.ok(checkStory(broken).some((p) => p.includes("humeur")));
 });

@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "Apprendre" };
 
 const entries = [
   { href: "/methodes", title: "Les méthodes", text: "Comprendre chaque méthode de contraception." },
-  { href: "/chroniques", title: "Les histoires", text: "Des situations vraies, à lire ou à regarder." },
+  { href: "/chroniques", title: "La série", text: "Afi, Fallone et Chimène. Un épisode à regarder, une chose à retenir." },
 ];
 
 export default function LearnPage() {

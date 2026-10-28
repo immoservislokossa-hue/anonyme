@@ -103,7 +103,7 @@ export type Badge = { id: string; label: string; hint: string; earned: boolean }
 export function badges(progress: Progress, date: Date = new Date()): Badge[] {
   return [
     { id: "question", label: "Première question", hint: "Pose une question", earned: progress.questionsAsked >= 1 },
-    { id: "chroniques", label: "À l'écoute", hint: "Lis 3 chroniques", earned: progress.chroniclesRead.length >= 3 },
+    { id: "chroniques", label: "À l'écoute", hint: "Termine 3 épisodes", earned: progress.chroniclesRead.length >= 3 },
     { id: "serie", label: "3 jours de suite", hint: "Revenez 3 jours de suite", earned: streak(progress, date) >= 3 },
     { id: "visite", label: "Visite préparée", hint: "Prépare ta visite", earned: progress.visitPrepared },
   ];

@@ -1029,8 +1029,24 @@ th {
 }
 
 .sil-wave {
-  transform-origin: 78px 66px;
-  animation: wave 1.6s ease-in-out infinite;
+  transform-origin: 78px 70px;
+}
+
+.sil.talking .sil-wave {
+  animation: gesture 1.2s ease-in-out infinite;
+}
+
+@keyframes gesture {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(-38deg);
+  }
+  70% {
+    transform: rotate(-22deg);
+  }
 }
 
 .sil-sway {
@@ -1050,6 +1066,9 @@ th {
 
 .sil-bounce {
   transform-origin: 60px 160px;
+}
+
+.sil-tile .sil-bounce {
   animation: bounce 1.8s ease-in-out infinite;
 }
 
@@ -1700,57 +1719,11 @@ th {
   text-align: left;
 }
 
-.stage {
-  position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-  aspect-ratio: 16 / 10;
-  min-height: 300px;
-  background: var(--sable);
-  box-shadow: var(--shadow-md);
-}
-
 .decor {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-}
-
-.actors {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 74px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 4px;
-}
-
-.actor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.25s ease, opacity 0.25s ease, filter 0.25s ease;
-  transform-origin: bottom center;
-}
-
-.actor.active {
-  transform: scale(1.08);
-}
-
-.actor.dim {
-  opacity: 0.6;
-  filter: saturate(0.7);
-}
-
-.actor-name {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 999px;
-  padding: 1px 10px;
-  font-size: 0.75rem;
-  font-weight: 700;
 }
 
 .stage-overlay {
@@ -1774,41 +1747,6 @@ th {
   margin: 0;
 }
 
-.caption {
-  position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  background: rgba(30, 29, 58, 0.92);
-  color: #fff;
-  border-radius: 18px;
-  padding: 10px 14px;
-  min-height: 62px;
-}
-
-.caption strong {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--soleil);
-}
-
-.caption strong em {
-  font-style: normal;
-  font-weight: 400;
-  color: #d9d8f5;
-  margin-left: 6px;
-}
-
-.caption p {
-  margin: 2px 0 0;
-  line-height: 1.4;
-}
-
-.caption.narr p {
-  font-style: italic;
-  text-align: center;
-}
-
 .cartoon-bar {
   flex-basis: 100%;
 }
@@ -1821,29 +1759,6 @@ th {
 @keyframes talk {
   50% {
     transform: scale(1.1, 1.9);
-  }
-}
-
-@media (max-width: 520px) {
-  .stage {
-    aspect-ratio: auto;
-    height: 340px;
-    min-height: 0;
-  }
-
-  .actors {
-    gap: 0;
-    bottom: 104px;
-  }
-
-  .actors .sil {
-    width: 100px;
-    height: auto;
-  }
-
-  .caption {
-    min-height: 92px;
-    font-size: 0.95rem;
   }
 }
 
@@ -2948,4 +2863,376 @@ h1 {
   margin: 0;
   font-size: 0.92rem;
   color: var(--muted);
+}
+
+/* Dessin animé : un petit film avec plans, expressions, décors et bulles */
+.stage {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--sable);
+  box-shadow: var(--shadow-md);
+  height: 460px;
+}
+
+.stage.cinema {
+  cursor: pointer;
+  background: #14143a;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cinema .cam {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  transform: scale(var(--z, 1)) translateX(var(--dx, 0%));
+  transition: transform 0.9s cubic-bezier(0.5, 0, 0.2, 1);
+}
+
+.cinema .bg {
+  position: absolute;
+  inset: 0;
+  animation: scene-in 0.8s ease both;
+}
+
+@keyframes scene-in {
+  from {
+    opacity: 0;
+    filter: brightness(0.3);
+  }
+}
+
+.cinema .actors {
+  position: absolute;
+  inset: 0;
+}
+
+.cinema .actor {
+  position: absolute;
+  bottom: 24px;
+  transform: translateX(-50%);
+  display: block;
+  z-index: 1;
+  transition: filter 0.4s ease, opacity 0.4s ease;
+  animation: actor-in 0.5s ease both;
+}
+
+.cinema .actor.active {
+  z-index: 2;
+  transform: translateX(-50%) scale(1.06);
+  transform-origin: bottom center;
+}
+
+.cinema .actor.dim {
+  filter: saturate(0.75) brightness(0.9);
+}
+
+.cinema .actor .sil {
+  height: 250px;
+  width: auto;
+  display: block;
+}
+
+@keyframes actor-in {
+  from {
+    opacity: 0;
+    margin-bottom: -14px;
+  }
+}
+
+.bar-top,
+.bar-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 26px;
+  background: #0d0d26;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.bar-top {
+  top: 0;
+}
+
+.bar-bottom {
+  bottom: 0;
+}
+
+.bubble,
+.narr-box {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  width: min(88%, 440px);
+  margin: 0;
+  animation: bubble-in 0.28s ease-out both;
+}
+
+.bubble {
+  top: 38px;
+  transform: translateX(-50%);
+  background: #fff;
+  color: var(--ink, #1e1d3a);
+  border: 3px solid #1e1d3a;
+  border-radius: 22px;
+  padding: 8px 14px 10px;
+  box-shadow: 0 4px 0 rgba(30, 29, 58, 0.18);
+}
+
+.bubble.below {
+  top: auto;
+  bottom: 38px;
+}
+
+.bubble strong {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--indigo, #3d3bd9);
+}
+
+.bubble p {
+  margin: 2px 0 0;
+  font-size: 1rem;
+  line-height: 1.38;
+  font-weight: 600;
+  min-height: 2.7em;
+}
+
+.bubble::after {
+  content: "";
+  position: absolute;
+  left: var(--tail, 50%);
+  bottom: -15px;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-right: 3px solid #1e1d3a;
+  border-bottom: 3px solid #1e1d3a;
+  transform: translateX(-50%) rotate(45deg) skew(12deg, 12deg);
+  border-bottom-right-radius: 4px;
+}
+
+.bubble.below::after {
+  bottom: auto;
+  top: -15px;
+  transform: translateX(-50%) rotate(225deg) skew(12deg, 12deg);
+}
+
+.bubble.mood-peur {
+  animation: bubble-in 0.28s ease-out both, shiver 0.5s ease-in-out 0.3s 2;
+  border-style: dashed;
+}
+
+.bubble.mood-surpris {
+  animation: bubble-pop 0.34s cubic-bezier(0.3, 1.6, 0.5, 1) both;
+}
+
+.bubble.mood-colere {
+  border-color: #c23b3b;
+}
+
+.bubble.mood-triste {
+  background: #eef3ff;
+}
+
+.bubble.mood-joie {
+  background: #fffbe8;
+}
+
+.bubble.mood-pensif,
+.bubble.mood-gene {
+  border-radius: 34px;
+  background: #fafaff;
+}
+
+.bubble.mood-pensif::after,
+.bubble.mood-gene::after {
+  width: 12px;
+  height: 12px;
+  border: 3px solid #1e1d3a;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  bottom: -22px;
+  box-shadow: 8px 12px 0 -3px #fff, 8px 12px 0 0 #1e1d3a;
+}
+
+.bubble.below.mood-pensif::after,
+.bubble.below.mood-gene::after {
+  bottom: auto;
+  top: -22px;
+  box-shadow: 8px -12px 0 -3px #fff, 8px -12px 0 0 #1e1d3a;
+}
+
+.narr-box {
+  top: 38px;
+  transform: translateX(-50%);
+  background: #ffe08a;
+  color: #1e1d3a;
+  border: 3px solid #1e1d3a;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  min-height: 3.2em;
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    margin-top: 8px;
+  }
+}
+
+@keyframes bubble-pop {
+  from {
+    opacity: 0;
+    scale: 0.7;
+  }
+}
+
+@keyframes shiver {
+  25% {
+    translate: -3px 0;
+  }
+  75% {
+    translate: 3px 0;
+  }
+}
+
+.title-card {
+  background: rgba(20, 20, 58, 0.92);
+  color: #fff;
+  z-index: 5;
+}
+
+.title-card .eyebrow,
+.title-card .recap {
+  color: #d9d8f5;
+}
+
+.title-card h2 {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.cinema .stage-overlay.end {
+  z-index: 5;
+}
+
+.sil-eyes {
+  transform-origin: 60px 37px;
+  animation: blink 5s infinite;
+}
+
+@keyframes blink {
+  0%,
+  94%,
+  100% {
+    transform: scaleY(1);
+  }
+  97% {
+    transform: scaleY(0.1);
+  }
+}
+
+.sil-tear {
+  animation: tear 2.4s ease-in infinite;
+}
+
+@keyframes tear {
+  0% {
+    opacity: 0;
+    translate: 0 -2px;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 9px;
+  }
+}
+
+.drift {
+  animation: drift 26s linear infinite alternate;
+}
+
+@keyframes drift {
+  to {
+    translate: 60px 0;
+  }
+}
+
+.twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.series-head {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+  margin: 14px 0 6px;
+}
+
+.series-head h2,
+.series-head p {
+  margin: 0;
+}
+
+.ep-num {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--sable-soft);
+  border: 1px solid var(--beige);
+  font-weight: 700;
+}
+
+.next-episode {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.next-episode .teaser {
+  margin: 0;
+  font-weight: 600;
+}
+
+@media (min-width: 720px) {
+  .stage {
+    height: 520px;
+  }
+
+  .cinema .actor .sil {
+    height: 290px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema .cam,
+  .cinema .bg,
+  .bubble,
+  .narr-box,
+  .sil-eyes,
+  .sil-tear,
+  .drift,
+  .twinkle,
+  .cinema .actor {
+    animation: none;
+    transition: none;
+  }
 }

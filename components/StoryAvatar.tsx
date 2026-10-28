@@ -1,8 +1,8 @@
-import Silhouette from "@/components/Silhouette";
+import Silhouette, { type Mood } from "@/components/Silhouette";
 import { speakerInfo, voieOf, type Speaker } from "@/lib/stories";
 
 // Portrait d'un personnage, ou une pastille neutre pour la narration.
-export default function StoryAvatar({ who, size = 44, talking = false }: { who: Speaker; size?: number; talking?: boolean }) {
+export default function StoryAvatar({ who, size = 44, talking = false, mood }: { who: Speaker; size?: number; talking?: boolean; mood?: Mood }) {
   const voie = voieOf(who);
   if (!voie) {
     return (
@@ -11,5 +11,5 @@ export default function StoryAvatar({ who, size = 44, talking = false }: { who: 
       </span>
     );
   }
-  return <Silhouette voie={voie} size={size} bust talking={talking} />;
+  return <Silhouette voie={voie} size={size} bust talking={talking} mood={mood} />;
 }

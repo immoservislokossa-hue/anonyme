@@ -5,11 +5,41 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Decor from "@/components/Decor";
 import Icon from "@/components/Icon";
 import Silhouette from "@/components/Silhouette";
-import { readingTime, speakerInfo, voieOf, type Speaker, type Story } from "@/lib/stories";
+import {
+  SEASON,
+  SERIES_TITLE,
+  readingTime,
+  speakerInfo,
+  stageScenes,
+  voieOf,
+  type Shot,
+  type Speaker,
+  type Story,
+} from "@/lib/stories";
 
-const TYPE_MS = 28;
+const TYPE_MS = 26;
 
-// Format « dessin animé » : les personnages parlent à tour de rôle dans un décor, avec sous-titres.
+// Position horizontale (en %) des personnages selon leur nombre.
+function slotsFor(present: Speaker[]): Record<string, number> {
+  const spots = present.length === 1 ? [50] : present.length === 2 ? [30, 70] : [18, 50, 82];
+  const out: Record<string, number> = {};
+  present.forEach((who, i) => {
+    out[who] = spots[i] ?? 50;
+  });
+  return out;
+}
+
+// Réglage de la caméra : zoom et décalage pour garder le personnage qui parle dans le cadre.
+function camera(shot: Shot, x: number): { z: number; dx: number; sx: number } {
+  if (shot === "gros") return { z: 1.55, dx: 50 - x, sx: 50 };
+  if (shot === "duo") {
+    const dx = (50 - x) * 0.35;
+    return { z: 1.08, dx, sx: 50 + 1.08 * (x + dx - 50) };
+  }
+  return { z: 1, dx: 0, sx: x };
+}
+
+// Format « dessin animé » : un petit film. Plans qui changent, expressions, décors, bulles de bande dessinée.
 // La lecture est automatique ; la voix de l'appareil est facultative.
 export default function StoryCartoon({ story, onDone }: { story: Story; onDone: () => void }) {
   const [index, setIndex] = useState(0);
@@ -19,14 +49,13 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
   const [voice, setVoice] = useState(false);
   const [voiceOk, setVoiceOk] = useState(false);
   const timer = useRef<number | undefined>(undefined);
+  const stageRef = useRef<HTMLDivElement>(null);
 
-  const total = story.scenes.length;
+  const staged = useMemo(() => stageScenes(story), [story]);
+  const total = staged.length;
   const finished = index >= total;
-  const scene = story.scenes[Math.min(index, total - 1)];
-  const cast = useMemo(
-    () => (["fallone", "afi", "chimene"] as Speaker[]).filter((who) => story.cast.includes(who)),
-    [story.cast],
-  );
+  const shot = staged[Math.min(index, total - 1)];
+  const scene = shot.scene;
 
   useEffect(() => {
     setVoiceOk("speechSynthesis" in window);
@@ -42,7 +71,7 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
 
   const next = useCallback(() => setIndex((i) => Math.min(total, i + 1)), [total]);
 
-  // Apparition progressive du texte.
+  // Apparition progressive du texte dans la bulle.
   useEffect(() => {
     if (!started || finished) return;
     setTyped(0);
@@ -84,6 +113,7 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
   }, [index, started, playing, finished, voice, scene.text, next]);
 
   function start() {
+    stageRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
     setStarted(true);
     setPlaying(true);
     setIndex(0);
@@ -94,53 +124,91 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
     setPlaying(true);
   }
 
-  const speaking = started && !finished && scene.who !== "narrateur" && typed < scene.text.length ? scene.who : null;
-  const active = !finished && scene.who !== "narrateur" ? scene.who : null;
+  // Toucher l'écran : finir la phrase, puis passer à la suivante.
+  function tap() {
+    if (!started || finished) return;
+    if (typed < scene.text.length) setTyped(scene.text.length);
+    else next();
+  }
+
+  const slots = slotsFor(shot.present);
+  const speakerX = scene.who === "narrateur" ? 50 : (slots[scene.who] ?? 50);
+  const cam = camera(scene.who === "narrateur" ? "large" : shot.shot, speakerX);
+  const talking = started && !finished && scene.who !== "narrateur" && typed < scene.text.length ? scene.who : null;
   const info = speakerInfo(scene.who);
+  const bubbleBelow = shot.shot === "gros" && scene.who !== "narrateur";
+  const tail = Math.max(12, Math.min(88, ((cam.sx - 7) / 86) * 100));
+  const mood = scene.mood ?? "neutre";
 
   return (
     <section className="story-cartoon" aria-label={`Dessin animé : ${story.titre}`}>
-      <div className={`stage decor-${story.decor}`}>
-        <Decor name={story.decor} />
+      <div className="stage cinema" ref={stageRef} onClick={tap}>
+        <div
+          className="cam"
+          style={{ ["--z" as string]: cam.z, ["--dx" as string]: `${cam.dx}%` }}
+        >
+          <div className="bg" key={shot.decor}>
+            <Decor name={shot.decor} />
+          </div>
 
-        <div className="actors">
-          {cast.map((who) => {
-            const voie = voieOf(who);
-            if (!voie) return null;
-            return (
-              <div key={who} className={`actor${active === who ? " active" : ""}${active && active !== who ? " dim" : ""}`}>
-                <Silhouette voie={voie} size={190} framed={false} talking={speaking === who} />
-                <span className="actor-name">{speakerInfo(who).name}</span>
-              </div>
-            );
-          })}
+          <div className="actors">
+            {shot.present.map((who) => {
+              const voie = voieOf(who);
+              if (!voie) return null;
+              const isSpeaker = !finished && scene.who === who;
+              const face = isSpeaker ? scene.mood : (scene.others ?? undefined);
+              return (
+                <div
+                  key={who}
+                  className={`actor${isSpeaker ? " active" : ""}${!isSpeaker && scene.who !== "narrateur" ? " dim" : ""}`}
+                  style={{ left: `${slots[who]}%` }}
+                >
+                  <Silhouette voie={voie} size={230} framed={false} talking={talking === who} mood={started ? face : "neutre"} />
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        {!started && (
-          <div className="stage-overlay">
-            <h2>{story.titre}</h2>
-            <p>{story.accroche}</p>
-            <button type="button" className="btn indigo big" onClick={start}>
-              <Icon name="send" size={20} />
-              Lancer le dessin animé
-            </button>
-          </div>
+        <div className="bar-top" aria-hidden="true" />
+        <div className="bar-bottom" aria-hidden="true" />
+
+        {started && !finished && scene.who === "narrateur" && (
+          <p className="narr-box" key={index} aria-live="polite">
+            {scene.text.slice(0, typed)}
+          </p>
         )}
 
-        {started && !finished && (
-          <div className={`caption${scene.who === "narrateur" ? " narr" : ""}`} aria-live="polite">
-            {scene.who !== "narrateur" && (
-              <strong>
-                {info.name}
-                <em>{info.role}</em>
-              </strong>
-            )}
+        {started && !finished && scene.who !== "narrateur" && (
+          <div
+            className={`bubble mood-${mood}${bubbleBelow ? " below" : ""}`}
+            key={index}
+            style={{ ["--tail" as string]: `${tail}%` }}
+            aria-live="polite"
+          >
+            <strong>{info.name}</strong>
             <p>{scene.text.slice(0, typed)}</p>
           </div>
         )}
 
+        {!started && (
+          <div className="stage-overlay title-card">
+            <p className="eyebrow">
+              {SERIES_TITLE} · Saison {SEASON}
+            </p>
+            <h2>
+              Épisode {story.episode} · {story.titre}
+            </h2>
+            <p className="recap">{story.resume}</p>
+            <button type="button" className="btn indigo big" onClick={(e) => { e.stopPropagation(); start(); }}>
+              <Icon name="send" size={20} />
+              Lancer l&apos;épisode
+            </button>
+          </div>
+        )}
+
         {finished && (
-          <div className="stage-overlay end">
+          <div className="stage-overlay end" onClick={(e) => e.stopPropagation()}>
             <p className="eyebrow">À retenir</p>
             <h2>{story.lecon}</h2>
             <div className="row">

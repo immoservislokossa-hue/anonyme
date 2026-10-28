@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useFormat } from "@/components/useFormat";
 import { useProgress } from "@/components/useProgress";
-import { FORMATS, stories } from "@/lib/stories";
+import { FORMATS, SEASON, SERIES_TITLE, stories } from "@/lib/stories";
 
 // Un seul choix, une fois : la façon préférée de vivre les histoires. Ensuite, chaque histoire s'ouvre dans ce format.
 export default function StoriesHub() {
@@ -12,10 +12,12 @@ export default function StoriesHub() {
   const { progress } = useProgress();
   const [changing, setChanging] = useState(false);
   const current = FORMATS.find((item) => item.id === format);
+  const resume = stories.find((story) => !progress.chroniclesRead.includes(`histoire-${story.id}`));
+  const started = progress.chroniclesRead.some((id) => id.startsWith("histoire-"));
   const picking = ready && (!current || changing);
 
   return (
-    <section aria-label="Histoires" className="stories-hub" id="format">
+    <section aria-label="La série" className="stories-hub" id="format">
       {picking ? (
         <div className="format-ask">
           <h2>Quel format préfères-tu ?</h2>
@@ -49,12 +51,26 @@ export default function StoriesHub() {
         )
       )}
 
+      <div className="series-head">
+        <p className="eyebrow">Saison {SEASON}</p>
+        <h2>{SERIES_TITLE}</h2>
+        <p>Trois amies, la vie de tous les jours, des questions qu&apos;on se pose vraiment.</p>
+        {resume && (
+          <Link className="btn indigo" href={`/histoires/${resume.id}`}>
+            {started ? "Continuer" : "Commencer"} · Épisode {resume.episode}
+          </Link>
+        )}
+      </div>
+
       <ul className="story-rows">
         {stories.map((story) => {
           const done = progress.chroniclesRead.includes(`histoire-${story.id}`);
           return (
             <li key={story.id}>
               <Link href={`/histoires/${story.id}`} className="story-row">
+                <span className="ep-num" aria-hidden="true">
+                  {story.episode}
+                </span>
                 <span className="story-row-body">
                   <strong>{story.titre}</strong>
                   <span>{story.accroche}</span>

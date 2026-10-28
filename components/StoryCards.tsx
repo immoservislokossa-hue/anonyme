@@ -82,7 +82,7 @@ export default function StoryCards({ story, onDone, onSwitch }: { story: Story; 
             ) : (
               <>
                 <span className="speaker">
-                  <StoryAvatar who={scene.who} size={84} />
+                  <StoryAvatar who={scene.who} size={84} mood={scene.mood} />
                   <span>
                     <strong>{speakerInfo(scene.who).name}</strong>
                     <em>{speakerInfo(scene.who).role}</em>

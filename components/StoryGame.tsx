@@ -60,7 +60,7 @@ export default function StoryGame({ story, onDone }: { story: Story; onDone: () 
 
         <div className="msg bot pop-in" key={current}>
           <span className="avatar">
-            <StoryAvatar who={node.who} size={38} />
+            <StoryAvatar who={node.who} size={38} mood={node.mood} />
           </span>
           <div className="col">
             <p className="who-name">{speakerInfo(node.who).name}</p>
