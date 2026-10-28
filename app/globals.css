@@ -1584,84 +1584,6 @@ th {
   margin: 0;
 }
 
-.seg-bar {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 12px;
-}
-
-.seg-bar span {
-  flex: 1;
-  height: 4px;
-  border-radius: 4px;
-  background: var(--beige);
-}
-
-.seg-bar span.on {
-  background: var(--indigo);
-}
-
-.card-stage {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.card-face {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  justify-content: center;
-  min-height: 330px;
-  padding: 24px 20px;
-  border: none;
-  border-radius: 28px;
-  background: var(--sable);
-  color: var(--text);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  animation: rise 0.25s ease-out;
-}
-
-.card-face .speaker {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.card-face .speaker strong,
-.card-face .speaker em {
-  display: block;
-}
-
-.card-face .speaker em {
-  font-style: normal;
-  color: var(--muted);
-}
-
-.said {
-  font-size: 1.3rem;
-  line-height: 1.45;
-  font-weight: 600;
-}
-
-.narration {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  font-style: italic;
-  color: var(--muted);
-  text-align: center;
-}
-
-.tap-hint {
-  margin-top: auto;
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-align: center;
-}
-
 .story-controls,
 .cartoon-controls {
   display: flex;
@@ -2889,6 +2811,10 @@ h1 {
   transition: transform 0.9s cubic-bezier(0.5, 0, 0.2, 1);
 }
 
+.cinema .bgcam {
+  transform: scale(var(--z, 1));
+}
+
 .cinema .bg {
   position: absolute;
   inset: 0;
@@ -3235,4 +3161,204 @@ h1 {
     animation: none;
     transition: none;
   }
+}
+
+/* Histoire en images : une discussion de groupe */
+.story-chat {
+  display: grid;
+  gap: 12px;
+}
+
+.chat-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 18px;
+  background: var(--sable-soft);
+  border: 1px solid var(--beige);
+}
+
+.chat-head strong,
+.chat-head span {
+  display: block;
+}
+
+.chat-head span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.chat-faces {
+  display: flex;
+}
+
+.chat-faces .sil {
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-left: -10px;
+}
+
+.chat-faces .sil:first-child {
+  margin-left: 0;
+}
+
+.chat-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 340px;
+  max-height: 56dvh;
+  overflow-y: auto;
+  padding: 12px 4px;
+}
+
+.chat-msg {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 88%;
+  animation: rise 0.25s ease-out;
+}
+
+.chat-msg.mine {
+  flex-direction: row-reverse;
+  align-self: flex-end;
+}
+
+.chat-msg .sil {
+  border-radius: 50%;
+  flex: none;
+}
+
+.chat-bubble {
+  display: grid;
+  gap: 2px;
+  padding: 8px 12px;
+  border-radius: 18px 18px 18px 6px;
+  background: var(--sable);
+  line-height: 1.4;
+}
+
+.chat-msg.mine .chat-bubble {
+  border-radius: 18px 18px 6px 18px;
+}
+
+.chat-bubble strong {
+  font-size: 0.75rem;
+}
+
+.who-afi .chat-bubble {
+  background: #d9f4ef;
+}
+
+.who-afi .chat-bubble strong {
+  color: #007a6b;
+}
+
+.who-fallone .chat-bubble {
+  background: #e4e3fb;
+}
+
+.who-fallone .chat-bubble strong {
+  color: #4240c2;
+}
+
+.who-chimene .chat-bubble {
+  background: #fff1cf;
+}
+
+.who-chimene .chat-bubble strong {
+  color: #a56a00;
+}
+
+.chat-system {
+  align-self: center;
+  max-width: 92%;
+  margin: 2px 0;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--sable);
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
+  animation: rise 0.25s ease-out;
+}
+
+.chat-bubble.typing {
+  display: flex;
+  gap: 4px;
+  padding: 12px 14px;
+}
+
+.chat-bubble.typing i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: dot 1s ease-in-out infinite;
+}
+
+.chat-bubble.typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.chat-bubble.typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes dot {
+  50% {
+    opacity: 0.3;
+    translate: 0 -3px;
+  }
+}
+
+/* Dessin animé en plein écran */
+.story-cartoon.immersive {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #0d0d26;
+  padding-top: env(safe-area-inset-top);
+}
+
+.story-cartoon.immersive .stage {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.story-cartoon.immersive .actor .sil {
+  height: min(40dvh, 340px);
+}
+
+.story-cartoon.immersive .cartoon-controls {
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: #0d0d26;
+  justify-content: center;
+}
+
+.cinema-close {
+  position: absolute;
+  top: 34px;
+  right: 10px;
+  z-index: 6;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(13, 13, 38, 0.65);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
 }

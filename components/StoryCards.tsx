@@ -1,113 +1,137 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
 import StoryAvatar from "@/components/StoryAvatar";
-import { readingTime, speakerInfo, type Story } from "@/lib/stories";
+import { readingTime, speakerInfo, type Speaker, type Story } from "@/lib/stories";
 
-// Format « en images » : une réplique par carte, comme des stories. Tap ou boutons pour avancer.
+const TYPING_MS = 1300;
+
+// Format « en images » : une discussion de groupe. Les messages arrivent un par un, avec « est en train d'écrire… ».
 export default function StoryCards({ story, onDone, onSwitch }: { story: Story; onDone: () => void; onSwitch: () => void }) {
-  const [index, setIndex] = useState(0);
+  const [shown, setShown] = useState(1);
+  const [typing, setTyping] = useState(false);
   const [auto, setAuto] = useState(true);
   const [voice, setVoice] = useState(false);
+  const thread = useRef<HTMLDivElement>(null);
   const total = story.scenes.length;
-  const atEnd = index >= total;
+  const atEnd = shown >= total;
+  const people = (["fallone", "afi", "chimene"] as Speaker[]).filter((who) => story.cast.includes(who));
 
   useEffect(() => {
     if (atEnd) onDone();
   }, [atEnd, onDone]);
 
+  // Le fil descend tout seul à chaque nouveau message.
   useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      if (event.key === "ArrowRight") setIndex((i) => Math.min(total, i + 1));
-      if (event.key === "ArrowLeft") setIndex((i) => Math.max(0, i - 1));
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [total]);
+    const box = thread.current;
+    if (box) box.scrollTo({ top: box.scrollHeight, behavior: "smooth" });
+  }, [shown, typing, atEnd]);
 
-  const scene = story.scenes[Math.min(index, total - 1)];
-
-  // Lecture automatique : la carte suivante arrive toute seule, avec la voix si elle est activée.
-  // Toucher la carte ou les boutons reste possible à tout moment et relance le délai.
+  // Lecture automatique : le prochain personnage « écrit », puis son message arrive.
   useEffect(() => {
     if (!auto || atEnd) return;
+    const last = story.scenes[shown - 1];
+    const upcoming = story.scenes[shown];
+    const reading = readingTime(last.text);
+    const typingTime = upcoming.who === "narrateur" ? 0 : TYPING_MS;
     let timer = 0;
-    const advance = () => setIndex((i) => Math.min(total, i + 1));
-    const reading = readingTime(scene.text);
+    let synth: SpeechSynthesis | null = null;
+
+    const startTyping = () => {
+      if (typingTime > 0) setTyping(true);
+      timer = window.setTimeout(() => {
+        setTyping(false);
+        setShown((n) => Math.min(total, n + 1));
+      }, typingTime);
+    };
+
     if (voice && "speechSynthesis" in window) {
-      const synth = window.speechSynthesis;
+      synth = window.speechSynthesis;
       synth.cancel();
-      const utterance = new SpeechSynthesisUtterance(scene.text);
+      const utterance = new SpeechSynthesisUtterance(last.text);
       utterance.lang = "fr-FR";
       utterance.rate = 0.95;
       utterance.onend = () => {
-        window.clearTimeout(timer);
-        timer = window.setTimeout(advance, 600);
+        timer = window.setTimeout(startTyping, 400);
       };
       utterance.onerror = () => {
-        window.clearTimeout(timer);
-        timer = window.setTimeout(advance, reading);
+        timer = window.setTimeout(startTyping, reading);
       };
       synth.speak(utterance);
-      timer = window.setTimeout(advance, reading * 2.2);
+      timer = window.setTimeout(startTyping, reading * 2.2);
     } else {
-      timer = window.setTimeout(advance, reading);
+      timer = window.setTimeout(startTyping, reading);
     }
     return () => {
       window.clearTimeout(timer);
-      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+      setTyping(false);
+      synth?.cancel();
     };
-  }, [auto, voice, atEnd, index, scene.text, total]);
+  }, [auto, voice, atEnd, shown, story.scenes, total]);
+
+  const next = () => {
+    setTyping(false);
+    setShown((n) => Math.min(total, n + 1));
+  };
+
+  const typist = !atEnd && typing ? story.scenes[shown].who : null;
 
   return (
-    <section className="story-cards" aria-label={`Histoire en images : ${story.titre}`}>
-      <div className="seg-bar" aria-hidden="true">
-        {Array.from({ length: total + 1 }, (_, i) => (
-          <span key={i} className={i <= index ? "on" : ""} />
-        ))}
+    <section className="story-chat" aria-label={`Histoire en discussion : ${story.titre}`}>
+      <header className="chat-head">
+        <div className="chat-faces" aria-hidden="true">
+          {people.map((who) => (
+            <StoryAvatar key={who} who={who} size={34} />
+          ))}
+        </div>
+        <div>
+          <strong>{story.titre}</strong>
+          <span>{people.map((who) => speakerInfo(who).name).join(", ")} · en ligne</span>
+        </div>
+      </header>
+
+      <div className="chat-thread" role="log" aria-live="polite" ref={thread}>
+        {story.scenes.slice(0, shown).map((scene, i) =>
+          scene.who === "narrateur" ? (
+            <p key={i} className="chat-system">
+              {scene.text}
+            </p>
+          ) : (
+            <div key={i} className={`chat-msg who-${scene.who}${scene.who === "afi" ? " mine" : ""}`}>
+              <StoryAvatar who={scene.who} size={34} mood={scene.mood} />
+              <div className="chat-bubble">
+                <strong>{speakerInfo(scene.who).name}</strong>
+                <span>{scene.text}</span>
+              </div>
+            </div>
+          ),
+        )}
+        {typist && typist !== "narrateur" && (
+          <div className={`chat-msg who-${typist}${typist === "afi" ? " mine" : ""}`}>
+            <StoryAvatar who={typist} size={34} />
+            <div className="chat-bubble typing" aria-label={`${speakerInfo(typist).name} écrit`}>
+              <i />
+              <i />
+              <i />
+            </div>
+          </div>
+        )}
       </div>
 
       {!atEnd ? (
-        <div className="card-stage">
-          <button
-            type="button"
-            className="card-face"
-            onClick={() => setIndex((i) => Math.min(total, i + 1))}
-            aria-label="Carte suivante"
-          >
-            {scene.who === "narrateur" ? (
-              <span className="narration">{scene.text}</span>
-            ) : (
-              <>
-                <span className="speaker">
-                  <StoryAvatar who={scene.who} size={84} mood={scene.mood} />
-                  <span>
-                    <strong>{speakerInfo(scene.who).name}</strong>
-                    <em>{speakerInfo(scene.who).role}</em>
-                  </span>
-                </span>
-                <span className="said">{scene.text}</span>
-              </>
-            )}
-            <span className="tap-hint">Touchez pour continuer</span>
+        <div className="story-controls">
+          <button type="button" className={`chip-btn${auto ? " on" : ""}`} onClick={() => setAuto((v) => !v)} aria-pressed={auto}>
+            {auto ? "Pause" : "Lecture auto"}
           </button>
-          <div className="story-controls">
-            <button type="button" className="chip-btn" onClick={() => setIndex((i) => Math.max(0, i - 1))} disabled={index === 0}>
-              Précédent
-            </button>
-            <button type="button" className={`chip-btn${auto ? " on" : ""}`} onClick={() => setAuto((v) => !v)} aria-pressed={auto}>
-              {auto ? "Pause" : "Lecture auto"}
-            </button>
-            <button type="button" className={`chip-btn${voice ? " on" : ""}`} onClick={() => setVoice((v) => !v)} aria-pressed={voice}>
-              <Icon name="speaker" size={18} />
-              {voice ? "Voix activée" : "Voix"}
-            </button>
-            <button type="button" className="btn indigo" onClick={() => setIndex((i) => Math.min(total, i + 1))}>
-              Suivant
-            </button>
-          </div>
+          <button type="button" className={`chip-btn${voice ? " on" : ""}`} onClick={() => setVoice((v) => !v)} aria-pressed={voice}>
+            <Icon name="speaker" size={18} />
+            {voice ? "Voix activée" : "Voix"}
+          </button>
+          <button type="button" className="btn indigo" onClick={next}>
+            Suivant
+          </button>
         </div>
       ) : (
         <div className="story-end panel">
@@ -118,7 +142,7 @@ export default function StoryCards({ story, onDone, onSwitch }: { story: Story; 
               <Icon name="pin" size={18} />
               {story.action.label}
             </Link>
-            <button type="button" className="btn ghost" onClick={() => setIndex(0)}>
+            <button type="button" className="btn ghost" onClick={() => setShown(1)}>
               Revoir
             </button>
             <button type="button" className="btn ghost" onClick={onSwitch}>

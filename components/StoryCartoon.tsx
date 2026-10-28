@@ -49,8 +49,7 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
   const [voice, setVoice] = useState(false);
   const [voiceOk, setVoiceOk] = useState(false);
   const timer = useRef<number | undefined>(undefined);
-  const stageRef = useRef<HTMLDivElement>(null);
-
+  
   const staged = useMemo(() => stageScenes(story), [story]);
   const total = staged.length;
   const finished = index >= total;
@@ -113,11 +112,33 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
   }, [index, started, playing, finished, voice, scene.text, next]);
 
   function start() {
-    stageRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
     setStarted(true);
     setPlaying(true);
     setIndex(0);
   }
+
+  function quit() {
+    window.clearTimeout(timer.current);
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    setStarted(false);
+    setPlaying(false);
+    setIndex(0);
+  }
+
+  // Plein écran pendant l'épisode : rien ne cache les bulles, la page ne défile plus.
+  useEffect(() => {
+    if (!started) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    function onKey(event: KeyboardEvent) {
+      if (event.key === "Escape") quit();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [started]);
 
   function replay() {
     setIndex(0);
@@ -141,16 +162,14 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
   const mood = scene.mood ?? "neutre";
 
   return (
-    <section className="story-cartoon" aria-label={`Dessin animé : ${story.titre}`}>
-      <div className="stage cinema" ref={stageRef} onClick={tap}>
-        <div
-          className="cam"
-          style={{ ["--z" as string]: cam.z, ["--dx" as string]: `${cam.dx}%` }}
-        >
+    <section className={`story-cartoon${started ? " immersive" : ""}`} aria-label={`Dessin animé : ${story.titre}`}>
+      <div className="stage cinema" onClick={tap}>
+        <div className="cam bgcam" style={{ ["--z" as string]: cam.z }}>
           <div className="bg" key={shot.decor}>
             <Decor name={shot.decor} />
           </div>
-
+        </div>
+        <div className="cam" style={{ ["--z" as string]: cam.z, ["--dx" as string]: `${cam.dx}%` }}>
           <div className="actors">
             {shot.present.map((who) => {
               const voie = voieOf(who);
@@ -170,6 +189,19 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
           </div>
         </div>
 
+        {started && (
+          <button
+            type="button"
+            className="cinema-close"
+            aria-label="Quitter l'épisode"
+            onClick={(e) => {
+              e.stopPropagation();
+              quit();
+            }}
+          >
+            ✕
+          </button>
+        )}
         <div className="bar-top" aria-hidden="true" />
         <div className="bar-bottom" aria-hidden="true" />
 
