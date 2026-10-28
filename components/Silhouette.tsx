@@ -149,8 +149,8 @@ function Eye({ kind, gx, gy, right }: { kind: EyeKind; gx: number; gy: number; r
           <ellipse
             cx={52 + dx}
             cy={38.4 + gy}
-            rx={kind === "ronds" ? 4.1 : 3.7}
-            ry={kind === "ronds" ? 5.2 : kind === "plisses" ? 3.6 : 4.8}
+            rx={kind === "ronds" ? 3.8 : 3.3}
+            ry={kind === "ronds" ? 4.9 : kind === "plisses" ? 3.3 : 4.4}
             fill={EYE_DARK}
           />
           <ellipse cx={52 + dx} cy={40.6 + gy} rx="2.7" ry="2" fill="#7b4a30" opacity="0.55" />
@@ -169,8 +169,6 @@ function Face({ c, smile = 1, mood }: { c: Palette; smile?: number; mood?: Mood 
   const f = features(mood, c, smile);
   return (
     <>
-      <rect x="54" y="50" width="12" height="16" rx="5" fill={c.skin} />
-      <path d="M53 56 Q60 62 67 56 L67 60 Q60 66 53 60 Z" fill={c.skinDark} opacity="0.55" />
       <ellipse cx="43.4" cy="40" rx="2.8" ry="3.8" fill={c.skin} />
       <ellipse cx="76.6" cy="40" rx="2.8" ry="3.8" fill={c.skin} />
       <path d="M43 36 C43 22 50 15 60 15 C70 15 77 22 77 36 C77 48 70 56 60 56 C50 56 43 48 43 36 Z" fill={c.skin} />
@@ -192,82 +190,115 @@ function Face({ c, smile = 1, mood }: { c: Palette; smile?: number; mood?: Mood 
   );
 }
 
-function Arm({ d, c, w = 6.4 }: { d: string; c: Palette; w?: number }) {
+const HEAD = "translate(60 27) scale(0.66) translate(-60 -38)";
+
+// Bras long et fin ; la main est un simple rond.
+function Arm({ d, c, w = 5 }: { d: string; c: Palette; w?: number }) {
   return <path d={d} stroke={c.skin} strokeWidth={w} fill="none" strokeLinecap="round" strokeLinejoin="round" />;
 }
 
 function Hand({ x, y, c }: { x: number; y: number; c: Palette }) {
-  return <circle cx={x} cy={y} r="4" fill={c.skin} />;
+  return <circle cx={x} cy={y} r="3.3" fill={c.skin} />;
 }
 
-// Afi, la grande sœur : foulard rose noué, robe en tissu imprimé, une main sur la hanche. Elle fait des gestes quand elle parle.
+function Neck({ c }: { c: Palette }) {
+  return (
+    <>
+      <rect x="56" y="36" width="8" height="12" rx="3" fill={c.skin} />
+      <path d="M56 38 Q60 43 64 38 L64 41 Q60 46 56 41 Z" fill={c.skinDark} opacity="0.5" />
+    </>
+  );
+}
+
+function Shoes({ y = 158, fill = "#2a2150" }: { y?: number; fill?: string }) {
+  return (
+    <>
+      <ellipse cx="51" cy={y} rx="7.5" ry="3" fill={fill} />
+      <ellipse cx="69" cy={y} rx="7.5" ry="3" fill={fill} />
+    </>
+  );
+}
+
+// Afi, la grande sœur : grand foulard rose noué, haut près du corps, pagne imprimé, une main sur la hanche. Elle fait des gestes quand elle parle.
 function Afi({ c, mood }: { c: Palette; mood?: Mood }) {
-  const dots: [number, number][] = [
-    [50, 86],
-    [68, 92],
-    [44, 116],
-    [60, 124],
-    [76, 116],
-    [40, 144],
-    [54, 150],
-    [70, 146],
-    [82, 150],
+  const motifs: [number, number][] = [
+    [50, 96],
+    [62, 100],
+    [71, 94],
+    [46, 118],
+    [58, 122],
+    [70, 116],
+    [42, 140],
+    [55, 144],
+    [68, 140],
+    [79, 144],
   ];
   return (
     <g className="sil-breathe">
-      <ellipse cx="50" cy="161" rx="7" ry="3" fill="#2a2150" />
-      <ellipse cx="70" cy="161" rx="7" ry="3" fill="#2a2150" />
-      <path d="M42 70 Q60 63 78 70 L75 98 Q90 124 87 158 Q60 164 33 158 Q30 124 45 98 Z" fill={c.main} />
-      <path d="M60 104 Q74 122 78 156 Q88 154 87 158 Q60 164 60 164 Z" fill={c.mainDark} opacity="0.45" />
-      {dots.map(([x, y]) => (
-        <circle key={`${x}-${y}`} cx={x} cy={y} r="2.6" fill={GOLD} />
+      <rect x="47.5" y="146" width="5" height="12" rx="2.5" fill={c.skin} />
+      <rect x="67.5" y="146" width="5" height="12" rx="2.5" fill={c.skin} />
+      <Shoes y={159} fill="#c4633f" />
+      <path d="M48 80 L72 80 Q80 112 85 152 Q60 158 35 152 Q40 112 48 80 Z" fill="#3d3bd9" />
+      <path d="M60 80 L72 80 Q80 112 85 152 Q72 155 62 155 Z" fill="#2f2db0" opacity="0.55" />
+      {motifs.map(([x, y]) => (
+        <path key={`${x}-${y}`} d={`M${x} ${y - 3.4} Q${x + 3} ${y} ${x} ${y + 3.4} Q${x - 3} ${y} ${x} ${y - 3.4} Z`} fill={GOLD} />
       ))}
-      <path d="M46 99 Q60 107 74 99" stroke={GOLD} strokeWidth="4.4" fill="none" strokeLinecap="round" />
-      <path d="M49 69 Q60 79 71 69 Q60 73 49 69 Z" fill={c.skin} />
-      <Arm d="M42.5 72 Q30 86 44 101" c={c} />
-      <Hand x={45} y={101} c={c} />
-      <g transform="translate(0 4)">
-      <Face c={c} mood={mood} />
-      <path d="M41.5 34 C37 3 83 3 78.5 34 C74 21 46 21 41.5 34 Z" fill="#ff4f95" />
-      <path d="M52 15 Q60 10 70 15" stroke="#ff8fbd" strokeWidth="2.2" fill="none" strokeLinecap="round" />
-      <path d="M43 25 Q60 18 77 25" stroke="#d92874" strokeWidth="1.4" fill="none" strokeLinecap="round" opacity="0.7" />
-      <path d="M43.5 30 Q60 22 76.5 30" stroke={GOLD} strokeWidth="2.6" fill="none" strokeLinecap="round" />
-      <path d="M72 13 L92 5 L90 23 Z" fill="#ff4f95" />
-      <path d="M72 13 L90 23 L75 25 Z" fill="#d92874" />
+      <path d="M35 150 Q60 156 85 150" stroke={GOLD} strokeWidth="2.2" fill="none" />
+      <path d="M44 46 Q60 41 76 46 L74 62 Q72 72 71 80 L49 80 Q48 72 46 62 Z" fill={c.main} />
+      <path d="M60 44 L76 46 L74 62 Q72 72 71 80 L60 80 Z" fill={c.mainDark} opacity="0.4" />
+      <path d="M48 79 L72 79 L72 83 L48 83 Z" fill={GOLD} />
+      <Neck c={c} />
+      <path d="M53 45 Q60 56 67 45 Q60 49 53 45 Z" fill={c.skin} />
+      <ellipse cx="44" cy="49" rx="5" ry="5.4" fill={c.main} />
+      <ellipse cx="76" cy="49" rx="5" ry="5.4" fill={c.main} />
+      <Arm d="M44 51 Q31 68 49 82" c={c} />
+      <Hand x={50} y={82} c={c} />
+      <g transform={HEAD}>
+        <Face c={c} mood={mood} />
+        <path d="M41.5 34 C36 -2 84 -2 78.5 34 C74 17 46 17 41.5 34 Z" fill="#ff4f95" />
+        <path d="M50 10 Q60 3 71 10" stroke="#ff9cc4" strokeWidth="2.4" fill="none" strokeLinecap="round" />
+        <path d="M42 22 Q60 13 78 22" stroke="#d92874" strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
+        <path d="M43 30 Q60 21 77 30" stroke={GOLD} strokeWidth="2.8" fill="none" strokeLinecap="round" />
+        <path d="M70 8 L96 -4 L92 22 Z" fill="#ff4f95" />
+        <path d="M70 8 L92 22 L74 24 Z" fill="#d92874" />
       </g>
       <g className="sil-wave">
-        <Arm d="M77.5 72 Q92 88 91 110" c={c} />
-        <Hand x={91} y={111} c={c} />
+        <Arm d="M76 51 Q88 68 85 92" c={c} />
+        <Hand x={85} y={93} c={c} />
       </g>
     </g>
   );
 }
 
-// Fallone, l'amie : longs cheveux noirs et brillants, robe fluide, regard doux.
+// Fallone, l'amie : longs cheveux noirs et brillants, chemisier doux, pantalon large clair.
 function Fallone({ c, mood, framed }: { c: Palette; mood?: Mood; framed: boolean }) {
   return (
     <g className="sil-breathe">
-      <ellipse cx="50" cy="161" rx="7" ry="3" fill="#2a2150" />
-      <ellipse cx="70" cy="161" rx="7" ry="3" fill="#2a2150" />
-      <path transform="translate(0 4)" d="M41 28 C36 4 84 4 79 28 C88 48 88 78 82 98 L70 96 L69 62 L51 62 L50 96 L38 98 C32 78 32 48 41 28 Z" fill={c.hair} />
-      <path d="M41 70 Q60 63 79 70 L76 99 Q93 125 90 158 Q60 164 30 158 Q27 125 44 99 Z" fill={c.main} />
-      <path d="M60 104 Q76 124 80 156 Q90 154 90 158 Q60 164 60 164 Z" fill={c.mainDark} opacity="0.45" />
-      <path d="M44 100 Q60 108 76 100" stroke={c.second} strokeWidth="5" fill="none" strokeLinecap="round" />
-      <path d="M48 69 Q60 82 72 69 Q60 73 48 69 Z" fill={c.skin} />
-      <ellipse cx="42" cy="74" rx="6" ry="6.4" fill={c.main} />
-      <ellipse cx="78" cy="74" rx="6" ry="6.4" fill={c.main} />
-      <Arm d="M41 76 Q33 92 39 110" c={c} />
-      <Hand x={39.4} y={111} c={c} />
-      <Arm d="M79 76 Q87 92 81 110" c={c} />
-      <Hand x={80.6} y={111} c={c} />
+      <g transform={HEAD}>
+        <path d="M41 30 C36 2 84 2 79 30 C90 52 90 84 82 104 L70 100 L69 62 L51 62 L50 100 L38 104 C30 84 30 52 41 30 Z" fill={c.hair} />
+      </g>
+      <Shoes y={158} fill="#caa985" />
+      <path d="M47 80 L73 80 L81 156 L62 156 L60 104 L58 156 L39 156 Z" fill="#f1e3cb" />
+      <path d="M60 80 L73 80 L81 156 L62 156 L60 104 Z" fill="#d9c6a6" opacity="0.6" />
+      <path d="M44 46 Q60 41 76 46 L75 66 Q75 76 73 82 L47 82 Q45 76 45 66 Z" fill={c.main} />
+      <path d="M60 44 L76 46 L75 66 Q75 76 73 82 L60 82 Z" fill={c.mainDark} opacity="0.4" />
+      <path d="M47 80 L73 80 L73 84 L47 84 Z" fill={GOLD} />
+      <Neck c={c} />
+      <path d="M54 45 Q60 54 66 45 Q60 49 54 45 Z" fill={c.skin} />
+      <ellipse cx="44" cy="49" rx="5" ry="5.4" fill={c.main} />
+      <ellipse cx="76" cy="49" rx="5" ry="5.4" fill={c.main} />
+      <Arm d="M43 52 Q35 70 41 90" c={c} />
+      <Hand x={41.4} y={91} c={c} />
+      <Arm d="M77 52 Q85 70 79 90" c={c} />
+      <Hand x={78.6} y={91} c={c} />
       <g className="sil-sway">
-        <g transform="translate(0 4)">
-        <Face c={c} mood={mood} />
-        <path d="M43 36 C42 18 52 12 61 14 C72 16 78 24 77 36 C75 28 69 21 60 20 C52 21 46 27 43 36 Z" fill={c.hair} />
-        <path d="M43 34 C41 46 42 58 40 70 C39 80 40 90 42 98 L49 98 C47 86 47.6 74 49 60 C50 50 47 42 43 34 Z" fill={c.hair} />
-        <path d="M77 34 C79 46 78 58 80 70 C81 80 80 90 78 98 L71 98 C73 86 72.4 74 71 60 C70 50 73 42 77 34 Z" fill={c.hair} />
-        <path d="M50 17 C58 12 68 14 73 21" stroke={c.hairLight} strokeWidth="2.2" fill="none" strokeLinecap="round" />
-        <path d="M41.4 52 C41 64 42 78 43 90 M78.6 52 C79 64 78 78 77 90" stroke={c.hairLight} strokeWidth="1.4" fill="none" strokeLinecap="round" opacity="0.7" />
+        <g transform={HEAD}>
+          <Face c={c} mood={mood} />
+          <path d="M43 36 C42 18 52 12 61 14 C72 16 78 24 77 36 C75 28 69 21 60 20 C52 21 46 27 43 36 Z" fill={c.hair} />
+          <path d="M43 34 C41 48 42 62 38 76 C36 86 38 96 41 104 L50 102 C47 90 48 76 49 62 C50 50 47 42 43 34 Z" fill={c.hair} />
+          <path d="M77 34 C79 48 78 62 82 76 C84 86 82 96 79 104 L70 102 C73 90 72 76 71 62 C70 50 73 42 77 34 Z" fill={c.hair} />
+          <path d="M50 17 C58 12 68 14 73 21" stroke={c.hairLight} strokeWidth="2.4" fill="none" strokeLinecap="round" />
+          <path d="M41 56 C40 70 41 84 43 96 M79 56 C80 70 79 84 77 96" stroke={c.hairLight} strokeWidth="1.5" fill="none" strokeLinecap="round" opacity="0.7" />
         </g>
       </g>
       {framed && <path className="sil-heart" d="M96 30 C90 24 84 30 90 36 L96 42 L102 36 C108 30 102 24 96 30 Z" fill="#ff4f95" />}
@@ -275,7 +306,7 @@ function Fallone({ c, mood, framed }: { c: Palette; mood?: Mood; framed: boolean
   );
 }
 
-// Chimène, la sœur : cheveux bouclés avec un bandeau et une fleur, tenue décontractée, grand sourire.
+// Chimène, la petite sœur : plus petite, cheveux bouclés avec un bandeau et une fleur, t-shirt, jupe et baskets.
 function Chimene({ c, mood, framed }: { c: Palette; mood?: Mood; framed: boolean }) {
   const rays = Array.from({ length: 10 }, (_, i) => i * 36);
   const curls: [number, number, number][] = [
@@ -298,32 +329,39 @@ function Chimene({ c, mood, framed }: { c: Palette; mood?: Mood; framed: boolean
         </g>
       )}
       <g className="sil-bounce">
-        <ellipse cx="50" cy="161" rx="8" ry="3" fill="#2a2150" />
-        <ellipse cx="70" cy="161" rx="8" ry="3" fill="#2a2150" />
-        <path d="M43 104 L77 104 Q92 128 88 158 L66 158 L60 124 L54 158 L32 158 Q28 128 43 104 Z" fill={c.second} />
-        <path d="M60 124 L66 158 L88 158 Q92 128 77 104 L60 104 Z" fill={c.secondDark} opacity="0.45" />
-        <path d="M41 70 Q60 63 79 70 L80 102 L40 102 Z" fill={c.main} />
-        <path d="M60 66 L79 70 L80 102 L60 102 Z" fill={c.mainDark} opacity="0.35" />
-        <path d="M50 69 Q60 77 70 69 Q60 71 50 69 Z" fill={c.skin} />
-        <Arm d="M42 72 Q31 92 37 112" c={c} />
-        <Hand x={37.4} y={113} c={c} />
-        <g className="sil-wave">
-          <Arm d="M78 72 Q89 92 83 112" c={c} />
-          <Hand x={82.6} y={113} c={c} />
-        </g>
-        <g transform="translate(0 4)">
-        {curls.map(([x, y, r]) => (
-          <circle key={`${x}-${y}`} cx={x} cy={y} r={r} fill={c.hair} />
-        ))}
-        <Face c={c} smile={1.6} mood={mood} />
-        <path d="M43 33 C44 20 76 20 77 33 C71 27 49 27 43 33 Z" fill={c.hair} />
-        <path d="M44 27.6 Q60 19 76 27.6" stroke="#ff4f95" strokeWidth="3.2" fill="none" strokeLinecap="round" />
-        <g transform="translate(79 14)">
-          {[0, 72, 144, 216, 288].map((angle) => (
-            <ellipse key={angle} cx="0" cy="-5" rx="3.3" ry="5" fill="#ff4f95" transform={`rotate(${angle})`} />
-          ))}
-          <circle r="2.9" fill={GOLD} />
-        </g>
+        <g transform="translate(60 160) scale(0.93) translate(-60 -160)">
+          <rect x="47" y="108" width="7" height="46" rx="3.5" fill={c.skin} />
+          <rect x="66" y="108" width="7" height="46" rx="3.5" fill={c.skin} />
+          <path d="M44 150 L56 150 L56 158 Q50 161 42 158 Z M64 150 L76 150 L78 158 Q70 161 64 158 Z" fill="#fff" />
+          <path d="M42 156 L56 156 M64 156 L78 156" stroke="#ff4f95" strokeWidth="1.8" />
+          <path d="M44 74 L76 74 L84 110 L36 110 Z" fill={c.second} />
+          <path d="M60 74 L76 74 L84 110 L60 110 Z" fill={c.secondDark} opacity="0.45" />
+          <path d="M45 46 Q60 41 75 46 L78 76 L42 76 Z" fill={c.main} />
+          <path d="M60 44 L75 46 L78 76 L60 76 Z" fill={c.mainDark} opacity="0.35" />
+          <Neck c={c} />
+          <path d="M54 45 Q60 53 66 45 Q60 48 54 45 Z" fill={c.skin} />
+          <ellipse cx="44" cy="49" rx="5.5" ry="5.6" fill={c.main} />
+          <ellipse cx="76" cy="49" rx="5.5" ry="5.6" fill={c.main} />
+          <Arm d="M43 52 Q34 72 40 92" c={c} />
+          <Hand x={40.4} y={93} c={c} />
+          <g className="sil-wave">
+            <Arm d="M77 52 Q86 72 80 92" c={c} />
+            <Hand x={79.6} y={93} c={c} />
+          </g>
+          <g transform={HEAD}>
+            {curls.map(([x, y, r]) => (
+              <circle key={`${x}-${y}`} cx={x} cy={y} r={r} fill={c.hair} />
+            ))}
+            <Face c={c} smile={1.6} mood={mood} />
+            <path d="M43 33 C44 20 76 20 77 33 C71 27 49 27 43 33 Z" fill={c.hair} />
+            <path d="M44 27.6 Q60 19 76 27.6" stroke="#ff4f95" strokeWidth="3.2" fill="none" strokeLinecap="round" />
+            <g transform="translate(79 14)">
+              {[0, 72, 144, 216, 288].map((angle) => (
+                <ellipse key={angle} cx="0" cy="-5" rx="3.3" ry="5" fill="#ff4f95" transform={`rotate(${angle})`} />
+              ))}
+              <circle r="2.9" fill={GOLD} />
+            </g>
+          </g>
         </g>
       </g>
     </>
@@ -347,21 +385,21 @@ export default function Silhouette({
 }) {
   const c = PALETTES[voie];
   const persona = personaFor(voie);
-  const viewBox = bust ? "8 8 104 100" : "0 0 120 170";
+  const viewBox = bust ? "34 8 52 50" : "0 0 120 170";
   const width = bust ? size : (size * 120) / 170;
 
   return (
     <svg
       className={`sil sil-${voie}${talking ? " talking" : ""}${bust ? " bust" : ""}`}
       width={width}
-      height={bust ? (size * 100) / 104 : size}
+      height={bust ? (size * 50) / 52 : size}
       viewBox={viewBox}
       role="img"
       aria-label={`${persona.name}, ${persona.role}`}
     >
       {framed && !bust && <circle cx="60" cy="92" r="66" fill={c.bg} />}
-      {framed && bust && <rect x="8" y="8" width="104" height="100" fill={c.bg} />}
-      {!bust && <ellipse cx="60" cy="163" rx="30" ry="4.5" fill={INK} opacity="0.12" />}
+      {framed && bust && <rect x="34" y="8" width="52" height="50" fill={c.bg} />}
+      {!bust && <ellipse cx="60" cy="162" rx="26" ry="4" fill={INK} opacity="0.12" />}
       {voie === "sexuelle" && <Afi c={c} mood={mood} />}
       {voie === "mentale" && <Fallone c={c} mood={mood} framed={framed} />}
       {voie === "bien-etre" && <Chimene c={c} mood={mood} framed={framed} />}
