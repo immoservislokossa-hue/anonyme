@@ -213,7 +213,7 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
 
         {started && !finished && scene.who !== "narrateur" && (
           <div
-            className={`bubble mood-${mood}${bubbleBelow ? " below" : ""}`}
+            className={`toon-bubble mood-${mood}${bubbleBelow ? " below" : ""}`}
             key={index}
             style={{ ["--tail" as string]: `${tail}%` }}
             aria-live="polite"

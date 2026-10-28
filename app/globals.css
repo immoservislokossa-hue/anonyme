@@ -2885,7 +2885,7 @@ h1 {
   bottom: 0;
 }
 
-.bubble,
+.toon-bubble,
 .narr-box {
   position: absolute;
   z-index: 4;
@@ -2895,7 +2895,7 @@ h1 {
   animation: bubble-in 0.28s ease-out both;
 }
 
-.bubble {
+.toon-bubble {
   top: 38px;
   transform: translateX(-50%);
   background: #fff;
@@ -2906,19 +2906,19 @@ h1 {
   box-shadow: 0 4px 0 rgba(30, 29, 58, 0.18);
 }
 
-.bubble.below {
+.toon-bubble.below {
   top: auto;
   bottom: 38px;
 }
 
-.bubble strong {
+.toon-bubble strong {
   display: block;
   font-size: 0.78rem;
   letter-spacing: 0.02em;
   color: var(--indigo, #3d3bd9);
 }
 
-.bubble p {
+.toon-bubble p {
   margin: 2px 0 0;
   font-size: 1rem;
   line-height: 1.38;
@@ -2926,7 +2926,7 @@ h1 {
   min-height: 2.7em;
 }
 
-.bubble::after {
+.toon-bubble::after {
   content: "";
   position: absolute;
   left: var(--tail, 50%);
@@ -2940,41 +2940,41 @@ h1 {
   border-bottom-right-radius: 4px;
 }
 
-.bubble.below::after {
+.toon-bubble.below::after {
   bottom: auto;
   top: -15px;
   transform: translateX(-50%) rotate(225deg) skew(12deg, 12deg);
 }
 
-.bubble.mood-peur {
+.toon-bubble.mood-peur {
   animation: bubble-in 0.28s ease-out both, shiver 0.5s ease-in-out 0.3s 2;
   border-style: dashed;
 }
 
-.bubble.mood-surpris {
+.toon-bubble.mood-surpris {
   animation: bubble-pop 0.34s cubic-bezier(0.3, 1.6, 0.5, 1) both;
 }
 
-.bubble.mood-colere {
+.toon-bubble.mood-colere {
   border-color: #c23b3b;
 }
 
-.bubble.mood-triste {
+.toon-bubble.mood-triste {
   background: #eef3ff;
 }
 
-.bubble.mood-joie {
+.toon-bubble.mood-joie {
   background: #fffbe8;
 }
 
-.bubble.mood-pensif,
-.bubble.mood-gene {
+.toon-bubble.mood-pensif,
+.toon-bubble.mood-gene {
   border-radius: 34px;
   background: #fafaff;
 }
 
-.bubble.mood-pensif::after,
-.bubble.mood-gene::after {
+.toon-bubble.mood-pensif::after,
+.toon-bubble.mood-gene::after {
   width: 12px;
   height: 12px;
   border: 3px solid #1e1d3a;
@@ -2984,8 +2984,8 @@ h1 {
   box-shadow: 8px 12px 0 -3px #fff, 8px 12px 0 0 #1e1d3a;
 }
 
-.bubble.below.mood-pensif::after,
-.bubble.below.mood-gene::after {
+.toon-bubble.below.mood-pensif::after,
+.toon-bubble.below.mood-gene::after {
   bottom: auto;
   top: -22px;
   box-shadow: 8px -12px 0 -3px #fff, 8px -12px 0 0 #1e1d3a;
@@ -3151,7 +3151,7 @@ h1 {
 @media (prefers-reduced-motion: reduce) {
   .cinema .cam,
   .cinema .bg,
-  .bubble,
+  .toon-bubble,
   .narr-box,
   .sil-eyes,
   .sil-tear,
