@@ -50,3 +50,10 @@ test("les questions courantes retrouvent la bonne fiche", () => {
   assert.equal(retrieve("la pilule d'urgence", 1, "sexuelle")[0]?.id, "contraception-urgence");
   assert.equal(retrieve("l'injection tous les combien de mois", 1, "sexuelle")[0]?.id, "injectable-usage");
 });
+
+test("le public cible est défini une seule fois et reste cohérent", async () => {
+  const { TARGET_AGE, TARGET_LABEL } = await import("../lib/brand");
+  assert.equal(TARGET_AGE.min, 15);
+  assert.equal(TARGET_AGE.max, 24);
+  assert.equal(TARGET_LABEL, "Pour les 15 à 24 ans");
+});

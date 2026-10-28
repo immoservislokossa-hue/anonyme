@@ -1,5 +1,11 @@
 # Décisions et limites
 
+## Public cible
+- **15 à 24 ans**, filles et garçons (définition `TARGET_AGE` dans `lib/brand.ts`, affichée sur la page d'accueil).
+- 13 et 14 ans : le corps, les règles et à qui parler. Pas de conseil de méthode : renvoi vers un adulte de confiance ou un professionnel.
+- Plus de 24 ans : bienvenus, mais ce n'est pas la cible.
+- À vérifier avant toute affirmation sur les mineurs : l'âge légal de consentement et d'accès à la contraception dans chaque pays.
+
 ## Sécurité
 - Les urgences et les demandes de diagnostic sont traitées avant le modèle, par des règles fixes (`lib/safety.ts`).
   La réponse est toujours la même et relue. Les règles sont testées avec `evals/`.

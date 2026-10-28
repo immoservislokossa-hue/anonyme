@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Icon, { type IconName } from "@/components/Icon";
 import OtherChannels from "@/components/OtherChannels";
+import { TARGET_LABEL } from "@/lib/brand";
 
 const entries: { href: string; icon: IconName; title: string; text: string }[] = [
   { href: "/chat?voie=sexuelle", icon: "chat", title: "Parler", text: "Pose ta question à Afi." },
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <section className="home-hero">
+        <p className="home-age">{TARGET_LABEL}</p>
         <h1>Choisir sa contraception, sans honte et sans jugement.</h1>
         <p>Des réponses claires, personne ne voit ce que tu fais ici.</p>
         <Link href="/chat?voie=sexuelle" className="btn indigo big" data-tour="ask">

@@ -11,6 +11,9 @@ export const PERSONAS: Record<"sexuelle" | "mentale" | "bien-etre", Persona> = {
 export function personaFor(voie?: "sexuelle" | "mentale" | "bien-etre"): Persona {
   return PERSONAS[voie ?? "sexuelle"];
 }
+// Public cible : une seule définition, reprise sur la page d'accueil, dans les dossiers de candidature et les tests.
+export const TARGET_AGE = { min: 15, max: 24 } as const;
+export const TARGET_LABEL = `Pour les ${TARGET_AGE.min} à ${TARGET_AGE.max} ans`;
 export const TEAM_NAMES = "Afi, Fallone et Chimène";
 export const TAGLINE = "Planification familiale pour les jeunes : choisir sa méthode et trouver un centre près de chez soi, sans jugement";
 export const ALSO = "Alviosa accompagne aussi la santé mentale et le bien-être.";
