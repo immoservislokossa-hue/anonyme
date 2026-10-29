@@ -23,7 +23,7 @@ export default function MyPlanCard() {
         : "";
 
   return (
-    <Link href="/apprendre?onglet=outils&outil=plan" className={`plan-card${alert ? " alert" : soon ? " soon" : ""}`}>
+    <Link href="/outils/plan" className={`plan-card${alert ? " alert" : soon ? " soon" : ""}`}>
       <span className="plan-kicker">Ma contraception</span>
       <strong>{name}</strong>
       <span>{line}</span>

@@ -57,7 +57,7 @@ function FitCard({ fit }: { fit: Fit }) {
           <li key={reason}>{reason}</li>
         ))}
       </ul>
-      <Link className="link-btn" href={`/apprendre?onglet=methodes#${fit.id}`}>
+      <Link className="link-btn" href={`/methodes/${fit.id}`}>
         Tout savoir sur cette méthode
       </Link>
     </li>

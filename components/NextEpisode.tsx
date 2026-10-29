@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AskAfi from "@/components/AskAfi";
 import { SEASON, nextEpisode, type Story } from "@/lib/stories";
 
 // Fin d'épisode : le teaser donne envie de voir la suite, ou la saison se termine.
@@ -13,9 +14,7 @@ export default function NextEpisode({ story }: { story: Story }) {
           Épisode {next.episode} · {next.titre}
         </Link>
       ) : (
-        <Link className="btn primary" href="/chat">
-          Poser une question
-        </Link>
+        <AskAfi className="btn primary">Poser une question à Afi</AskAfi>
       )}
     </aside>
   );

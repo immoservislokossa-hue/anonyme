@@ -47,7 +47,24 @@ const EXAMPLES: Record<Voie | "tout", string[]> = {
   ],
 };
 
-export default function Chat({ voie }: { voie?: Voie }) {
+export type AutoMessage = { id: number; text: string };
+
+// Chat d'Afi. `embedded` : dans la bulle, sur toutes les pages. `tips` et `context` : adaptés à la page où l'on est.
+export default function Chat({
+  voie,
+  embedded = false,
+  tips,
+  context,
+  greeting,
+  auto,
+}: {
+  voie?: Voie;
+  embedded?: boolean;
+  tips?: string[];
+  context?: string;
+  greeting?: string;
+  auto?: AutoMessage | null;
+}) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -70,6 +87,8 @@ export default function Chat({ voie }: { voie?: Voie }) {
     area.style.height = `${Math.min(area.scrollHeight, 140)}px`;
   }, [input]);
 
+  const lastAuto = useRef<number | null>(null);
+
   async function send(text: string) {
     const question = text.trim();
     if (!question || loading) return;
@@ -86,6 +105,7 @@ export default function Chat({ voie }: { voie?: Voie }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           voie,
+          context,
           messages: next.map(({ role, content }) => ({ role, content })),
         }),
       });
@@ -123,11 +143,18 @@ export default function Chat({ voie }: { voie?: Voie }) {
     }
   }
 
-  const examples = EXAMPLES[voie ?? "tout"];
+  useEffect(() => {
+    if (!auto || auto.id === lastAuto.current) return;
+    lastAuto.current = auto.id;
+    void send(auto.text);
+    // send dépend de l'état courant : on ne relance que pour un nouveau message automatique.
+  }, [auto]);
+
+  const examples = tips && tips.length > 0 ? tips : EXAMPLES[voie ?? "tout"];
   const persona = personaFor(voie);
 
   return (
-    <section aria-label="Conversation" className="chat">
+    <section aria-label="Conversation" className={`chat${embedded ? " embedded" : ""}`}>
       <div className="chat-log" aria-live="polite">
         {messages.length === 0 && (
           <div className="msg bot">
@@ -136,7 +163,11 @@ export default function Chat({ voie }: { voie?: Voie }) {
             </span>
             <div className="intro">
               <p>
-                Bonjour, je suis <strong>{persona.name}</strong>, {persona.role}. Pose ta question avec tes mots, ou choisis une idée :
+                {greeting ?? (
+                  <>
+                    Bonjour, je suis <strong>{persona.name}</strong>, {persona.role}. Pose ta question avec tes mots, ou choisis une idée :
+                  </>
+                )}
               </p>
               <div className="examples">
                 {examples.map((example) => (

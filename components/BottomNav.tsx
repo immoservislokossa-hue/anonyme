@@ -6,7 +6,7 @@ import { isActive } from "@/lib/nav";
 import Icon, { type IconName } from "@/components/Icon";
 
 const items: { href: string; label: string; icon: IconName; tour: string }[] = [
-  { href: "/chat", label: "Parler", icon: "chat", tour: "tab-chat" },
+  { href: "/", label: "Accueil", icon: "home", tour: "tab-home" },
   { href: "/apprendre", label: "Apprendre", icon: "book", tour: "tab-learn" },
   { href: "/orientation", label: "Centres", icon: "pin", tour: "tab-centres" },
 ];

@@ -83,3 +83,5 @@ Fichier à compléter : `lib/guides.ts` (champ `translations`), et enregistremen
 2. Le bouton rose en haut sert pour les urgences.
 
 À retraduire : l'étape « Apprendre » de la visite guidée a changé (« tous les sujets, les méthodes et la série »). La version yoruba actuelle parle encore des méthodes et des histoires.
+
+À retraduire aussi : l'étape « Afi » de la visite guidée parle maintenant d'une bulle présente sur toutes les pages.

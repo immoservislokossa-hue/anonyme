@@ -1,3 +1,4 @@
+import AfiBubble from "@/components/AfiBubble";
 import { QuickExitKey } from "@/components/QuickExit";
 import type { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </footer>
         </div>
         <QuickExitKey />
+        <AfiBubble />
         <BottomNav />
         <RegisterSW />
       </body>

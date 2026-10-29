@@ -3,6 +3,7 @@ import { isVoie } from "@/lib/domain";
 import { generateReply, pickProvider } from "@/lib/llm";
 import { record } from "@/lib/metrics";
 import { buildContext, systemPromptFor } from "@/lib/prompt";
+import { contextHint, isContextKey } from "@/lib/afi";
 import { checkRate } from "@/lib/rateLimit";
 import { retrieve, type KnowledgeEntry } from "@/lib/retrieve";
 import { triage } from "@/lib/safety";
@@ -58,7 +59,8 @@ export async function POST(request: Request) {
   }
 
   const body: unknown = await request.json().catch(() => null);
-  const payload = body as { messages?: unknown; voie?: unknown } | null;
+  const payload = body as { messages?: unknown; voie?: unknown; context?: unknown } | null;
+  const context = isContextKey(payload?.context) ? payload.context : undefined;
   const messages = payload?.messages;
   const voie = isVoie(payload?.voie) ? payload.voie : undefined;
 
@@ -87,7 +89,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ reply: decision.reply, kind: "diagnosis", sources: [] });
   }
 
-  const entries = retrieve(lastUser.content, 3, voie);
+  // Sur une page précise (« La pilule »), une question courte (« et les effets ? ») s'appuie sur le titre de la page.
+  const hint = contextHint(context);
+  let entries = retrieve(lastUser.content, 3, voie);
+  if (hint && (entries.length === 0 || lastUser.content.length <= 60)) {
+    const withPage = retrieve(`${lastUser.content} ${hint}`, 3, voie);
+    if (withPage.length > 0) entries = withPage;
+  }
   record("question", entries[0]?.theme);
 
   // Sans fournisseur configuré, on répond avec la base seule.

@@ -28,8 +28,8 @@ export const TOUR: Guide = {
   id: "global",
   title: "Bienvenue sur Alviosa",
   steps: [
-    { fr: "Quand tu appuies ici, tu parles à Afi. Tu peux écrire, ou dire ta question à voix haute.", target: T.chat },
-    { fr: "Quand tu appuies ici, tu apprends : tous les sujets, les méthodes et la série.", target: T.learn },
+    { fr: "Quand tu appuies sur cette bulle, tu parles à Afi, sur toutes les pages. Tu peux écrire, ou dire ta question à voix haute.", target: T.chat },
+    { fr: "Quand tu appuies ici, tu apprends : les sujets, les outils, les méthodes et la série.", target: T.learn },
     { fr: "Quand tu appuies ici, tu trouves un centre de santé ou une pharmacie près de toi.", target: T.centres },
     { fr: "Ce bouton rose, c'est pour les urgences. Appuie dessus si tu es en danger, ou après un rapport sans protection.", target: T.urgent },
     { fr: "Ce bouton haut-parleur répète cette explication.", target: T.audio },

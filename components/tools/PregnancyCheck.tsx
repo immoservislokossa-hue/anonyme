@@ -78,7 +78,7 @@ export default function PregnancyCheck() {
       </details>
 
       <div className="row">
-        <Link className="chip-btn" href="/apprendre?sujet=grossesse">
+        <Link className="chip-btn" href="/sujets/grossesse">
           <Icon name="heart" size={18} />
           Retard de règles et grossesse
         </Link>

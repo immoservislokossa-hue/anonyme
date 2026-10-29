@@ -1,11 +1,12 @@
 import Link from "next/link";
+import AskAfi from "@/components/AskAfi";
 import Icon from "@/components/Icon";
 import MyPlanCard from "@/components/MyPlanCard";
 import OtherChannels from "@/components/OtherChannels";
 import ShareButton from "@/components/ShareButton";
 import Silhouette from "@/components/Silhouette";
 import { TARGET_LABEL } from "@/lib/brand";
-import { HOME_NEEDS } from "@/lib/topics";
+import { HOME_NEEDS } from "@/lib/home";
 
 export default function HomePage() {
   return (
@@ -19,10 +20,7 @@ export default function HomePage() {
         <p className="home-age">{TARGET_LABEL}</p>
         <h1>Choisir sa contraception, sans honte et sans jugement.</h1>
         <p>Des réponses claires, personne ne voit ce que tu fais ici.</p>
-        <Link href="/chat?voie=sexuelle" className="btn primary big" data-tour="ask">
-          <Icon name="chat" size={20} />
-          Poser ma question
-        </Link>
+        <AskAfi className="btn primary big">Poser ma question à Afi</AskAfi>
       </section>
 
       <MyPlanCard />

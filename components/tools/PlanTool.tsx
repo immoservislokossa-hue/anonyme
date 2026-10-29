@@ -94,7 +94,7 @@ export default function PlanTool() {
           <button type="button" className="btn primary" onClick={create}>
             Créer mon plan
           </button>
-          <Link className="btn ghost" href="/apprendre?onglet=outils&outil=choisir">
+          <Link className="btn ghost" href="/outils/choisir">
             Je n'ai pas encore de méthode
           </Link>
         </div>
@@ -152,7 +152,7 @@ export default function PlanTool() {
       </label>
 
       <div className="row">
-        <Link className="chip-btn" href="/apprendre?onglet=outils&outil=souci">
+        <Link className="chip-btn" href="/outils/souci">
           <Icon name="alert" size={18} />
           J'ai un souci
         </Link>

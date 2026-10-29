@@ -82,11 +82,11 @@ export default function MethodHelp({ methods }: { methods: HelpMethod[] }) {
       </div>
 
       <div className="row">
-        <Link className="chip-btn" href="/apprendre?sujet=apres-risque">
+        <Link className="chip-btn" href="/sujets/apres-risque">
           <Icon name="alert" size={18} />
           Contraception d'urgence
         </Link>
-        <Link className="chip-btn" href="/apprendre?onglet=outils&outil=choisir">
+        <Link className="chip-btn" href="/outils/choisir">
           <Icon name="check" size={18} />
           Changer de méthode
         </Link>

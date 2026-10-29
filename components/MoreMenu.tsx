@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { leaveQuickly } from "@/components/QuickExit";
 
 const links = [
   { href: "/aide#ia", label: "Comment fonctionne l'IA" },
@@ -41,6 +42,9 @@ export default function MoreMenu() {
                 {link.label}
               </Link>
             ))}
+            <button type="button" className="more-exit" onClick={leaveQuickly}>
+              Quitter vite
+            </button>
           </nav>
         </>
       )}

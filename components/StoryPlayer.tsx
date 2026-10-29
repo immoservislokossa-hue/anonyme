@@ -40,7 +40,7 @@ export default function StoryPlayer({ story, requested }: { story: Story; reques
     <>
       <p className="format-line">
         Format : <strong>{FORMATS.find((item) => item.id === format)?.label}</strong>
-        <Link className="link-btn" href="/apprendre?onglet=serie#format">
+        <Link className="link-btn" href="/serie#format">
           Changer
         </Link>
       </p>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import AskAfi from "@/components/AskAfi";
 import { useState } from "react";
 import { channelsFrom, type ChannelId } from "@/lib/channels";
 
@@ -63,7 +64,7 @@ export default function OtherChannels() {
       </ul>
       {soon && (
         <p id="channel-soon" className="channel-note" role="status">
-          « {soon} » arrive bientôt. En attendant, <Link href="/chat?voie=sexuelle">pose ta question ici</Link>.
+          « {soon} » arrive bientôt. En attendant, <AskAfi className="link-btn">pose ta question à Afi</AskAfi>.
         </p>
       )}
     </section>

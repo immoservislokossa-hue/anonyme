@@ -67,7 +67,7 @@ export default function RiskTool() {
               <Icon name="pin" size={18} />
               Trouver une pharmacie ou un centre
             </Link>
-            <Link className="btn ghost" href="/apprendre?sujet=apres-risque">
+            <Link className="btn ghost" href="/sujets/apres-risque">
               En savoir plus
             </Link>
             {event === "force" && (
