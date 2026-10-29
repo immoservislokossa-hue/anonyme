@@ -100,7 +100,7 @@ export function topicViews(): TopicView[] {
 
 // Les trois besoins les plus fréquents, affichés en grand sur l'accueil.
 export const HOME_NEEDS: { href: string; icon: IconName; title: string; text: string; urgent?: boolean }[] = [
-  { href: "/apprendre?onglet=methodes", icon: "check", title: "Éviter une grossesse", text: "Les méthodes, pas à pas." },
+  { href: "/apprendre?onglet=outils&outil=choisir", icon: "check", title: "Choisir ma méthode", text: "Quelques questions, 2 minutes." },
   { href: "/urgence", icon: "alert", title: "J'ai pris un risque", text: "Que faire, vite.", urgent: true },
   { href: "/apprendre?sujet=grossesse", icon: "heart", title: "Retard de règles", text: "Test, grossesse, à qui parler." },
   { href: "/apprendre?sujet=ist-vih", icon: "shield", title: "IST et VIH", text: "Se protéger, se faire dépister." },

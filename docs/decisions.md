@@ -6,6 +6,15 @@
 - Plus de 24 ans : bienvenus, mais ce n'est pas la cible.
 - À vérifier avant toute affirmation sur les mineurs : l'âge légal de consentement et d'accès à la contraception dans chaque pays.
 
+## Outils tirés du guide OMS
+Quatre outils interactifs, dont les règles viennent du Guide de la planification familiale de l'OMS (2012), page par page.
+Chaque règle est écrite dans `lib/tools/` et testée dans `tests/tools.test.ts`.
+- **Choisir ma méthode** (`chooser.ts`) : p. 3 (méthodes et lieux), p. 6 (injectables), p. 11-14, p. 17 (après un accouchement), p. 18 (définitif et jeunes), p. 19 (dix problèmes de santé). Les méthodes que le guide ne détaille pas pour un problème de santé (implants, stérilet, stérilisation, vasectomie) sont toujours « à confirmer avec un professionnel ».
+- **Puis-je commencer aujourd'hui ?** (`pregnancy.ts`) : liste de contrôle de la p. 20 (un seul « oui » suffit, des signes de grossesse l'emportent).
+- **Mon cycle** (`cycle.ts`) : méthode des jours fixes, p. 14 et 26 (jours fertiles 8 à 19, cycle de 26 à 32 jours). Export calendrier (.ics) sans donnée personnelle. La date n'est mémorisée que si la personne le demande, sur son appareil.
+- **J'ai un souci avec ma méthode** : fiches de chaque méthode (oubli, retard, effets) et liste de contrôle des clients de retour (p. 28).
+- Limites : le guide date de 2012 et s'appuie sur les critères de recevabilité de 2010 de l'OMS. Les outils doivent être relus par un professionnel et mis à jour avec les recommandations nationales avant le pilote. Ils orientent, ils ne prescrivent pas.
+
 ## Sécurité
 - Les urgences et les demandes de diagnostic sont traitées avant le modèle, par des règles fixes (`lib/safety.ts`).
   La réponse est toujours la même et relue. Les règles sont testées avec `evals/`.

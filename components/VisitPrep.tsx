@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useState } from "react";
 import Checklist from "@/components/Checklist";
 import Reward from "@/components/Reward";
@@ -35,6 +36,9 @@ export default function VisitPrep() {
       <h2>Préparer ma visite</h2>
       <p className="muted" style={{ marginBottom: 12 }}>
         Coche ce qui est prêt. Cette liste reste sur ton téléphone.
+      </p>
+      <p className="muted" style={{ marginBottom: 12 }}>
+        Pas sûr(e) par où commencer ? <Link href="/apprendre?onglet=outils&outil=choisir">Fais l'outil « Choisir ma méthode »</Link>, puis copie ton résumé pour le montrer au professionnel.
       </p>
       <Checklist id="visite" steps={STEPS} />
       <button

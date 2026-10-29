@@ -2,14 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LearnTabs from "@/components/LearnTabs";
 import Methods from "@/components/Methods";
+import ToolsPanel from "@/components/tools/ToolsPanel";
+import methodesData from "@/data/methodes.json";
 import StoriesHub from "@/components/StoriesHub";
 import Topics from "@/components/Topics";
 import { TOPICS, topicViews } from "@/lib/topics";
 
 export const metadata: Metadata = { title: "Apprendre" };
 
-export default async function LearnPage({ searchParams }: { searchParams: Promise<{ onglet?: string; sujet?: string }> }) {
-  const { onglet, sujet } = await searchParams;
+const helpMethods = (methodesData as { id: string; nom: string; comment: string[]; peut_arriver: string[]; a_retenir: string[]; ou_aller: string }[]).map(
+  ({ id, nom, comment, peut_arriver, a_retenir, ou_aller }) => ({ id, nom, comment, peut_arriver, a_retenir, ou_aller }),
+);
+
+export default async function LearnPage({ searchParams }: { searchParams: Promise<{ onglet?: string; sujet?: string; outil?: string }> }) {
+  const { onglet, sujet, outil } = await searchParams;
   const open = TOPICS.some((topic) => topic.id === sujet) ? sujet : undefined;
 
   return (
@@ -20,7 +26,7 @@ export default async function LearnPage({ searchParams }: { searchParams: Promis
       </header>
 
       <LearnTabs
-        initial={open ? "sujets" : onglet}
+        initial={open ? "sujets" : outil ? "outils" : onglet}
         sujets={
           <>
             <Topics topics={topicViews()} open={open} />
@@ -38,6 +44,7 @@ export default async function LearnPage({ searchParams }: { searchParams: Promis
             </section>
           </>
         }
+        outils={<ToolsPanel methods={helpMethods} open={outil} />}
         methodes={<Methods />}
         serie={<StoriesHub />}
       />
