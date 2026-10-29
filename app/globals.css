@@ -22,7 +22,7 @@
   --shadow-sm: 0 1px 2px rgba(43, 26, 38, 0.06), 0 2px 8px rgba(43, 26, 38, 0.05);
   --shadow-md: 0 4px 12px rgba(43, 26, 38, 0.08), 0 14px 32px rgba(43, 26, 38, 0.08);
   --radius: 22px;
-  --nav-h: 64px;
+  --nav-h: 0px;
   color-scheme: light;
 }
 
@@ -1242,7 +1242,45 @@ th {
 }
 
 .desktop-nav {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.desktop-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 44px;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: var(--primary-soft);
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.desktop-nav a.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+.desktop-nav a.alert {
   display: none;
+}
+
+.desktop-nav a .nav-label {
+  display: none;
+}
+
+@media (min-width: 560px) {
+  .desktop-nav a .nav-label {
+    display: inline;
+  }
 }
 
 /* Grand écran : menu en haut, mise en page large, hero en deux colonnes */
@@ -1290,15 +1328,18 @@ th {
   }
 
   .desktop-nav {
-    display: flex;
-    gap: 4px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .desktop-nav a.alert {
+    display: inline-flex;
   }
 
   .desktop-nav a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
     padding: 9px 16px;
+    background: transparent;
+    color: var(--muted);
     border-radius: 999px;
     font-weight: 800;
     font-size: 0.95rem;
@@ -5007,4 +5048,10 @@ body:has(.story-cartoon.immersive) .afi {
 
 .hub-grid.two {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 559px) {
+  .brand span {
+    display: none;
+  }
 }

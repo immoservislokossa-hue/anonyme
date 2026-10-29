@@ -11,7 +11,7 @@ const items: { href: string; label: string; icon: IconName; tour: string }[] = [
   { href: "/urgence", label: "Urgence", icon: "alert", tour: "urgent" },
 ];
 
-// Menu du haut, visible seulement sur grand écran (la barre du bas prend le relais sur téléphone).
+// Menu du haut, visible seulement sur grand écran (sur téléphone, seules les icônes restent).
 export default function DesktopNav() {
   const pathname = usePathname();
 
@@ -23,12 +23,13 @@ export default function DesktopNav() {
           <Link
             key={item.href}
             data-tour={item.tour}
+            aria-label={item.label}
             href={item.href}
             aria-current={active ? "page" : undefined}
             className={`${active ? "active" : ""}${item.href === "/urgence" ? " alert" : ""}`}
           >
             <Icon name={item.icon} size={18} />
-            {item.label}
+            <span className="nav-label">{item.label}</span>
           </Link>
         );
       })}

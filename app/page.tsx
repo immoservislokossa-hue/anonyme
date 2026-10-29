@@ -18,8 +18,8 @@ export default function HomePage() {
           <Silhouette voie="bien-etre" size={56} bust />
         </div>
         <p className="home-age">{TARGET_LABEL}</p>
-        <h1>Choisir sa contraception, sans honte et sans jugement.</h1>
-        <p>Des réponses claires, personne ne voit ce que tu fais ici.</p>
+        <h1>Ta planification familiale, de A à Z.</h1>
+        <p>Choisir une méthode, réagir à un oubli, suivre ton cycle, te protéger des IST : tout est ici, sans honte et sans jugement. Personne ne voit ce que tu fais.</p>
         <AskAfi className="btn primary big">Poser ma question à Afi</AskAfi>
       </section>
 

@@ -3,7 +3,6 @@ import { QuickExitKey } from "@/components/QuickExit";
 import type { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
 import Link from "next/link";
-import BottomNav from "@/components/BottomNav";
 import DesktopNav from "@/components/DesktopNav";
 import AudioHelp from "@/components/AudioHelp";
 import Icon from "@/components/Icon";
@@ -84,7 +83,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         <QuickExitKey />
         <AfiBubble />
-        <BottomNav />
         <RegisterSW />
       </body>
     </html>
