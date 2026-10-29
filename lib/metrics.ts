@@ -2,7 +2,24 @@
 // Stockage en mémoire pour le prototype : les compteurs sont remis à zéro au redémarrage.
 // La phase suivante les déplacera dans Supabase, avec une table d'événements sans données personnelles.
 
-export type EventKind = "question" | "urgence" | "diagnostic" | "protocole" | "orientation";
+export type EventKind = "question" | "urgence" | "diagnostic" | "protocole" | "orientation" | UsageEvent;
+
+// Usage des outils et de la série : seulement le nom de l'événement, jamais de réponse ni d'identifiant.
+export const USAGE_EVENTS = [
+  "outil-risque",
+  "outil-choisir",
+  "outil-commencer",
+  "outil-plan",
+  "outil-cycle",
+  "outil-souci",
+  "serie-episode",
+  "partage",
+] as const;
+export type UsageEvent = (typeof USAGE_EVENTS)[number];
+
+export function isUsageEvent(value: unknown): value is UsageEvent {
+  return typeof value === "string" && (USAGE_EVENTS as readonly string[]).includes(value);
+}
 
 export type MetricEvent = {
   kind: EventKind;

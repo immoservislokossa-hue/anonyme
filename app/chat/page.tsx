@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import QuickExitButton from "@/components/QuickExit";
 import BackButton from "@/components/BackButton";
 import Chat from "@/components/Chat";
 import Silhouette from "@/components/Silhouette";
@@ -22,6 +23,7 @@ export default async function ChatPage({ searchParams }: { searchParams: Promise
           <strong>{persona.name}</strong>
           <span>{persona.role} · privé</span>
         </div>
+        <QuickExitButton className="quick-exit small" />
         <Link href="/urgence" className="chat-urgent">
           Urgence
         </Link>

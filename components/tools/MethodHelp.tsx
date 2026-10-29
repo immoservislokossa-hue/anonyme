@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Icon from "@/components/Icon";
+import { track } from "@/lib/track";
 
 export type HelpMethod = {
   id: string;
@@ -38,6 +39,9 @@ function List({ title, items }: { title: string; items: string[] }) {
 export default function MethodHelp({ methods }: { methods: HelpMethod[] }) {
   const [id, setId] = useState("");
   const method = methods.find((m) => m.id === id);
+  useEffect(() => {
+    if (method) track("outil-souci");
+  }, [method]);
 
   return (
     <div className="tool">

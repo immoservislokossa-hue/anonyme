@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { track } from "@/lib/track";
 import {
   FIRST_FERTILE_DAY,
   LAST_FERTILE_DAY,
@@ -67,6 +68,10 @@ export default function CycleTool() {
     return { day, kind: kindOfDay(day), windows };
     // La date du jour ne change pas pendant la visite.
   }, [first, length]);
+
+  useEffect(() => {
+    if (result) track("outil-cycle");
+  }, [result]);
 
   function download() {
     if (!start) return;

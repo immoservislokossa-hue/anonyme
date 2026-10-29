@@ -164,3 +164,12 @@ test("fichier calendrier : un événement par cycle, en toutes lettres, sans don
   assert.ok(ics.includes("DTEND;VALUE=DATE:20261020"));
   assert.ok(ics.includes("\r\n"));
 });
+
+import { USAGE_EVENTS, isUsageEvent } from "../lib/metrics";
+
+test("seuls des noms d'événements connus sont comptés, jamais un texte libre", () => {
+  assert.ok(USAGE_EVENTS.length >= 8);
+  assert.equal(isUsageEvent("outil-risque"), true);
+  assert.equal(isUsageEvent("ma question sur la pilule"), false);
+  assert.equal(isUsageEvent(undefined), false);
+});

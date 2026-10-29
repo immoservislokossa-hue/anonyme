@@ -9,6 +9,7 @@ import StoryCartoon from "@/components/StoryCartoon";
 import StoryGame from "@/components/StoryGame";
 import { useFormat } from "@/components/useFormat";
 import { useProgress } from "@/components/useProgress";
+import { track } from "@/lib/track";
 import { FORMATS, type Format, type Story } from "@/lib/stories";
 
 export default function StoryPlayer({ story, requested }: { story: Story; requested: Format | null }) {
@@ -27,6 +28,7 @@ export default function StoryPlayer({ story, requested }: { story: Story; reques
 
   const finish = useCallback(() => {
     setDone(true);
+    track("serie-episode");
     if (progress.chroniclesRead.includes(doneId)) return;
     update((current) =>
       current.chroniclesRead.includes(doneId) ? current : { ...current, chroniclesRead: [...current.chroniclesRead, doneId] },

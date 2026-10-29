@@ -1,3 +1,4 @@
+import { QuickExitKey } from "@/components/QuickExit";
 import type { Metadata, Viewport } from "next";
 import { Figtree } from "next/font/google";
 import Link from "next/link";
@@ -80,6 +81,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </p>
           </footer>
         </div>
+        <QuickExitKey />
         <BottomNav />
         <RegisterSW />
       </body>

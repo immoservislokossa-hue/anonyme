@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import QuickExitButton from "@/components/QuickExit";
 import LearnTabs from "@/components/LearnTabs";
 import Methods from "@/components/Methods";
 import ToolsPanel from "@/components/tools/ToolsPanel";
@@ -20,9 +21,12 @@ export default async function LearnPage({ searchParams }: { searchParams: Promis
 
   return (
     <>
-      <header>
-        <p className="eyebrow">Planification familiale et santé sexuelle</p>
-        <h1>Apprendre</h1>
+      <header className="learn-head">
+        <div>
+          <p className="eyebrow">Planification familiale et santé sexuelle</p>
+          <h1>Apprendre</h1>
+        </div>
+        <QuickExitButton />
       </header>
 
       <LearnTabs

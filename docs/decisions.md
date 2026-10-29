@@ -13,6 +13,9 @@ Chaque règle est écrite dans `lib/tools/` et testée dans `tests/tools.test.ts
 - **Puis-je commencer aujourd'hui ?** (`pregnancy.ts`) : liste de contrôle de la p. 20 (un seul « oui » suffit, des signes de grossesse l'emportent).
 - **Mon cycle** (`cycle.ts`) : méthode des jours fixes, p. 14 et 26 (jours fertiles 8 à 19, cycle de 26 à 32 jours). Export calendrier (.ics) sans donnée personnelle. La date n'est mémorisée que si la personne le demande, sur son appareil.
 - **J'ai un souci avec ma méthode** : fiches de chaque méthode (oubli, retard, effets) et liste de contrôle des clients de retour (p. 28).
+- **Après un rapport à risque** (`risk.ts`) : pilule d'urgence jusqu'à 5 jours (p. 16), violence (p. 18), oubli de pilule et injection en retard (p. 4, 6), traitement d'urgence du VIH dans les 72 heures (recommandation OMS, hors guide). Le test de grossesse « après une semaine de retard de règles » est une consigne courante, à valider.
+- **Mon plan et mes rappels** (`plan.ts`) : injections (DMPA 13 semaines, retard toléré 4 semaines ; NET-EN 8 semaines, 2 semaines), pilule, stérilet (12 ans), implants (3 à 5 ans), vasectomie (3 mois). Le plan reste dans `localStorage`. Le fichier calendrier peut ne dire que « Rappel santé » pour rester discret.
+- **Sortie rapide** : bouton « Quitter vite » et deux fois Échap, de n'importe quelle page, pour quitter le site sans trace dans l'historique de retour.
 - Limites : le guide date de 2012 et s'appuie sur les critères de recevabilité de 2010 de l'OMS. Les outils doivent être relus par un professionnel et mis à jour avec les recommandations nationales avant le pilote. Ils orientent, ils ne prescrivent pas.
 
 ## Sécurité
@@ -24,6 +27,7 @@ Chaque règle est écrite dans `lib/tools/` et testée dans `tests/tools.test.ts
 
 ## Données
 - Aucun message n'est enregistré. Les compteurs gardent le type d'événement et le thème, jamais le texte.
+- Usage des outils : `POST /api/event` n'accepte que des noms connus (`lib/metrics.ts`), une fois par visite et par événement, sans identifiant. Chaque événement est aussi écrit en JSON sur la sortie du serveur, où l'hébergeur le conserve, pour compter dans la durée avant d'avoir une base.
 - La progression est stockée dans le navigateur (`localStorage`). Elle n'est pas envoyée au serveur.
 
 ## Engagement

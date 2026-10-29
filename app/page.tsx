@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Icon from "@/components/Icon";
+import MyPlanCard from "@/components/MyPlanCard";
 import OtherChannels from "@/components/OtherChannels";
+import ShareButton from "@/components/ShareButton";
 import Silhouette from "@/components/Silhouette";
 import { TARGET_LABEL } from "@/lib/brand";
 import { HOME_NEEDS } from "@/lib/topics";
@@ -23,6 +25,8 @@ export default function HomePage() {
         </Link>
       </section>
 
+      <MyPlanCard />
+
       <section aria-labelledby="needs-title" className="home-needs-block">
         <h2 id="needs-title">Que veux-tu faire ?</h2>
         <ul className="home-needs">
@@ -41,6 +45,10 @@ export default function HomePage() {
       </section>
 
       <OtherChannels />
+
+      <div className="home-share">
+        <ShareButton label="Envoyer Alviosa à une amie" />
+      </div>
 
       <p className="home-note">
         <span>Contenu en cours de validation par des professionnels de santé.</span>

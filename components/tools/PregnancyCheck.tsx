@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Icon from "@/components/Icon";
+import { track } from "@/lib/track";
 import { PREGNANCY_QUESTIONS, PREGNANCY_SIGNS, evaluatePregnancy, type PregnancyOutcome } from "@/lib/tools/pregnancy";
 
 const MESSAGES: Record<PregnancyOutcome, { title: string; text: string; tone: "ok" | "wait" | "alert" | "idle" }> = {
@@ -30,6 +31,9 @@ export default function PregnancyCheck() {
   const [signs, setSigns] = useState(false);
   const outcome = evaluatePregnancy(answers, signs);
   const message = MESSAGES[outcome];
+  useEffect(() => {
+    if (outcome !== "incomplet") track("outil-commencer");
+  }, [outcome]);
 
   return (
     <div className="tool">

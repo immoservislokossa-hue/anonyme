@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Icon from "@/components/Icon";
+import { track } from "@/lib/track";
 import {
   CONDITIONS,
   EMPTY_ANSWERS,
@@ -72,6 +73,10 @@ export default function MethodChooser() {
   const steps = stepsFor(answers);
   const step = steps[Math.min(index, steps.length - 1)];
   const fits = useMemo(() => (step === "result" ? chooseMethods(answers) : []), [answers, step]);
+
+  useEffect(() => {
+    if (step === "result") track("outil-choisir");
+  }, [step]);
 
   function patch(next: Partial<Answers>) {
     setAnswers((current) => ({ ...current, ...next }));

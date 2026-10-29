@@ -4,16 +4,20 @@ import { useEffect, useState } from "react";
 import CycleTool from "@/components/tools/CycleTool";
 import MethodChooser from "@/components/tools/MethodChooser";
 import MethodHelp, { type HelpMethod } from "@/components/tools/MethodHelp";
+import PlanTool from "@/components/tools/PlanTool";
 import PregnancyCheck from "@/components/tools/PregnancyCheck";
+import RiskTool from "@/components/tools/RiskTool";
 import Icon, { type IconName } from "@/components/Icon";
 
-export type ToolId = "choisir" | "commencer" | "cycle" | "souci";
+export type ToolId = "risque" | "choisir" | "commencer" | "plan" | "cycle" | "souci";
 
-const TOOLS: { id: ToolId; title: string; text: string; time: string; icon: IconName }[] = [
+const TOOLS: { id: ToolId; title: string; text: string; time: string; icon: IconName; urgent?: boolean }[] = [
+  { id: "risque", title: "Après un rapport à risque", text: "Pilule d'urgence, VIH, IST : quoi faire et avant quand.", time: "1 minute", icon: "alert", urgent: true },
   { id: "choisir", title: "Choisir ma méthode", text: "Quelques questions, une liste de méthodes à discuter.", time: "2 minutes", icon: "check" },
   { id: "commencer", title: "Puis-je commencer aujourd'hui ?", text: "Être presque sûre de ne pas être enceinte.", time: "1 minute", icon: "heart" },
+  { id: "plan", title: "Mon plan et mes rappels", text: "Mes dates, et les rappels dans mon calendrier.", time: "1 minute", icon: "book" },
   { id: "cycle", title: "Mon cycle", text: "Voir mes jours fertiles (méthode des jours fixes).", time: "1 minute", icon: "sun" },
-  { id: "souci", title: "J'ai un souci avec ma méthode", text: "Oubli, retard, effets gênants, changer.", time: "1 minute", icon: "alert" },
+  { id: "souci", title: "J'ai un souci avec ma méthode", text: "Oubli, retard, effets gênants, changer.", time: "1 minute", icon: "circles" },
 ];
 
 export function parseTool(value: string | null | undefined): ToolId | null {
@@ -28,13 +32,13 @@ export default function ToolsPanel({ methods, open }: { methods: HelpMethod[]; o
 
   return (
     <div className="topics">
-      <p className="muted">Des outils pratiques, construits à partir du guide de la planification familiale de l'OMS. Ils t'aident à préparer ta visite, ils ne remplacent pas un professionnel.</p>
+      <p className="muted">Des outils pratiques, construits à partir du guide de la planification familiale de l'OMS. Ils marchent même sans connexion après une première visite, et ils ne remplacent pas un professionnel.</p>
       <ul className="topic-list">
         {TOOLS.map((tool) => {
           const isOpen = current === tool.id;
           return (
             <li key={tool.id} id={`outil-${tool.id}`}>
-              <button type="button" className="topic-head" aria-expanded={isOpen} onClick={() => setCurrent(isOpen ? null : tool.id)}>
+              <button type="button" className={`topic-head${tool.urgent ? " urgent" : ""}`} aria-expanded={isOpen} onClick={() => setCurrent(isOpen ? null : tool.id)}>
                 <span className="topic-icon">
                   <Icon name={tool.icon} size={22} />
                 </span>
@@ -50,8 +54,10 @@ export default function ToolsPanel({ methods, open }: { methods: HelpMethod[]; o
               </button>
               {isOpen && (
                 <div className="topic-body">
+                  {tool.id === "risque" && <RiskTool />}
                   {tool.id === "choisir" && <MethodChooser />}
                   {tool.id === "commencer" && <PregnancyCheck />}
+                  {tool.id === "plan" && <PlanTool />}
                   {tool.id === "cycle" && <CycleTool />}
                   {tool.id === "souci" && <MethodHelp methods={methods} />}
                 </div>
