@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 import Chat from "@/components/Chat";
 import Silhouette from "@/components/Silhouette";
-import VoieTabs from "@/components/VoieTabs";
 import { personaFor } from "@/lib/brand";
 import { isVoie } from "@/lib/domain";
 
@@ -16,13 +16,16 @@ export default async function ChatPage({ searchParams }: { searchParams: Promise
   return (
     <div className="chat-page">
       <header className="chat-bar">
+        <BackButton />
         <Silhouette voie={current ?? "sexuelle"} size={40} bust />
         <div className="chat-who">
           <strong>{persona.name}</strong>
-          <span>{persona.role} · conversation privée</span>
+          <span>{persona.role} · privé</span>
         </div>
+        <Link href="/urgence" className="chat-urgent">
+          Urgence
+        </Link>
       </header>
-      <VoieTabs current={current} basePath="/chat" />
       <Chat key={current ?? "tout"} voie={current} />
     </div>
   );

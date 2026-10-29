@@ -1816,10 +1816,14 @@ th {
 .chat-bar .back {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border: none;
   border-radius: 50%;
+  background: var(--sable);
   color: var(--text);
+  cursor: pointer;
 }
 
 .chat-bar .sil {
@@ -2652,10 +2656,14 @@ h1 {
     gap: 0;
   }
 
+  body:has(.chat-page) .topbar {
+    display: none;
+  }
+
   .chat-page {
-    height: calc(100dvh - var(--topbar-h) - 8px);
+    height: 100dvh;
     gap: 10px;
-    padding-top: 12px;
+    padding-top: calc(10px + env(safe-area-inset-top, 0px));
   }
 
   .chat-page > .chat {
