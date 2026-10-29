@@ -9,11 +9,11 @@ export default function NextEpisode({ story }: { story: Story }) {
       <p className="eyebrow">{next ? "La suite" : `Fin de la saison ${SEASON}`}</p>
       <p className="teaser">{story.teaser}</p>
       {next ? (
-        <Link className="btn indigo" href={`/histoires/${next.id}`}>
+        <Link className="btn primary" href={`/histoires/${next.id}`}>
           Épisode {next.episode} · {next.titre}
         </Link>
       ) : (
-        <Link className="btn indigo" href="/chat">
+        <Link className="btn primary" href="/chat">
           Poser une question
         </Link>
       )}

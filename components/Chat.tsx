@@ -24,13 +24,16 @@ type Message = {
 const EXAMPLES: Record<Voie | "tout", string[]> = {
   tout: [
     "Quelle méthode de contraception choisir ?",
-    "Une jeune fille non mariée peut-elle demander une méthode ?",
     "Un préservatif a craqué, que faire ?",
+    "J'ai un retard de règles, que faire ?",
+    "Comment me protéger des IST ?",
   ],
   sexuelle: [
     "Quelle méthode de contraception choisir ?",
-    "Quels sont les effets secondaires fréquents de la pilule ?",
     "Un préservatif a craqué, que faire ?",
+    "J'ai un retard de règles, que faire ?",
+    "Comment me protéger des IST ?",
+    "Une jeune fille non mariée peut-elle demander une méthode ?",
   ],
   mentale: [
     "Comment parler à quelqu'un de ce que je ressens ?",

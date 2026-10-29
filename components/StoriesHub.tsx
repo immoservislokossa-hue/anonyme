@@ -56,7 +56,7 @@ export default function StoriesHub() {
         <h2>{SERIES_TITLE}</h2>
         <p>Trois amies, la vie de tous les jours, des questions qu&apos;on se pose vraiment.</p>
         {resume && (
-          <Link className="btn indigo" href={`/histoires/${resume.id}`}>
+          <Link className="btn primary" href={`/histoires/${resume.id}`}>
             {started ? "Continuer" : "Commencer"} · Épisode {resume.episode}
           </Link>
         )}

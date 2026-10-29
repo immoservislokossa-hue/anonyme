@@ -134,7 +134,7 @@ export default function NearbyCentres() {
       </div>
 
       <div className="nearby-actions">
-        <button type="button" className="btn indigo" onClick={useMyPosition} disabled={busy}>
+        <button type="button" className="btn primary" onClick={useMyPosition} disabled={busy}>
           <Icon name="pin" size={20} />
           Utiliser ma position
         </button>
@@ -215,7 +215,7 @@ export default function NearbyCentres() {
                   </p>
                 )}
                 <div className="actions">
-                  <a className="btn indigo small" href={centre.itineraireUrl} target="_blank" rel="noopener noreferrer">
+                  <a className="btn primary small" href={centre.itineraireUrl} target="_blank" rel="noopener noreferrer">
                     Itinéraire
                   </a>
                   <a className="chip-btn" href={centre.mapsUrl} target="_blank" rel="noopener noreferrer">

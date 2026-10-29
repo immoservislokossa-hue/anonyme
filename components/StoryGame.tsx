@@ -86,7 +86,7 @@ export default function StoryGame({ story, onDone }: { story: Story; onDone: () 
           <p className="eyebrow">Bravo, tu as terminé en {steps + 1} étapes</p>
           <h2>{node.lesson ?? story.lecon}</h2>
           <div className="row">
-            <Link className="btn indigo" href={story.action.href}>
+            <Link className="btn primary" href={story.action.href}>
               <Icon name="pin" size={18} />
               {story.action.label}
             </Link>

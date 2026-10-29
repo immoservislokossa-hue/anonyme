@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Crumbs({ current }: { current: string }) {
   return (
     <nav className="crumbs" aria-label="Fil d'Ariane">
-      <Link href="/apprendre">Apprendre</Link>
+      <Link href="/apprendre?onglet=serie">Apprendre</Link>
       <span aria-hidden="true">/</span>
       <span aria-current="page">{current}</span>
     </nav>

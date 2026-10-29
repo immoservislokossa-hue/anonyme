@@ -1,18 +1,6 @@
-import type { Metadata } from "next";
-import Crumbs from "@/components/Crumbs";
-import StoriesHub from "@/components/StoriesHub";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = { title: "La série" };
-
-export default function StoriesPage() {
-  return (
-    <>
-      <Crumbs current="La série" />
-      <header>
-        <h1>La série</h1>
-      </header>
-
-      <StoriesHub />
-    </>
-  );
+// Page regroupée : on garde l'ancienne adresse pour les liens déjà partagés.
+export default function Page() {
+  redirect("/apprendre?onglet=serie");
 }

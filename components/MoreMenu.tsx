@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "/ia", label: "Comment fonctionne l'IA" },
-  { href: "/consentement", label: "Confidentialité" },
+  { href: "/aide#ia", label: "Comment fonctionne l'IA" },
+  { href: "/aide#confidentialite", label: "Confidentialité" },
   { href: "/aide", label: "Aide" },
 ];
 

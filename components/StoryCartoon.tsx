@@ -232,7 +232,7 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
               Épisode {story.episode} · {story.titre}
             </h2>
             <p className="recap">{story.resume}</p>
-            <button type="button" className="btn indigo big" onClick={(e) => { e.stopPropagation(); start(); }}>
+            <button type="button" className="btn primary big" onClick={(e) => { e.stopPropagation(); start(); }}>
               <Icon name="send" size={20} />
               Lancer l&apos;épisode
             </button>
@@ -244,7 +244,7 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
             <p className="eyebrow">À retenir</p>
             <h2>{story.lecon}</h2>
             <div className="row">
-              <Link className="btn indigo" href={story.action.href}>
+              <Link className="btn primary" href={story.action.href}>
                 <Icon name="pin" size={18} />
                 {story.action.label}
               </Link>

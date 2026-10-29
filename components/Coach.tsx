@@ -185,7 +185,7 @@ export default function Coach({
         )}
 
         {waiting ? (
-          <button type="button" className="btn indigo big" onClick={() => setWaiting(false)} autoFocus>
+          <button type="button" className="btn primary big" onClick={() => setWaiting(false)} autoFocus>
             <Icon name="speaker" size={22} />
             Écouter
           </button>
@@ -198,7 +198,7 @@ export default function Coach({
               <Icon name="speaker" size={18} />
               {narrator.playing ? "Pause" : "Reprendre"}
             </button>
-            <button type="button" className="btn indigo" onClick={() => (last ? finish(true) : narrator.jump(firstLine[stepIndex + 1]))}>
+            <button type="button" className="btn primary" onClick={() => (last ? finish(true) : narrator.jump(firstLine[stepIndex + 1]))}>
               {last ? "Compris" : "Suivant"}
             </button>
           </div>

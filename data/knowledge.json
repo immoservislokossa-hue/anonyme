@@ -358,5 +358,59 @@
     "content": "Si aucune méthode régulière n'est utilisée, on peut recourir à la contraception d'urgence, jusqu'à 5 jours après. Il faut aussi être orienté vers un centre de référence pour des conseils sur les IST et le VIH/sida. Tu n'es pas responsable de ce qui t'est arrivé.",
     "source": "Guide de la planification familiale, OMS (2012), p. 18. Brouillon établi à partir de ce guide, à valider par un professionnel de santé",
     "validated": false
+  },
+  {
+    "id": "regles-cycle",
+    "voie": "sexuelle",
+    "theme": "regles",
+    "title": "Les règles et le cycle",
+    "content": "Les règles sont normales. Chaque mois, si aucune grossesse ne commence, un peu de sang sort du vagin pendant quelques jours, souvent 3 à 7. Le cycle se compte du premier jour d'une règle au premier jour de la suivante. Chez la plupart des adultes il dure entre 21 et 35 jours. Au début, il est souvent irrégulier. On utilise une serviette ou un tissu propre, qu'on change quand il est plein, et on se lave les mains. Un peu de douleur au ventre est fréquent. Il faut voir un professionnel de santé si la douleur est très forte, si les règles sont très abondantes, ou si les premières règles ne sont pas venues à 15 ans. On ne peut pas deviner à coup sûr les jours où une grossesse est possible : le moment de l'ovulation change d'un mois à l'autre.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "retard-regles",
+    "voie": "sexuelle",
+    "theme": "grossesse",
+    "title": "Un retard de règles : que faire ?",
+    "content": "Un retard de règles peut venir d'une grossesse, mais aussi du stress, d'un changement de poids, d'une maladie ou d'un changement de méthode. Si tu as eu un rapport sans protection, ou avec un problème de protection, et que tes règles ne viennent pas, fais un test de grossesse en pharmacie ou au centre de santé. Si le test est positif, ou si tu as un doute, va vite dans un centre de santé : plus on est suivie tôt, mieux c'est. Ne prends pas de produits ou de tisanes pour faire revenir les règles : ça peut être dangereux. Un professionnel peut t'écouter sans te juger et t'expliquer tes options.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "ist-prevention",
+    "voie": "sexuelle",
+    "theme": "ist",
+    "title": "Se protéger des IST",
+    "content": "Le préservatif, masculin ou féminin, utilisé à chaque rapport, est le moyen le plus efficace de se protéger des IST, dont le VIH. Parler avec son ou sa partenaire avant le rapport aide. Faire un test de dépistage est utile, surtout après un rapport sans préservatif ou quand on change de partenaire, même sans symptôme. Après un risque de VIH, un traitement d'urgence existe : il faut le commencer le plus tôt possible, dans les 3 jours (72 heures). Va vite dans un centre de santé. Une IST se soigne bien quand on la trouve tôt. On peut utiliser le préservatif avec une autre méthode de contraception pour être protégé(e) des deux.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "hpv-vaccin",
+    "voie": "sexuelle",
+    "theme": "ist",
+    "title": "Le vaccin contre le HPV",
+    "content": "Le HPV est un virus très répandu, qui se transmet par les rapports sexuels. Il peut causer un cancer du col de l'utérus, des années plus tard. Un vaccin existe : il est surtout proposé aux filles avant les premiers rapports, souvent entre 9 et 14 ans. Demande dans un centre de santé si tu peux encore te faire vacciner. Plus tard, le dépistage du col de l'utérus reste utile. Le vaccin ne remplace pas le préservatif.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "garcons",
+    "voie": "sexuelle",
+    "theme": "garcons",
+    "title": "Pour les garçons : protection et respect",
+    "content": "La planification familiale concerne aussi les garçons. Le préservatif masculin protège de la grossesse et des IST : on le met sur le sexe en érection avant tout contact, on le retire après, on le jette, et on en utilise un nouveau à chaque rapport. Tu peux parler de contraception avec ta partenaire et l'accompagner au centre si elle le souhaite. Le consentement est essentiel : un non, ou un silence, veut dire qu'on s'arrête. Si tu as une douleur, un écoulement ou une plaie, va au centre de santé : ne te soigne pas tout seul. Pour les hommes qui ne veulent plus d'enfants, il existe une méthode définitive, la vasectomie.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "relation-saine",
+    "voie": "sexuelle",
+    "theme": "relations",
+    "title": "Une relation saine ou pas ?",
+    "content": "Dans une relation saine, on se respecte, on peut dire non sans avoir peur, on décide ensemble et on se sent en sécurité. Ce ne sont pas des signes d'amour : être contrôlé(e), surveillé(e), insulté(e), éloigné(e) de ses amis, forcé(e) à un rapport, ou empêché(e) d'utiliser une méthode de contraception. Si tu te reconnais dans cela, ce n'est pas ta faute. Parle à une personne de confiance ou à un professionnel de santé. Si tu es en danger tout de suite, va dans un endroit sûr et appelle les secours.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
   }
 ]

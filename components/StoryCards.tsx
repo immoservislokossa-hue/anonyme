@@ -129,7 +129,7 @@ export default function StoryCards({ story, onDone, onSwitch }: { story: Story; 
             <Icon name="speaker" size={18} />
             {voice ? "Voix activée" : "Voix"}
           </button>
-          <button type="button" className="btn indigo" onClick={next}>
+          <button type="button" className="btn primary" onClick={next}>
             Suivant
           </button>
         </div>
@@ -138,7 +138,7 @@ export default function StoryCards({ story, onDone, onSwitch }: { story: Story; 
           <p className="eyebrow">À retenir</p>
           <h2>{story.lecon}</h2>
           <div className="row">
-            <Link className="btn indigo" href={story.action.href}>
+            <Link className="btn primary" href={story.action.href}>
               <Icon name="pin" size={18} />
               {story.action.label}
             </Link>

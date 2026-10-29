@@ -1,35 +1,29 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import LearnTabs from "@/components/LearnTabs";
+import Methods from "@/components/Methods";
+import StoriesHub from "@/components/StoriesHub";
+import Topics from "@/components/Topics";
+import { TOPICS, topicViews } from "@/lib/topics";
 
 export const metadata: Metadata = { title: "Apprendre" };
 
-const entries = [
-  { href: "/methodes", title: "Les méthodes", text: "Comprendre chaque méthode de contraception." },
-  { href: "/chroniques", title: "La série", text: "Afi, Fallone et Chimène. Un épisode à regarder, une chose à retenir." },
-];
+export default async function LearnPage({ searchParams }: { searchParams: Promise<{ onglet?: string; sujet?: string }> }) {
+  const { onglet, sujet } = await searchParams;
+  const open = TOPICS.some((topic) => topic.id === sujet) ? sujet : undefined;
 
-export default function LearnPage() {
   return (
     <>
       <header>
+        <p className="eyebrow">Planification familiale et santé sexuelle</p>
         <h1>Apprendre</h1>
       </header>
 
-      <ul className="learn-list">
-        {entries.map((entry) => (
-          <li key={entry.href}>
-            <Link href={entry.href} className="learn-card">
-              <span className="learn-body">
-                <strong>{entry.title}</strong>
-                <span>{entry.text}</span>
-              </span>
-              <svg className="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="m9 5 7 7-7 7" />
-              </svg>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <LearnTabs
+        initial={open ? "sujets" : onglet}
+        sujets={<Topics topics={topicViews()} open={open} />}
+        methodes={<Methods />}
+        serie={<StoriesHub />}
+      />
     </>
   );
 }

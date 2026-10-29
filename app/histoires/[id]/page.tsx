@@ -32,7 +32,7 @@ export default async function StoryPage({
       <Crumbs current="Histoire" />
       <header>
         <p className="eyebrow">
-          <Link href="/chroniques">Toutes les histoires</Link> · {story.duree}
+          <Link href="/apprendre?onglet=serie">Toute la série</Link> · {story.duree}
         </p>
         <h1>{story.titre}</h1>
         <p className="lede">{story.accroche}</p>

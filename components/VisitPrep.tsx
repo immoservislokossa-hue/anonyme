@@ -39,7 +39,7 @@ export default function VisitPrep() {
       <Checklist id="visite" steps={STEPS} />
       <button
         type="button"
-        className="btn indigo"
+        className="btn primary"
         style={{ marginTop: 14 }}
         onClick={finish}
         disabled={progress.visitPrepared}

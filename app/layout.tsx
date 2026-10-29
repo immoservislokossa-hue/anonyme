@@ -31,12 +31,12 @@ export const viewport: Viewport = {
   initialScale: 1,
   viewportFit: "cover",
   interactiveWidget: "resizes-content",
-  themeColor: "#3D3BD9",
+  themeColor: "#C2185B",
 };
 
 const footerLinks = [
-  { href: "/ia", label: "Comment fonctionne l'IA" },
-  { href: "/consentement", label: "Confidentialité" },
+  { href: "/aide#ia", label: "Comment fonctionne l'IA" },
+  { href: "/aide#confidentialite", label: "Confidentialité" },
   { href: "/aide", label: "Aide" },
 ];
 
