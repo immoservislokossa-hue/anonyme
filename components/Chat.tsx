@@ -10,6 +10,7 @@ import Speak from "@/components/Speak";
 import VoiceInput from "@/components/VoiceInput";
 import { useProgress } from "@/components/useProgress";
 import { personaFor } from "@/lib/brand";
+import { localReply } from "@/lib/localReply";
 import { extractChoices, toPlain } from "@/lib/richtext";
 import type { Voie } from "@/lib/domain";
 
@@ -99,6 +100,19 @@ export default function Chat({
     setLoading(true);
     setError(null);
 
+    // Sans réseau, Afi répond sur l'appareil : mêmes règles de sécurité, fiche la plus proche.
+    const answerOffline = () => {
+      const local = localReply(question, voie, context);
+      const note = local.kind === "fallback" ? "**Mode sans connexion** : voici la fiche la plus proche de ta question.\n\n" : "";
+      setMessages([...next, { role: "assistant", content: note + local.reply, kind: local.kind, sources: local.sources }]);
+    };
+
+    if (typeof navigator !== "undefined" && navigator.onLine === false) {
+      answerOffline();
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -133,6 +147,11 @@ export default function Chat({
         setReward("+10 points. Bonne question");
       }
     } catch (caught) {
+      if (caught instanceof TypeError) {
+        // Le réseau a lâché : on répond sur l'appareil plutôt que de laisser la personne sans réponse.
+        answerOffline();
+        return;
+      }
       setError(
         caught instanceof Error && caught.message.startsWith("Trop")
           ? caught.message

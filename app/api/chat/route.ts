@@ -3,9 +3,9 @@ import { isVoie } from "@/lib/domain";
 import { generateReply, pickProvider } from "@/lib/llm";
 import { record } from "@/lib/metrics";
 import { buildContext, systemPromptFor } from "@/lib/prompt";
-import { contextHint, isContextKey } from "@/lib/afi";
+import { isContextKey } from "@/lib/afi";
 import { checkRate } from "@/lib/rateLimit";
-import { retrieve, type KnowledgeEntry } from "@/lib/retrieve";
+import { fallbackReply, findEntries } from "@/lib/localReply";
 import { triage } from "@/lib/safety";
 
 export const runtime = "nodejs";
@@ -34,19 +34,6 @@ function isValidHistory(value: unknown): value is ChatMessage[] {
 function clientKey(request: Request): string {
   const forwarded = request.headers.get("x-forwarded-for");
   return forwarded?.split(",")[0]?.trim() || "inconnu";
-}
-
-// Réponse de secours sans clé API : on renvoie l'entrée la plus pertinente, telle quelle.
-function fallbackReply(entries: KnowledgeEntry[]): string {
-  if (entries.length === 0) {
-    return "Je n'ai pas trouvé d'information sur ce point. Un professionnel de santé peut t'aider.";
-  }
-  // Les rubriques du guide (« Ce que c'est : », « À retenir : »…) deviennent des titres en gras.
-  const formatted = entries[0].content.replace(
-    /\s*(Ce que c'est|Comment l'utiliser|Ce qui peut arriver|À retenir|Où aller|Mode d'emploi) :\s*/g,
-    "\n\n**$1**\n",
-  );
-  return `${formatted}\n\nInformation à vérifier avec un professionnel de santé.`;
 }
 
 export async function POST(request: Request) {
@@ -89,13 +76,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ reply: decision.reply, kind: "diagnosis", sources: [] });
   }
 
-  // Sur une page précise (« La pilule »), une question courte (« et les effets ? ») s'appuie sur le titre de la page.
-  const hint = contextHint(context);
-  let entries = retrieve(lastUser.content, 3, voie);
-  if (hint && (entries.length === 0 || lastUser.content.length <= 60)) {
-    const withPage = retrieve(`${lastUser.content} ${hint}`, 3, voie);
-    if (withPage.length > 0) entries = withPage;
-  }
+  const entries = findEntries(lastUser.content, voie, context);
   record("question", entries[0]?.theme);
 
   // Sans fournisseur configuré, on répond avec la base seule.
