@@ -190,3 +190,20 @@ test("variables Supabase : noms de l'intégration Vercel acceptés, clé service
   assert.equal(createStore({ ...vercel, SUPABASE_SERVICE_ROLE_KEY: "svc" }).kind, "supabase");
   assert.equal(supabaseUrl({ SUPABASE_URL: " https://a.co ", NEXT_PUBLIC_SUPABASE_URL: "https://b.co" }), "https://a.co");
 });
+
+test("guide de démarrage : étapes, prochaine étape et validation", async () => {
+  const { onboarding, NO_FLAGS } = await import("../lib/pro/workspace");
+  const none = onboarding({ enabled: true, loggedIn: false, hasToken: false, service: null, flags: NO_FLAGS });
+  assert.equal(none.done, 0);
+  assert.equal(none.next?.id, "compte");
+  const registered = onboarding({ enabled: true, loggedIn: true, hasToken: false, service: { statut: "en-attente" }, flags: NO_FLAGS });
+  assert.equal(registered.next?.id, "validation");
+  assert.equal(registered.done, 2);
+  const valid = onboarding({ enabled: true, loggedIn: true, hasToken: false, service: { statut: "valide" }, flags: NO_FLAGS });
+  assert.equal(valid.next?.id, "carte");
+  const all = onboarding({ enabled: true, loggedIn: true, hasToken: false, service: { statut: "valide" }, flags: { carte: true, stock: true, visite: true, accueil: true } });
+  assert.equal(all.next, null);
+  assert.equal(all.done, all.total);
+  const legacy = onboarding({ enabled: false, loggedIn: false, hasToken: true, service: null, flags: NO_FLAGS });
+  assert.equal(legacy.steps[0].fait && legacy.steps[1].fait, true);
+});
