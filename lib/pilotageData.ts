@@ -4,11 +4,16 @@ import type { BilanRow, Dataset, EventRow } from "@/lib/analytics";
 import { allServices } from "@/lib/directory";
 import { getPays } from "@/lib/pays";
 import type { Review, StockSignal } from "@/lib/services";
+import { currentAccount } from "@/lib/accountSession";
 import { getStore } from "@/lib/store";
 
 export async function sessionAccess(): Promise<Access> {
   const jar = await cookies();
-  return accessFromSession(jar.get(SESSION_COOKIE)?.value);
+  const byToken = accessFromSession(jar.get(SESSION_COOKIE)?.value);
+  if (byToken === "ok") return byToken;
+  // Un compte avec le rôle « pilotage » ouvre aussi l'espace, sans jeton partagé.
+  const account = await currentAccount();
+  return account?.role === "pilotage" ? "ok" : byToken;
 }
 
 // Charge toutes les données agrégables du stockage. Les jetons de gestion des services ne sont jamais lus ici.

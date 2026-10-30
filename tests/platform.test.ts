@@ -114,3 +114,33 @@ test("bon de visite : demande, confirmation unique, mauvais service et expiratio
   assert.equal(findVoucher([...events, { kind: "visite-venue", service: "s1", code: "AB234", at: "2026-11-06T10:00:00Z" }], "s1", "AB234", now).status, "deja");
   assert.equal(findVoucher(events, "s1", "AB234", new Date("2026-12-20T10:00:00Z")).status, "inconnu");
 });
+
+test("comptes : connexion, rôle pilotage donné seulement par app_metadata, inscription à confirmer", async () => {
+  const { authenticate, accountFromToken, accountsEnabled, toAccount } = await import("../lib/account");
+  const env = { SUPABASE_URL: "https://x.supabase.co/", SUPABASE_ANON_KEY: "anon" };
+  assert.equal(accountsEnabled(env), true);
+  assert.equal(accountsEnabled({ SUPABASE_URL: "https://x.supabase.co" }), false);
+  const calls: { url: string; headers: Record<string, string> }[] = [];
+  const ok = (async (url: string, init?: { headers?: Record<string, string> }) => {
+    calls.push({ url, headers: init?.headers ?? {} });
+    if (url.includes("/signup")) return new Response(JSON.stringify({ id: "u1", email: "a@b.co" }), { status: 200 });
+    if (url.includes("/token")) return new Response(JSON.stringify({ access_token: "T", expires_in: 3600, user: { id: "u1", email: "a@b.co", app_metadata: { role: "pilotage" } } }), { status: 200 });
+    return new Response(JSON.stringify({ id: "u2", email: "c@d.co", user_metadata: { role: "pilotage" } }), { status: 200 });
+  }) as unknown as typeof fetch;
+  const login = await authenticate("connexion", "a@b.co", "motdepasse", env, ok);
+  assert.ok(login.ok && login.token === "T" && "account" in login && login.account.role === "pilotage");
+  assert.ok(calls[0].url.startsWith("https://x.supabase.co/auth/v1/token"));
+  assert.equal(calls[0].headers.apikey, "anon");
+  const signup = await authenticate("inscription", "a@b.co", "motdepasse", env, ok);
+  assert.ok(signup.ok && signup.token === null);
+  assert.equal((await authenticate("connexion", "pas-un-mail", "motdepasse", env, ok)).ok, false);
+  assert.equal((await authenticate("connexion", "a@b.co", "court", env, ok)).ok, false);
+  // user_metadata (modifiable par la personne) ne donne jamais le rôle pilotage
+  const me = await accountFromToken("T", env, ok);
+  assert.equal(me?.role, "prestataire");
+  assert.equal(toAccount({ id: "1", email: "x@y.z", app_metadata: { role: "admin" } })?.role, "prestataire");
+  const refused = (async () => new Response("{}", { status: 400 })) as unknown as typeof fetch;
+  const bad = await authenticate("connexion", "a@b.co", "motdepasse", env, refused);
+  assert.ok(!bad.ok && bad.error.includes("incorrect"));
+  assert.equal(await accountFromToken("T", env, (async () => new Response("{}", { status: 401 })) as unknown as typeof fetch), null);
+});

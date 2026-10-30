@@ -1,5 +1,6 @@
 import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
+import { currentAccount } from "@/lib/accountSession";
 import { allServices, validatedServices } from "@/lib/directory";
 import { limited, readJson } from "@/lib/http";
 import { validateServiceInput } from "@/lib/services";
@@ -44,7 +45,8 @@ async function handlePOST(request: Request) {
   let code = newCode();
   for (let i = 0; i < 5 && known.some((s) => s.code === code); i += 1) code = newCode();
   const now = new Date().toISOString();
-  const row = await getStore().insert("services", { ...checked.value, code, statut: "en-attente", jetonHash: hashToken(jeton), majLe: now });
+  const account = await currentAccount();
+  const row = await getStore().insert("services", { ...checked.value, code, statut: "en-attente", jetonHash: hashToken(jeton), ...(account ? { ownerId: account.id } : {}), majLe: now });
   return NextResponse.json({ id: row.id, code, jeton }, { status: 201 });
 }
 

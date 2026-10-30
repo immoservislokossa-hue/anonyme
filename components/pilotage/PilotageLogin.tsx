@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import AccountPanel from "@/components/AccountPanel";
 
 export default function PilotageLogin() {
   const [token, setToken] = useState("");
@@ -23,8 +24,10 @@ export default function PilotageLogin() {
   }
 
   return (
+    <>
+    <AccountPanel audience="pilotage" />
     <form className="panel" onSubmit={submit}>
-      <h2>Accès réservé</h2>
+      <h2>Accès par jeton</h2>
       <p className="muted">Pour les responsables de district, les ministères et les partenaires. Demande le jeton d'accès à l'équipe du projet.</p>
       <label className="field">
         <span>Jeton d'accès</span>
@@ -40,5 +43,6 @@ export default function PilotageLogin() {
         </Link>
       </div>
     </form>
+    </>
   );
 }

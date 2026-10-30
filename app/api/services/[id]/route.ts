@@ -1,10 +1,9 @@
 import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
-import { getService, storedHash } from "@/lib/directory";
+import { getService } from "@/lib/directory";
+import { mayManage } from "@/lib/manage";
 import { limited, readJson } from "@/lib/http";
 import { validateServiceInput } from "@/lib/services";
-import { hashToken } from "@/lib/tokens";
-import { safeEqual } from "@/lib/auth";
 import { getStore } from "@/lib/store";
 
 export const runtime = "nodejs";
@@ -15,11 +14,10 @@ async function handlePATCH(request: Request, { params }: { params: Promise<{ id:
   if (limit) return limit;
   const { id } = await params;
   const body = await readJson(request);
-  if (!body || typeof body.jeton !== "string") return NextResponse.json({ error: "Jeton manquant." }, { status: 400 });
+  if (!body) return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
 
-  const hash = await storedHash(id);
   const service = await getService(id);
-  if (!hash || !service || !safeEqual(hashToken(body.jeton), hash)) return NextResponse.json({ error: "Jeton non valide." }, { status: 403 });
+  if (!service || !(await mayManage(id, body.jeton))) return NextResponse.json({ error: "Accès refusé." }, { status: 403 });
 
   const merged = {
     nom: service.nom,

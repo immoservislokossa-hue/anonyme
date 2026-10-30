@@ -1,10 +1,10 @@
 import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
-import { safeEqual } from "@/lib/auth";
-import { getService, storedHash } from "@/lib/directory";
+import { getService } from "@/lib/directory";
+import { mayManage } from "@/lib/manage";
 import { limited, readJson } from "@/lib/http";
 import { getStore } from "@/lib/store";
-import { hashToken, isVoucher } from "@/lib/tokens";
+import { isVoucher } from "@/lib/tokens";
 import { besoinLabel, findVoucher } from "@/lib/visits";
 
 export const runtime = "nodejs";
@@ -15,12 +15,11 @@ async function handlePOST(request: Request) {
   if (limit) return limit;
   const body = await readJson(request);
   const code = typeof body?.code === "string" ? body.code.trim().toUpperCase() : "";
-  if (!body || typeof body.serviceId !== "string" || typeof body.jeton !== "string" || !isVoucher(code)) {
+  if (!body || typeof body.serviceId !== "string" || !isVoucher(code)) {
     return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
   }
-  const hash = await storedHash(body.serviceId);
   const service = await getService(body.serviceId);
-  if (!hash || !service || !safeEqual(hashToken(body.jeton), hash)) return NextResponse.json({ error: "Jeton non valide." }, { status: 403 });
+  if (!service || !(await mayManage(body.serviceId, body.jeton))) return NextResponse.json({ error: "Accès refusé : connecte-toi au compte du service." }, { status: 403 });
 
   const store = getStore();
   const found = findVoucher(await store.list("events"), service.id, code);

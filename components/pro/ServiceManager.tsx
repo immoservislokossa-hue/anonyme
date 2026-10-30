@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import AccountPanel from "@/components/AccountPanel";
 import { ACCUEIL_ITEMS, LEVEL_LABEL, evaluerAccueil, type AccueilId } from "@/lib/pro/accueil";
 import { METHOD_LIST, SERVICE_TYPES, type ServiceMethod } from "@/lib/services";
 
@@ -35,6 +36,7 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
   const [manageId, setManageId] = useState("");
   const [manageToken, setManageToken] = useState("");
   const [stockMethod, setStockMethod] = useState<ServiceMethod>("pilule");
+  const [owned, setOwned] = useState<{ id: string; nom: string; statut: string }[]>([]);
   const [voucher, setVoucher] = useState("");
   const [visitNotice, setVisitNotice] = useState("");
   const [yes, setYes] = useState<AccueilId[]>([]);
@@ -77,7 +79,18 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
     setSaved(value);
   }
 
-  const active: Saved | null = saved ?? (manageId && manageToken ? { id: manageId.trim(), jeton: manageToken.trim() } : null);
+  // Connecté : on gère le service inscrit avec le compte, sans jeton. Sinon : le jeton gardé sur l'appareil, ou saisi à la main.
+  const active: Saved | null = owned[0] ? { id: owned[0].id, jeton: "" } : (saved ?? (manageId && manageToken ? { id: manageId.trim(), jeton: manageToken.trim() } : null));
+
+  async function loadOwned(me: { account: unknown | null }) {
+    if (!me.account) {
+      setOwned([]);
+      return;
+    }
+    const response = await fetch("/api/compte/services").catch(() => null);
+    const data = (await response?.json().catch(() => null)) as { services?: { id: string; nom: string; statut: string }[] } | null;
+    setOwned(data?.services ?? []);
+  }
 
   async function signalStock(etat: "disponible" | "rupture") {
     if (!active) return;
@@ -99,6 +112,16 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
 
   return (
     <div className="tool">
+      <AccountPanel audience="prestataire" onChange={loadOwned} />
+      {owned.length > 0 && (
+        <ul className="plain" aria-label="Mes services">
+          {owned.map((s) => (
+            <li key={s.id}>
+              <strong>{s.nom}</strong> <span className="tag">{s.statut === "valide" ? "validé" : s.statut === "refuse" ? "refusé" : "en attente de validation"}</span>
+            </li>
+          ))}
+        </ul>
+      )}
       <section className="panel" aria-labelledby="inscrire">
         <h2 id="inscrire">Inscrire mon service</h2>
         <p className="muted">Les jeunes verront ton service dans l'annuaire après validation par un responsable. Les informations sont déclaratives : dis la vérité.</p>

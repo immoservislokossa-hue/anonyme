@@ -6,8 +6,9 @@ import { filterServices, latestStock, summarizeReviews, type Filter, type Review
 type Row = Record<string, unknown> & { id: string; at: string };
 
 function toService(row: Row): Service {
-  const { jetonHash: _ignored, ...rest } = row as Row & { jetonHash?: string };
+  const { jetonHash: _ignored, ownerId: _owner, ...rest } = row as Row & { jetonHash?: string; ownerId?: string };
   void _ignored;
+  void _owner;
   return { ...(rest as unknown as Service), id: row.id, creeLe: row.at, majLe: (row.majLe as string) ?? row.at };
 }
 
@@ -46,4 +47,15 @@ export async function storedHash(id: string): Promise<string | null> {
   const rows = (await getStore().list("services")) as Row[];
   const row = rows.find((r) => r.id === id) as (Row & { jetonHash?: string }) | undefined;
   return row?.jetonHash ?? null;
+}
+
+export async function storedOwner(id: string): Promise<string | null> {
+  const rows = (await getStore().list("services")) as Row[];
+  const row = rows.find((r) => r.id === id) as (Row & { ownerId?: string }) | undefined;
+  return row?.ownerId ?? null;
+}
+
+export async function servicesOf(ownerId: string): Promise<Service[]> {
+  const rows = (await getStore().list("services")) as (Row & { ownerId?: string })[];
+  return rows.filter((r) => r.ownerId === ownerId).map(toService);
 }

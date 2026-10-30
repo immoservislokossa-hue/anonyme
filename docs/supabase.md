@@ -39,3 +39,21 @@ Dans `/pilotage` (jeton), le bandeau « Stockage temporaire » disparaît.
 | Avis | `reviews` | réponses oui/non, aucune identité |
 | Ruptures | `stock` | service, méthode, état |
 | Bilans | `bilans` | comptes de qualité du conseil d'un prestataire, zone facultative |
+
+## Comptes (prestataires et responsables)
+
+Les prestataires créent un compte avec e-mail et mot de passe (page « Mon service »). Les responsables (ministère, district, partenaires) ont un compte avec le rôle `pilotage`.
+
+1. Dans Supabase : Authentication, Providers, activer **Email**.
+2. Ajouter la variable `SUPABASE_ANON_KEY` (clé « anon » ou « publishable » du projet) dans l'hébergeur, à côté de `SUPABASE_URL`.
+3. Authentication, Settings : mettre la durée du jeton (JWT expiry) à 604800 secondes (7 jours) pour que les prestataires ne se reconnectent pas toutes les heures.
+4. Décider si la confirmation par e-mail est obligatoire. Si oui, le site affiche « confirme ton adresse ».
+5. Donner le rôle Pilotage à une personne, dans l'éditeur SQL :
+
+```sql
+update auth.users
+set raw_app_meta_data = coalesce(raw_app_meta_data, '{}'::jsonb) || '{"role":"pilotage"}'::jsonb
+where email = 'responsable@exemple.org';
+```
+
+Le rôle est lu dans `app_metadata`, que la personne ne peut pas modifier elle-même. Sans `SUPABASE_ANON_KEY`, les comptes sont désactivés : l'ancien accès par jeton continue de marcher.

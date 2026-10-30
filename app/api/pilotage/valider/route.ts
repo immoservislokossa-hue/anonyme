@@ -1,7 +1,6 @@
 import { guarded } from "@/lib/safe";
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
-import { SESSION_COOKIE, accessFromSession } from "@/lib/auth";
+import { sessionAccess } from "@/lib/pilotageData";
 import { limited, readJson } from "@/lib/http";
 import { getStore } from "@/lib/store";
 
@@ -11,8 +10,7 @@ export const runtime = "nodejs";
 async function handlePOST(request: Request) {
   const limit = limited(request, "valider", 60, 600_000);
   if (limit) return limit;
-  const jar = await cookies();
-  if (accessFromSession(jar.get(SESSION_COOKIE)?.value) !== "ok") return NextResponse.json({ error: "Accès refusé." }, { status: 403 });
+  if ((await sessionAccess()) !== "ok") return NextResponse.json({ error: "Accès refusé." }, { status: 403 });
 
   const body = await readJson(request);
   if (!body || typeof body.id !== "string" || (body.decision !== "valide" && body.decision !== "refuse")) {
