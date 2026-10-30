@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { supabaseServiceKey, supabaseUrl } from "@/lib/supabaseEnv";
 
 // Stockage des données agrégées de la plateforme : événements d'usage, services, avis, bilans, ruptures.
 // Deux moteurs : la mémoire (démonstration et développement : les données disparaissent au redémarrage) et Supabase
@@ -120,8 +121,8 @@ class SupabaseStore implements Store {
 }
 
 export function createStore(env: Env = process.env, fetchImpl: typeof fetch = fetch): Store {
-  const url = env.SUPABASE_URL?.replace(/\/+$/, "");
-  const key = env.SUPABASE_SERVICE_ROLE_KEY;
+  const url = supabaseUrl(env)?.replace(/\/+$/, "");
+  const key = supabaseServiceKey(env);
   if (url && key) return new SupabaseStore(url, key, fetchImpl);
   return new MemoryStore();
 }

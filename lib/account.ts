@@ -2,21 +2,23 @@
 // Le rôle « pilotage » (ministère, district, partenaire) est donné par l'équipe dans app_metadata : une personne ne peut pas se l'attribuer.
 // Sans SUPABASE_ANON_KEY, les comptes sont désactivés et l'ancien accès par jeton continue de fonctionner.
 
+import { supabaseAnonKey, supabaseUrl } from "@/lib/supabaseEnv";
+
 export const ACCOUNT_COOKIE = "alviosa-compte";
 export type Role = "prestataire" | "pilotage";
 export type Account = { id: string; email: string; role: Role };
 type Env = Record<string, string | undefined>;
 
 export function accountsEnabled(env: Env = process.env): boolean {
-  return Boolean(env.SUPABASE_URL && env.SUPABASE_ANON_KEY);
+  return Boolean(supabaseUrl(env) && supabaseAnonKey(env));
 }
 
 function endpoint(env: Env, path: string): string {
-  return `${env.SUPABASE_URL?.replace(/\/+$/, "")}/auth/v1${path}`;
+  return `${supabaseUrl(env)?.replace(/\/+$/, "")}/auth/v1${path}`;
 }
 
 function headers(env: Env, bearer?: string): Record<string, string> {
-  return { apikey: env.SUPABASE_ANON_KEY ?? "", "Content-Type": "application/json", ...(bearer ? { Authorization: `Bearer ${bearer}` } : {}) };
+  return { apikey: supabaseAnonKey(env) ?? "", "Content-Type": "application/json", ...(bearer ? { Authorization: `Bearer ${bearer}` } : {}) };
 }
 
 export function toAccount(user: unknown): Account | null {

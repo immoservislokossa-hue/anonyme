@@ -176,3 +176,17 @@ test("mot de passe oublié : lien demandé sans révéler l'existence du compte,
   assert.equal(calls[1].auth, "Bearer TOK");
   assert.equal(await setPassword("TOK", "court", env, fake), false);
 });
+
+test("variables Supabase : noms de l'intégration Vercel acceptés, clé service jamais déduite d'une clé publique", async () => {
+  const { supabaseUrl, supabaseAnonKey, supabaseServiceKey } = await import("../lib/supabaseEnv");
+  const vercel = { NEXT_PUBLIC_SUPABASE_URL: "https://x.supabase.co", NEXT_PUBLIC_SUPABASE_ANON_KEY: "anon" };
+  assert.equal(supabaseUrl(vercel), "https://x.supabase.co");
+  assert.equal(supabaseAnonKey(vercel), "anon");
+  assert.equal(supabaseServiceKey(vercel), undefined);
+  const { accountsEnabled } = await import("../lib/account");
+  assert.equal(accountsEnabled(vercel), true);
+  // sans clé service, le stockage reste en mémoire même si l'adresse et la clé publique existent
+  assert.equal(createStore(vercel).kind, "memory");
+  assert.equal(createStore({ ...vercel, SUPABASE_SERVICE_ROLE_KEY: "svc" }).kind, "supabase");
+  assert.equal(supabaseUrl({ SUPABASE_URL: " https://a.co ", NEXT_PUBLIC_SUPABASE_URL: "https://b.co" }), "https://a.co");
+});

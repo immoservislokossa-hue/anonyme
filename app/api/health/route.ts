@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { accountsEnabled } from "@/lib/account";
 import { pickProvider } from "@/lib/llm";
 import { scrappaApiKey } from "@/lib/scrappa";
 import { getStore } from "@/lib/store";
@@ -19,6 +20,7 @@ export async function GET() {
     {
       status: storageOk ? "ok" : "degraded",
       storage: { kind: store.kind, ok: storageOk, durable: store.kind === "supabase" },
+      accounts: accountsEnabled(),
       ai: pickProvider() !== "none",
       model: pickProvider(),
       places: { google: Boolean(process.env.GOOGLE_MAPS_API_KEY), scrappa: Boolean(scrappaApiKey(process.env)) },
