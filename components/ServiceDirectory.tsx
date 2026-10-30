@@ -1,15 +1,21 @@
 import ServiceCard from "@/components/ServiceCard";
 import { stockFor, summaryFor, validatedServices } from "@/lib/directory";
 import { getPays } from "@/lib/pays";
-import { METHOD_LIST, isStale, methodLabel } from "@/lib/services";
+import { METHOD_LIST, isStale, methodLabel, summarizeReviews } from "@/lib/services";
 
 // L'annuaire des services validés, avec un filtre simple par zone et par méthode.
 export default async function ServiceDirectory({ zone, methode, accueil }: { zone?: string; methode?: string; accueil?: boolean }) {
   const pays = getPays();
-  const services = await validatedServices({ zone, methode, accueilJeunes: accueil });
+  let services: Awaited<ReturnType<typeof validatedServices>> = [];
+  let down = false;
+  try {
+    services = await validatedServices({ zone, methode, accueilJeunes: accueil });
+  } catch {
+    down = true;
+  }
   const cards = await Promise.all(
     services.map(async (service) => {
-      const [summary, stock] = await Promise.all([summaryFor(service.id), stockFor(service.id)]);
+      const [summary, stock] = await Promise.all([summaryFor(service.id), stockFor(service.id)]).catch(() => [summarizeReviews([]), []] as [ReturnType<typeof summarizeReviews>, never[]]);
       const ruptures = stock.filter((s) => s.etat === "rupture" && !isStale(s)).map((s) => methodLabel(s.methode));
       return { service, summary, ruptures };
     }),
@@ -49,7 +55,11 @@ export default async function ServiceDirectory({ zone, methode, accueil }: { zon
         </button>
       </form>
 
-      {cards.length === 0 ? (
+      {down ? (
+        <p className="panel" role="status">
+          La liste des services ne répond pas pour le moment. Réessaie dans quelques minutes, ou va au centre de santé le plus proche.
+        </p>
+      ) : cards.length === 0 ? (
         <p className="panel">
           Aucun service validé ne correspond pour l'instant. Les services s'inscrivent eux-mêmes puis sont validés : cette liste va grandir.
           En attendant, cherche un centre près de toi avec la carte ci-dessus, ou va au centre de santé le plus proche.

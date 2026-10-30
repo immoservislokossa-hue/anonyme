@@ -13,6 +13,7 @@ import MoreMenu from "@/components/MoreMenu";
 import RegisterSW from "@/components/RegisterSW";
 import { APP_NAME, TAGLINE } from "@/lib/brand";
 import { FOOTER_COLUMNS } from "@/lib/site";
+import { reviewLine } from "@/lib/validation";
 import "./globals.css";
 
 // Police de la marque, servie par le site lui-même.
@@ -94,8 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ))}
             </div>
             <p className="muted">
-              Alviosa informe et oriente : elle ne remplace pas un professionnel de santé. Contenu fondé sur le guide de l'OMS (2012), en cours de validation par des
-              professionnels de santé. Alviosa n'est affiliée ni à l'OMS ni au Partenariat de Ouagadougou.
+              Alviosa informe et oriente : elle ne remplace pas un professionnel de santé. {reviewLine()} Alviosa n'est affiliée ni à l'OMS ni au Partenariat de Ouagadougou.
             </p>
           </footer>
         </div>

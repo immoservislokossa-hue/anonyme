@@ -169,7 +169,7 @@ export default async function MethodePage({ params }: { params: Promise<{ id: st
       </section>
 
       <p className="muted fiche-note">
-        Source : {m.source}, p. {m.page}. Brouillon en cours de validation par des professionnels de santé.
+        Source : {m.source}, p. {m.page}.
       </p>
       <PageFeedback />
     </article>

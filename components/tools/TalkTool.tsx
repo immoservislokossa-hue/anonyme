@@ -91,7 +91,7 @@ export default function TalkTool() {
               Trouver un centre
             </Link>
           </div>
-          <p className="muted tool-source">Sources : Guide OMS de la planification familiale (2012), fiches Alviosa, Afrobaromètre 2024/25. Brouillon en cours de validation.</p>
+          <p className="muted tool-source">Sources : Guide OMS de la planification familiale (2012), fiches Alviosa, Afrobaromètre 2024/25.</p>
         </div>
       )}
     </div>

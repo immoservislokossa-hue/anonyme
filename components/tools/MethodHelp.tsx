@@ -95,7 +95,7 @@ export default function MethodHelp({ methods }: { methods: HelpMethod[] }) {
           Trouver un centre
         </Link>
       </div>
-      <p className="muted tool-source">Source : Guide de la planification familiale de l'OMS (2012), pages de chaque méthode et p. 28. Brouillon en cours de validation.</p>
+      <p className="muted tool-source">Source : Guide de la planification familiale de l'OMS (2012), pages de chaque méthode et p. 28.</p>
     </div>
   );
 }

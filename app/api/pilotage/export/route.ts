@@ -1,3 +1,4 @@
+import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
 import { indicatorRows, toCsv } from "@/lib/analytics";
 import { limited } from "@/lib/http";
@@ -6,7 +7,7 @@ import { loadDataset, sessionAccess } from "@/lib/pilotageData";
 export const runtime = "nodejs";
 
 // Export des indicateurs agrégés. Réservé aux personnes connectées. Aucune ligne individuelle.
-export async function GET(request: Request) {
+async function handleGET(request: Request) {
   const limit = limited(request, "export", 30, 600_000);
   if (limit) return limit;
   if ((await sessionAccess()) !== "ok") return NextResponse.json({ error: "Accès refusé." }, { status: 403 });
@@ -18,3 +19,5 @@ export async function GET(request: Request) {
   }
   return new NextResponse(toCsv(rows), { headers: { "Content-Type": "text/csv; charset=utf-8", "Content-Disposition": `attachment; filename="alviosa-indicateurs-${stamp}.csv"` } });
 }
+
+export const GET = guarded(handleGET);

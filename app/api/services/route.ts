@@ -1,3 +1,4 @@
+import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
 import { allServices, validatedServices } from "@/lib/directory";
 import { limited, readJson } from "@/lib/http";
@@ -10,7 +11,7 @@ export const runtime = "nodejs";
 const MAX_PENDING = 500;
 
 // Liste publique : seulement les services validés, sans aucune donnée de gestion.
-export async function GET(request: Request) {
+async function handleGET(request: Request) {
   const limit = limited(request, "services-get", 60, 60_000);
   if (limit) return limit;
   const url = new URL(request.url);
@@ -24,7 +25,7 @@ export async function GET(request: Request) {
 }
 
 // Inscription d'un service. Il reste « en attente » jusqu'à la validation par un responsable.
-export async function POST(request: Request) {
+async function handlePOST(request: Request) {
   const limit = limited(request, "services-post", 5, 3_600_000);
   if (limit) return limit;
   const body = await readJson(request);
@@ -46,3 +47,7 @@ export async function POST(request: Request) {
   const row = await getStore().insert("services", { ...checked.value, code, statut: "en-attente", jetonHash: hashToken(jeton), majLe: now });
   return NextResponse.json({ id: row.id, code, jeton }, { status: 201 });
 }
+
+export const GET = guarded(handleGET);
+
+export const POST = guarded(handlePOST);

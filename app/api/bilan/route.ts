@@ -1,3 +1,4 @@
+import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
 import { limited, readJson } from "@/lib/http";
 import { getPays } from "@/lib/pays";
@@ -7,7 +8,7 @@ import { getStore } from "@/lib/store";
 export const runtime = "nodejs";
 
 // Bilan anonyme d'un prestataire : des comptes, jamais de nom ni de réponse de client. Une zone facultative, du découpage officiel.
-export async function POST(request: Request) {
+async function handlePOST(request: Request) {
   const limit = limited(request, "bilan", 5, 86_400_000);
   if (limit) return limit;
   const payload = validatePayload(await readJson(request), getPays().zones);
@@ -15,3 +16,5 @@ export async function POST(request: Request) {
   await getStore().insert("bilans", { ...payload });
   return new NextResponse(null, { status: 204 });
 }
+
+export const POST = guarded(handlePOST);

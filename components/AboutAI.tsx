@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { reviewLine } from "@/lib/validation";
 import path from "node:path";
 import { triage } from "@/lib/safety";
 
@@ -76,8 +77,7 @@ export default function AboutAI() {
           <li>Guide fondamental de la contraception, Govern de les Illes Balears (2009), pour les fausses croyances et le corps humain.</li>
         </ul>
         <p className="muted">
-          Nos textes s'appuient sur ces documents. Ils ne sont pas validés par ces organisations : ils sont en cours de validation par
-          des professionnels de santé de ton pays. Chaque fiche de la page « Les méthodes » cite sa source et sa page.
+          Nos textes s'appuient sur ces documents. Ces organisations ne les ont pas validés. {reviewLine()} Chaque fiche de la page « Les méthodes » cite sa source et sa page.
         </p>
       </section>
 
@@ -95,7 +95,7 @@ export default function AboutAI() {
         <ul className="plain">
           <li>L'IA peut se tromper. En cas de doute, demande à un professionnel.</li>
           <li>Elle ne remplace ni une consultation ni un numéro d'urgence.</li>
-          <li>Le contenu est en cours de validation par des professionnels de santé.</li>
+          <li>{reviewLine()}</li>
         </ul>
       </section>
     </>

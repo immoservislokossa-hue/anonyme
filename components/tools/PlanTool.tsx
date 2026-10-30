@@ -98,7 +98,7 @@ export default function PlanTool() {
             Je n'ai pas encore de méthode
           </Link>
         </div>
-        <p className="muted tool-source">Ton plan reste sur ton téléphone. Dates d'après le guide de l'OMS (2012). Brouillon en cours de validation.</p>
+        <p className="muted tool-source">Ton plan reste sur ton téléphone. Dates d'après le guide de l'OMS (2012).</p>
       </div>
     );
   }

@@ -76,7 +76,7 @@ export default function RiskTool() {
               </Link>
             )}
           </div>
-          <p className="muted tool-source">Sources : Guide OMS de la planification familiale (2012), p. 4, 6, 16, 18 ; traitement d'urgence du VIH dans les 72 heures (recommandation OMS). Brouillon en cours de validation.</p>
+          <p className="muted tool-source">Sources : Guide OMS de la planification familiale (2012), p. 4, 6, 16, 18 ; traitement d'urgence du VIH dans les 72 heures (recommandation OMS).</p>
         </div>
       )}
     </div>

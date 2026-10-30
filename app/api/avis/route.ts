@@ -1,3 +1,4 @@
+import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
 import { getService } from "@/lib/directory";
 import { clientIp, limited, readJson } from "@/lib/http";
@@ -8,7 +9,7 @@ import { getStore } from "@/lib/store";
 export const runtime = "nodejs";
 
 // Avis anonyme d'un jeune sur un service. On ne garde ni adresse, ni identifiant : seulement les réponses.
-export async function POST(request: Request) {
+async function handlePOST(request: Request) {
   const limit = limited(request, "avis", 10, 3_600_000);
   if (limit) return limit;
   const body = await readJson(request);
@@ -26,3 +27,5 @@ export async function POST(request: Request) {
   await getStore().insert("reviews", { serviceId: service.id, answers });
   return new NextResponse(null, { status: 204 });
 }
+
+export const POST = guarded(handlePOST);

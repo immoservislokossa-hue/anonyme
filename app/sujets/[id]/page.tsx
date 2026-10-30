@@ -121,7 +121,7 @@ export default async function SujetPage({ params }: { params: Promise<{ id: stri
         </details>
       )}
 
-      <p className="muted fiche-note">Contenu établi d'après le guide de la planification familiale de l'OMS (2012). Brouillon en cours de validation par des professionnels de santé.</p>
+      <p className="muted fiche-note">Contenu établi d'après le guide de la planification familiale de l'OMS (2012).</p>
       <PageFeedback />
     </article>
   );

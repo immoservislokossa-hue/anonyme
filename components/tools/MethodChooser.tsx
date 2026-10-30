@@ -276,7 +276,7 @@ export default function MethodChooser() {
               Recommencer
             </button>
           </div>
-          <p className="muted tool-source">Source : Guide de la planification familiale de l'OMS (2012), p. 3, 6, 11-14, 17-19. Brouillon en cours de validation par des professionnels de santé.</p>
+          <p className="muted tool-source">Source : Guide de la planification familiale de l'OMS (2012), p. 3, 6, 11-14, 17-19.</p>
         </div>
       )}
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { reviewLine } from "@/lib/validation";
 import Link from "next/link";
 import Crumbs from "@/components/Crumbs";
 
@@ -104,7 +105,7 @@ const ALIGN: { cadre: string; ce_que_dit: string; alviosa: string }[] = [
 
 const LIMITS = [
   "Alviosa n'est pas un service de santé : elle informe et oriente, elle ne diagnostique pas et ne prescrit pas.",
-  "Le contenu est un brouillon en cours de validation par des professionnels de santé. Il n'a pas encore été validé par un ministère de la Santé.",
+  `${reviewLine()} Il n'a pas été validé par un ministère de la Santé.`,
   "Elle ne règle pas les obstacles qui sont du côté des services : jugement de certains prestataires, ruptures de stock, coût, accord du conjoint.",
   "Les chiffres de ce site sont des opinions (Afrobaromètre) ou viennent d'un autre pays et d'une autre année (Burkina Faso, 2017-18). Ils éclairent nos choix, ils ne mesurent pas Alviosa.",
   "Pas encore de résultats d'usage ni de retours de jeunes ni de prestataires : un test est prévu.",

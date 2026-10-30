@@ -5,7 +5,7 @@ import { allServices } from "@/lib/directory";
 import { sessionAccess } from "@/lib/pilotageData";
 import { methodLabel, typeLabel } from "@/lib/services";
 
-export const metadata: Metadata = { title: "Pilotage : à valider" };
+export const metadata: Metadata = { title: "Pilotage : inscriptions à valider" };
 export const dynamic = "force-dynamic";
 
 export default async function ValiderPage() {
@@ -14,7 +14,7 @@ export default async function ValiderPage() {
   return (
     <>
       <header>
-        <h1>Services à valider</h1>
+        <h1>Inscriptions de services à valider</h1>
         <p className="lede">Vérifie par téléphone ou par une visite avant de valider. Un service validé apparaît dans l'annuaire des jeunes.</p>
       </header>
       {pending.length === 0 ? (

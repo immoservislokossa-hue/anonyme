@@ -57,7 +57,7 @@ export default function HomePage() {
 
       <p className="home-note">
         <span>
-          Contenu en cours de validation par des professionnels de santé. <Link href="/a-propos">Sur quoi on s'appuie</Link>
+          <Link href="/a-propos">Sur quoi on s'appuie</Link>
         </span>
         <Link href="/urgence">C'est urgent ? Que faire maintenant</Link>
       </p>

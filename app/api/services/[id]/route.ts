@@ -1,3 +1,4 @@
+import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
 import { getService, storedHash } from "@/lib/directory";
 import { limited, readJson } from "@/lib/http";
@@ -9,7 +10,7 @@ import { getStore } from "@/lib/store";
 export const runtime = "nodejs";
 
 // Mise à jour par le service lui-même, avec son jeton. Le nom, le type et la zone ne changent pas ici.
-export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
+async function handlePATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const limit = limited(request, "services-patch", 20, 3_600_000);
   if (limit) return limit;
   const { id } = await params;
@@ -39,3 +40,5 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   await getStore().update("services", id, { ...checked.value, majLe: new Date().toISOString() });
   return NextResponse.json({ ok: true });
 }
+
+export const PATCH = guarded(handlePATCH);

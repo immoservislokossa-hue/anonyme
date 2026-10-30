@@ -16,6 +16,7 @@ export interface Store {
 }
 
 const MAX_ROWS = 20_000;
+const PAGE = 1000;
 type Env = Record<string, string | undefined>;
 
 class MemoryStore implements Store {
@@ -62,7 +63,9 @@ class SupabaseStore implements Store {
   ) {}
 
   private headers(extra: Record<string, string> = {}): Record<string, string> {
-    return { apikey: this.key, Authorization: `Bearer ${this.key}`, "Content-Type": "application/json", ...extra };
+    // Les anciennes clés sont des JWT (« eyJ… ») et vont aussi dans Authorization ; les nouvelles (« sb_secret_… ») n'en sont pas.
+    const bearer: Record<string, string> = this.key.startsWith("eyJ") ? { Authorization: `Bearer ${this.key}` } : {};
+    return { apikey: this.key, ...bearer, "Content-Type": "application/json", ...extra };
   }
 
   private flatten(row: SupabaseRow): StoredRow {
@@ -80,13 +83,22 @@ class SupabaseStore implements Store {
     return this.flatten(row);
   }
 
+  // Supabase rend au plus 1000 lignes par requête : on lit page par page, les plus récentes d'abord, puis on remet dans l'ordre.
   async list(table: TableName, limit = MAX_ROWS): Promise<StoredRow[]> {
-    const response = await this.fetchImpl(
-      `${this.url}/rest/v1/alviosa_rows?tbl=eq.${table}&order=at.asc&limit=${Math.min(limit, MAX_ROWS)}`,
-      { headers: this.headers() },
-    );
-    if (!response.ok) throw new Error(`Stockage : lecture refusée (${response.status})`);
-    return ((await response.json()) as SupabaseRow[]).map((row) => this.flatten(row));
+    const want = Math.min(limit, MAX_ROWS);
+    const rows: SupabaseRow[] = [];
+    while (rows.length < want) {
+      const size = Math.min(PAGE, want - rows.length);
+      const response = await this.fetchImpl(
+        `${this.url}/rest/v1/alviosa_rows?tbl=eq.${table}&order=at.desc&limit=${size}&offset=${rows.length}`,
+        { headers: this.headers() },
+      );
+      if (!response.ok) throw new Error(`Stockage : lecture refusée (${response.status})`);
+      const page = (await response.json()) as SupabaseRow[];
+      rows.push(...page);
+      if (page.length < size) break;
+    }
+    return rows.reverse().map((row) => this.flatten(row));
   }
 
   async update(table: TableName, id: string, patch: Record<string, unknown>): Promise<StoredRow | null> {

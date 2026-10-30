@@ -27,7 +27,7 @@ export default function AideMemoirePage() {
       <Crumbs trail={[{ href: "/prestataires", label: "Prestataires" }]} current="Aide-mémoire OMS" />
       <header>
         <h1>Aide-mémoire OMS</h1>
-        <p className="lede">D'après le guide de la planification familiale de l'OMS (2012). Brouillon : remplace-le par le protocole national quand tu l'as.</p>
+        <p className="lede">D'après le guide de la planification familiale de l'OMS (2012). Le protocole national de ton pays passe avant : suis-le s'il existe.</p>
       </header>
 
       <section aria-labelledby="delais">

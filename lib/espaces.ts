@@ -35,7 +35,7 @@ export const NAV: Record<EspaceId, NavItem[]> = {
   pilotage: [
     { href: "/pilotage", label: "Tableau de bord", icon: "star" },
     { href: "/pilotage/services", label: "Services", icon: "pin" },
-    { href: "/pilotage/valider", label: "À valider", icon: "check" },
+    { href: "/pilotage/valider", label: "Inscriptions", icon: "check" },
   ],
   plateforme: [
     { href: "/", label: "Jeunes", icon: "heart" },

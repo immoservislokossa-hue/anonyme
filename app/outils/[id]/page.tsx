@@ -64,7 +64,7 @@ export default async function OutilPage({ params }: { params: Promise<{ id: stri
           ))}
         </ul>
         <p className="muted tool-source">
-          {tool.minutes} min · Source : {tool.source}. Brouillon en cours de validation par des professionnels de santé.
+          {tool.minutes} min · Source : {tool.source}.
         </p>
       </details>
 

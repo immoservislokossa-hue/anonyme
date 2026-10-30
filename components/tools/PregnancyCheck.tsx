@@ -87,7 +87,7 @@ export default function PregnancyCheck() {
           Trouver un centre
         </Link>
       </div>
-      <p className="muted tool-source">Source : Guide de la planification familiale de l'OMS (2012), p. 20. Brouillon en cours de validation.</p>
+      <p className="muted tool-source">Source : Guide de la planification familiale de l'OMS (2012), p. 20.</p>
     </div>
   );
 }

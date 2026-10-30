@@ -1,3 +1,4 @@
+import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
 import { safeEqual } from "@/lib/auth";
 import { getService, storedHash } from "@/lib/directory";
@@ -9,7 +10,7 @@ import { getStore } from "@/lib/store";
 export const runtime = "nodejs";
 
 // Un service signale la disponibilité ou la rupture d'une méthode. Il faut son jeton.
-export async function POST(request: Request) {
+async function handlePOST(request: Request) {
   const limit = limited(request, "stock", 60, 3_600_000);
   if (limit) return limit;
   const body = await readJson(request);
@@ -24,3 +25,5 @@ export async function POST(request: Request) {
   await getStore().insert("stock", { serviceId: service.id, methode: body.methode, etat: body.etat });
   return new NextResponse(null, { status: 204 });
 }
+
+export const POST = guarded(handlePOST);

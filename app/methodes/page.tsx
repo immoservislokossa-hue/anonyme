@@ -41,7 +41,7 @@ export default function MethodesPage() {
 
       <p className="notice">
         <Icon name="shield" size={18} />
-        <span>Contenu établi à partir du Guide de la planification familiale de l'OMS (2012), en cours de validation par des professionnels de santé.</span>
+        <span>Contenu établi à partir du Guide de la planification familiale de l'OMS (2012).</span>
       </p>
     </>
   );

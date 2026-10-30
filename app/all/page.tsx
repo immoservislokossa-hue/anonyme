@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { reviewLine } from "@/lib/validation";
 import Link from "next/link";
 import { ESPACES } from "@/lib/espaces";
 import { PAYS, getPays, missingFor } from "@/lib/pays";
@@ -90,8 +91,7 @@ export default function AllPage() {
       </section>
 
       <p className="notice">
-        Alviosa n'est affiliée ni au Partenariat de Ouagadougou ni à l'OMS. Le contenu est un brouillon en cours de validation par des
-        professionnels de santé. Aucune donnée réelle n'est affichée tant qu'aucun service n'est inscrit.
+        Alviosa n'est affiliée ni au Partenariat de Ouagadougou ni à l'OMS. {reviewLine()} Aucune donnée réelle n'est affichée tant qu'aucun service n'est inscrit.
       </p>
     </>
   );

@@ -80,3 +80,26 @@ test("le stockage Supabase envoie la clé en en-tête et aplatit les lignes", as
   assert.ok(calls[0].url.startsWith("https://x.supabase.co/rest/v1/alviosa_rows?tbl=eq.events"));
   assert.equal((calls[0].init?.headers as Record<string, string>).apikey, "KEY");
 });
+
+test("Supabase : lit au-delà de 1000 lignes, dans l'ordre, et n'envoie Bearer que pour une clé JWT", async () => {
+  const all = Array.from({ length: 2300 }, (_, i) => ({ id: `r${i}`, tbl: "events", data: { n: i }, at: `2026-01-01T00:00:${String(i).padStart(5, "0")}` }));
+  const seen: { url: string; headers: Record<string, string> }[] = [];
+  const fake = (async (url: string, init?: { headers?: Record<string, string> }) => {
+    seen.push({ url, headers: init?.headers ?? {} });
+    const q = new URL(url);
+    const limit = Number(q.searchParams.get("limit"));
+    const offset = Number(q.searchParams.get("offset"));
+    const desc = [...all].reverse().slice(offset, offset + Math.min(limit, 1000));
+    return new Response(JSON.stringify(desc), { status: 200 });
+  }) as unknown as typeof fetch;
+  const store = createStore({ SUPABASE_URL: "https://x.supabase.co", SUPABASE_SERVICE_ROLE_KEY: "sb_secret_abc" }, fake);
+  const rows = await store.list("events");
+  assert.equal(rows.length, 2300);
+  assert.equal(rows[0].id, "r0");
+  assert.equal(rows[2299].id, "r2299");
+  assert.equal(seen[0].headers.Authorization, undefined);
+  assert.equal(seen[0].headers.apikey, "sb_secret_abc");
+  const jwt = createStore({ SUPABASE_URL: "https://x.supabase.co", SUPABASE_SERVICE_ROLE_KEY: "eyJabc" }, fake);
+  await jwt.list("events", 5);
+  assert.equal(seen[seen.length - 1].headers.Authorization, "Bearer eyJabc");
+});

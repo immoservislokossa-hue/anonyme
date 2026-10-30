@@ -165,7 +165,7 @@ export default function CycleTool() {
         <li>Cette méthode ne protège pas des IST : le préservatif est le seul à le faire.</li>
         <li>Elle est moins efficace que l'implant, le stérilet ou la pilule.</li>
       </ul>
-      <p className="muted tool-source">Source : Guide de la planification familiale de l'OMS (2012), p. 14 et 26. Brouillon en cours de validation.</p>
+      <p className="muted tool-source">Source : Guide de la planification familiale de l'OMS (2012), p. 14 et 26.</p>
     </div>
   );
 }
