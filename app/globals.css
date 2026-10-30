@@ -1832,7 +1832,6 @@ th {
 .b2b-banner {
   margin: 0;
   padding: 8px 12px;
-  border-left: 4px solid var(--primary);
   background: var(--sable-soft);
   color: var(--muted);
   font-size: 0.85rem;
@@ -2344,7 +2343,6 @@ th {
 
 .coach-line.local {
   font-size: 1.05rem;
-  border-left: 3px solid var(--primary);
   padding-left: 10px;
 }
 
@@ -2412,7 +2410,6 @@ th {
 .tier-title {
   margin: 0;
   padding-left: 12px;
-  border-left: 5px solid var(--primary);
   font-size: 1.15rem;
 }
 
@@ -3775,21 +3772,13 @@ h1 {
   gap: 6px;
   padding: 14px;
   border: 1px solid var(--beige);
-  border-left: 5px solid var(--teal);
   border-radius: 14px;
   background: var(--bg);
 }
 
-.fit-attendre {
-  border-left-color: var(--sun);
-}
 
-.fit-discuter {
-  border-left-color: var(--primary);
-}
 
 .fit-deconseille {
-  border-left-color: var(--alert);
   background: var(--sable-soft);
 }
 
@@ -4048,7 +4037,6 @@ h1 {
   gap: 4px;
   padding: 14px;
   border: 1px solid var(--beige);
-  border-left: 5px solid var(--teal);
   border-radius: 14px;
   background: var(--bg);
 }
@@ -4071,7 +4059,6 @@ h1 {
 }
 
 .urgency-maintenant {
-  border-left-color: var(--alert);
   background: var(--alert-bg);
 }
 
@@ -4080,18 +4067,12 @@ h1 {
   color: #fff;
 }
 
-.urgency-aujourdhui {
-  border-left-color: var(--primary);
-}
 
 .urgency-aujourdhui .action-tag {
   background: var(--primary-soft);
   color: var(--primary-dark);
 }
 
-.urgency-bientot {
-  border-left-color: var(--sun);
-}
 
 .urgency-bientot .action-tag {
   background: var(--notice-bg);
@@ -5495,7 +5476,6 @@ body:has([data-space="plateforme"]) [data-tour="audio"] {
   margin: 12px 0 16px;
   display: grid;
   gap: 8px;
-  border-left: 3px solid var(--primary-soft);
   padding-left: 16px;
 }
 
@@ -5522,7 +5502,6 @@ body:has([data-space="plateforme"]) [data-tour="audio"] {
 .client-line {
   margin: 0;
   padding: 16px 18px;
-  border-left: 5px solid var(--primary);
   border-radius: 0 16px 16px 0;
   background: var(--primary-soft);
   color: var(--primary-dark);
@@ -5766,7 +5745,6 @@ code {
   gap: 2px;
   padding: 12px 16px;
   border-radius: 16px;
-  border-left: 6px solid var(--primary);
   background: var(--bg);
   box-shadow: var(--shadow-sm);
 }
@@ -5777,13 +5755,9 @@ code {
 }
 
 .alert-card.niveau-urgent {
-  border-left-color: var(--alert);
   background: var(--alert-bg);
 }
 
-.alert-card.niveau-attention {
-  border-left-color: var(--sun);
-}
 
 .demo-banner {
   position: sticky;
@@ -5808,4 +5782,351 @@ code {
 .svc-filters label.check {
   display: flex;
   font-weight: 600;
+}
+
+
+/* ---------- Sobriété : sortir du look « gabarit » ---------- */
+/* Plus de bandeau coloré sur un côté des cartes. Le statut se lit dans le texte et dans la teinte du fond. */
+.b2b-banner {
+  border: 0;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.tier-title {
+  padding-left: 0;
+}
+
+.coach-line.local {
+  padding-left: 0;
+}
+
+.fit {
+  border-color: color-mix(in srgb, var(--teal) 30%, var(--beige));
+  background: color-mix(in srgb, var(--teal) 5%, var(--bg));
+}
+
+.fit-attendre {
+  border-color: color-mix(in srgb, var(--sun) 55%, var(--beige));
+  background: color-mix(in srgb, var(--sun) 10%, var(--bg));
+}
+
+.fit-discuter {
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--beige));
+  background: color-mix(in srgb, var(--primary) 5%, var(--bg));
+}
+
+.fit-deconseille {
+  border-color: color-mix(in srgb, var(--alert) 25%, var(--beige));
+}
+
+.action {
+  border-color: color-mix(in srgb, var(--teal) 30%, var(--beige));
+}
+
+.urgency-aujourdhui {
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--beige));
+}
+
+.urgency-bientot {
+  border-color: color-mix(in srgb, var(--sun) 60%, var(--beige));
+}
+
+.urgency-maintenant {
+  border-color: color-mix(in srgb, var(--alert) 40%, var(--beige));
+}
+
+/* La phrase du faux client : une bulle de conversation, pas une citation à barre. */
+.client-line {
+  padding: 16px 18px;
+  border: 0;
+  border-radius: 22px 22px 22px 6px;
+  background: var(--primary-soft);
+}
+
+/* Le fil de la boucle : des étapes numérotées dans le texte. */
+.thread {
+  padding-left: 0;
+  border: 0;
+  gap: 12px;
+  list-style: none;
+  counter-reset: etape;
+}
+
+.thread li {
+  counter-increment: etape;
+}
+
+.thread li strong::before {
+  content: counter(etape) ". ";
+  color: var(--primary);
+}
+
+/* Alertes : une étiquette de niveau dans le texte, sur un fond teinté. */
+.alert-card {
+  border: 1px solid var(--beige);
+  background: var(--bg);
+}
+
+.alert-card.niveau-urgent {
+  border-color: color-mix(in srgb, var(--alert) 40%, var(--beige));
+  background: var(--alert-bg);
+}
+
+.alert-card.niveau-attention {
+  border-color: color-mix(in srgb, var(--sun) 60%, var(--beige));
+  background: var(--notice-bg);
+}
+
+.alert-card strong::before {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.alert-card.niveau-urgent strong::before {
+  content: "Urgent";
+  color: var(--alert);
+}
+
+.alert-card.niveau-attention strong::before {
+  content: "À surveiller";
+  color: var(--notice-text);
+}
+
+.alert-card.niveau-info strong::before {
+  content: "Pour info";
+}
+
+/* Étiquettes de rubrique : du texte normal, pas des capitales espacées sur chaque page. */
+.eyebrow,
+.group-title,
+.kpi-label,
+.door-for {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.eyebrow {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.group-title {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+/* Listes de lecture : des lignes séparées par un filet, pas des boîtes avec des pastilles numérotées. */
+.point-grid {
+  gap: 0;
+}
+
+.point {
+  padding: 14px 0;
+  border: 0;
+  border-top: 1px solid var(--beige);
+  border-radius: 0;
+  background: transparent;
+}
+
+.point-num {
+  display: none;
+}
+
+.step-cards {
+  gap: 0;
+}
+
+.step-cards li {
+  padding: 12px 0 12px 32px;
+  border: 0;
+  border-top: 1px solid var(--beige);
+  border-radius: 0;
+  background: transparent;
+}
+
+.step-cards li::before,
+.step-cards.numbered li::before {
+  content: counter(step) ".";
+  left: 0;
+  top: 12px;
+  display: block;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: none;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+/* ---------- Lire peu, comprendre vite ---------- */
+.askbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 6px 6px 18px;
+  border: 2px solid var(--primary);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.askbar input {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.askbar input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.askbar:focus-within {
+  outline: 3px solid color-mix(in srgb, var(--primary) 35%, transparent);
+  outline-offset: 2px;
+}
+
+.askbar-send {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+}
+
+.askbar-send:disabled {
+  background: var(--beige);
+  color: var(--muted);
+  cursor: default;
+}
+
+.actions-row {
+  margin-top: -6px;
+}
+
+.deck {
+  display: grid;
+  gap: 10px;
+}
+
+.deck-track {
+  list-style: none;
+  margin: 0 -16px;
+  padding: 4px 16px 8px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.deck-track::-webkit-scrollbar {
+  display: none;
+}
+
+.deck-card {
+  flex: 0 0 min(84%, 400px);
+  scroll-snap-align: start;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 220px;
+  padding: 22px;
+  border-radius: 26px;
+  background: var(--primary-soft);
+}
+
+.deck-vf {
+  background: color-mix(in srgb, var(--sun) 16%, var(--bg));
+}
+
+.deck-title {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: var(--primary-dark);
+}
+
+.deck-text {
+  font-size: 1.1rem;
+  line-height: 1.45;
+}
+
+.deck-tag {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.deck-wrong {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: line-through;
+  text-decoration-color: var(--alert);
+  text-decoration-thickness: 2px;
+}
+
+.deck-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.deck-arrow {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--beige);
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--primary);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.deck-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.deck-count {
+  min-width: 56px;
+  text-align: center;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+@media (min-width: 900px) {
+  .deck-track {
+    margin-inline: 0;
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+  }
+
+  .deck-card {
+    flex-basis: 360px;
+  }
 }

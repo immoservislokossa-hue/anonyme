@@ -3,6 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { TopicArt } from "@/components/art/Art";
 import AskAfi from "@/components/AskAfi";
+import Deck, { type DeckCard } from "@/components/Deck";
+import ListenButton from "@/components/ListenButton";
+import WhatsAppShare from "@/components/WhatsAppShare";
 import Crumbs from "@/components/Crumbs";
 import PageFeedback from "@/components/PageFeedback";
 import RelatedLinks from "@/components/RelatedLinks";
@@ -30,6 +33,11 @@ export default async function SujetPage({ params }: { params: Promise<{ id: stri
   const persona = personaFor(sujet.voix);
   const episode = sujet.episode ? stories.find((s) => s.id === sujet.episode) : undefined;
   const fiches = getFiches(sujet.fiches);
+  const cards: DeckCard[] = [
+    ...sujet.points.map((point, i) => ({ id: `p${i}`, kind: "point" as const, title: point.titre, text: point.texte })),
+    ...sujet.vrai_faux.map((item, i) => ({ id: `v${i}`, kind: "vf" as const, text: item.vrai, wrong: item.faux })),
+  ];
+  const spoken = [sujet.bref, ...sujet.points.map((p) => `${p.titre}. ${p.texte}`)].join(" ");
 
   return (
     <article className="topic-page">
@@ -62,40 +70,15 @@ export default async function SujetPage({ params }: { params: Promise<{ id: stri
         </p>
       )}
 
-      <section aria-labelledby="retenir">
-        <h2 id="retenir">À retenir</h2>
-        <ul className="point-grid">
-          {sujet.points.map((point, index) => (
-            <li key={point.titre} className="point">
-              <span className="point-num" aria-hidden="true">
-                {index + 1}
-              </span>
-              <strong>{point.titre}</strong>
-              <p>{point.texte}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className="row actions-row">
+        <ListenButton text={spoken} />
+        <WhatsAppShare title={sujet.titre} />
+      </div>
 
-      {sujet.vrai_faux.length > 0 && (
-        <section aria-labelledby="vf">
-          <h2 id="vf">Vrai ou faux ?</h2>
-          <ul className="tf">
-            {sujet.vrai_faux.map((item) => (
-              <li key={item.faux}>
-                <p className="tf-false">
-                  <span className="tf-tag">Faux</span>
-                  {item.faux}
-                </p>
-                <p className="tf-true">
-                  <span className="tf-tag">Vrai</span>
-                  {item.vrai}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      <section aria-labelledby="retenir">
+        <h2 id="retenir">L'essentiel en {cards.length} cartes</h2>
+        <Deck cards={cards} label={`L'essentiel sur ${sujet.titre}`} />
+      </section>
 
       <section aria-labelledby="faire">
         <h2 id="faire">Que faire</h2>
