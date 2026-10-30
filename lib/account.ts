@@ -53,3 +53,16 @@ export async function accountFromToken(token: string, env: Env = process.env, fe
   if (!response.ok) return null;
   return toAccount(await response.json().catch(() => null));
 }
+
+// « Mot de passe oublié » : Supabase envoie un lien par e-mail. La réponse ne dit jamais si l'adresse a un compte.
+export async function recover(email: string, redirectTo: string, env: Env = process.env, fetchImpl: typeof fetch = fetch): Promise<void> {
+  if (!EMAIL.test(email) || email.length > 120) return;
+  await fetchImpl(endpoint(env, `/recover?redirect_to=${encodeURIComponent(redirectTo)}`), { method: "POST", headers: headers(env), body: JSON.stringify({ email }) });
+}
+
+// Nouveau mot de passe, avec le jeton reçu dans le lien de l'e-mail.
+export async function setPassword(token: string, password: string, env: Env = process.env, fetchImpl: typeof fetch = fetch): Promise<boolean> {
+  if (password.length < 8 || password.length > 72) return false;
+  const response = await fetchImpl(endpoint(env, "/user"), { method: "PUT", headers: headers(env, token), body: JSON.stringify({ password }) });
+  return response.ok;
+}

@@ -12,7 +12,7 @@ export const ESPACES: Espace[] = [
 ];
 
 export function espaceOf(pathname: string): EspaceId {
-  if (pathname === "/all" || pathname.startsWith("/all/")) return "plateforme";
+  if (pathname === "/all" || pathname.startsWith("/all/") || pathname.startsWith("/connexion")) return "plateforme";
   if (pathname.startsWith("/prestataires") || pathname.startsWith("/pro")) return "prestataires";
   if (pathname.startsWith("/pilotage") || pathname.startsWith("/partenaires")) return "pilotage";
   return "jeunes";

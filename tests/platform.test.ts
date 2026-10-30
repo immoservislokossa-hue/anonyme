@@ -158,3 +158,21 @@ test("rappel de visite : deux événements, alarmes, mode discret sans nom de se
   assert.ok(!quiet.includes("Centre") && !quiet.includes("AB234") || quiet.includes("UID:visite-AB234@alviosa"));
   assert.ok(!quiet.includes("SUMMARY:Visite") && quiet.includes("SUMMARY:Rappel santé"));
 });
+
+test("mot de passe oublié : lien demandé sans révéler l'existence du compte, nouveau mot de passe avec jeton", async () => {
+  const { recover, setPassword } = await import("../lib/account");
+  const env = { SUPABASE_URL: "https://x.supabase.co", SUPABASE_ANON_KEY: "anon" };
+  const calls: { url: string; method?: string; auth?: string }[] = [];
+  const fake = (async (url: string, init?: { method?: string; headers?: Record<string, string> }) => {
+    calls.push({ url, method: init?.method, auth: init?.headers?.Authorization });
+    return new Response("{}", { status: 200 });
+  }) as unknown as typeof fetch;
+  await recover("a@b.co", "https://alviosa.org/connexion/nouveau-mot-de-passe", env, fake);
+  assert.ok(calls[0].url.includes("/auth/v1/recover?redirect_to=https%3A%2F%2Falviosa.org%2Fconnexion%2Fnouveau-mot-de-passe"));
+  await recover("pas-un-mail", "https://x", env, fake);
+  assert.equal(calls.length, 1);
+  assert.equal(await setPassword("TOK", "motdepasse1", env, fake), true);
+  assert.equal(calls[1].method, "PUT");
+  assert.equal(calls[1].auth, "Bearer TOK");
+  assert.equal(await setPassword("TOK", "court", env, fake), false);
+});

@@ -14,6 +14,7 @@ export const SITE_PAGES: SitePage[] = [
   { href: "/prestataires/consultation", titre: "Consultation guidée", espace: "prestataires", texte: "consultation éligibilité méthodes qualité du conseil" },
   { href: "/prestataires/entrainement", titre: "Entraînement avec de faux clients", espace: "prestataires", texte: "jeu de rôle accueil sans jugement jeunes" },
   { href: "/prestataires/aide-memoire", titre: "Aide-mémoire OMS", espace: "prestataires", texte: "fiches méthodes délais listes de contrôle" },
+  { href: "/connexion", titre: "Connexion", espace: "plateforme", texte: "se connecter créer un compte mot de passe prestataire responsable" },
   { href: "/prestataires/offres", titre: "Offres pour les services", espace: "prestataires", texte: "abonnement gratuit pro prix mobile money équipe tableau du centre" },
   { href: "/prestataires/mon-service", titre: "Mon service", espace: "prestataires", texte: "inscrire service rupture stock QR carte accueil des jeunes" },
   { href: "/prestataires/bilan", titre: "Mon bilan", espace: "prestataires", texte: "bilan anonyme qualité du conseil" },
@@ -40,6 +41,7 @@ export const FOOTER_COLUMNS: { titre: string; liens: { href: string; label: stri
       { href: "/prestataires/consultation", label: "Consultation guidée" },
       { href: "/prestataires/entrainement", label: "Entraînement" },
       { href: "/prestataires/mon-service", label: "Mon service" },
+      { href: "/connexion", label: "Se connecter" },
     ],
   },
   {

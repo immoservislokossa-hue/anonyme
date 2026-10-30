@@ -1,6 +1,6 @@
 import { guarded } from "@/lib/safe";
 import { NextResponse } from "next/server";
-import { ACCOUNT_COOKIE, accountsEnabled, authenticate } from "@/lib/account";
+import { ACCOUNT_COOKIE, accountsEnabled, authenticate, recover } from "@/lib/account";
 import { currentAccount } from "@/lib/accountSession";
 import { limited, readJson } from "@/lib/http";
 
@@ -19,6 +19,11 @@ async function handlePOST(request: Request) {
   const limit = limited(request, "compte", 10, 600_000);
   if (limit) return limit;
   const body = await readJson(request);
+  if (body?.mode === "recuperation" && typeof body.email === "string") {
+    const origin = process.env.NEXT_PUBLIC_SITE_URL ?? new URL(request.url).origin;
+    await recover(body.email.trim().toLowerCase(), `${origin.replace(/\/+$/, "")}/connexion/nouveau-mot-de-passe`).catch(() => undefined);
+    return NextResponse.json({ message: "Si un compte existe pour cette adresse, un lien vient d'être envoyé. Regarde aussi tes courriers indésirables." });
+  }
   if (!body || (body.mode !== "inscription" && body.mode !== "connexion") || typeof body.email !== "string" || typeof body.password !== "string") {
     return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
   }

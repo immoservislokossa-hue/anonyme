@@ -57,3 +57,11 @@ where email = 'responsable@exemple.org';
 ```
 
 Le rôle est lu dans `app_metadata`, que la personne ne peut pas modifier elle-même. Sans `SUPABASE_ANON_KEY`, les comptes sont désactivés : l'ancien accès par jeton continue de marcher.
+
+### Pages de compte et mot de passe oublié
+
+- Page de connexion et d'inscription : `/connexion`. Après connexion, un prestataire arrive sur « Mon service », un responsable sur Pilotage.
+- « Mot de passe oublié » envoie un lien par e-mail vers `/connexion/nouveau-mot-de-passe`. Dans Supabase, Authentication, URL Configuration :
+  - **Site URL** : l'adresse du site (par exemple `https://ton-site.vercel.app`).
+  - **Redirect URLs** : ajouter `https://ton-site.vercel.app/connexion/nouveau-mot-de-passe`.
+- Sans cette adresse dans la liste, le lien de l'e-mail ne revient pas sur le site.

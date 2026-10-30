@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 type Me = { enabled: boolean; account: { email: string; role: "prestataire" | "pilotage" } | null };
 
 // Connexion et inscription par e-mail et mot de passe. Les comptes sont créés dans Supabase Auth ; rien n'est affiché si les comptes ne sont pas activés.
-export default function AccountPanel({ audience, onChange }: { audience: "prestataire" | "pilotage"; onChange?: (me: Me) => void }) {
+export default function AccountPanel({ audience, onChange, redirect = false }: { audience: "prestataire" | "pilotage"; onChange?: (me: Me) => void; redirect?: boolean }) {
   const [me, setMe] = useState<Me | null>(null);
   const [mode, setMode] = useState<"connexion" | "inscription">("connexion");
   const [email, setEmail] = useState("");
@@ -31,15 +31,32 @@ export default function AccountPanel({ audience, onChange }: { audience: "presta
     setBusy(true);
     setMessage("");
     const response = await fetch("/api/compte", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mode, email, password }) }).catch(() => null);
-    const data = (await response?.json().catch(() => null)) as { error?: string; confirm?: boolean; message?: string } | null;
+    const data = (await response?.json().catch(() => null)) as { error?: string; confirm?: boolean; message?: string; account?: { role?: string } } | null;
     setBusy(false);
     if (response?.ok && !data?.confirm) {
       setPassword("");
+      // Sur la page de connexion : on emmène la personne là où elle travaille.
+      if (redirect && data?.account) {
+        window.location.href = data.account.role === "pilotage" ? "/pilotage" : "/prestataires/mon-service";
+        return;
+      }
       await load();
       if (audience === "pilotage") window.location.reload();
       return;
     }
     setMessage(data?.message ?? data?.error ?? "Connexion impossible.");
+  }
+
+  async function forgot() {
+    if (!email) {
+      setMessage("Écris d'abord ton adresse e-mail, puis appuie sur « Mot de passe oublié ».");
+      return;
+    }
+    setBusy(true);
+    const response = await fetch("/api/compte", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mode: "recuperation", email }) }).catch(() => null);
+    const data = (await response?.json().catch(() => null)) as { message?: string; error?: string } | null;
+    setBusy(false);
+    setMessage(data?.message ?? data?.error ?? "Envoi impossible pour le moment.");
   }
 
   async function logout() {
@@ -81,7 +98,7 @@ export default function AccountPanel({ audience, onChange }: { audience: "presta
         <span>Mot de passe (8 signes au moins)</span>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete={mode === "connexion" ? "current-password" : "new-password"} minLength={8} required />
       </label>
-      {message && <p role="alert" className="notice alert">{message}</p>}
+      {message && <p role="status" className="notice">{message}</p>}
       <div className="row">
         <button type="submit" className="btn primary" disabled={busy}>
           {mode === "connexion" ? "Me connecter" : "Créer mon compte"}
@@ -89,6 +106,11 @@ export default function AccountPanel({ audience, onChange }: { audience: "presta
         {audience === "prestataire" && (
           <button type="button" className="btn ghost" onClick={() => setMode(mode === "connexion" ? "inscription" : "connexion")}>
             {mode === "connexion" ? "Je n'ai pas de compte" : "J'ai déjà un compte"}
+          </button>
+        )}
+        {mode === "connexion" && (
+          <button type="button" className="btn ghost" onClick={forgot} disabled={busy}>
+            Mot de passe oublié
           </button>
         )}
       </div>
