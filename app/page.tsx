@@ -2,6 +2,7 @@ import Link from "next/link";
 import AskAfi from "@/components/AskAfi";
 import Icon from "@/components/Icon";
 import MyPlanCard from "@/components/MyPlanCard";
+import OtherChannels from "@/components/OtherChannels";
 import ShareButton from "@/components/ShareButton";
 import { TARGET_LABEL } from "@/lib/brand";
 import { HOME_LINKS, HOME_NEEDS } from "@/lib/home";
@@ -44,6 +45,8 @@ export default function HomePage() {
         ))}
         <AskAfi className="link-btn">Poser une question à Afi</AskAfi>
       </nav>
+
+      <OtherChannels />
 
       <ul className="trust" aria-label="Ce que tu peux savoir">
         <li>Gratuit, sans compte</li>
