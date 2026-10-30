@@ -17,6 +17,7 @@ export function GET() {
     "/urgence",
     "/aide",
     "/chat",
+    "/a-propos",
     ...SUJETS.map((s) => hrefOf.sujet(s.id)),
     ...TOOLS.map((t) => hrefOf.outil(t.id)),
     ...METHODES.map((m) => hrefOf.methode(m.id)),

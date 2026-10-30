@@ -7,6 +7,8 @@ import MethodHelp, { type HelpMethod } from "@/components/tools/MethodHelp";
 import PlanTool from "@/components/tools/PlanTool";
 import PregnancyCheck from "@/components/tools/PregnancyCheck";
 import RiskTool from "@/components/tools/RiskTool";
+import TalkTool from "@/components/tools/TalkTool";
+import VisitTool from "@/components/tools/VisitTool";
 import type { ToolId } from "@/lib/catalog";
 
 // Le grand bouton « Commencer », puis l'outil lui-même, sur sa propre page.
@@ -36,6 +38,8 @@ export default function ToolLauncher({ id, methods, minutes }: { id: ToolId; met
           {id === "plan" && <PlanTool />}
           {id === "cycle" && <CycleTool />}
           {id === "souci" && <MethodHelp methods={methods} />}
+          {id === "visite" && <VisitTool />}
+          {id === "parler" && <TalkTool />}
         </div>
       )}
     </div>

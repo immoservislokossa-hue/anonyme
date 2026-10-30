@@ -12,6 +12,10 @@ export const USAGE_EVENTS = [
   "outil-plan",
   "outil-cycle",
   "outil-souci",
+  "outil-visite",
+  "outil-parler",
+  "avis-oui",
+  "avis-non",
   "serie-episode",
   "partage",
 ] as const;

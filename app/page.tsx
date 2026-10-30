@@ -2,6 +2,7 @@ import Link from "next/link";
 import AskAfi from "@/components/AskAfi";
 import Icon from "@/components/Icon";
 import MyPlanCard from "@/components/MyPlanCard";
+import OfflineStatus from "@/components/OfflineStatus";
 import OtherChannels from "@/components/OtherChannels";
 import ShareButton from "@/components/ShareButton";
 import Silhouette from "@/components/Silhouette";
@@ -19,7 +20,7 @@ export default function HomePage() {
         </div>
         <p className="home-age">{TARGET_LABEL}</p>
         <h1>Ta planification familiale, de A à Z.</h1>
-        <p>Choisir une méthode, réagir à un oubli, suivre ton cycle, te protéger des IST : tout est ici, sans honte et sans jugement. Personne ne voit ce que tu fais.</p>
+        <p>Choisir une méthode, attendre ou espacer une grossesse, te protéger des IST, préparer ta visite au centre : tout est ici, sans honte et sans jugement. Personne ne voit ce que tu fais.</p>
         <AskAfi className="btn primary big">Poser ma question à Afi</AskAfi>
       </section>
 
@@ -43,6 +44,8 @@ export default function HomePage() {
       </section>
 
       <OtherChannels />
+
+      <OfflineStatus />
 
       <div className="home-share">
         <ShareButton label="Envoyer Alviosa à une amie" />

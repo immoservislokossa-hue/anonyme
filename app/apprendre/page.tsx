@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: "Apprendre" };
 
 const CARDS = [
   { id: "sujets", href: "/sujets", titre: "Sujets", texte: "Grossesse, IST, règles, consentement… une page claire par sujet.", count: `${SUJETS.length} sujets` },
-  { id: "outils", href: "/outils", titre: "Outils", texte: "Choisir une méthode, après un risque, mes rappels.", count: `${TOOLS.length} outils` },
+  { id: "outils", href: "/outils", titre: "Outils", texte: "Choisir une méthode, préparer ma visite, parler à mes proches, mes rappels.", count: `${TOOLS.length} outils` },
   { id: "methodes", href: "/methodes", titre: "Méthodes", texte: "Toutes les méthodes, avec un schéma et une comparaison.", count: `${METHODES.length - 1} méthodes` },
   { id: "serie", href: "/serie", titre: "La série", texte: "Afi, Fallone et Chimène : des histoires qu'on suit.", count: `${stories.length} épisodes` },
 ];
@@ -36,7 +36,7 @@ export default async function LearnPage({ searchParams }: { searchParams: Promis
       <header>
         <p className="eyebrow">Planification familiale et santé sexuelle</p>
         <h1>Apprendre</h1>
-        <p className="lede">Choisis par où commencer. Tout est expliqué simplement, d'après le guide de l'OMS.</p>
+        <p className="lede">Choisis par où commencer. Tout est expliqué simplement, d'après le guide de l'OMS : la même information pour toutes et tous, mariés ou non.</p>
       </header>
 
       <SearchBox items={searchIndex()} />
@@ -61,6 +61,9 @@ export default async function LearnPage({ searchParams }: { searchParams: Promis
           <AskAfi className="btn primary">Parler à Afi</AskAfi>
           <Link className="btn ghost" href="/outils/risque">
             J'ai pris un risque
+          </Link>
+          <Link className="btn ghost" href="/outils/visite">
+            Préparer ma visite
           </Link>
         </div>
       </section>

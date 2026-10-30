@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { TopicArt } from "@/components/art/Art";
 import AskAfi from "@/components/AskAfi";
 import Crumbs from "@/components/Crumbs";
+import PageFeedback from "@/components/PageFeedback";
 import RelatedLinks from "@/components/RelatedLinks";
 import Silhouette from "@/components/Silhouette";
 import Icon from "@/components/Icon";
@@ -144,6 +145,7 @@ export default async function SujetPage({ params }: { params: Promise<{ id: stri
       )}
 
       <p className="muted fiche-note">Contenu établi d'après le guide de la planification familiale de l'OMS (2012). Brouillon en cours de validation par des professionnels de santé.</p>
+      <PageFeedback />
     </article>
   );
 }

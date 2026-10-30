@@ -6,6 +6,6 @@ export const HOME_NEEDS: { href: string; icon: IconName; title: string; text: st
   { href: "/outils/risque", icon: "alert", title: "J'ai pris un risque", text: "Que faire, avant quand.", urgent: true },
   { href: "/sujets/grossesse", icon: "heart", title: "Retard de règles", text: "Test, grossesse, à qui parler." },
   { href: "/sujets/ist-vih", icon: "shield", title: "IST et VIH", text: "Se protéger, se faire dépister." },
-  { href: "/sujets/relations", icon: "circles", title: "Relations et consentement", text: "Dire oui, dire non." },
-  { href: "/orientation", icon: "pin", title: "Trouver un centre", text: "Près de chez toi." },
+  { href: "/outils/visite", icon: "pin", title: "Préparer ma visite", text: "Les bonnes questions à poser." },
+  { href: "/outils/parler", icon: "circles", title: "Parler à quelqu'un", text: "Partenaire, parents, soignant." },
 ];

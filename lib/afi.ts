@@ -23,6 +23,7 @@ export function contextFor(pathname: string): AfiContext {
   }
   if (section === "orientation") return { key: "orientation", label: "Trouver un centre", tips: ["Comment préparer ma visite ?", "Que dire à l'accueil ?", "Puis-je venir accompagnée ?", "Puis-je demander la confidentialité ?"] };
   if (section === "urgence") return { key: "urgence", label: "Urgence", tips: ["Un préservatif a craqué, que faire ?", "Où trouver la pilule d'urgence ?", "J'ai peur d'être enceinte"] };
+  if (section === "a-propos") return { key: "a-propos", label: "À propos", tips: ["Sur quelles données s'appuie Alviosa ?", "Que ne fait pas Alviosa ?", "Mes messages sont-ils gardés ?"] };
   if (section === "aide") return { key: "aide", label: "Aide", tips: ["Mes messages sont-ils gardés ?", "L'IA peut-elle se tromper ?", "Comment signaler une erreur ?"] };
   if (section === "serie" || section === "histoires") return { key: "serie", label: "La série", tips: ["Peux-tu m'expliquer cet épisode ?", "Les personnages sont-ils vrais ?", "Où en savoir plus sur ce sujet ?"] };
   if (section === "sujets") return { key: "sujets", label: "Sujets", tips: ["Par quel sujet commencer ?", "Je ne sais pas ce que je cherche", ...GENERAL.slice(0, 2)] };

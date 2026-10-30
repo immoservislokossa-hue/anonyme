@@ -35,7 +35,7 @@ const fiches = new Map((knowledgeData as unknown as Fiche[]).map((f) => [f.id, f
 export const getFiches = (ids: string[]) => ids.flatMap((id) => (fiches.has(id) ? [fiches.get(id) as Fiche] : []));
 
 // ---------- Outils ----------
-export type ToolId = "risque" | "choisir" | "commencer" | "plan" | "cycle" | "souci";
+export type ToolId = "risque" | "choisir" | "commencer" | "plan" | "cycle" | "souci" | "visite" | "parler";
 
 export type Tool = {
   id: ToolId;
@@ -142,8 +142,38 @@ export const TOOLS: Tool[] = [
       { kind: "outil", id: "choisir" },
     ],
   },
+  {
+    id: "visite",
+    titre: "Je prépare ma visite",
+    promesse: "Les bonnes questions à poser au centre, pour repartir en ayant compris.",
+    minutes: 1,
+    etapes: ["Dis pourquoi tu y vas", "Choisis la méthode qui t'intéresse, si tu veux", "Copie ta liste et emporte-la"],
+    source: "Guide OMS (2012) et fiche « Préparer une consultation »",
+    limites: ["Il ne remplace pas la consultation", "Les règles du centre peuvent varier", "En cas d'urgence, va tout de suite au centre"],
+    astuces: ["Que dire à l'accueil ?", "Puis-je demander la confidentialité ?", "Et si on me juge ?"],
+    suite: [
+      { kind: "outil", id: "parler" },
+      { kind: "outil", id: "choisir" },
+      { kind: "sujet", id: "eviter-grossesse" },
+    ],
+  },
+  {
+    id: "parler",
+    titre: "Parler à quelqu'un",
+    promesse: "Des phrases pour aborder le sujet avec un partenaire, un parent ou un soignant.",
+    minutes: 1,
+    etapes: ["Choisis à qui tu veux parler", "Choisis ce que tu veux dire", "Reçois des phrases pour commencer et des réponses"],
+    source: "Guide OMS (2012), fiches Alviosa, Afrobaromètre 2024/25",
+    limites: ["Tu n'es jamais obligé(e) de parler", "Si tu as peur d'une réaction violente, ne parle pas seul(e)", "Ce sont des idées à adapter avec tes mots"],
+    astuces: ["Comment en parler à mes parents ?", "Mon partenaire refuse le préservatif", "Où trouver de l'aide si j'ai peur ?"],
+    suite: [
+      { kind: "outil", id: "visite" },
+      { kind: "sujet", id: "relations" },
+      { kind: "sujet", id: "violence" },
+    ],
+  },
 ];
-export const getTool = (id: string) => TOOLS.find((t) => t.id === id);
+export const getTool =  (id: string) => TOOLS.find((t) => t.id === id);
 
 // ---------- Méthodes ----------
 type RawMethode = {

@@ -102,3 +102,10 @@ Chaque règle est écrite dans `lib/tools/` et testée dans `tests/tools.test.ts
 - Nous disons « s'appuie sur », jamais « validé par l'OMS ». Aucun contenu n'est présenté comme validé tant qu'un professionnel de santé du pays ne l'a pas relu.
 - **Droits** : l'OMS demande une autorisation pour reproduire ou traduire ses publications (formulaire de licence sur who.int). À obtenir avant un lancement public. Ne pas reproduire leurs illustrations ; les nôtres sont dessinées pour ce projet. Même démarche pour le guide des Baléares.
 - Le guide des Baléares décrit des méthodes peu disponibles en Afrique de l'Ouest (anneau, patch, diaphragme) : elles ne sont pas reprises. Là où les deux guides divergent (méthodes naturelles, allaitement), nous suivons l'OMS en précisant les conditions.
+
+## 30 octobre 2026 : refonte guidée par les données du PO
+
+- Deux outils ajoutés (« Je prépare ma visite », « Parler à quelqu'un ») et un sujet (« Attendre ou espacer »), chacun relié à une donnée publique (voir `docs/alignement-po.md`).
+- Page publique `/a-propos` : données, choix de conception, limites, indicateurs, sources.
+- Mesure : deux événements « avis oui/non » sans texte, un statut « prêt sans connexion » visible dans Aide et sur l'accueil.
+- Principe : toute statistique citée dans l'application dit sa source, son pays et son année ; une opinion n'est pas présentée comme un usage.

@@ -38,6 +38,7 @@ export const viewport: Viewport = {
 const footerLinks = [
   { href: "/aide#ia", label: "Comment fonctionne l'IA" },
   { href: "/aide#confidentialite", label: "Confidentialité" },
+  { href: "/a-propos", label: "À propos et preuves" },
   { href: "/aide", label: "Aide" },
 ];
 

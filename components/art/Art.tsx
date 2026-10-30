@@ -323,6 +323,32 @@ export function ToolArt({ id }: { id: string }) {
           </text>
         </Frame>
       );
+    case "visite":
+      return (
+        <Frame label="Une liste de questions pour la consultation" tone="teal">
+          <rect x="44" y="18" width="84" height="108" rx="14" className="a-white s-primary" />
+          <rect x="68" y="12" width="36" height="14" rx="7" className="a-primary" />
+          {[0, 1, 2].map((i) => (
+            <g key={i}>
+              <circle cx="62" cy={50 + i * 24} r="6" className="a-teal" />
+              <path d={`M76 ${50 + i * 24} h38`} className="s-muted" strokeWidth="4" strokeLinecap="round" />
+            </g>
+          ))}
+          <path d="M156 58 c-16 0 -26 12 -26 26 c0 20 26 40 26 40 s26 -20 26 -40 c0 -14 -10 -26 -26 -26 z" className="a-primary" />
+          <circle cx="156" cy="84" r="9" className="a-white" />
+        </Frame>
+      );
+    case "parler":
+      return (
+        <Frame label="Une conversation, deux voix" tone="sun">
+          <Bubble x={22} y={22} w={90} h={50}>
+            <path d="M42 40 h50 M42 54 h32" className="s-muted" strokeWidth="5" strokeLinecap="round" />
+          </Bubble>
+          <Bubble x={90} y={70} w={90} h={50} tail="right">
+            <path d="M112 88 h46 M112 102 h28" className="s-primary" strokeWidth="5" strokeLinecap="round" />
+          </Bubble>
+        </Frame>
+      );
     default:
       return (
         <Frame label="Une question sur ta méthode">
@@ -389,6 +415,18 @@ export function TopicArt({ id }: { id: string }) {
           <Shield x={100} y={72} s={1.6} mark="check" />
           <circle cx="42" cy="34" r="8" className="a-primary" />
           <circle cx="164" cy="104" r="8" className="a-sun" />
+        </Frame>
+      );
+    case "attendre":
+      return (
+        <Frame label="Choisir le bon moment, laisser du temps" tone="teal">
+          <Calendar x={30} y={34} />
+          <path d="M112 88 h58" className="s-muted" strokeWidth="4" strokeLinecap="round" />
+          <circle cx="116" cy="88" r="8" className="a-primary" />
+          <circle cx="170" cy="88" r="8" className="a-teal" />
+          <text x="143" y="72" textAnchor="middle" className="art-text art-small">
+            2 ans
+          </text>
         </Frame>
       );
     case "garcons":

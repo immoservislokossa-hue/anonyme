@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ToolArt } from "@/components/art/Art";
 import AskAfi from "@/components/AskAfi";
 import Crumbs from "@/components/Crumbs";
+import PageFeedback from "@/components/PageFeedback";
 import Icon from "@/components/Icon";
 import ToolLauncher from "@/components/ToolLauncher";
 import { METHODES, TOOLS, getTool, suiteLink } from "@/lib/catalog";
@@ -96,6 +97,7 @@ export default async function OutilPage({ params }: { params: Promise<{ id: stri
           <AskAfi message={tool.astuces[0]} />
         </div>
       </section>
+      <PageFeedback />
     </article>
   );
 }

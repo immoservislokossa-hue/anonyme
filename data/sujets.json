@@ -1,633 +1,723 @@
 [
- {
-  "id": "eviter-grossesse",
-  "titre": "Éviter une grossesse",
-  "voix": "afi",
-  "art": "eviter",
-  "bref": "Tu as le droit de choisir si et quand tu auras des enfants. Il existe plusieurs méthodes : tu peux en choisir une qui te convient, avec l'aide d'un professionnel.",
-  "points": [
-   {
-    "titre": "Plusieurs méthodes, pas une seule",
-    "texte": "Certaines se prennent chaque jour (la pilule), d'autres tous les 3 mois (l'injection), d'autres durent des années (implant, stérilet). Tu choisis selon ta vie."
-   },
-   {
-    "titre": "Plus c'est efficace, moins il faut y penser",
-    "texte": "Implant, stérilet, stérilisation et vasectomie sont parmi les plus efficaces et ne demandent rien à retenir tous les jours (guide OMS, p. 3)."
-   },
-   {
-    "titre": "Le préservatif fait deux choses",
-    "texte": "Seul le préservatif protège à la fois d'une grossesse et des IST, dont le VIH/sida. Tu peux l'utiliser avec une autre méthode."
-   },
-   {
-    "titre": "Tu as le droit d'essayer",
-    "texte": "Si une méthode ne te convient pas, tu peux en changer. Les méthodes qui ne sont pas définitives n'empêchent pas d'avoir un enfant plus tard."
-   }
-  ],
-  "vrai_faux": [
-   {
-    "faux": "Les jeunes ne peuvent pas utiliser de méthode.",
-    "vrai": "Les jeunes peuvent utiliser les méthodes qui ne sont pas définitives, puis avoir des enfants quand ils arrêtent (guide OMS, p. 22)."
-   },
-   {
-    "faux": "Il faut être mariée pour demander une méthode.",
-    "vrai": "Tu peux demander des informations et une méthode, mariée ou non, et demander la confidentialité."
-   }
-  ],
-  "etapes": [
-   {
-    "titre": "Réfléchis",
-    "texte": "Veux-tu un enfant bientôt, plus tard, ou plus du tout ?"
-   },
-   {
-    "titre": "Fais l'outil",
-    "texte": "« Choisir ma méthode » te montre ce qui est possible pour toi."
-   },
-   {
-    "titre": "Va au centre",
-    "texte": "Apporte ton résumé et tes questions."
-   },
-   {
-    "titre": "Prends ton temps",
-    "texte": "Tu peux dire « je veux y réfléchir ». Personne ne doit te forcer."
-   }
-  ],
-  "ou_aller": "Centre de santé ou hôpital pour l'implant, le stérilet et les méthodes définitives. Agent de santé communautaire, centre ou pharmacie pour la pilule, l'injection et les préservatifs.",
-  "outils": [
-   "choisir",
-   "commencer",
-   "plan"
-  ],
-  "methodes": [
-   "implants",
-   "sterilet",
-   "pilule",
-   "injectables",
-   "preservatif-masculin"
-  ],
-  "episode": "le-centre",
-  "question": "Quelle méthode de contraception choisir ?",
-  "fiches": [
-   "pourquoi-planification",
-   "choisir-methode",
-   "comparaison-methodes",
-   "effets-secondaires-courants",
-   "jeunes-droit-information"
-  ]
- },
- {
-  "id": "apres-risque",
-  "titre": "Après un rapport à risque",
-  "voix": "afi",
-  "art": "risque",
-  "urgent": true,
-  "bref": "Un préservatif cassé ou un rapport sans protection, ce n'est pas la fin du monde. Agis vite : la pilule d'urgence se prend jusqu'à 5 jours après, et le traitement d'urgence du VIH dans les 72 heures.",
-  "alerte": "Si on t'a forcé(e), ce n'est pas ta faute. Va dans un endroit sûr, puis au centre de santé, tout de suite.",
-  "points": [
-   {
-    "titre": "Pilule d'urgence : jusqu'à 5 jours",
-    "texte": "Elle évite une grossesse. Plus tôt tu la prends, mieux elle marche. Elle ne provoque pas d'avortement (guide OMS, p. 16)."
-   },
-   {
-    "titre": "VIH : 72 heures",
-    "texte": "Après un risque de VIH, un traitement d'urgence existe. Il doit commencer le plus tôt possible, dans les 72 heures. Va au centre le jour même."
-   },
-   {
-    "titre": "IST : un test, même sans signes",
-    "texte": "Beaucoup d'IST n'ont aucun signe. Un test permet de les soigner tôt."
-   },
-   {
-    "titre": "Tu n'es pas seule",
-    "texte": "Dis simplement ce qui s'est passé. Tu peux demander la confidentialité."
-   }
-  ],
-  "vrai_faux": [
-   {
-    "faux": "La pilule d'urgence provoque un avortement.",
-    "vrai": "Non : elle empêche ou retarde l'ovulation, et elle ne marche pas si une grossesse a déjà commencé."
-   },
-   {
-    "faux": "On peut attendre de voir si les règles viennent.",
-    "vrai": "Attendre fait perdre du temps : la pilule d'urgence marche mieux quand on la prend vite."
-   }
-  ],
-  "etapes": [
-   {
-    "titre": "Fais l'outil",
-    "texte": "« Après un rapport à risque » classe tes actions par urgence."
-   },
-   {
-    "titre": "Pilule d'urgence",
-    "texte": "En pharmacie ou au centre de santé, le plus tôt possible."
-   },
-   {
-    "titre": "Si c'est dans les 72 heures",
-    "texte": "Demande le traitement d'urgence contre le VIH."
-   },
-   {
-    "titre": "Pour la suite",
-    "texte": "Fais un test IST et choisis une méthode régulière."
-   }
-  ],
-  "ou_aller": "Pharmacie ou centre de santé le plus proche, le jour même.",
-  "outils": [
-   "risque",
-   "choisir"
-  ],
-  "methodes": [
-   "contraception-urgence",
-   "preservatif-masculin"
-  ],
-  "episode": "preservatif-craque",
-  "question": "Un préservatif a craqué, que faire ?",
-  "fiches": [
-   "contraception-urgence",
-   "ist-prevention",
-   "retard-regles"
-  ]
- },
- {
-  "id": "regles-cycle",
-  "titre": "Règles et cycle",
-  "voix": "chimene",
-  "art": "regles",
-  "bref": "Les règles sont normales. Chaque mois, si aucune grossesse ne commence, un peu de sang sort pendant quelques jours. Au début, le cycle est souvent irrégulier.",
-  "points": [
-   {
-    "titre": "Un cycle, c'est quoi ?",
-    "texte": "On le compte du premier jour d'une règle au premier jour de la suivante. Chez la plupart des adultes, il dure entre 21 et 35 jours."
-   },
-   {
-    "titre": "Au début, c'est irrégulier",
-    "texte": "Après les premières règles, le cycle change souvent d'un mois à l'autre. Note les dates sur un calendrier."
-   },
-   {
-    "titre": "Une hygiène simple",
-    "texte": "Utilise une serviette ou un tissu propre, change-le quand il est plein, et lave-toi les mains."
-   },
-   {
-    "titre": "Quand voir un professionnel",
-    "texte": "Si la douleur est très forte, si les règles sont très abondantes, ou si tes premières règles ne sont pas venues à 15 ans."
-   }
-  ],
-  "vrai_faux": [
-   {
-    "faux": "Les règles sont sales.",
-    "vrai": "Non : c'est un fonctionnement normal du corps."
-   },
-   {
-    "faux": "Pas de risque de grossesse pendant les règles.",
-    "vrai": "Faux : une grossesse peut arriver à d'autres moments du cycle, y compris pendant les règles."
-   }
-  ],
-  "etapes": [
-   {
-    "titre": "Note",
-    "texte": "Le premier jour de tes règles, chaque mois."
-   },
-   {
-    "titre": "Prépare",
-    "texte": "Des serviettes ou du tissu propre."
-   },
-   {
-    "titre": "Repose-toi",
-    "texte": "Un linge chaud sur le ventre peut aider."
-   },
-   {
-    "titre": "Demande conseil",
-    "texte": "Si quelque chose t'inquiète, va voir un professionnel."
-   }
-  ],
-  "ou_aller": "Centre de santé, ou une personne de confiance (grande sœur, infirmière).",
-  "outils": [
-   "cycle"
-  ],
-  "methodes": [
-   "jours-fixes"
-  ],
-  "episode": "chimene-et-la-tache",
-  "question": "C'est normal d'avoir mal pendant les règles ?",
-  "fiches": [
-   "regles-cycle"
-  ]
- },
- {
-  "id": "grossesse",
-  "titre": "Grossesse",
-  "voix": "afi",
-  "art": "grossesse",
-  "bref": "Un retard de règles ne veut pas toujours dire grossesse. Fais un test. Si c'est positif, ou si tu as un doute, va vite au centre : plus on est suivie tôt, mieux c'est.",
-  "points": [
-   {
-    "titre": "Pourquoi les règles sont en retard",
-    "texte": "Une grossesse, mais aussi le stress, un changement de poids, une maladie ou un changement de méthode."
-   },
-   {
-    "titre": "Le test",
-    "texte": "En pharmacie ou au centre de santé. Si tes règles ont plus d'une semaine de retard, fais un test."
-   },
-   {
-    "titre": "Les signes",
-    "texte": "Retard de règles, seins douloureux, nausées, fatigue, urines plus fréquentes (guide OMS, p. 20)."
-   },
-   {
-    "titre": "Pas de produit dangereux",
-    "texte": "Ne prends ni tisane ni produit pour « faire revenir les règles » : ça peut être dangereux."
-   }
-  ],
-  "vrai_faux": [
-   {
-    "faux": "Pas de risque de grossesse à la première relation.",
-    "vrai": "Faux : une grossesse peut arriver dès le premier rapport sans protection."
-   },
-   {
-    "faux": "Quand on allaite, on ne peut pas être enceinte.",
-    "vrai": "Seulement si le bébé a moins de 6 mois, ne boit que ton lait, et que tes règles ne sont pas revenues."
-   }
-  ],
-  "etapes": [
-   {
-    "titre": "Fais un test",
-    "texte": "Pharmacie ou centre de santé."
-   },
-   {
-    "titre": "Si c'est positif, ou si tu doutes",
-    "texte": "Va vite au centre de santé."
-   },
-   {
-    "titre": "Parle",
-    "texte": "À une personne de confiance."
-   },
-   {
-    "titre": "Tes options",
-    "texte": "Un professionnel t'explique les soins et les options prévues par la loi, sans te juger."
-   }
-  ],
-  "ou_aller": "Centre de santé ou maternité.",
-  "outils": [
-   "commencer",
-   "risque"
-  ],
-  "methodes": [
-   "mama"
-  ],
-  "episode": null,
-  "question": "J'ai un retard de règles, que faire ?",
-  "fiches": [
-   "retard-regles",
-   "grossesse-inattendue",
-   "apres-accouchement",
-   "mythes-grossesse"
-  ]
- },
- {
-  "id": "ist-vih",
-  "titre": "IST et VIH",
-  "voix": "afi",
-  "art": "ist",
-  "bref": "Beaucoup d'infections sexuellement transmissibles n'ont aucun signe. Le préservatif protège, un test permet de se soigner tôt, et le VIH se traite.",
-  "points": [
-   {
-    "titre": "Le préservatif protège",
-    "texte": "Utilisé à chaque rapport, c'est le moyen le plus efficace. Seul le préservatif protège aussi d'une grossesse."
-   },
-   {
-    "titre": "Un test, même sans signes",
-    "texte": "Fais un test après un rapport sans préservatif, ou quand tu changes de partenaire."
-   },
-   {
-    "titre": "Après un risque de VIH",
-    "texte": "Un traitement d'urgence existe, à commencer dans les 72 heures."
-   },
-   {
-    "titre": "Le vaccin contre le HPV",
-    "texte": "Il protège d'un cancer du col de l'utérus, surtout avant les premiers rapports, souvent entre 9 et 14 ans."
-   }
-  ],
-  "vrai_faux": [
-   {
-    "faux": "On voit quand on a une IST.",
-    "vrai": "Non : beaucoup d'IST n'ont aucun signe."
-   },
-   {
-    "faux": "La pilule protège des IST.",
-    "vrai": "Non : seuls les préservatifs protègent à la fois de la grossesse et des IST."
-   },
-   {
-    "faux": "Avec le VIH, on ne peut plus utiliser de méthode.",
-    "vrai": "Presque toutes les méthodes sont possibles ; le préservatif reste recommandé (guide OMS, p. 17)."
-   }
-  ],
-  "etapes": [
-   {
-    "titre": "Préservatif",
-    "texte": "À chaque rapport, un nouveau."
-   },
-   {
-    "titre": "Test",
-    "texte": "Au centre de santé, avec confidentialité."
-   },
-   {
-    "titre": "Un signe ?",
-    "texte": "Plaie, écoulement, douleur : va au centre, ne te soigne pas seul(e)."
-   },
-   {
-    "titre": "Parlez-en",
-    "texte": "Avec ton ou ta partenaire."
-   }
-  ],
-  "ou_aller": "Centre de santé ou centre de dépistage.",
-  "outils": [
-   "risque",
-   "choisir"
-  ],
-  "methodes": [
-   "preservatif-masculin",
-   "preservatif-feminin"
-  ],
-  "episode": null,
-  "question": "Comment me protéger des IST ?",
-  "fiches": [
-   "ist-generalites",
-   "ist-prevention",
-   "ist-signes",
-   "vih-depistage",
-   "vih-methodes",
-   "hpv-vaccin"
-  ]
- },
- {
-  "id": "relations",
-  "titre": "Relations et consentement",
-  "voix": "fallone",
-  "art": "relations",
-  "bref": "Un rapport n'est respectueux que si les deux personnes sont d'accord, librement, sans pression. Tu peux dire non à tout moment, même après avoir dit oui.",
-  "points": [
-   {
-    "titre": "Oui, non, pas maintenant",
-    "texte": "Dire « pas maintenant » ou « non » est ton droit. Le silence n'est pas un oui."
-   },
-   {
-    "titre": "Sans pression ni menace",
-    "texte": "Il n'y a pas de consentement si on est menacé, endormi, ou sous l'effet de l'alcool ou de la drogue."
-   },
-   {
-    "titre": "Une relation saine",
-    "texte": "On se respecte, on peut dire non sans avoir peur, on décide ensemble."
-   },
-   {
-    "titre": "Parler de protection avant",
-    "texte": "Parlez de grossesse et d'IST avant un rapport. Un partenaire qui te respecte accepte d'en parler."
-   }
-  ],
-  "vrai_faux": [
-   {
-    "faux": "Si j'ai dit oui une fois, je ne peux plus dire non.",
-    "vrai": "Tu peux changer d'avis à tout moment."
-   },
-   {
-    "faux": "Un vrai amoureux insiste.",
-    "vrai": "Quelqu'un qui t'aime accepte d'attendre."
-   }
-  ],
-  "etapes": [
-   {
-    "titre": "Écoute-toi",
-    "texte": "Qu'est-ce que tu ressens ?"
-   },
-   {
-    "titre": "Dis-le",
-    "texte": "Oui, non, ou « pas maintenant »."
-   },
-   {
-    "titre": "Parlez de protection",
-    "texte": "Avant, à deux."
-   },
-   {
-    "titre": "Demande de l'aide",
-    "texte": "Si tu te sens sous pression, parle à une personne de confiance."
-   }
-  ],
-  "ou_aller": "Une personne de confiance, ou un centre de santé.",
-  "outils": [
-   "choisir"
-  ],
-  "methodes": [
-   "preservatif-masculin"
-  ],
-  "episode": "afi-et-koffi",
-  "question": "Comment dire non sans fâcher mon copain ?",
-  "fiches": [
-   "consentement",
-   "relation-saine",
-   "honte-culpabilite",
-   "jeunes-droit-information"
-  ]
- },
- {
-  "id": "violence",
-  "titre": "Violence et aide",
-  "voix": "fallone",
-  "art": "violence",
-  "urgent": true,
-  "bref": "Si on t'a forcé(e) ou fait du mal, ce n'est pas ta faute. Tu as le droit d'être soigné(e) et écouté(e). Plus tôt tu vas au centre, plus il y a de solutions.",
-  "alerte": "Si tu es en danger tout de suite, va dans un endroit sûr et appelle les secours. Numéro d'urgence du pays : [à renseigner].",
-  "points": [
-   {
-    "titre": "Ce n'est pas ta faute",
-    "texte": "La faute est toujours à celui ou celle qui force."
-   },
-   {
-    "titre": "Les soins urgents",
-    "texte": "La pilule d'urgence jusqu'à 5 jours, et le traitement d'urgence du VIH dans les 72 heures (guide OMS, p. 18)."
-   },
-   {
-    "titre": "Un endroit sûr",
-    "texte": "Va là où tu es en sécurité, avec une personne de confiance."
-   },
-   {
-    "titre": "Tu décides",
-    "texte": "Personne ne doit te forcer à en parler. Tu peux demander la confidentialité."
-   }
-  ],
-  "vrai_faux": [
-   {
-    "faux": "C'est de ma faute si on m'a forcé(e).",
-    "vrai": "Non : la faute est toujours à celui ou celle qui force."
-   },
-   {
-    "faux": "Être surveillé(e) ou insulté(e), c'est normal en amour.",
-    "vrai": "Non : être contrôlé(e), insulté(e) ou isolé(e) de ses amis n'est pas de l'amour."
-   }
-  ],
-  "etapes": [
-   {
-    "titre": "Va dans un endroit sûr",
-    "texte": "Avec une personne de confiance."
-   },
-   {
-    "titre": "Appelle de l'aide",
-    "texte": "Les secours, ou quelqu'un que tu connais."
-   },
-   {
-    "titre": "Va au centre de santé",
-    "texte": "Dès que possible."
-   },
-   {
-    "titre": "Demande les soins",
-    "texte": "Pilule d'urgence, test IST, traitement VIH si c'est dans les 72 heures."
-   }
-  ],
-  "ou_aller": "Centre de santé le plus proche. Numéro d'urgence du pays : [à renseigner].",
-  "outils": [
-   "risque"
-  ],
-  "methodes": [
-   "contraception-urgence"
-  ],
-  "episode": null,
-  "question": "Que faire après une violence ?",
-  "fiches": [
-   "apres-violence",
-   "apres-viol-pf",
-   "relation-saine"
-  ]
- },
- {
-  "id": "garcons",
-  "titre": "Pour les garçons",
-  "voix": "afi",
-  "art": "garcons",
-  "bref": "La planification familiale concerne aussi les garçons. Le préservatif protège, le consentement est essentiel, et tu peux accompagner ta partenaire au centre.",
-  "points": [
-   {
-    "titre": "Le préservatif, bien mis",
-    "texte": "On le met sur le sexe en érection avant tout contact, on le retire après, on le jette, et on en utilise un nouveau à chaque rapport."
-   },
-   {
-    "titre": "Un non, c'est un non",
-    "texte": "Un non, ou un silence, veut dire qu'on s'arrête."
-   },
-   {
-    "titre": "Un problème ? Va au centre",
-    "texte": "Douleur, écoulement ou plaie : va au centre de santé, ne te soigne pas tout seul."
-   },
-   {
-    "titre": "Des méthodes pour les hommes",
-    "texte": "Le préservatif, le retrait (moins efficace), et la vasectomie pour ceux qui ne veulent plus d'enfants."
-   }
-  ],
-  "vrai_faux": [
-   {
-    "faux": "Le retrait suffit.",
-    "vrai": "Pour la plupart des gens, les autres méthodes protègent davantage d'une grossesse (guide OMS, p. 15)."
-   },
-   {
-    "faux": "La vasectomie, c'est la castration.",
-    "vrai": "Non : on ne touche pas aux testicules, et elle ne change ni l'érection ni l'éjaculation (guide OMS, p. 12 et 22)."
-   }
-  ],
-  "etapes": [
-   {
-    "titre": "Garde des préservatifs",
-    "texte": "Vérifie la date."
-   },
-   {
-    "titre": "Parle de protection",
-    "texte": "Avec ta partenaire."
-   },
-   {
-    "titre": "Respecte un non",
-    "texte": "Toujours."
-   },
-   {
-    "titre": "Un souci ?",
-    "texte": "Va au centre de santé."
-   }
-  ],
-  "ou_aller": "Centre de santé. Préservatifs dans les centres et en pharmacie.",
-  "outils": [
-   "choisir"
-  ],
-  "methodes": [
-   "preservatif-masculin",
-   "retrait",
-   "vasectomie"
-  ],
-  "episode": "afi-et-koffi",
-  "question": "Comment bien utiliser un préservatif ?",
-  "fiches": [
-   "garcons",
-   "preservatif-usage",
-   "consentement",
-   "vasectomie"
-  ]
- },
- {
-  "id": "rumeurs",
-  "titre": "Rumeurs et vérités",
-  "voix": "chimene",
-  "art": "rumeurs",
-  "bref": "Une rumeur n'est pas une information. Voici ce que dit le guide de l'OMS sur les idées fausses les plus fréquentes.",
-  "points": [
-   {
-    "titre": "Stérilité",
-    "texte": "Seules la stérilisation féminine et la vasectomie sont définitives. Avec toutes les autres méthodes, on peut avoir un enfant peu après l'arrêt (guide OMS, p. 22)."
-   },
-   {
-    "titre": "Cancer",
-    "texte": "Les méthodes ne provoquent pas de cancer. Certaines aident même à en prévenir."
-   },
-   {
-    "titre": "Malformations",
-    "texte": "Aucune méthode ne provoque de malformations, même utilisée pendant une grossesse."
-   },
-   {
-    "titre": "Poids",
-    "texte": "Certaines personnes prennent un peu de poids, d'autres en perdent. Les changements sont en général faibles."
-   }
-  ],
-  "vrai_faux": [
-   {
-    "faux": "La pilule rend stérile.",
-    "vrai": "Non : pour la plupart des femmes, la fertilité revient après l'arrêt."
-   },
-   {
-    "faux": "La pilule fait pousser la barbe ou tomber les cheveux.",
-    "vrai": "Faux."
-   },
-   {
-    "faux": "Il est bon de faire des pauses quand on prend la pilule.",
-    "vrai": "Faux : il n'y a aucun avantage à faire des pauses."
-   }
-  ],
-  "etapes": [
-   {
-    "titre": "Demande-toi",
-    "texte": "D'où vient cette rumeur ?"
-   },
-   {
-    "titre": "Vérifie",
-    "texte": "Auprès d'un professionnel de santé."
-   },
-   {
-    "titre": "Ne décide pas à cause d'elle",
-    "texte": "Poser des questions n'oblige pas à choisir une méthode."
-   }
-  ],
-  "ou_aller": "Centre de santé : tu peux poser tes questions sans rien décider.",
-  "outils": [
-   "choisir"
-  ],
-  "methodes": [
-   "pilule",
-   "injectables"
-  ],
-  "episode": "ce-que-dit-le-quartier",
-  "question": "La pilule rend-elle stérile ?",
-  "fiches": [
-   "idees-fausses",
-   "mythes-pilule",
-   "mythes-grossesse"
-  ]
- }
+  {
+    "id": "eviter-grossesse",
+    "titre": "Éviter une grossesse",
+    "voix": "afi",
+    "art": "eviter",
+    "bref": "Tu as le droit de choisir si et quand tu auras des enfants. Il existe plusieurs méthodes : tu peux en choisir une qui te convient, avec l'aide d'un professionnel.",
+    "points": [
+      {
+        "titre": "Plusieurs méthodes, pas une seule",
+        "texte": "Certaines se prennent chaque jour (la pilule), d'autres tous les 3 mois (l'injection), d'autres durent des années (implant, stérilet). Tu choisis selon ta vie."
+      },
+      {
+        "titre": "Plus c'est efficace, moins il faut y penser",
+        "texte": "Implant, stérilet, stérilisation et vasectomie sont parmi les plus efficaces et ne demandent rien à retenir tous les jours (guide OMS, p. 3)."
+      },
+      {
+        "titre": "Le préservatif fait deux choses",
+        "texte": "Seul le préservatif protège à la fois d'une grossesse et des IST, dont le VIH/sida. Tu peux l'utiliser avec une autre méthode."
+      },
+      {
+        "titre": "Tu as le droit d'essayer",
+        "texte": "Si une méthode ne te convient pas, tu peux en changer. Les méthodes qui ne sont pas définitives n'empêchent pas d'avoir un enfant plus tard."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "Les jeunes ne peuvent pas utiliser de méthode.",
+        "vrai": "Les jeunes peuvent utiliser les méthodes qui ne sont pas définitives, puis avoir des enfants quand ils arrêtent (guide OMS, p. 22)."
+      },
+      {
+        "faux": "Il faut être mariée pour demander une méthode.",
+        "vrai": "Tu peux demander des informations et une méthode, mariée ou non, et demander la confidentialité."
+      },
+      {
+        "faux": "Je ne risque pas d'être enceinte : c'est ma première fois, ou c'est pendant mes règles.",
+        "vrai": "Une grossesse peut arriver dès la première relation, et aussi pendant les règles (guide OMS)."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Réfléchis",
+        "texte": "Veux-tu un enfant bientôt, plus tard, ou plus du tout ?"
+      },
+      {
+        "titre": "Fais l'outil",
+        "texte": "« Choisir ma méthode » te montre ce qui est possible pour toi."
+      },
+      {
+        "titre": "Va au centre",
+        "texte": "Apporte ton résumé et tes questions."
+      },
+      {
+        "titre": "Prends ton temps",
+        "texte": "Tu peux dire « je veux y réfléchir ». Personne ne doit te forcer."
+      }
+    ],
+    "ou_aller": "Centre de santé ou hôpital pour l'implant, le stérilet et les méthodes définitives. Agent de santé communautaire, centre ou pharmacie pour la pilule, l'injection et les préservatifs.",
+    "outils": [
+      "choisir",
+      "commencer",
+      "plan",
+      "visite"
+    ],
+    "methodes": [
+      "implants",
+      "sterilet",
+      "pilule",
+      "injectables",
+      "preservatif-masculin"
+    ],
+    "episode": "le-centre",
+    "question": "Quelle méthode de contraception choisir ?",
+    "fiches": [
+      "pourquoi-planification",
+      "choisir-methode",
+      "comparaison-methodes",
+      "effets-secondaires-courants",
+      "jeunes-droit-information"
+    ]
+  },
+  {
+    "id": "attendre-espacer",
+    "titre": "Attendre ou espacer une grossesse",
+    "voix": "afi",
+    "art": "attendre",
+    "urgent": false,
+    "bref": "Choisir le bon moment pour avoir un enfant, c'est possible. Attendre d'être prête, finir tes études, laisser du temps entre deux enfants : des méthodes existent pour ça.",
+    "alerte": "",
+    "points": [
+      {
+        "titre": "Attendre d'être prêt(e)",
+        "texte": "Idéalement, les jeunes femmes et les jeunes hommes ne devraient pas avoir d'enfants avant 18 ans, ou avant d'avoir terminé leurs études et d'y être prêts (guide OMS)."
+      },
+      {
+        "titre": "Rester à l'école",
+        "texte": "Si les jeunes filles retardent la première ou la deuxième grossesse, elles peuvent rester scolarisées (guide OMS). Dans l'enquête Afrobaromètre 2024/25, 84 % des Béninois pensent qu'une fille enceinte ou mère doit pouvoir continuer l'école."
+      },
+      {
+        "titre": "Laisser du temps entre deux enfants",
+        "texte": "Après avoir eu un enfant, il est plus sain d'attendre au moins 2 ans avant d'essayer d'en avoir un autre (guide OMS)."
+      },
+      {
+        "titre": "Après le bébé, une méthode existe",
+        "texte": "Tu peux commencer une méthode après l'accouchement, même si tu allaites. Le moment dépend de la méthode : stérilet dès l'accouchement ou à partir de 4 semaines, implants et injections 6 semaines après si tu allaites."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "Il faut déjà avoir un enfant pour utiliser une méthode.",
+        "vrai": "Non. Les jeunes peuvent utiliser les méthodes qui ne sont pas définitives, puis avoir des enfants quand ils arrêtent (guide OMS, p. 22)."
+      },
+      {
+        "faux": "Allaiter me protège toujours d'une nouvelle grossesse.",
+        "vrai": "L'allaitement ne protège que si trois conditions sont réunies : allaitement exclusif jour et nuit, bébé de moins de 6 mois, règles non revenues."
+      },
+      {
+        "faux": "Je ne risque rien : ce n'est pas encore le moment, ou c'est ma première fois.",
+        "vrai": "Une grossesse peut arriver dès la première relation, et aussi pendant les règles."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Pense à ton projet",
+        "texte": "Études, travail, famille : quand voudrais-tu un enfant ?"
+      },
+      {
+        "titre": "Choisis une méthode",
+        "texte": "L'outil « Choisir ma méthode » te montre ce qui est possible pour toi."
+      },
+      {
+        "titre": "Prépare ta visite",
+        "texte": "L'outil « Je prépare ma visite » te donne les questions à poser."
+      },
+      {
+        "titre": "Garde ton plan",
+        "texte": "« Mon plan » t'aide à ne pas oublier tes dates."
+      }
+    ],
+    "ou_aller": "Centre de santé ou hôpital. Après un accouchement, demande une méthode avant de quitter le centre ou lors de la visite après la naissance.",
+    "outils": [
+      "choisir",
+      "visite",
+      "plan"
+    ],
+    "methodes": [
+      "implants",
+      "injectables",
+      "pilule",
+      "preservatif-masculin",
+      "mama"
+    ],
+    "episode": "le-centre",
+    "question": "Comment attendre avant d'avoir un enfant ?",
+    "fiches": [
+      "pourquoi-planification",
+      "apres-accouchement",
+      "mama",
+      "mythes-grossesse",
+      "idees-fausses"
+    ]
+  },
+  {
+    "id": "apres-risque",
+    "titre": "Après un rapport à risque",
+    "voix": "afi",
+    "art": "risque",
+    "urgent": true,
+    "bref": "Un préservatif cassé ou un rapport sans protection, ce n'est pas la fin du monde. Agis vite : la pilule d'urgence se prend jusqu'à 5 jours après, et le traitement d'urgence du VIH dans les 72 heures.",
+    "alerte": "Si on t'a forcé(e), ce n'est pas ta faute. Va dans un endroit sûr, puis au centre de santé, tout de suite.",
+    "points": [
+      {
+        "titre": "Pilule d'urgence : jusqu'à 5 jours",
+        "texte": "Elle évite une grossesse. Plus tôt tu la prends, mieux elle marche. Elle ne provoque pas d'avortement (guide OMS, p. 16)."
+      },
+      {
+        "titre": "VIH : 72 heures",
+        "texte": "Après un risque de VIH, un traitement d'urgence existe. Il doit commencer le plus tôt possible, dans les 72 heures. Va au centre le jour même."
+      },
+      {
+        "titre": "IST : un test, même sans signes",
+        "texte": "Beaucoup d'IST n'ont aucun signe. Un test permet de les soigner tôt."
+      },
+      {
+        "titre": "Tu n'es pas seule",
+        "texte": "Dis simplement ce qui s'est passé. Tu peux demander la confidentialité."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "La pilule d'urgence provoque un avortement.",
+        "vrai": "Non : elle empêche ou retarde l'ovulation, et elle ne marche pas si une grossesse a déjà commencé."
+      },
+      {
+        "faux": "On peut attendre de voir si les règles viennent.",
+        "vrai": "Attendre fait perdre du temps : la pilule d'urgence marche mieux quand on la prend vite."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Fais l'outil",
+        "texte": "« Après un rapport à risque » classe tes actions par urgence."
+      },
+      {
+        "titre": "Pilule d'urgence",
+        "texte": "En pharmacie ou au centre de santé, le plus tôt possible."
+      },
+      {
+        "titre": "Si c'est dans les 72 heures",
+        "texte": "Demande le traitement d'urgence contre le VIH."
+      },
+      {
+        "titre": "Pour la suite",
+        "texte": "Fais un test IST et choisis une méthode régulière."
+      }
+    ],
+    "ou_aller": "Pharmacie ou centre de santé le plus proche, le jour même.",
+    "outils": [
+      "risque",
+      "choisir",
+      "visite"
+    ],
+    "methodes": [
+      "contraception-urgence",
+      "preservatif-masculin"
+    ],
+    "episode": "preservatif-craque",
+    "question": "Un préservatif a craqué, que faire ?",
+    "fiches": [
+      "contraception-urgence",
+      "ist-prevention",
+      "retard-regles"
+    ]
+  },
+  {
+    "id": "regles-cycle",
+    "titre": "Règles et cycle",
+    "voix": "chimene",
+    "art": "regles",
+    "bref": "Les règles sont normales. Chaque mois, si aucune grossesse ne commence, un peu de sang sort pendant quelques jours. Au début, le cycle est souvent irrégulier.",
+    "points": [
+      {
+        "titre": "Un cycle, c'est quoi ?",
+        "texte": "On le compte du premier jour d'une règle au premier jour de la suivante. Chez la plupart des adultes, il dure entre 21 et 35 jours."
+      },
+      {
+        "titre": "Au début, c'est irrégulier",
+        "texte": "Après les premières règles, le cycle change souvent d'un mois à l'autre. Note les dates sur un calendrier."
+      },
+      {
+        "titre": "Une hygiène simple",
+        "texte": "Utilise une serviette ou un tissu propre, change-le quand il est plein, et lave-toi les mains."
+      },
+      {
+        "titre": "Quand voir un professionnel",
+        "texte": "Si la douleur est très forte, si les règles sont très abondantes, ou si tes premières règles ne sont pas venues à 15 ans."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "Les règles sont sales.",
+        "vrai": "Non : c'est un fonctionnement normal du corps."
+      },
+      {
+        "faux": "Pas de risque de grossesse pendant les règles.",
+        "vrai": "Faux : une grossesse peut arriver à d'autres moments du cycle, y compris pendant les règles."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Note",
+        "texte": "Le premier jour de tes règles, chaque mois."
+      },
+      {
+        "titre": "Prépare",
+        "texte": "Des serviettes ou du tissu propre."
+      },
+      {
+        "titre": "Repose-toi",
+        "texte": "Un linge chaud sur le ventre peut aider."
+      },
+      {
+        "titre": "Demande conseil",
+        "texte": "Si quelque chose t'inquiète, va voir un professionnel."
+      }
+    ],
+    "ou_aller": "Centre de santé, ou une personne de confiance (grande sœur, infirmière).",
+    "outils": [
+      "cycle"
+    ],
+    "methodes": [
+      "jours-fixes"
+    ],
+    "episode": "chimene-et-la-tache",
+    "question": "C'est normal d'avoir mal pendant les règles ?",
+    "fiches": [
+      "regles-cycle"
+    ]
+  },
+  {
+    "id": "grossesse",
+    "titre": "Grossesse",
+    "voix": "afi",
+    "art": "grossesse",
+    "bref": "Un retard de règles ne veut pas toujours dire grossesse. Fais un test. Si c'est positif, ou si tu as un doute, va vite au centre : plus on est suivie tôt, mieux c'est.",
+    "points": [
+      {
+        "titre": "Pourquoi les règles sont en retard",
+        "texte": "Une grossesse, mais aussi le stress, un changement de poids, une maladie ou un changement de méthode."
+      },
+      {
+        "titre": "Le test",
+        "texte": "En pharmacie ou au centre de santé. Si tes règles ont plus d'une semaine de retard, fais un test."
+      },
+      {
+        "titre": "Les signes",
+        "texte": "Retard de règles, seins douloureux, nausées, fatigue, urines plus fréquentes (guide OMS, p. 20)."
+      },
+      {
+        "titre": "Pas de produit dangereux",
+        "texte": "Ne prends ni tisane ni produit pour « faire revenir les règles » : ça peut être dangereux."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "Pas de risque de grossesse à la première relation.",
+        "vrai": "Faux : une grossesse peut arriver dès le premier rapport sans protection."
+      },
+      {
+        "faux": "Quand on allaite, on ne peut pas être enceinte.",
+        "vrai": "Seulement si le bébé a moins de 6 mois, ne boit que ton lait, et que tes règles ne sont pas revenues."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Fais un test",
+        "texte": "Pharmacie ou centre de santé."
+      },
+      {
+        "titre": "Si c'est positif, ou si tu doutes",
+        "texte": "Va vite au centre de santé."
+      },
+      {
+        "titre": "Parle",
+        "texte": "À une personne de confiance."
+      },
+      {
+        "titre": "Tes options",
+        "texte": "Un professionnel t'explique les soins et les options prévues par la loi, sans te juger."
+      }
+    ],
+    "ou_aller": "Centre de santé ou maternité.",
+    "outils": [
+      "commencer",
+      "risque",
+      "visite"
+    ],
+    "methodes": [
+      "mama"
+    ],
+    "episode": null,
+    "question": "J'ai un retard de règles, que faire ?",
+    "fiches": [
+      "retard-regles",
+      "grossesse-inattendue",
+      "apres-accouchement",
+      "mythes-grossesse"
+    ]
+  },
+  {
+    "id": "ist-vih",
+    "titre": "IST et VIH",
+    "voix": "afi",
+    "art": "ist",
+    "bref": "Beaucoup d'infections sexuellement transmissibles n'ont aucun signe. Le préservatif protège, un test permet de se soigner tôt, et le VIH se traite.",
+    "points": [
+      {
+        "titre": "Le préservatif protège",
+        "texte": "Utilisé à chaque rapport, c'est le moyen le plus efficace. Seul le préservatif protège aussi d'une grossesse."
+      },
+      {
+        "titre": "Un test, même sans signes",
+        "texte": "Fais un test après un rapport sans préservatif, ou quand tu changes de partenaire."
+      },
+      {
+        "titre": "Après un risque de VIH",
+        "texte": "Un traitement d'urgence existe, à commencer dans les 72 heures."
+      },
+      {
+        "titre": "Le vaccin contre le HPV",
+        "texte": "Il protège d'un cancer du col de l'utérus, surtout avant les premiers rapports, souvent entre 9 et 14 ans."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "On voit quand on a une IST.",
+        "vrai": "Non : beaucoup d'IST n'ont aucun signe."
+      },
+      {
+        "faux": "La pilule protège des IST.",
+        "vrai": "Non : seuls les préservatifs protègent à la fois de la grossesse et des IST."
+      },
+      {
+        "faux": "Avec le VIH, on ne peut plus utiliser de méthode.",
+        "vrai": "Presque toutes les méthodes sont possibles ; le préservatif reste recommandé (guide OMS, p. 17)."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Préservatif",
+        "texte": "À chaque rapport, un nouveau."
+      },
+      {
+        "titre": "Test",
+        "texte": "Au centre de santé, avec confidentialité."
+      },
+      {
+        "titre": "Un signe ?",
+        "texte": "Plaie, écoulement, douleur : va au centre, ne te soigne pas seul(e)."
+      },
+      {
+        "titre": "Parlez-en",
+        "texte": "Avec ton ou ta partenaire."
+      }
+    ],
+    "ou_aller": "Centre de santé ou centre de dépistage.",
+    "outils": [
+      "risque",
+      "choisir",
+      "visite"
+    ],
+    "methodes": [
+      "preservatif-masculin",
+      "preservatif-feminin"
+    ],
+    "episode": null,
+    "question": "Comment me protéger des IST ?",
+    "fiches": [
+      "ist-generalites",
+      "ist-prevention",
+      "ist-signes",
+      "vih-depistage",
+      "vih-methodes",
+      "hpv-vaccin"
+    ]
+  },
+  {
+    "id": "relations",
+    "titre": "Relations et consentement",
+    "voix": "fallone",
+    "art": "relations",
+    "bref": "Un rapport n'est respectueux que si les deux personnes sont d'accord, librement, sans pression. Tu peux dire non à tout moment, même après avoir dit oui.",
+    "points": [
+      {
+        "titre": "Oui, non, pas maintenant",
+        "texte": "Dire « pas maintenant » ou « non » est ton droit. Le silence n'est pas un oui."
+      },
+      {
+        "titre": "Sans pression ni menace",
+        "texte": "Il n'y a pas de consentement si on est menacé, endormi, ou sous l'effet de l'alcool ou de la drogue."
+      },
+      {
+        "titre": "Une relation saine",
+        "texte": "On se respecte, on peut dire non sans avoir peur, on décide ensemble."
+      },
+      {
+        "titre": "Parler de protection avant",
+        "texte": "Parlez de grossesse et d'IST avant un rapport. Un partenaire qui te respecte accepte d'en parler."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "Si j'ai dit oui une fois, je ne peux plus dire non.",
+        "vrai": "Tu peux changer d'avis à tout moment."
+      },
+      {
+        "faux": "Un vrai amoureux insiste.",
+        "vrai": "Quelqu'un qui t'aime accepte d'attendre."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Écoute-toi",
+        "texte": "Qu'est-ce que tu ressens ?"
+      },
+      {
+        "titre": "Dis-le",
+        "texte": "Oui, non, ou « pas maintenant »."
+      },
+      {
+        "titre": "Parlez de protection",
+        "texte": "Avant, à deux."
+      },
+      {
+        "titre": "Demande de l'aide",
+        "texte": "Si tu te sens sous pression, parle à une personne de confiance."
+      }
+    ],
+    "ou_aller": "Une personne de confiance, ou un centre de santé.",
+    "outils": [
+      "choisir",
+      "parler"
+    ],
+    "methodes": [
+      "preservatif-masculin"
+    ],
+    "episode": "afi-et-koffi",
+    "question": "Comment dire non sans fâcher mon copain ?",
+    "fiches": [
+      "consentement",
+      "relation-saine",
+      "honte-culpabilite",
+      "jeunes-droit-information"
+    ]
+  },
+  {
+    "id": "violence",
+    "titre": "Violence et aide",
+    "voix": "fallone",
+    "art": "violence",
+    "urgent": true,
+    "bref": "Si on t'a forcé(e) ou fait du mal, ce n'est pas ta faute. Tu as le droit d'être soigné(e) et écouté(e). Plus tôt tu vas au centre, plus il y a de solutions.",
+    "alerte": "Si tu es en danger tout de suite, va dans un endroit sûr et appelle les secours. Numéro d'urgence du pays : [à renseigner].",
+    "points": [
+      {
+        "titre": "Ce n'est pas ta faute",
+        "texte": "La faute est toujours à celui ou celle qui force."
+      },
+      {
+        "titre": "Les soins urgents",
+        "texte": "La pilule d'urgence jusqu'à 5 jours, et le traitement d'urgence du VIH dans les 72 heures (guide OMS, p. 18)."
+      },
+      {
+        "titre": "Un endroit sûr",
+        "texte": "Va là où tu es en sécurité, avec une personne de confiance."
+      },
+      {
+        "titre": "Tu décides",
+        "texte": "Personne ne doit te forcer à en parler. Tu peux demander la confidentialité."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "C'est de ma faute si on m'a forcé(e).",
+        "vrai": "Non : la faute est toujours à celui ou celle qui force."
+      },
+      {
+        "faux": "Être surveillé(e) ou insulté(e), c'est normal en amour.",
+        "vrai": "Non : être contrôlé(e), insulté(e) ou isolé(e) de ses amis n'est pas de l'amour."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Va dans un endroit sûr",
+        "texte": "Avec une personne de confiance."
+      },
+      {
+        "titre": "Appelle de l'aide",
+        "texte": "Les secours, ou quelqu'un que tu connais."
+      },
+      {
+        "titre": "Va au centre de santé",
+        "texte": "Dès que possible."
+      },
+      {
+        "titre": "Demande les soins",
+        "texte": "Pilule d'urgence, test IST, traitement VIH si c'est dans les 72 heures."
+      }
+    ],
+    "ou_aller": "Centre de santé le plus proche. Numéro d'urgence du pays : [à renseigner].",
+    "outils": [
+      "risque"
+    ],
+    "methodes": [
+      "contraception-urgence"
+    ],
+    "episode": null,
+    "question": "Que faire après une violence ?",
+    "fiches": [
+      "apres-violence",
+      "apres-viol-pf",
+      "relation-saine"
+    ]
+  },
+  {
+    "id": "garcons",
+    "titre": "Pour les garçons",
+    "voix": "afi",
+    "art": "garcons",
+    "bref": "La planification familiale concerne aussi les garçons. Le préservatif protège, le consentement est essentiel, et tu peux accompagner ta partenaire au centre.",
+    "points": [
+      {
+        "titre": "Le préservatif, bien mis",
+        "texte": "On le met sur le sexe en érection avant tout contact, on le retire après, on le jette, et on en utilise un nouveau à chaque rapport."
+      },
+      {
+        "titre": "Un non, c'est un non",
+        "texte": "Un non, ou un silence, veut dire qu'on s'arrête."
+      },
+      {
+        "titre": "Un problème ? Va au centre",
+        "texte": "Douleur, écoulement ou plaie : va au centre de santé, ne te soigne pas tout seul."
+      },
+      {
+        "titre": "Des méthodes pour les hommes",
+        "texte": "Le préservatif, le retrait (moins efficace), et la vasectomie pour ceux qui ne veulent plus d'enfants."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "Le retrait suffit.",
+        "vrai": "Pour la plupart des gens, les autres méthodes protègent davantage d'une grossesse (guide OMS, p. 15)."
+      },
+      {
+        "faux": "La vasectomie, c'est la castration.",
+        "vrai": "Non : on ne touche pas aux testicules, et elle ne change ni l'érection ni l'éjaculation (guide OMS, p. 12 et 22)."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Garde des préservatifs",
+        "texte": "Vérifie la date."
+      },
+      {
+        "titre": "Parle de protection",
+        "texte": "Avec ta partenaire."
+      },
+      {
+        "titre": "Respecte un non",
+        "texte": "Toujours."
+      },
+      {
+        "titre": "Un souci ?",
+        "texte": "Va au centre de santé."
+      }
+    ],
+    "ou_aller": "Centre de santé. Préservatifs dans les centres et en pharmacie.",
+    "outils": [
+      "choisir"
+    ],
+    "methodes": [
+      "preservatif-masculin",
+      "retrait",
+      "vasectomie"
+    ],
+    "episode": "afi-et-koffi",
+    "question": "Comment bien utiliser un préservatif ?",
+    "fiches": [
+      "garcons",
+      "preservatif-usage",
+      "consentement",
+      "vasectomie"
+    ]
+  },
+  {
+    "id": "rumeurs",
+    "titre": "Rumeurs et vérités",
+    "voix": "chimene",
+    "art": "rumeurs",
+    "bref": "Une rumeur n'est pas une information. Voici ce que dit le guide de l'OMS sur les idées fausses les plus fréquentes.",
+    "points": [
+      {
+        "titre": "Stérilité",
+        "texte": "Seules la stérilisation féminine et la vasectomie sont définitives. Avec toutes les autres méthodes, on peut avoir un enfant peu après l'arrêt (guide OMS, p. 22)."
+      },
+      {
+        "titre": "Cancer",
+        "texte": "Les méthodes ne provoquent pas de cancer. Certaines aident même à en prévenir."
+      },
+      {
+        "titre": "Malformations",
+        "texte": "Aucune méthode ne provoque de malformations, même utilisée pendant une grossesse."
+      },
+      {
+        "titre": "Poids",
+        "texte": "Certaines personnes prennent un peu de poids, d'autres en perdent. Les changements sont en général faibles."
+      }
+    ],
+    "vrai_faux": [
+      {
+        "faux": "La pilule rend stérile.",
+        "vrai": "Non : pour la plupart des femmes, la fertilité revient après l'arrêt."
+      },
+      {
+        "faux": "La pilule fait pousser la barbe ou tomber les cheveux.",
+        "vrai": "Faux."
+      },
+      {
+        "faux": "Il est bon de faire des pauses quand on prend la pilule.",
+        "vrai": "Faux : il n'y a aucun avantage à faire des pauses."
+      }
+    ],
+    "etapes": [
+      {
+        "titre": "Demande-toi",
+        "texte": "D'où vient cette rumeur ?"
+      },
+      {
+        "titre": "Vérifie",
+        "texte": "Auprès d'un professionnel de santé."
+      },
+      {
+        "titre": "Ne décide pas à cause d'elle",
+        "texte": "Poser des questions n'oblige pas à choisir une méthode."
+      }
+    ],
+    "ou_aller": "Centre de santé : tu peux poser tes questions sans rien décider.",
+    "outils": [
+      "choisir"
+    ],
+    "methodes": [
+      "pilule",
+      "injectables"
+    ],
+    "episode": "ce-que-dit-le-quartier",
+    "question": "La pilule rend-elle stérile ?",
+    "fiches": [
+      "idees-fausses",
+      "mythes-pilule",
+      "mythes-grossesse"
+    ]
+  }
 ]

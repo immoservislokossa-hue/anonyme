@@ -15,7 +15,7 @@ export function personaFor(voie?: "sexuelle" | "mentale" | "bien-etre"): Persona
 export const TARGET_AGE = { min: 15, max: 24 } as const;
 export const TARGET_LABEL = `Pour les ${TARGET_AGE.min} à ${TARGET_AGE.max} ans`;
 export const TEAM_NAMES = "Afi, Fallone et Chimène";
-export const TAGLINE = "Planification familiale pour les jeunes : choisir sa méthode et trouver un centre près de chez soi, sans jugement";
+export const TAGLINE = "Planification familiale pour les jeunes d'Afrique de l'Ouest francophone : choisir, se protéger, attendre ou espacer une grossesse, et préparer sa visite au centre, sans jugement";
 export const ALSO = "Alviosa accompagne aussi la santé mentale et le bien-être.";
 
 // À remplacer par pays avant le déploiement : les numéros doivent être vérifiés localement.

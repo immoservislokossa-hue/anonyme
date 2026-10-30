@@ -7,7 +7,7 @@ import { retrieve } from "../lib/retrieve";
 import { stories } from "../lib/stories";
 
 test("chaque sujet renvoie vers des pages et des fiches qui existent", () => {
-  assert.equal(SUJETS.length, 9);
+  assert.equal(SUJETS.length, 10);
   for (const sujet of SUJETS) {
     assert.ok(sujet.points.length >= 3, sujet.id);
     assert.ok(sujet.etapes.length >= 3, sujet.id);
@@ -36,8 +36,8 @@ test("chaque méthode a ses faits clés (fréquence, hormones, où l'obtenir)", 
   }
 });
 
-test("les six outils ont 3 étapes, des limites et une suite valide", () => {
-  assert.equal(TOOLS.length, 6);
+test("les huit outils ont 3 étapes, des limites et une suite valide", () => {
+  assert.equal(TOOLS.length, 8);
   for (const tool of TOOLS) {
     assert.equal(tool.etapes.length, 3, tool.id);
     assert.ok(tool.limites.length >= 3, tool.id);

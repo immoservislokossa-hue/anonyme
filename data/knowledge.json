@@ -4,7 +4,7 @@
     "voie": "commun",
     "theme": "orientation",
     "title": "Préparer une consultation",
-    "content": "Avant une consultation, il peut être utile de noter ses questions, ses éventuels symptômes et leur date de début, ses méthodes déjà utilisées et les médicaments pris. Il est possible de demander la confidentialité et de poser des questions sans honte. Une personne de confiance peut accompagner, si on le souhaite.",
+    "content": "Avant une consultation, il peut être utile de noter ses questions, ses éventuels symptômes et leur date de début, ses méthodes déjà utilisées et les médicaments pris. Questions utiles : quelles méthodes existent et lesquelles me conviennent ; quels effets peuvent arriver, lesquels sont normaux et lesquels doivent me faire revenir ; que faire en cas d'oubli, de retard ou pour arrêter ; puis-je changer de méthode ; quand revenir, avec la date notée ; combien ça coûte. Il est possible de demander la confidentialité et de poser des questions sans honte. Une personne de confiance peut accompagner, si on le souhaite. Si l'accueil te juge ou te refuse sans explication, tu peux essayer un autre centre. L'outil « Je prépare ma visite » donne cette liste.",
     "source": "Brouillon à valider par un professionnel de santé",
     "validated": false
   },
@@ -410,6 +410,24 @@
     "theme": "relations",
     "title": "Une relation saine ou pas ?",
     "content": "Dans une relation saine, on se respecte, on peut dire non sans avoir peur, on décide ensemble et on se sent en sécurité. Ce ne sont pas des signes d'amour : être contrôlé(e), surveillé(e), insulté(e), éloigné(e) de ses amis, forcé(e) à un rapport, ou empêché(e) d'utiliser une méthode de contraception. Si tu te reconnais dans cela, ce n'est pas ta faute. Parle à une personne de confiance ou à un professionnel de santé. Si tu es en danger tout de suite, va dans un endroit sûr et appelle les secours.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "parler-proches",
+    "voie": "commun",
+    "theme": "relations",
+    "title": "En parler à un partenaire, à un parent ou à un soignant",
+    "content": "Parler de contraception n'est pas toujours facile. Choisis un moment calme, parle de ce que tu ressens avec « je », et dis d'abord pourquoi tu en parles : ta santé, tes études, ton avenir. Avec un partenaire : se protéger, c'est prendre soin de vous deux, et le préservatif protège aussi des IST et du VIH. Une grossesse peut arriver dès la première relation et pendant les règles, et le retrait est moins efficace que les autres méthodes. Avec un parent : demande de l'écoute ou de t'accompagner au centre, et rappelle que les méthodes ne rendent pas stérile (seules la stérilisation et la vasectomie sont définitives). Avec un soignant : tu peux demander la confidentialité, et si on te juge ou te refuse sans explication, essaie un autre centre. Si tu as peur d'une réaction violente, ne parle pas seul(e) et vois la page Violence et aide. L'outil « Parler à quelqu'un » propose des phrases pour commencer.",
+    "source": "Brouillon à valider par un professionnel de santé",
+    "validated": false
+  },
+  {
+    "id": "attendre-espacer",
+    "voie": "commun",
+    "theme": "grossesse",
+    "title": "Attendre ou espacer une grossesse",
+    "content": "Choisir le bon moment pour avoir un enfant est possible. Idéalement, les jeunes ne devraient pas avoir d'enfant avant 18 ans ou avant d'avoir terminé leurs études et d'y être prêts. Si les jeunes filles retardent la première ou la deuxième grossesse, elles peuvent rester scolarisées. Après un enfant, il est plus sain d'attendre au moins 2 ans avant d'essayer d'en avoir un autre. Il n'est pas nécessaire d'avoir déjà un enfant pour utiliser une méthode : les méthodes qui ne sont pas définitives permettent d'avoir un enfant après l'arrêt. Après l'accouchement, une méthode peut être commencée même en allaitant ; le moment dépend de la méthode. L'allaitement seul ne protège que si l'allaitement est exclusif jour et nuit, si le bébé a moins de 6 mois et si les règles ne sont pas revenues. Dans l'enquête Afrobaromètre 2024/25, 84 % des Béninois pensent qu'une fille enceinte ou mère doit pouvoir continuer l'école.",
     "source": "Brouillon à valider par un professionnel de santé",
     "validated": false
   }

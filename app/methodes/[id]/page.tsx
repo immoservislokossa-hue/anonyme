@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { MethodArt } from "@/components/art/Art";
 import AskAfi from "@/components/AskAfi";
 import Crumbs from "@/components/Crumbs";
+import PageFeedback from "@/components/PageFeedback";
 import Icon from "@/components/Icon";
 import RelatedLinks from "@/components/RelatedLinks";
 import { METHODES, TIER_NAMES, getMethode, type ToolId } from "@/lib/catalog";
@@ -26,7 +27,7 @@ function toolsFor(id: string): ToolId[] {
   if (PLAN_METHODS.includes(id)) tools.push("plan", "souci");
   if (id === "jours-fixes") tools.push("cycle");
   if (id === "contraception-urgence" || id.startsWith("preservatif") || id === "retrait") tools.push("risque");
-  tools.push("choisir");
+  tools.push("choisir", "visite");
   return tools;
 }
 
@@ -173,6 +174,7 @@ export default async function MethodePage({ params }: { params: Promise<{ id: st
       <p className="muted fiche-note">
         Source : {m.source}, p. {m.page}. Brouillon en cours de validation par des professionnels de santé.
       </p>
+      <PageFeedback />
     </article>
   );
 }

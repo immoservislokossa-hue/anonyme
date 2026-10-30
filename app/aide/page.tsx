@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AboutAI from "@/components/AboutAI";
+import OfflineStatus from "@/components/OfflineStatus";
 import PrivacyInfo from "@/components/PrivacyInfo";
 import { TEAM_NAMES } from "@/lib/brand";
 
@@ -45,6 +46,15 @@ export default function HelpPage() {
               C'est urgent
             </Link>
           </div>
+        </div>
+
+        <div className="panel">
+          <h3>Sans connexion</h3>
+          <p>
+            Après ta première visite, les pages, les outils et Afi (version courte) marchent sans internet. Seules les réponses
+            libres de l'IA et la recherche de centres demandent une connexion.
+          </p>
+          <OfflineStatus />
         </div>
 
         <div className="panel">
