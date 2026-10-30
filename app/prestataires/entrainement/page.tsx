@@ -1,3 +1,4 @@
+import ProviderGate from "@/components/ProviderGate";
 import type { Metadata } from "next";
 import Crumbs from "@/components/Crumbs";
 import RowList from "@/components/RowList";
@@ -5,7 +6,7 @@ import { SCENARIOS } from "@/lib/pro/scenarios";
 
 export const metadata: Metadata = { title: "Entraînement" };
 
-export default function EntrainementPage() {
+function EntrainementPage() {
   return (
     <>
       <Crumbs trail={[{ href: "/prestataires", label: "Prestataires" }]} current="Entraînement" />
@@ -15,5 +16,13 @@ export default function EntrainementPage() {
       </header>
       <RowList rows={SCENARIOS.map((s) => ({ href: `/prestataires/entrainement/${s.id}`, title: s.titre, text: s.contexte }))} label="Situations" />
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <ProviderGate>
+      <EntrainementPage />
+    </ProviderGate>
   );
 }

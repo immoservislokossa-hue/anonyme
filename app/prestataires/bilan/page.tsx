@@ -1,3 +1,4 @@
+import ProviderGate from "@/components/ProviderGate";
 import type { Metadata } from "next";
 import Crumbs from "@/components/Crumbs";
 import BilanView from "@/components/pro/BilanView";
@@ -5,7 +6,7 @@ import { getPays } from "@/lib/pays";
 
 export const metadata: Metadata = { title: "Mon bilan" };
 
-export default function BilanPage() {
+function BilanPage() {
   return (
     <>
       <Crumbs trail={[{ href: "/prestataires", label: "Prestataires" }]} current="Mon bilan" />
@@ -15,5 +16,13 @@ export default function BilanPage() {
       </header>
       <BilanView zones={getPays().zones} />
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <ProviderGate>
+      <BilanPage />
+    </ProviderGate>
   );
 }

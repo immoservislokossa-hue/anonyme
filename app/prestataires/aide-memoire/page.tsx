@@ -1,3 +1,4 @@
+import ProviderGate from "@/components/ProviderGate";
 import type { Metadata } from "next";
 import Crumbs from "@/components/Crumbs";
 import Checklist from "@/components/Checklist";
@@ -21,7 +22,7 @@ const DELAIS = [
   ["Entre deux enfants", "Attendre au moins 2 ans est plus sain (guide OMS)."],
 ];
 
-export default function AideMemoirePage() {
+function AideMemoirePage() {
   return (
     <>
       <Crumbs trail={[{ href: "/prestataires", label: "Prestataires" }]} current="Aide-mémoire OMS" />
@@ -103,5 +104,13 @@ export default function AideMemoirePage() {
         </ul>
       </section>
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <ProviderGate>
+      <AideMemoirePage />
+    </ProviderGate>
   );
 }

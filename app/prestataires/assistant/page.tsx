@@ -1,3 +1,4 @@
+import ProviderGate from "@/components/ProviderGate";
 import type { Metadata } from "next";
 import Chat from "@/components/Chat";
 import Crumbs from "@/components/Crumbs";
@@ -11,7 +12,7 @@ const TIPS = [
   "Injection en retard de 5 semaines : que faire ?",
 ];
 
-export default function AssistantPage() {
+function AssistantPage() {
   return (
     <>
       <Crumbs trail={[{ href: "/prestataires", label: "Prestataires" }]} current="Assistant OMS" />
@@ -21,5 +22,13 @@ export default function AssistantPage() {
       </header>
       <Chat audience="prestataire" tips={TIPS} embedded />
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <ProviderGate>
+      <AssistantPage />
+    </ProviderGate>
   );
 }

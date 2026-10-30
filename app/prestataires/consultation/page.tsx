@@ -1,3 +1,4 @@
+import ProviderGate from "@/components/ProviderGate";
 import type { Metadata } from "next";
 import Crumbs from "@/components/Crumbs";
 import ConsultationFlow from "@/components/pro/ConsultationFlow";
@@ -5,7 +6,7 @@ import { METHODES } from "@/lib/catalog";
 
 export const metadata: Metadata = { title: "Consultation guidée" };
 
-export default function ConsultationPage() {
+function ConsultationPage() {
   const methods = METHODES.map(({ id, nom, comment, peut_arriver, a_retenir, ou_aller }) => ({ id, nom, comment, peut_arriver, a_retenir, ou_aller }));
   return (
     <>
@@ -16,5 +17,13 @@ export default function ConsultationPage() {
       </header>
       <ConsultationFlow methods={methods} />
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <ProviderGate>
+      <ConsultationPage />
+    </ProviderGate>
   );
 }

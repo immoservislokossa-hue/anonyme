@@ -1,3 +1,4 @@
+import { providerAllowed } from "@/lib/gate";
 import { NextResponse } from "next/server";
 import { generateReply, pickProvider } from "@/lib/llm";
 import { record } from "@/lib/metrics";
@@ -49,6 +50,7 @@ export async function POST(request: Request) {
   const payload = body as { messages?: unknown; context?: unknown; audience?: unknown; zone?: unknown } | null;
   const zone = isZone(payload?.zone) ? payload.zone : undefined;
   const provider = payload?.audience === "prestataire";
+  if (provider && !(await providerAllowed())) return NextResponse.json({ error: "Connexion requise." }, { status: 401 });
   const context = isContextKey(payload?.context) ? payload.context : undefined;
   const messages = payload?.messages;
 

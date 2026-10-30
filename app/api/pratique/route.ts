@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { providerAllowed } from "@/lib/gate";
 import { limited, readJson } from "@/lib/http";
 import { generateReply, pickProvider, type ChatTurn } from "@/lib/llm";
 import { getScenario } from "@/lib/pro/scenarios";
@@ -27,6 +28,7 @@ COACH: ...`;
 
 // Le faux client et son coach. Si aucun modèle n'est configuré, la route le dit : les situations guidées restent disponibles.
 export async function POST(request: Request) {
+  if (!(await providerAllowed())) return NextResponse.json({ error: "Connexion requise." }, { status: 401 });
   const limit = limited(request, "pratique", 40, 600_000);
   if (limit) return limit;
   if (pickProvider() === "none") return NextResponse.json({ error: "ia-indisponible" }, { status: 503 });

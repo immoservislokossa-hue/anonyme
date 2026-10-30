@@ -1,3 +1,4 @@
+import ProviderGate from "@/components/ProviderGate";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Crumbs from "@/components/Crumbs";
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return { title: getScenario(id)?.titre ?? "Entraînement" };
 }
 
-export default async function ScenarioPage({ params }: { params: Promise<{ id: string }> }) {
+async function ScenarioContent({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const scenario = getScenario(id);
   if (!scenario) notFound();
@@ -26,4 +27,8 @@ export default async function ScenarioPage({ params }: { params: Promise<{ id: s
       <RolePlay scenario={scenario} />
     </>
   );
+}
+
+export default async function Page(props: { params: Promise<{ id: string }> }) {
+  return <ProviderGate>{await ScenarioContent(props)}</ProviderGate>;
 }
