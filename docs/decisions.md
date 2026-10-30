@@ -39,18 +39,14 @@ Chaque règle est écrite dans `lib/tools/` et testée dans `tests/tools.test.ts
 - La limite de débit est en mémoire : elle ne tient pas sur plusieurs instances.
 - La lecture à voix haute et la dictée dépendent du navigateur et de la langue installée.
 
-## Trois voies, un moteur
-- Santé sexuelle, santé mentale et bien-être partagent le même code. Chaque entrée de `data/` porte une `voie`
-  (`sexuelle`, `mentale`, `bien-etre` ou `commun`), et la recherche peut être limitée à une voie.
-- Le tri de sécurité s'applique à toutes les voies, avant le modèle : urgences, détresse psychique, diagnostic.
-
-## Santé mentale : limites
-- Le service informe et oriente. Il ne fait ni thérapie ni suivi, et il le dit.
-- Une détresse (idées de mort, automutilation) reçoit une réponse fixe vers une ligne d'écoute et les urgences.
-  Le numéro de la ligne d'écoute est un emplacement à renseigner par pays.
-- Les motifs de détection sont une première version. Ils peuvent rater des formulations et doivent être complétés
-  et testés avec des professionnels avant toute diffusion.
-- Le contenu de cette voie doit être relu par un psychologue ou un psychiatre avant d'être montré publiquement.
+## Périmètre : planification familiale uniquement
+- Décision du 30 octobre 2026 : la santé mentale et le bien-être sont retirés. Les documents du Partenariat de Ouagadougou, de PMA2020
+  et d'Afrobaromètre ne les demandent pas, et ils dispersaient l'application.
+- Ce qui reste, parce que c'est de la sécurité : le tri avant le modèle (urgence, violence, diagnostic) et une réponse fixe en cas d'idées de mort
+  ou d'automutilation, qui oriente vers une personne de confiance, une ligne d'écoute et les urgences. L'application ne fait ni thérapie ni suivi.
+- La fiche « honte et culpabilité liées à la sexualité » reste, car la honte freine l'accès aux services.
+- Fallone et Chimène restent des personnages de la série. L'épisode 4, qui portait sur la tristesse de Fallone, est devenu « On l'a renvoyée » : un jeune est
+  renvoyé d'un centre (préjugé de prestataire, restriction d'âge) et apprend à préparer sa visite et à essayer un autre centre.
 
 ## Services externes
 - **Modèle de langage** : DeepSeek (API compatible OpenAI) pour le prototype, Anthropic en alternative. Le choix se

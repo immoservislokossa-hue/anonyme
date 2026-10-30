@@ -1,9 +1,7 @@
 import knowledgeBase from "@/data/knowledge.json";
-import type { Voie } from "@/lib/domain";
 
 export type KnowledgeEntry = {
   id: string;
-  voie: Voie | "commun";
   theme: string;
   title: string;
   content: string;
@@ -41,7 +39,6 @@ export function scoreEntry(query: string[], entry: KnowledgeEntry): number {
 }
 
 // Recherche lexicale simple. Elle sera remplacée par une recherche vectorielle (pgvector) à l'étape suivante.
-// Avec une voie, seules les entrées de cette voie et les entrées communes sont considérées.
 // Une question générale (« quelle méthode choisir ? ») reçoit d'abord la vue d'ensemble de l'OMS et les
 // questions pour choisir, pas trois méthodes tirées au hasard. La contraception d'urgence, le retrait et
 // les jours fixes ne sont pas proposés comme choix par défaut : ils ne viennent que si la personne en parle.
@@ -56,7 +53,7 @@ function plain(text: string): string {
   return text.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 }
 
-export function retrieve(question: string, limit = 3, voie?: Voie): KnowledgeEntry[] {
+export function retrieve(question: string, limit = 3): KnowledgeEntry[] {
   const query = tokenize(question);
   if (query.length === 0) return [];
 
@@ -64,12 +61,11 @@ export function retrieve(question: string, limit = 3, voie?: Voie): KnowledgeEnt
   if (GENERAL_CHOICE.test(flat)) {
     const lead = ["comparaison-methodes", "choisir-methode"]
       .map((id) => entries.find((entry) => entry.id === id))
-      .filter((entry): entry is KnowledgeEntry => Boolean(entry) && (!voie || entry!.voie === voie || entry!.voie === "commun"));
+      .filter((entry): entry is KnowledgeEntry => Boolean(entry));
     if (lead.length > 0) return lead.slice(0, limit);
   }
 
   return entries
-    .filter((entry) => !voie || entry.voie === voie || entry.voie === "commun")
     .map((entry) => ({ entry, score: scoreEntry(query, entry) }))
     .filter(({ score }) => score > 0)
     .filter(({ entry }) => !ONLY_ON_REQUEST[entry.id] || ONLY_ON_REQUEST[entry.id].test(flat))

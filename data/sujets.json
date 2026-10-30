@@ -235,7 +235,7 @@
   {
     "id": "regles-cycle",
     "titre": "Règles et cycle",
-    "voix": "chimene",
+    "voix": "afi",
     "art": "regles",
     "bref": "Les règles sont normales. Chaque mois, si aucune grossesse ne commence, un peu de sang sort pendant quelques jours. Au début, le cycle est souvent irrégulier.",
     "points": [
@@ -447,7 +447,7 @@
   {
     "id": "relations",
     "titre": "Relations et consentement",
-    "voix": "fallone",
+    "voix": "afi",
     "art": "relations",
     "bref": "Un rapport n'est respectueux que si les deux personnes sont d'accord, librement, sans pression. Tu peux dire non à tout moment, même après avoir dit oui.",
     "points": [
@@ -516,7 +516,7 @@
   {
     "id": "violence",
     "titre": "Violence et aide",
-    "voix": "fallone",
+    "voix": "afi",
     "art": "violence",
     "urgent": true,
     "bref": "Si on t'a forcé(e) ou fait du mal, ce n'est pas ta faute. Tu as le droit d'être soigné(e) et écouté(e). Plus tôt tu vas au centre, plus il y a de solutions.",
@@ -655,7 +655,7 @@
   {
     "id": "rumeurs",
     "titre": "Rumeurs et vérités",
-    "voix": "chimene",
+    "voix": "afi",
     "art": "rumeurs",
     "bref": "Une rumeur n'est pas une information. Voici ce que dit le guide de l'OMS sur les idées fausses les plus fréquentes.",
     "points": [

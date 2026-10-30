@@ -8,12 +8,9 @@ import PageFeedback from "@/components/PageFeedback";
 import RelatedLinks from "@/components/RelatedLinks";
 import Silhouette from "@/components/Silhouette";
 import Icon from "@/components/Icon";
-import { SUJETS, getFiches, getSujet, type Voice } from "@/lib/catalog";
+import { SUJETS, getFiches, getSujet } from "@/lib/catalog";
 import { personaFor } from "@/lib/brand";
 import { stories } from "@/lib/stories";
-import type { Voie } from "@/lib/domain";
-
-const VOIE: Record<Voice, Voie> = { afi: "sexuelle", fallone: "mentale", chimene: "bien-etre" };
 
 export function generateStaticParams() {
   return SUJETS.map((s) => ({ id: s.id }));
@@ -30,8 +27,7 @@ export default async function SujetPage({ params }: { params: Promise<{ id: stri
   const sujet = getSujet(id);
   if (!sujet) notFound();
 
-  const voie = VOIE[sujet.voix];
-  const persona = personaFor(voie);
+  const persona = personaFor(sujet.voix);
   const episode = sujet.episode ? stories.find((s) => s.id === sujet.episode) : undefined;
   const fiches = getFiches(sujet.fiches);
 
@@ -48,7 +44,7 @@ export default async function SujetPage({ params }: { params: Promise<{ id: stri
       </header>
 
       <section className="says" aria-label={`${persona.name} explique`}>
-        <Silhouette voie={voie} size={72} bust />
+        <Silhouette who={sujet.voix} size={72} bust />
         <div className="says-bubble">
           <strong>
             {persona.name} · en bref

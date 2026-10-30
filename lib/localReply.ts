@@ -1,5 +1,4 @@
 import { contextHint } from "@/lib/afi";
-import type { Voie } from "@/lib/domain";
 import { retrieve, type KnowledgeEntry } from "@/lib/retrieve";
 import { triage } from "@/lib/safety";
 
@@ -19,18 +18,18 @@ export function fallbackReply(entries: KnowledgeEntry[]): string {
 }
 
 // Cherche les entrées utiles. Sur une page précise, une question courte s'appuie sur le titre de la page.
-export function findEntries(question: string, voie?: Voie, context?: string): KnowledgeEntry[] {
+export function findEntries(question: string, context?: string): KnowledgeEntry[] {
   const hint = contextHint(context);
-  let entries = retrieve(question, 3, voie);
+  let entries = retrieve(question, 3);
   if (hint && (entries.length === 0 || question.length <= 60)) {
-    const withPage = retrieve(`${question} ${hint}`, 3, voie);
+    const withPage = retrieve(`${question} ${hint}`, 3);
     if (withPage.length > 0) entries = withPage;
   }
   return entries;
 }
 
 // Afi sans connexion : mêmes règles de sécurité que le serveur, puis la fiche la plus proche. Tout se passe sur l'appareil.
-export function localReply(question: string, voie?: Voie, context?: string, audience: "jeune" | "prestataire" = "jeune"): LocalReply {
+export function localReply(question: string, context?: string, audience: "jeune" | "prestataire" = "jeune"): LocalReply {
   const raw = triage(question);
   // Pour un prestataire, un message sur une violence décrit un client : on ne répond pas avec le message destiné à une victime.
   const decision = audience === "prestataire" && raw.kind === "urgent" ? ({ kind: "ok" } as const) : raw;
@@ -38,6 +37,6 @@ export function localReply(question: string, voie?: Voie, context?: string, audi
   if (decision.kind === "urgent") return { reply: decision.reply, kind: "urgent", sources: [] };
   if (decision.kind === "diagnosis") return { reply: decision.reply, kind: "diagnosis", sources: [] };
 
-  const entries = findEntries(question, voie, context);
+  const entries = findEntries(question, context);
   return { reply: fallbackReply(entries), kind: "fallback", sources: entries.map((e) => e.title) };
 }

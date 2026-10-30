@@ -2,11 +2,12 @@ import knowledgeData from "@/data/knowledge.json";
 import methodesData from "@/data/methodes.json";
 import sujetsData from "@/data/sujets.json";
 import { stories } from "@/lib/stories";
+import type { Character } from "@/lib/brand";
 
 // Le catalogue de l'application : sujets, outils, méthodes. Chaque page lit ici ce dont elle a besoin.
 
 // ---------- Sujets ----------
-export type Voice = "afi" | "fallone" | "chimene";
+export type Voice = Character;
 export type Block = { titre: string; texte: string };
 export type Sujet = {
   id: string;

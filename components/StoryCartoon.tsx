@@ -11,7 +11,7 @@ import {
   readingTime,
   speakerInfo,
   stageScenes,
-  voieOf,
+  characterOf,
   type Shot,
   type Speaker,
   type Story,
@@ -172,8 +172,8 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
         <div className="cam" style={{ ["--z" as string]: cam.z, ["--dx" as string]: `${cam.dx}%` }}>
           <div className="actors">
             {shot.present.map((who) => {
-              const voie = voieOf(who);
-              if (!voie) return null;
+              const character = characterOf(who);
+              if (!character) return null;
               const isSpeaker = !finished && scene.who === who;
               const face = isSpeaker ? scene.mood : (scene.others ?? undefined);
               return (
@@ -182,7 +182,7 @@ export default function StoryCartoon({ story, onDone }: { story: Story; onDone: 
                   className={`actor${isSpeaker ? " active" : ""}${!isSpeaker && scene.who !== "narrateur" ? " dim" : ""}`}
                   style={{ left: `${slots[who]}%` }}
                 >
-                  <Silhouette voie={voie} size={230} framed={false} talking={talking === who} mood={started ? face : "neutre"} />
+                  <Silhouette who={character} size={230} framed={false} talking={talking === who} mood={started ? face : "neutre"} />
                 </div>
               );
             })}

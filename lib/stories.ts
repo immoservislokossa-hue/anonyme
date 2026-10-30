@@ -1,7 +1,6 @@
 import type { Mood } from "@/components/Silhouette";
 import storiesData from "@/data/stories.json";
-import { personaFor } from "@/lib/brand";
-import type { Voie } from "@/lib/domain";
+import { personaFor, type Character } from "@/lib/brand";
 
 // Une histoire, trois façons de la vivre : en cartes, en jeu à choix, en dessin animé.
 export type Speaker = "afi" | "fallone" | "chimene" | "narrateur";
@@ -76,19 +75,13 @@ export function isFormat(value: unknown): value is Format {
   return value === "cartes" || value === "jeu" || value === "anime";
 }
 
-const VOIE_OF: Record<Exclude<Speaker, "narrateur">, Voie> = {
-  afi: "sexuelle",
-  fallone: "mentale",
-  chimene: "bien-etre",
-};
-
-export function voieOf(speaker: Speaker): Voie | null {
-  return speaker === "narrateur" ? null : VOIE_OF[speaker];
+export function characterOf(speaker: Speaker): Character | null {
+  return speaker === "narrateur" ? null : speaker;
 }
 
 export function speakerInfo(speaker: Speaker): { name: string; role: string } {
   if (speaker === "narrateur") return { name: "Narration", role: "" };
-  const persona = personaFor(VOIE_OF[speaker]);
+  const persona = personaFor(speaker);
   return { name: persona.name, role: persona.role };
 }
 

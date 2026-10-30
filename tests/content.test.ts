@@ -44,11 +44,11 @@ test("les aide-mémoire pour les professionnels citent le guide et restent à va
 });
 
 test("les questions courantes retrouvent la bonne fiche", () => {
-  assert.equal(retrieve("comment fonctionne l'implant ?", 1, "sexuelle")[0]?.id, "implants-usage");
-  assert.equal(retrieve("j'ai oublié ma pilule", 1, "sexuelle")[0]?.id, "pilule-usage");
-  assert.equal(retrieve("combien de temps dure le stérilet", 1, "sexuelle")[0]?.id, "sterilet-usage");
-  assert.equal(retrieve("la pilule d'urgence", 1, "sexuelle")[0]?.id, "contraception-urgence");
-  assert.equal(retrieve("l'injection tous les combien de mois", 1, "sexuelle")[0]?.id, "injectable-usage");
+  assert.equal(retrieve("comment fonctionne l'implant ?", 1)[0]?.id, "implants-usage");
+  assert.equal(retrieve("j'ai oublié ma pilule", 1)[0]?.id, "pilule-usage");
+  assert.equal(retrieve("combien de temps dure le stérilet", 1)[0]?.id, "sterilet-usage");
+  assert.equal(retrieve("la pilule d'urgence", 1)[0]?.id, "contraception-urgence");
+  assert.equal(retrieve("l'injection tous les combien de mois", 1)[0]?.id, "injectable-usage");
 });
 
 test("le public cible est défini une seule fois et reste cohérent", async () => {

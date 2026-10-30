@@ -10,6 +10,20 @@ export const metadata: Metadata = {
 // Chaque ligne relie une donnée publique à un choix concret dans l'application.
 const EVIDENCE: { donnee: string; source: string; choix: string; href: string; lien: string }[] = [
   {
+    donnee: "Les préjugés de certains prestataires et les restrictions d'âge ou de statut sont cités parmi les obstacles pour les jeunes. Au Burkina Faso (2017-18), seulement 64,9 % des utilisatrices avaient entendu parler d'autres méthodes et 52,1 % des effets.",
+    source: "Appel du Prix 2026 ; PMA2020 Burkina Faso, vague 5 (2017-18)",
+    choix: "Alviosa Prestataires : consultation guidée, entraînement avec de faux clients jeunes, liste de qualité du conseil mesurée sur ces deux points.",
+    href: "/prestataires",
+    lien: "Alviosa Prestataires",
+  },
+  {
+    donnee: "Il faut suivre les financements et les résultats pour les femmes et les jeunes, et intégrer la planification familiale aux soins de base.",
+    source: "Réunion ministérielle de New York, 24 septembre 2026",
+    choix: "Alviosa Pilotage : un tableau de bord de chiffres anonymes (questions, qualité du conseil, services, ruptures, alertes) et un export pour les systèmes d'information sanitaire.",
+    href: "/pilotage/demo",
+    lien: "Voir la démonstration",
+  },
+  {
     donnee: "Moins de la moitié des citoyens des 7 pays du PO soutiennent l'accès à la contraception quel que soit le statut matrimonial (44 %) ou l'âge (40 %). Au Bénin : 58 % et 53 %.",
     source: "Afrobaromètre, dépêche n° 1138 (2026), enquêtes 2024/25",
     choix: "Aucune condition d'âge ou de statut dans l'application. Un outil pour préparer la conversation avec un partenaire, un parent ou un soignant.",
@@ -62,6 +76,11 @@ const EVIDENCE: { donnee: string; source: string; choix: string; href: string; l
 
 const ALIGN: { cadre: string; ce_que_dit: string; alviosa: string }[] = [
   {
+    cadre: "Appel du Prix 2026",
+    ce_que_dit: "L'IA doit soutenir les prestataires, l'orientation des patients et l'usage des données pour planifier les services, avec supervision humaine et fonctionnement sans connexion.",
+    alviosa: "Trois espaces : les jeunes (orientation), les prestataires (aide au conseil et entraînement), les décideurs (données anonymes). Les règles cliniques sont fixes, l'IA explique et entraîne, un humain décide.",
+  },
+  {
     cadre: "Stratégie jeunes du PO (2019)",
     ce_que_dit: "Faire participer un éventail diversifié de jeunes ; développer leurs capacités avec des technologies adéquates ; l'usage des méthodes reste faible chez les 15-24 ans.",
     alviosa: "Alviosa est conçue par un jeune fondateur, pour les jeunes de 15 à 35 ans (priorité aux 15-24 ans, où l'usage est le plus faible), avec une technologie légère. Le test avec des jeunes de 18 à 24 ans est notre prochaine étape.",
@@ -88,7 +107,9 @@ const LIMITS = [
   "Le contenu est un brouillon en cours de validation par des professionnels de santé. Il n'a pas encore été validé par un ministère de la Santé.",
   "Elle ne règle pas les obstacles qui sont du côté des services : jugement de certains prestataires, ruptures de stock, coût, accord du conjoint.",
   "Les chiffres de ce site sont des opinions (Afrobaromètre) ou viennent d'un autre pays et d'une autre année (Burkina Faso, 2017-18). Ils éclairent nos choix, ils ne mesurent pas Alviosa.",
-  "Pas encore de résultats d'usage ni de retours de jeunes : un test est prévu.",
+  "Pas encore de résultats d'usage ni de retours de jeunes ni de prestataires : un test est prévu.",
+  "Le tableau de bord de démonstration utilise des données fabriquées. Sans base de données configurée, les données réelles sont temporaires.",
+  "L'annuaire est vide tant que des services ne se sont pas inscrits et n'ont pas été validés : rien n'est inventé.",
   "L'IA qui reformule les questions a besoin d'internet. Sans connexion, Afi donne la fiche la plus proche.",
   "Seul le français est disponible. Les langues locales demandent des locuteurs natifs et une relecture.",
   "Les numéros d'urgence et la liste des centres sont à compléter pays par pays avant tout usage réel.",
@@ -121,6 +142,24 @@ export default function AboutPage() {
           grossesse, et à aller au centre de santé en ayant compris. Voici les données qui guident nos choix, et ce que nous ne faisons pas.
         </p>
       </header>
+
+      <section className="panel" aria-labelledby="plateforme">
+        <h2 id="plateforme">Une plateforme, trois espaces</h2>
+        <ul className="plain">
+          <li>
+            <Link href="/">Alviosa Jeunes</Link> : comprendre, choisir, préparer sa visite, trouver un service.
+          </li>
+          <li>
+            <Link href="/prestataires">Alviosa Prestataires</Link> : conseiller sans juger, s'entraîner, signaler les ruptures.
+          </li>
+          <li>
+            <Link href="/pilotage/demo">Alviosa Pilotage</Link> : voir les besoins et la qualité du conseil, avec des données anonymes.
+          </li>
+        </ul>
+        <p>
+          <Link href="/all">Voir comment les trois espaces se relient</Link>.
+        </p>
+      </section>
 
       <section aria-labelledby="preuves">
         <h2 id="preuves">Ce que disent les données, et ce que nous en avons fait</h2>

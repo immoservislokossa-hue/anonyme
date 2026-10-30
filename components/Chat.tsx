@@ -1,18 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Icon from "@/components/Icon";
 import Silhouette from "@/components/Silhouette";
-import Reward from "@/components/Reward";
 import RichText from "@/components/RichText";
 import Speak from "@/components/Speak";
 import VoiceInput from "@/components/VoiceInput";
-import { useProgress } from "@/components/useProgress";
 import { personaFor } from "@/lib/brand";
 import { localReply } from "@/lib/localReply";
+import { readZone } from "@/lib/zone";
 import { extractChoices, toPlain } from "@/lib/richtext";
-import type { Voie } from "@/lib/domain";
 
 type Message = {
   role: "user" | "assistant";
@@ -22,37 +20,17 @@ type Message = {
   choices?: string[];
 };
 
-const EXAMPLES: Record<Voie | "tout", string[]> = {
-  tout: [
-    "Quelle méthode de contraception choisir ?",
-    "Un préservatif a craqué, que faire ?",
-    "J'ai un retard de règles, que faire ?",
-    "Comment me protéger des IST ?",
-  ],
-  sexuelle: [
-    "Quelle méthode de contraception choisir ?",
-    "Un préservatif a craqué, que faire ?",
-    "J'ai un retard de règles, que faire ?",
-    "Comment me protéger des IST ?",
-    "Une jeune fille non mariée peut-elle demander une méthode ?",
-  ],
-  mentale: [
-    "Comment parler à quelqu'un de ce que je ressens ?",
-    "Je me sens triste depuis plusieurs semaines",
-    "J'ai honte après ce qui s'est passé",
-  ],
-  "bien-etre": [
-    "Comment mieux dormir ?",
-    "Comment gérer le stress avant un examen ?",
-    "Comment reprendre confiance en moi ?",
-  ],
-};
+const EXAMPLES = [
+  "Quelle méthode de contraception choisir ?",
+  "Un préservatif a craqué, que faire ?",
+  "J'ai un retard de règles, que faire ?",
+  "Comment me protéger des IST ?",
+];
 
 export type AutoMessage = { id: number; text: string };
 
 // Chat d'Afi. `embedded` : dans la bulle, sur toutes les pages. `tips` et `context` : adaptés à la page où l'on est.
 export default function Chat({
-  voie,
   audience = "jeune",
   embedded = false,
   tips,
@@ -60,7 +38,6 @@ export default function Chat({
   greeting,
   auto,
 }: {
-  voie?: Voie;
   audience?: "jeune" | "prestataire";
   embedded?: boolean;
   tips?: string[];
@@ -72,11 +49,8 @@ export default function Chat({
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [reward, setReward] = useState<string | null>(null);
-  const { update } = useProgress();
   const endRef = useRef<HTMLDivElement | null>(null);
   const areaRef = useRef<HTMLTextAreaElement | null>(null);
-  const clearReward = useCallback(() => setReward(null), []);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
@@ -104,7 +78,7 @@ export default function Chat({
 
     // Sans réseau, Afi répond sur l'appareil : mêmes règles de sécurité, fiche la plus proche.
     const answerOffline = () => {
-      const local = localReply(question, voie, context, audience);
+      const local = localReply(question, context, audience);
       const note = local.kind === "fallback" ? "**Mode sans connexion** : voici la fiche la plus proche de ta question.\n\n" : "";
       setMessages([...next, { role: "assistant", content: note + local.reply, kind: local.kind, sources: local.sources }]);
     };
@@ -120,9 +94,9 @@ export default function Chat({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          voie,
           audience,
           context,
+          zone: readZone() ?? undefined,
           messages: next.map(({ role, content }) => ({ role, content })),
         }),
       });
@@ -144,11 +118,6 @@ export default function Chat({
 
       const { text: cleaned, choices } = extractChoices(data.reply);
       setMessages([...next, { role: "assistant", content: cleaned, kind: data.kind, sources: data.sources, choices }]);
-
-      if (data.kind !== "urgent" && data.kind !== "crisis") {
-        update((current) => ({ ...current, questionsAsked: current.questionsAsked + 1 }));
-        setReward("+10 points. Bonne question");
-      }
     } catch (caught) {
       if (caught instanceof TypeError) {
         // Le réseau a lâché : on répond sur l'appareil plutôt que de laisser la personne sans réponse.
@@ -172,8 +141,8 @@ export default function Chat({
     // send dépend de l'état courant : on ne relance que pour un nouveau message automatique.
   }, [auto]);
 
-  const examples = tips && tips.length > 0 ? tips : EXAMPLES[voie ?? "tout"];
-  const persona = personaFor(voie);
+  const examples = tips && tips.length > 0 ? tips : EXAMPLES;
+  const persona = personaFor();
   const pro = audience === "prestataire";
   // Pour les prestataires : un repère neutre à la place du visage d'Afi.
   const avatar = pro ? <span className="avatar pro-avatar" aria-hidden="true">OMS</span> : null;
@@ -185,7 +154,7 @@ export default function Chat({
           <div className="msg bot">
             {avatar ?? (
               <span className="avatar">
-                <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
+                <Silhouette who="afi" size={38} bust />
               </span>
             )}
             <div className="intro">
@@ -230,7 +199,7 @@ export default function Chat({
             <div key={index} className="msg bot">
               {avatar ?? (
                 <span className="avatar">
-                  <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
+                  <Silhouette who="afi" size={38} bust />
                 </span>
               )}
               <div className="col">
@@ -265,7 +234,7 @@ export default function Chat({
           <div className="msg bot">
             {avatar ?? (
               <span className="avatar">
-                <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
+                <Silhouette who="afi" size={38} bust />
               </span>
             )}
             <div className="typing-bubble" role="status">
@@ -311,7 +280,6 @@ export default function Chat({
         </button>
       </form>
 
-      <Reward message={reward} onDone={clearReward} />
     </section>
   );
 }

@@ -74,3 +74,24 @@ test("une humeur inconnue est détectée", () => {
   broken.scenes[1].mood = "bizarre" as never;
   assert.ok(checkStory(broken).some((p) => p.includes("humeur")));
 });
+
+test("la série ne parle plus de santé mentale : elle reste sur la planification familiale", () => {
+  const banned = /tristesse|dépress|santé mentale|bien-être|sommeil|anxi|se faire du mal/i;
+  for (const story of stories) {
+    const text = [story.titre, story.resume, story.lecon, story.teaser, ...story.scenes.map((s) => s.text), ...Object.values(story.jeu.nodes).map((n) => n.text)].join(" ");
+    assert.ok(!banned.test(text), story.id);
+    assert.ok(!story.action.href.includes("voie="), story.id);
+  }
+});
+
+test("l'épisode 4 montre un jeune renvoyé d'un centre et prépare la visite", () => {
+  const ep = stories.find((s) => s.episode === 4)!;
+  assert.equal(ep.id, "on-l-a-renvoyee");
+  assert.equal(ep.action.href, "/outils/visite");
+  assert.ok(ep.scenes.some((s) => /ailleurs|en essayer un autre/.test(s.text)));
+});
+
+test("les deux proches d'Afi restent des personnages de la série", () => {
+  assert.deepEqual(speakerInfo("fallone"), { name: "Fallone", role: "l'amie" });
+  assert.deepEqual(speakerInfo("chimene"), { name: "Chimène", role: "la sœur" });
+});

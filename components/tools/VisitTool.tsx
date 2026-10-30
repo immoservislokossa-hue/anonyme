@@ -101,6 +101,7 @@ export default function VisitTool() {
               En parler avant
             </Link>
           </div>
+          <p className="muted">Après ta visite, tu peux donner ton avis, sans nom, sur la page du service dans « Centres ». Cela aide les autres jeunes et les responsables de santé.</p>
           <p className="muted tool-source">Sources : Guide OMS de la planification familiale (2012), fiche « Préparer une consultation ». Brouillon en cours de validation.</p>
         </div>
       )}

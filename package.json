@@ -2,7 +2,7 @@
   "name": "alviosa",
   "version": "0.1.0",
   "private": true,
-  "description": "Prototype Alviosa : information et orientation en santé sexuelle, santé mentale et bien-être",
+  "description": "Plateforme Alviosa : planification familiale pour les jeunes, les prestataires et les décideurs",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

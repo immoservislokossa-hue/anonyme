@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
-import { personaFor } from "@/lib/brand";
-import type { Voie } from "@/lib/domain";
+import { personaFor, type Character } from "@/lib/brand";
 
 const INK = "#1e1d3a";
 const GOLD = "#ffc233";
@@ -23,8 +22,8 @@ type Palette = {
 };
 
 // Dessin 2D tout simple : aplats de couleur, une seule ombre par pièce, grands yeux brillants.
-const PALETTES: Record<Voie, Palette> = {
-  sexuelle: {
+const PALETTES: Record<Character, Palette> = {
+  afi: {
     bg: "#d6f6f1",
     main: "#00c4ac",
     mainDark: "#00a08c",
@@ -37,7 +36,7 @@ const PALETTES: Record<Voie, Palette> = {
     lip: "#d9487a",
     blush: "#ff6b8e",
   },
-  mentale: {
+  fallone: {
     bg: "#dfdffa",
     main: "#5a58e6",
     mainDark: "#4240c2",
@@ -50,7 +49,7 @@ const PALETTES: Record<Voie, Palette> = {
     lip: "#e0587f",
     blush: "#ff7a9a",
   },
-  "bien-etre": {
+  chimene: {
     bg: "#fff0c9",
     main: "#ffc233",
     mainDark: "#e8a712",
@@ -369,28 +368,28 @@ function Chimene({ c, mood, framed }: { c: Palette; mood?: Mood; framed: boolean
 }
 
 export default function Silhouette({
-  voie,
+  who,
   size = 96,
   bust = false,
   framed = true,
   talking = false,
   mood,
 }: {
-  voie: Voie;
+  who: Character;
   size?: number;
   bust?: boolean;
   framed?: boolean;
   talking?: boolean;
   mood?: Mood;
 }) {
-  const c = PALETTES[voie];
-  const persona = personaFor(voie);
+  const c = PALETTES[who];
+  const persona = personaFor(who);
   const viewBox = bust ? "34 8 52 50" : "0 0 120 170";
   const width = bust ? size : (size * 120) / 170;
 
   return (
     <svg
-      className={`sil sil-${voie}${talking ? " talking" : ""}${bust ? " bust" : ""}`}
+      className={`sil sil-${who}${talking ? " talking" : ""}${bust ? " bust" : ""}`}
       width={width}
       height={bust ? (size * 50) / 52 : size}
       viewBox={viewBox}
@@ -400,9 +399,9 @@ export default function Silhouette({
       {framed && !bust && <circle cx="60" cy="92" r="66" fill={c.bg} />}
       {framed && bust && <rect x="34" y="8" width="52" height="50" fill={c.bg} />}
       {!bust && <ellipse cx="60" cy="162" rx="26" ry="4" fill={INK} opacity="0.12" />}
-      {voie === "sexuelle" && <Afi c={c} mood={mood} />}
-      {voie === "mentale" && <Fallone c={c} mood={mood} framed={framed} />}
-      {voie === "bien-etre" && <Chimene c={c} mood={mood} framed={framed} />}
+      {who === "afi" && <Afi c={c} mood={mood} />}
+      {who === "fallone" && <Fallone c={c} mood={mood} framed={framed} />}
+      {who === "chimene" && <Chimene c={c} mood={mood} framed={framed} />}
     </svg>
   );
 }

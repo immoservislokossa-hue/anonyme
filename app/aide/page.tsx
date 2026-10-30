@@ -3,7 +3,6 @@ import Link from "next/link";
 import AboutAI from "@/components/AboutAI";
 import OfflineStatus from "@/components/OfflineStatus";
 import PrivacyInfo from "@/components/PrivacyInfo";
-import { TEAM_NAMES } from "@/lib/brand";
 
 export const metadata: Metadata = { title: "Aide et confidentialité" };
 
@@ -23,7 +22,7 @@ export default function HelpPage() {
       <section id="aide" className="help-block">
         <h2>Besoin de parler à quelqu'un ?</h2>
         <div className="panel">
-          <h3>Ce que {TEAM_NAMES} ne peuvent pas faire</h3>
+          <h3>Ce qu'Afi ne peut pas faire</h3>
           <ul className="plain">
             <li>Dire si tu es enceinte ou malade.</li>
             <li>Te conseiller un médicament ou une dose.</li>

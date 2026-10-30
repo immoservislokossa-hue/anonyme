@@ -83,7 +83,7 @@ test("le contexte envoyé au serveur est une clé sûre, jamais un texte libre",
 test("sur la page « La pilule », une question courte retrouve la fiche de la pilule", () => {
   const hint = contextHint("methodes/pilule");
   assert.equal(hint, "La pilule");
-  const top = retrieve(`Quels effets ? ${hint}`, 3, "sexuelle").map((e) => e.id);
+  const top = retrieve(`Quels effets ? ${hint}`, 3).map((e) => e.id);
   assert.ok(top.some((id) => id.includes("pilule")), top.join(","));
 });
 

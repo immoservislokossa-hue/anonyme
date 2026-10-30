@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { isVoie } from "@/lib/domain";
 import { generateReply, pickProvider } from "@/lib/llm";
 import { record } from "@/lib/metrics";
 import { buildContext, providerPrompt, systemPromptFor } from "@/lib/prompt";
 import { isContextKey } from "@/lib/afi";
+import { isZone } from "@/lib/pays";
 import { checkRate } from "@/lib/rateLimit";
 import { fallbackReply, findEntries } from "@/lib/localReply";
 import { triage } from "@/lib/safety";
@@ -46,11 +46,11 @@ export async function POST(request: Request) {
   }
 
   const body: unknown = await request.json().catch(() => null);
-  const payload = body as { messages?: unknown; voie?: unknown; context?: unknown; audience?: unknown } | null;
+  const payload = body as { messages?: unknown; context?: unknown; audience?: unknown; zone?: unknown } | null;
+  const zone = isZone(payload?.zone) ? payload.zone : undefined;
   const provider = payload?.audience === "prestataire";
   const context = isContextKey(payload?.context) ? payload.context : undefined;
   const messages = payload?.messages;
-  const voie = isVoie(payload?.voie) ? payload.voie : undefined;
 
   if (!isValidHistory(messages) || messages.length === 0) {
     return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
@@ -79,8 +79,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ reply: decision.reply, kind: "diagnosis", sources: [] });
   }
 
-  const entries = findEntries(lastUser.content, voie, context);
-  record("question", entries[0]?.theme);
+  const entries = findEntries(lastUser.content, context);
+  record("question", entries[0]?.theme, zone);
 
   // Sans fournisseur configuré, on répond avec la base seule.
   if (pickProvider() === "none") {
@@ -92,7 +92,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const system = `${provider ? providerPrompt() : systemPromptFor(voie)}\n\nContexte :\n${buildContext(entries)}`;
+    const system = `${provider ? providerPrompt() : systemPromptFor()}\n\nContexte :\n${buildContext(entries)}`;
     const reply = await generateReply(
       system,
       history.map((m) => ({ role: m.role, content: m.content })),

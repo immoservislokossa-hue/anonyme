@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import NearbyCentres from "@/components/NearbyCentres";
 import ServiceDirectory from "@/components/ServiceDirectory";
+import ZoneChoice from "@/components/ZoneChoice";
+import { getPays } from "@/lib/pays";
 
 export const metadata: Metadata = { title: "Trouver un centre" };
 export const dynamic = "force-dynamic";
@@ -26,6 +28,8 @@ export default async function OrientationPage({ searchParams }: { searchParams: 
       <NearbyCentres />
 
       <ServiceDirectory zone={zone} methode={methode} accueil={accueil === "1"} />
+
+      <ZoneChoice zones={getPays().zones} />
     </>
   );
 }

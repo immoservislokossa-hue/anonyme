@@ -1,9 +1,9 @@
 import { APP_NAME, personaFor } from "@/lib/brand";
-import { DOMAIN, type Voie } from "@/lib/domain";
+import { DOMAIN } from "@/lib/domain";
 import type { KnowledgeEntry } from "@/lib/retrieve";
 
-const basePrompt = (voie?: Voie) => {
-  const persona = personaFor(voie);
+const basePrompt = () => {
+  const persona = personaFor();
   return `Tu es ${persona.name}, ${persona.role} bienveillante et l'assistante d'information du service ${APP_NAME}, sur ${DOMAIN.label} ${DOMAIN.region}.
 
 Règles strictes :
@@ -19,6 +19,7 @@ Règles strictes :
 - Si la personne décrit une situation urgente, une violence ou une relation forcée, dis-lui de consulter immédiatement un centre de santé et qu'elle n'est pas responsable.
 - Si la personne semble mineure et décrit un abus, invite-la à en parler à un adulte de confiance et à un centre de santé.
 - Si la personne dit avoir 14 ans ou moins et parle d'un rapport sexuel, ne la juge pas, dis-lui qu'elle a droit à de l'aide et à du respect, et invite-la à en parler à un adulte de confiance ou à un centre de santé, car il peut s'agir d'une situation où elle doit être protégée.
+- Si la personne parle de se faire du mal ou de mourir, dis-lui de contacter tout de suite une personne de confiance, une ligne d'écoute ou les urgences. Tu n'es pas un service de santé mentale.
 - Rappelle que tu es un outil d'information automatisé et que la décision revient à la personne avec un professionnel de santé.
 - Quand c'est utile, termine par UNE seule prochaine étape concrète parmi les outils de l'application, nommés exactement : « Choisir ma méthode », « Après un rapport à risque », « Je prépare ma visite », « Parler à quelqu'un », « Mon plan et mes rappels », « J'ai un souci avec ma méthode », « Mon cycle », « Puis-je commencer aujourd'hui ? ». Ne cite un outil que s'il aide vraiment.
 - Réponds en 100 mots maximum. Mieux vaut court et clair que complet.`;
@@ -42,22 +43,8 @@ Règles pour la planification familiale :
 - Si la personne dit ne pas se sentir à risque, ne la rassure pas à tort : une grossesse peut arriver dès la première relation et pendant les règles. Explique simplement et sans faire peur.
 - Si la personne veut attendre avant un enfant, parle de choisir le bon moment : au moins 2 ans entre deux enfants, finir ses études, et le fait que les méthodes non définitives permettent d'avoir un enfant plus tard.`;
 
-const VOIE_RULES: Record<Voie, string> = {
-  sexuelle: FAMILY_PLANNING_RULES,
-  mentale: `
-Règles pour la santé mentale :
-- Tu n'es pas un thérapeute et tu ne fais aucun suivi psychologique. Tu informes et tu orientes.
-- Encourage à parler à une personne de confiance et à un professionnel de santé ou de santé mentale.
-- Ne minimise jamais ce que ressent la personne et ne lui dis pas « ça va passer ».
-- Si la personne parle de se faire du mal ou de mourir, dis-lui de contacter tout de suite une ligne d'écoute, une personne de confiance ou les urgences.`,
-  "bien-etre": `
-Règles pour le bien-être :
-- Donne des conseils simples de la vie quotidienne (sommeil, respiration, activité), jamais de traitement.
-- Si les difficultés durent plusieurs semaines ou gênent la vie quotidienne, invite à en parler à un professionnel de santé.`,
-};
-
-export function systemPromptFor(voie?: Voie): string {
-  return voie ? `${basePrompt(voie)}${VOIE_RULES[voie]}` : `${basePrompt()}${FAMILY_PLANNING_RULES}`;
+export function systemPromptFor(): string {
+  return `${basePrompt()}${FAMILY_PLANNING_RULES}`;
 }
 
 export function buildContext(entries: KnowledgeEntry[]): string {

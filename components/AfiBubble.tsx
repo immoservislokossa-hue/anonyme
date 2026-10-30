@@ -127,7 +127,6 @@ export default function AfiBubble() {
           <div className="afi-body">
             <Chat
               embedded
-              voie="sexuelle"
               tips={context.tips}
               context={context.key}
               auto={auto}
@@ -149,7 +148,7 @@ export default function AfiBubble() {
         onPointerCancel={onPointerUp}
         onClick={onClick}
       >
-        <Silhouette voie="sexuelle" size={SIZE - 8} bust />
+        <Silhouette who="afi" size={SIZE - 8} bust />
         <span className="afi-label">Afi</span>
       </button>
     </div>

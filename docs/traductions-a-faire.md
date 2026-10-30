@@ -40,7 +40,6 @@ Fichier à compléter : `lib/guides.ts` (champ `translations`), et enregistremen
 1. Ici, tu parles à Afi. Écris ta question dans cette zone.
 2. Ou appuie sur le micro et dis ta question à voix haute.
 3. Quand tu as fini, appuie sur ce bouton pour envoyer.
-4. Ici, tu peux changer de sujet : planification familiale, santé mentale ou bien-être.
 
 ## Apprendre (`apprendre`)
 
