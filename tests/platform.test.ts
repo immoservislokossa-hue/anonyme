@@ -144,3 +144,17 @@ test("comptes : connexion, rôle pilotage donné seulement par app_metadata, ins
   assert.ok(!bad.ok && bad.error.includes("incorrect"));
   assert.equal(await accountFromToken("T", env, (async () => new Response("{}", { status: 401 })) as unknown as typeof fetch), null);
 });
+
+test("rappel de visite : deux événements, alarmes, mode discret sans nom de service ni code", async () => {
+  const { visitIcs } = await import("../lib/reminder");
+  const now = new Date("2026-11-10T08:00:00Z");
+  const open = visitIcs({ date: "2026-11-12", time: "09:30", serviceName: "Centre, Lokossa", code: "AB234", reviewUrl: "https://x.org/orientation/1#donner", neutral: false }, now);
+  assert.equal((open.match(/BEGIN:VEVENT/g) ?? []).length, 2);
+  assert.ok(open.includes("DTSTART:20261112T093000"));
+  assert.ok(open.includes("DTSTART:20261113T180000"));
+  assert.ok(open.includes("TRIGGER:-P1D") && open.includes("TRIGGER:-PT2H"));
+  assert.ok(open.includes("Centre\\, Lokossa"));
+  const quiet = visitIcs({ date: "2026-11-12", time: "09:30", serviceName: "Centre", code: "AB234", reviewUrl: "https://x.org/", neutral: true }, now);
+  assert.ok(!quiet.includes("Centre") && !quiet.includes("AB234") || quiet.includes("UID:visite-AB234@alviosa"));
+  assert.ok(!quiet.includes("SUMMARY:Visite") && quiet.includes("SUMMARY:Rappel santé"));
+});

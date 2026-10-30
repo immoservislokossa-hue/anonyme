@@ -6365,3 +6365,165 @@ code {
 /* Bon de visite */
 .voucher-code { font-size: 2.6rem; font-weight: 800; letter-spacing: 0.18em; margin: 0.4rem 0; font-variant-numeric: tabular-nums; }
 .voucher-choices { border: 0; padding: 0; margin: 0 0 0.8rem; display: grid; gap: 0.5rem; }
+
+/* ---------- Couche « produit moderne » : dégradés doux, courbes, ombres colorées ---------- */
+:root {
+  --glow-a: #fde1ec;
+  --glow-b: #dff4f0;
+  --accent-grad: linear-gradient(135deg, #e0246f 0%, #c2185b 52%, #9c1250 100%);
+  --shadow-color: rgba(194, 24, 91, 0.28);
+  --radius: 26px;
+}
+
+body:has([data-space="prestataires"]) {
+  --glow-a: #d4f1ec;
+  --glow-b: #e6f3ff;
+  --accent-grad: linear-gradient(135deg, #0f9b89 0%, #0b7a6d 55%, #075a50 100%);
+  --shadow-color: rgba(11, 122, 109, 0.28);
+}
+
+body:has([data-space="pilotage"]) {
+  --glow-a: #dfe5fb;
+  --glow-b: #fbf0d6;
+  --accent-grad: linear-gradient(135deg, #34479b 0%, #1f2f6b 55%, #141f4a 100%);
+  --shadow-color: rgba(31, 47, 107, 0.3);
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(900px 520px at 92% -8%, var(--glow-a) 0%, transparent 62%),
+    radial-gradient(760px 460px at -8% 6%, var(--glow-b) 0%, transparent 58%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Barre du haut : verre dépoli, collée en haut */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  margin-inline: -16px;
+  padding-inline: 16px;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid color-mix(in srgb, var(--beige) 70%, transparent);
+}
+
+/* Boutons : dégradé, ombre colorée, forme de pilule */
+.btn {
+  border-radius: 999px;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn.primary {
+  background: var(--accent-grad);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 8px 20px -8px var(--shadow-color);
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px -8px var(--shadow-color);
+}
+
+.btn.primary:active {
+  transform: translateY(0);
+}
+
+/* Titres : dégradé sur les grands titres de page */
+.home-hero h1,
+main > header h1,
+main > article > header h1 {
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Cartes et panneaux : grandes courbes, ombre douce, relief au survol pour ce qui se clique */
+.panel,
+.kpi,
+.card,
+.hero {
+  border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgba(43, 26, 38, 0.05), 0 12px 32px -14px rgba(43, 26, 38, 0.14);
+}
+
+.triage a,
+.door,
+.svc-card,
+.card:hover {
+  transition: transform 0.18s ease, box-shadow 0.2s ease;
+}
+
+.triage a:hover,
+.door:hover,
+a.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -14px var(--shadow-color);
+}
+
+.triage a {
+  border-radius: 24px;
+}
+
+/* Tableau de bord : cartes de chiffres avec un reflet courbe */
+.kpi {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--bg) 70%, #fff) 0%, var(--bg) 100%);
+}
+
+.kpi > * {
+  position: relative;
+  z-index: 1;
+}
+
+.kpi::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  bottom: -44px;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  opacity: 0.55;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Pied de page : grande courbe en haut */
+.footer {
+  margin-top: 28px;
+  padding: 26px 20px 22px;
+  border-top: 0;
+  border-radius: 32px 32px 0 0;
+  background: linear-gradient(180deg, var(--sable) 0%, var(--sable-soft) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .triage a,
+  .door {
+    transition: none;
+  }
+  .triage a:hover,
+  .door:hover,
+  a.card:hover,
+  .btn.primary:hover {
+    transform: none;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+  .topbar {
+    position: static;
+  }
+}
