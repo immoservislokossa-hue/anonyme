@@ -62,15 +62,13 @@ export default async function MethodePage({ params }: { params: Promise<{ id: st
     <article className="method-page">
       <Crumbs trail={[{ href: "/apprendre", label: "Apprendre" }, { href: "/methodes", label: "Méthodes" }]} current={m.nom} />
 
-      <header className="page-hero">
-        <div className="page-hero-art">
-          <MethodArt id={m.id} />
-        </div>
+      <header className="hero-compact">
+        <MethodArt id={m.id} />
         <div>
           <p className="eyebrow">Méthode · {m.hormonale ? "avec hormones" : "sans hormones"}</p>
           <h1>{m.nom}</h1>
           <ul className="pills" aria-label="En un coup d'œil">
-            {m.resume.slice(0, 3).map((item) => (
+            {m.resume.slice(0, 2).map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
@@ -115,7 +113,7 @@ export default async function MethodePage({ params }: { params: Promise<{ id: st
         </section>
       )}
 
-      <section className="panel" aria-labelledby="arriver">
+      <section aria-labelledby="arriver">
         <h2 id="arriver">Ce qui peut arriver</h2>
         <List items={m.peut_arriver} />
       </section>
@@ -135,18 +133,18 @@ export default async function MethodePage({ params }: { params: Promise<{ id: st
       </section>
 
       {excluded.length > 0 && (
-        <section className="panel" aria-labelledby="qui">
-          <h2 id="qui">Qui ne peut pas la prendre ?</h2>
+        <details className="know">
+          <summary>Qui ne peut pas la prendre ?</summary>
           <p className="muted">Dis-le à un professionnel si tu es dans un de ces cas (guide OMS, p. 19) :</p>
           <List items={excluded.map((c) => c.label.split(" (")[0])} />
-        </section>
+        </details>
       )}
 
       {m.accouchement && (
-        <section className="panel" aria-labelledby="accouchement">
-          <h2 id="accouchement">Après un accouchement</h2>
+        <details className="know">
+          <summary>Après un accouchement</summary>
           <p>{m.accouchement}</p>
-        </section>
+        </details>
       )}
 
       <section className="panel where" aria-labelledby="ou">

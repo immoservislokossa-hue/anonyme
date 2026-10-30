@@ -30,19 +30,11 @@ export default async function OutilPage({ params }: { params: Promise<{ id: stri
     <article className="tool-page">
       <Crumbs trail={[{ href: "/apprendre", label: "Apprendre" }, { href: "/outils", label: "Outils" }]} current={tool.titre} />
 
-      <header className="page-hero">
-        <div className="page-hero-art">
-          <ToolArt id={tool.id} />
-        </div>
+      <header className="hero-compact">
+        <ToolArt id={tool.id} />
         <div>
-          <p className="eyebrow">Outil</p>
           <h1>{tool.titre}</h1>
           <p className="lede">{tool.promesse}</p>
-          <ul className="pills" aria-label="En un coup d'œil">
-            <li>{tool.minutes} min</li>
-            <li>Reste sur ton téléphone</li>
-            <li>Guide OMS</li>
-          </ul>
         </div>
       </header>
 
@@ -55,28 +47,26 @@ export default async function OutilPage({ params }: { params: Promise<{ id: stri
         </p>
       )}
 
-      <ToolLauncher id={tool.id} methods={helpMethods} minutes={tool.minutes} />
+      <ToolLauncher id={tool.id} methods={helpMethods} />
 
-      <section aria-labelledby="comment">
-        <h2 id="comment">Comment ça marche</h2>
-        <ol className="step-cards numbered">
+      <details className="know">
+        <summary>À savoir sur cet outil</summary>
+        <h3>Comment ça marche</h3>
+        <ol className="plain">
           {tool.etapes.map((step) => (
-            <li key={step}>
-              <p>{step}</p>
-            </li>
+            <li key={step}>{step}</li>
           ))}
         </ol>
-      </section>
-
-      <section className="panel" aria-labelledby="limites">
-        <h2 id="limites">Ce que l'outil ne fait pas</h2>
+        <h3>Ce qu'il ne fait pas</h3>
         <ul className="plain">
           {tool.limites.map((limit) => (
             <li key={limit}>{limit}</li>
           ))}
         </ul>
-        <p className="muted tool-source">Source : {tool.source}. Brouillon en cours de validation par des professionnels de santé.</p>
-      </section>
+        <p className="muted tool-source">
+          {tool.minutes} min · Source : {tool.source}. Brouillon en cours de validation par des professionnels de santé.
+        </p>
+      </details>
 
       <section aria-labelledby="suite">
         <h2 id="suite">Pour continuer</h2>

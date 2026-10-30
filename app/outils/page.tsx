@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ToolArt } from "@/components/art/Art";
 import Crumbs from "@/components/Crumbs";
-import { TOOLS, hrefOf } from "@/lib/catalog";
+import RowList from "@/components/RowList";
+import { TOOL_GROUPS, getTool, hrefOf } from "@/lib/catalog";
 
 export const metadata: Metadata = { title: "Outils" };
 
@@ -12,20 +12,21 @@ export default function OutilsPage() {
       <Crumbs current="Outils" />
       <header>
         <h1>Outils</h1>
-        <p className="lede">Des outils pratiques, construits sur le guide de l'OMS. Chacun prend une ou deux minutes.</p>
+        <p className="lede">Chaque outil prend une ou deux minutes. Tes réponses restent sur ton téléphone.</p>
       </header>
-      <ul className="hub-grid">
-        {TOOLS.map((tool) => (
-          <li key={tool.id}>
-            <Link href={hrefOf.outil(tool.id)} className={`hub-card${tool.urgent ? " urgent" : ""}`}>
-              <ToolArt id={tool.id} />
-              <span className="hub-count">{tool.minutes} min</span>
-              <strong>{tool.titre}</strong>
-              <span>{tool.promesse}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {TOOL_GROUPS.map((group) => (
+        <section key={group.id} aria-label={group.titre}>
+          <h2 className="group-title">{group.titre}</h2>
+          <RowList
+            rows={group.outils.flatMap((id) => {
+              const tool = getTool(id);
+              return tool
+                ? [{ href: hrefOf.outil(tool.id), art: <ToolArt id={tool.id} />, title: tool.titre, text: tool.promesse, urgent: tool.urgent }]
+                : [];
+            })}
+          />
+        </section>
+      ))}
     </>
   );
 }

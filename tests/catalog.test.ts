@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { METHODES, METHOD_META, SUJETS, TOOLS, getFiches, getMethode, getSujet, getTool, searchIndex, suiteLink } from "../lib/catalog";
+import { METHODES, METHOD_META, SUJETS, TOOLS, TOOL_GROUPS, getFiches, getMethode, getSujet, getTool, searchIndex, suiteLink } from "../lib/catalog";
 import { contextFor, contextHint, isContextKey } from "../lib/afi";
-import { HOME_NEEDS } from "../lib/home";
+import { HOME_LINKS, HOME_NEEDS } from "../lib/home";
 import { retrieve } from "../lib/retrieve";
 import { stories } from "../lib/stories";
 
@@ -46,9 +46,10 @@ test("les huit outils ont 3 étapes, des limites et une suite valide", () => {
   }
 });
 
-test("les tuiles de l'accueil mènent à une page précise", () => {
-  assert.ok(HOME_NEEDS.length >= 6);
-  for (const need of HOME_NEEDS) {
+test("l'accueil propose quatre situations, dont le risque en urgence, et chacune mène à une page précise", () => {
+  assert.equal(HOME_NEEDS.length, 4);
+  assert.ok(HOME_NEEDS.some((need) => need.urgent && need.href === "/outils/risque"));
+  for (const need of [...HOME_NEEDS, ...HOME_LINKS.map((link) => ({ href: link.href }))]) {
     assert.ok(need.href.startsWith("/"), need.href);
     const [, section, id] = need.href.split("/");
     if (section === "sujets") assert.ok(getSujet(id), need.href);
@@ -84,4 +85,10 @@ test("sur la page « La pilule », une question courte retrouve la fiche de la p
   assert.equal(hint, "La pilule");
   const top = retrieve(`Quels effets ? ${hint}`, 3, "sexuelle").map((e) => e.id);
   assert.ok(top.some((id) => id.includes("pilule")), top.join(","));
+});
+
+test("chaque outil est dans un seul groupe de la page Outils", () => {
+  const listed = TOOL_GROUPS.flatMap((group) => group.outils);
+  assert.equal(new Set(listed).size, listed.length);
+  assert.deepEqual([...listed].sort(), TOOLS.map((t) => t.id).sort());
 });

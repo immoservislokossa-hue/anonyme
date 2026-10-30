@@ -5122,3 +5122,256 @@ body:has(.story-cartoon.immersive) .afi {
   background: #dff3ef;
   color: var(--teal);
 }
+
+/* ---------- Refonte : accueil par situation, listes en lignes, pages d'outil directes ---------- */
+.home-hero {
+  gap: 10px;
+}
+
+.home-hero h1 {
+  max-width: 14ch;
+}
+
+.triage {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.triage a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  min-height: 72px;
+  border: 1px solid var(--beige);
+  border-radius: 20px;
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.triage a:hover,
+.triage a:focus-visible {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.triage a.urgent {
+  background: var(--alert-bg);
+  border-color: #f2b8b3;
+}
+
+.triage .home-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.triage a.urgent .home-icon {
+  background: #fff;
+  color: var(--alert);
+}
+
+.triage-text {
+  display: grid;
+  gap: 2px;
+}
+
+.triage-text strong {
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.triage-text span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+@media (min-width: 720px) {
+  .triage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.home-more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.home-more a,
+.home-more button {
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.trust {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trust li {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #dff3ef;
+  color: var(--teal);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.rows {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+@media (min-width: 900px) {
+  .rows {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.row-card {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 14px;
+  align-items: center;
+  min-height: 76px;
+  padding: 8px 14px 8px 8px;
+  border: 1px solid var(--beige);
+  border-radius: 20px;
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.row-card:not(:has(.row-art)) {
+  grid-template-columns: 1fr;
+  padding: 14px 16px;
+}
+
+.row-card:hover,
+.row-card:focus-visible {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+}
+
+.row-card.urgent {
+  background: var(--alert-bg);
+  border-color: #f2b8b3;
+}
+
+.row-art .art {
+  display: block;
+  width: 72px;
+  height: auto;
+}
+
+.row-body {
+  display: grid;
+  gap: 2px;
+}
+
+.row-body strong {
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.row-text {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.row-tag {
+  grid-column: 2;
+  justify-self: start;
+  padding: 1px 10px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.group-title {
+  margin: 8px 0 -2px;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Page d'outil : un en-tête court, puis l'outil tout de suite */
+.hero-compact {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.hero-compact .art {
+  display: block;
+  width: 84px;
+  height: auto;
+}
+
+.hero-compact h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 5.5vw, 2rem);
+}
+
+.hero-compact .lede {
+  margin: 4px 0 0;
+}
+
+@media (min-width: 720px) {
+  .hero-compact {
+    grid-template-columns: 120px 1fr;
+  }
+
+  .hero-compact .art {
+    width: 120px;
+  }
+}
+
+.know {
+  border: 1px solid var(--beige);
+  border-radius: 18px;
+  background: var(--bg);
+  padding: 4px 16px;
+}
+
+.know summary {
+  cursor: pointer;
+  padding: 12px 0;
+  font-weight: 800;
+  color: var(--primary-dark);
+}
+
+.know[open] summary {
+  border-bottom: 1px solid var(--beige);
+  margin-bottom: 10px;
+}
+
+.know h3 {
+  margin: 12px 0 6px;
+  font-size: 1rem;
+}

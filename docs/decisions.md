@@ -109,3 +109,12 @@ Chaque règle est écrite dans `lib/tools/` et testée dans `tests/tools.test.ts
 - Page publique `/a-propos` : données, choix de conception, limites, indicateurs, sources.
 - Mesure : deux événements « avis oui/non » sans texte, un statut « prêt sans connexion » visible dans Aide et sur l'accueil.
 - Principe : toute statistique citée dans l'application dit sa source, son pays et son année ; une opinion n'est pas présentée comme un usage.
+
+## 30 octobre 2026 : simplification de l'interface
+
+- Public : on garde 15-24 ans, comme la stratégie jeunes du PO et l'appel du Prix (15-19 ans cités). Les données d'opinion disponibles couvrent les adultes 18+ (jeunes = 18-35 ans chez Afrobaromètre). Le pilote de test se fait avec des 18-24 ans.
+- Accueil : une question (« Où en es-tu ? »), quatre situations, trois liens secondaires. Retrait des avatars, de la pastille d'âge, des boutons de canaux « Bientôt » et du statut hors-ligne (resté dans Aide).
+- Pages Apprendre, Outils, Sujets : lignes compactes, outils rangés en trois moments (avant le centre, après un risque, au quotidien).
+- Pages d'outil : l'outil s'affiche tout de suite ; « Comment ça marche » et « Ce qu'il ne fait pas » sont repliés.
+- Pages méthode : « Qui ne peut pas la prendre » et « Après un accouchement » repliés.
+- Afi : ton non infantilisant (15 mots par phrase), aucune supposition sur le sexe ou le statut, une seule prochaine étape (outil) proposée, prudence sur la loi (« dépend du pays et du centre »).

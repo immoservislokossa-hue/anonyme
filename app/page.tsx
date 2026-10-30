@@ -2,59 +2,65 @@ import Link from "next/link";
 import AskAfi from "@/components/AskAfi";
 import Icon from "@/components/Icon";
 import MyPlanCard from "@/components/MyPlanCard";
-import OfflineStatus from "@/components/OfflineStatus";
-import OtherChannels from "@/components/OtherChannels";
 import ShareButton from "@/components/ShareButton";
-import Silhouette from "@/components/Silhouette";
 import { TARGET_LABEL } from "@/lib/brand";
-import { HOME_NEEDS } from "@/lib/home";
+import { HOME_LINKS, HOME_NEEDS } from "@/lib/home";
 
 export default function HomePage() {
   return (
     <>
       <section className="home-hero">
-        <div className="home-trio" aria-hidden="true">
-          <Silhouette voie="sexuelle" size={56} bust />
-          <Silhouette voie="mentale" size={56} bust />
-          <Silhouette voie="bien-etre" size={56} bust />
-        </div>
-        <p className="home-age">{TARGET_LABEL}</p>
-        <h1>Ta planification familiale, de A à Z.</h1>
-        <p>Choisir une méthode, attendre ou espacer une grossesse, te protéger des IST, préparer ta visite au centre : tout est ici, sans honte et sans jugement. Personne ne voit ce que tu fais.</p>
-        <AskAfi className="btn primary big">Poser ma question à Afi</AskAfi>
+        <p className="eyebrow">{TARGET_LABEL}</p>
+        <h1>Décide quand avoir un enfant.</h1>
+        <p>Planification familiale : des réponses claires, sans jugement. Personne ne voit ce que tu fais ici.</p>
       </section>
 
       <MyPlanCard />
 
       <section aria-labelledby="needs-title" className="home-needs-block">
-        <h2 id="needs-title">Que veux-tu faire ?</h2>
-        <ul className="home-needs">
+        <h2 id="needs-title">Où en es-tu ?</h2>
+        <ul className="triage">
           {HOME_NEEDS.map((need) => (
             <li key={need.href}>
               <Link href={need.href} className={need.urgent ? "urgent" : undefined}>
                 <span className="home-icon">
-                  <Icon name={need.icon} size={22} />
+                  <Icon name={need.icon} size={24} />
                 </span>
-                <strong>{need.title}</strong>
-                <span>{need.text}</span>
+                <span className="triage-text">
+                  <strong>{need.title}</strong>
+                  <span>{need.text}</span>
+                </span>
               </Link>
             </li>
           ))}
         </ul>
       </section>
 
-      <OtherChannels />
+      <nav className="home-more" aria-label="Aller plus loin">
+        {HOME_LINKS.map((link) => (
+          <Link key={link.href} href={link.href}>
+            {link.label}
+          </Link>
+        ))}
+        <AskAfi className="link-btn">Poser une question à Afi</AskAfi>
+      </nav>
 
-      <OfflineStatus />
+      <ul className="trust" aria-label="Ce que tu peux savoir">
+        <li>Gratuit, sans compte</li>
+        <li>Fondé sur le guide de l'OMS</li>
+        <li>Marche aussi sans internet</li>
+      </ul>
+
+      <p className="home-note">
+        <span>
+          Contenu en cours de validation par des professionnels de santé. <Link href="/a-propos">Sur quoi on s'appuie</Link>
+        </span>
+        <Link href="/urgence">C'est urgent ? Que faire maintenant</Link>
+      </p>
 
       <div className="home-share">
         <ShareButton label="Envoyer Alviosa à une amie" />
       </div>
-
-      <p className="home-note">
-        <span>Contenu en cours de validation par des professionnels de santé.</span>
-        <Link href="/urgence">C'est urgent ? Que faire maintenant</Link>
-      </p>
     </>
   );
 }

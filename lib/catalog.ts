@@ -173,7 +173,13 @@ export const TOOLS: Tool[] = [
     ],
   },
 ];
-export const getTool =  (id: string) => TOOLS.find((t) => t.id === id);
+// Les outils, rangés selon le moment où on en a besoin. Chaque outil est dans un seul groupe.
+export const TOOL_GROUPS: { id: string; titre: string; outils: ToolId[] }[] = [
+  { id: "avant", titre: "Avant d'aller au centre", outils: ["choisir", "visite", "parler", "commencer"] },
+  { id: "risque", titre: "Après un rapport à risque", outils: ["risque"] },
+  { id: "jour", titre: "Au quotidien", outils: ["plan", "souci", "cycle"] },
+];
+export const getTool = (id: string) => TOOLS.find((t) => t.id === id);
 
 // ---------- Méthodes ----------
 type RawMethode = {

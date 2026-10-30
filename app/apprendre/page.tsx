@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { HubArt } from "@/components/art/Art";
 import AskAfi from "@/components/AskAfi";
+import RowList from "@/components/RowList";
 import SearchBox from "@/components/SearchBox";
 import { METHODES, SUJETS, TOOLS, searchIndex } from "@/lib/catalog";
 import { stories } from "@/lib/stories";
@@ -10,9 +11,9 @@ import { stories } from "@/lib/stories";
 export const metadata: Metadata = { title: "Apprendre" };
 
 const CARDS = [
-  { id: "sujets", href: "/sujets", titre: "Sujets", texte: "Grossesse, IST, règles, consentement… une page claire par sujet.", count: `${SUJETS.length} sujets` },
+  { id: "sujets", href: "/sujets", titre: "Sujets", texte: "Grossesse, IST, règles, attendre un enfant, consentement.", count: `${SUJETS.length} sujets` },
   { id: "outils", href: "/outils", titre: "Outils", texte: "Choisir une méthode, préparer ma visite, parler à mes proches, mes rappels.", count: `${TOOLS.length} outils` },
-  { id: "methodes", href: "/methodes", titre: "Méthodes", texte: "Toutes les méthodes, avec un schéma et une comparaison.", count: `${METHODES.length - 1} méthodes` },
+  { id: "methodes", href: "/methodes", titre: "Méthodes", texte: "Toutes les méthodes, avec un schéma et une comparaison.", count: `${METHODES.length} méthodes` },
   { id: "serie", href: "/serie", titre: "La série", texte: "Afi, Fallone et Chimène : des histoires qu'on suit.", count: `${stories.length} épisodes` },
 ];
 
@@ -36,23 +37,21 @@ export default async function LearnPage({ searchParams }: { searchParams: Promis
       <header>
         <p className="eyebrow">Planification familiale et santé sexuelle</p>
         <h1>Apprendre</h1>
-        <p className="lede">Choisis par où commencer. Tout est expliqué simplement, d'après le guide de l'OMS : la même information pour toutes et tous, mariés ou non.</p>
+        <p className="lede">Une information claire, d'après le guide de l'OMS, pour toutes et tous, mariés ou non.</p>
       </header>
 
       <SearchBox items={searchIndex()} />
 
-      <ul className="hub-grid two">
-        {CARDS.map((card) => (
-          <li key={card.id}>
-            <Link href={card.href} className="hub-card">
-              <HubArt id={card.id} />
-              <span className="hub-count">{card.count}</span>
-              <strong>{card.titre}</strong>
-              <span>{card.texte}</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <RowList
+        label="Les quatre parties"
+        rows={CARDS.map((card) => ({
+          href: card.href,
+          art: <HubArt id={card.id} />,
+          title: card.titre,
+          text: card.texte,
+          tag: card.count,
+        }))}
+      />
 
       <section className="panel hub-help">
         <h2>Tu ne sais pas par où commencer ?</h2>

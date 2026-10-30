@@ -39,10 +39,8 @@ export default async function SujetPage({ params }: { params: Promise<{ id: stri
     <article className="topic-page">
       <Crumbs trail={[{ href: "/apprendre", label: "Apprendre" }, { href: "/sujets", label: "Sujets" }]} current={sujet.titre} />
 
-      <header className="page-hero">
-        <div className="page-hero-art">
-          <TopicArt id={sujet.art} />
-        </div>
+      <header className="hero-compact">
+        <TopicArt id={sujet.art} />
         <div>
           <p className="eyebrow">Sujet</p>
           <h1>{sujet.titre}</h1>
