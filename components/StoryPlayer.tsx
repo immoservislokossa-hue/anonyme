@@ -51,7 +51,7 @@ export default function StoryPlayer({ story, requested }: { story: Story; reques
 
       {done && <NextEpisode story={story} />}
 
-      {!story.valide && <p className="tag">Histoire inventée, pas encore relue par un professionnel de santé</p>}
+      {!story.valide && <p className="tag">Histoire inventée</p>}
       <Reward message={reward} onDone={clearReward} />
     </>
   );
