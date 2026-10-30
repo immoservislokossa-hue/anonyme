@@ -65,7 +65,17 @@ export default function AccountPanel({ audience, onChange, redirect = false }: {
     if (audience === "pilotage") window.location.reload();
   }
 
-  if (!me || !me.enabled) return null;
+  if (!me) return null;
+  if (!me.enabled) {
+    return (
+      <section className="panel" aria-label="Mon compte">
+        <p>
+          <strong>Les comptes ne sont pas encore activés sur ce site.</strong>
+        </p>
+        <p className="muted">En attendant, tu peux inscrire ton service et le gérer avec le jeton qui t'est donné à l'inscription.</p>
+      </section>
+    );
+  }
 
   if (me.account) {
     const wrongRole = audience === "pilotage" && me.account.role !== "pilotage";
