@@ -17,3 +17,6 @@ Ce que cet audit a vérifié, et ce qu'il ne peut pas vérifier.
 - La connexion Supabase réelle n'a pas pu être testée depuis cet environnement (lecture paginée et clés testées avec un faux serveur).
 - L'IA (pratique libre, synthèse) n'a pas été testée avec un vrai modèle.
 - Les traductions de l'aide audio sont des démonstrations.
+
+## Bon de visite
+Le bon de visite ne contient aucun nom ni contact : un code de 5 signes, le motif choisi dans une liste fermée, le service. Il est valable 30 jours et ne peut être confirmé qu'une fois, par le service avec son jeton.

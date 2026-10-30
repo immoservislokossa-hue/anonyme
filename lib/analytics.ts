@@ -65,7 +65,8 @@ export function overview(ds: Dataset, now: Date = new Date()): Overview {
 }
 
 export type FunnelRow = { nom: string; scans: number; avis: number };
-export type Funnel = { scans7: Masked; scans30: Masked; avis30: number; avisPour100: number | null; services: FunnelRow[]; autres: number };
+export type Visites = { demandes30: Masked; venues30: Masked; tauxVenue: number | null };
+export type Funnel = { visites: Visites; scans7: Masked; scans30: Masked; avis30: number; avisPour100: number | null; services: FunnelRow[]; autres: number };
 
 // De la recommandation à la visite, en comptes anonymes : passages par QR, puis avis donnés. Un service n'apparaît qu'à partir de 5 passages.
 export function funnel(ds: Dataset, now: Date = new Date()): Funnel {
@@ -86,7 +87,10 @@ export function funnel(ds: Dataset, now: Date = new Date()): Funnel {
     rows.push({ nom: svc?.nom ?? "Service", scans: n, avis: reviews30.filter((r) => r.serviceId === id).length });
   }
   rows.sort((a, b) => b.scans - a.scans);
+  const asked = within(ds.events, t - 30 * DAY, t + 1).filter((e) => e.kind === "visite-demande");
+  const came = within(ds.events, t - 30 * DAY, t + 1).filter((e) => e.kind === "visite-venue");
   return {
+    visites: { demandes30: mask(asked.length), venues30: mask(came.length), tauxVenue: asked.length >= MIN_CELL ? Math.round((came.length / asked.length) * 100) : null },
     scans7: mask(scans7.length),
     scans30: mask(scans30.length),
     avis30: reviews30.length,

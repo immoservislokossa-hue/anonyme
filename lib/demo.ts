@@ -76,6 +76,16 @@ export function demoDataset(now: Date = new Date()): Dataset {
     for (let k = 0; k < n; k += 1) events.push({ kind: "scan", service: svc.id, zone: svc.zone, at: iso(t - Math.floor(rand() * 28) * DAY) });
   });
 
+  // Bons de visite : des demandes, dont environ deux sur trois sont confirmées par le service.
+  withQr.slice(0, 4).forEach((svc, i) => {
+    const n = [18, 11, 7, 3][i];
+    for (let k = 0; k < n; k += 1) {
+      const when = iso(t - Math.floor(rand() * 28) * DAY);
+      events.push({ kind: "visite-demande", service: svc.id, zone: svc.zone, at: when });
+      if (rand() < 0.66) events.push({ kind: "visite-venue", service: svc.id, zone: svc.zone, at: when });
+    }
+  });
+
   // Avis de jeunes sur six services : accueil correct, autres méthodes et effets peu présentés.
   const reviews: Review[] = [];
   for (const service of services.filter((s) => s.statut === "valide").slice(0, 6)) {

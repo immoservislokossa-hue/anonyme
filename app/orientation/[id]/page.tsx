@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Crumbs from "@/components/Crumbs";
 import ReviewForm from "@/components/ReviewForm";
+import VisitVoucher from "@/components/VisitVoucher";
 import ServiceCard from "@/components/ServiceCard";
 import { getService, stockFor, summaryFor } from "@/lib/directory";
 import { MIN_REVIEWS, REVIEW_QUESTIONS, isStale, methodLabel } from "@/lib/services";
@@ -31,6 +32,8 @@ export default async function ServicePage({ params }: { params: Promise<{ id: st
           <strong>Adresse :</strong> {service.adresse}
         </p>
       )}
+
+      <VisitVoucher serviceId={service.id} serviceName={service.nom} />
 
       <section className="panel" aria-labelledby="avis">
         <h2 id="avis">Ce que disent les jeunes</h2>

@@ -35,6 +35,8 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
   const [manageId, setManageId] = useState("");
   const [manageToken, setManageToken] = useState("");
   const [stockMethod, setStockMethod] = useState<ServiceMethod>("pilule");
+  const [voucher, setVoucher] = useState("");
+  const [visitNotice, setVisitNotice] = useState("");
   const [yes, setYes] = useState<AccueilId[]>([]);
 
   useEffect(() => {
@@ -81,6 +83,18 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
     if (!active) return;
     const response = await fetch("/api/stock", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ serviceId: active.id, jeton: active.jeton, methode: stockMethod, etat }) }).catch(() => null);
     setNotice(response && response.status === 204 ? "Signal enregistré. Merci." : "Signal non enregistré : vérifie l'identifiant et le jeton.");
+  }
+
+  async function confirmVisit() {
+    if (!active || !voucher.trim()) return;
+    const response = await fetch("/api/visites/confirmer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ serviceId: active.id, jeton: active.jeton, code: voucher }) }).catch(() => null);
+    const data = (await response?.json().catch(() => null)) as { besoin?: string; error?: string } | null;
+    if (response?.ok) {
+      setVisitNotice(`Visite confirmée. Le jeune vient pour : ${data?.besoin ?? "une visite"}.`);
+      setVoucher("");
+    } else {
+      setVisitNotice(data?.error ?? "Confirmation impossible : vérifie le code, l'identifiant et le jeton.");
+    }
   }
 
   return (
@@ -232,6 +246,19 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
         </div>
         {notice && <p role="status" className="muted">{notice}</p>}
         <p className="muted">Les ruptures aident les jeunes à ne pas se déplacer pour rien, et les responsables de district à agir.</p>
+      </section>
+
+      <section className="panel" aria-labelledby="visite">
+        <h2 id="visite">Confirmer la visite d'un jeune</h2>
+        <p className="muted">Un jeune te montre un code de 5 signes. Écris-le ici : tu vois pourquoi il vient, et la visite est comptée, sans nom. Le responsable de district voit combien de bons ont mené à une visite.</p>
+        <label className="field">
+          <span>Code du jeune</span>
+          <input value={voucher} onChange={(e) => setVoucher(e.target.value.toUpperCase())} maxLength={5} autoComplete="off" inputMode="text" />
+        </label>
+        <button type="button" className="btn primary" disabled={!active || voucher.trim().length !== 5} onClick={confirmVisit}>
+          Confirmer la visite
+        </button>
+        {visitNotice && <p role="status" className="muted">{visitNotice}</p>}
       </section>
 
       <section className="panel" aria-labelledby="carte">

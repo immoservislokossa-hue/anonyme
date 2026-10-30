@@ -104,6 +104,8 @@ export default function Dashboard({ ds, now = new Date() }: { ds: Dataset; now?:
         <ul className="kpis" aria-label="Entonnoir">
           <Kpi label="Passages par QR (7 jours)" value={fu.scans7} />
           <Kpi label="Passages par QR (30 jours)" value={fu.scans30} />
+          <Kpi label="Bons de visite demandés (30 jours)" value={fu.visites.demandes30} />
+          <Kpi label="Visites confirmées par les services" value={fu.visites.venues30} note={fu.visites.tauxVenue === null ? undefined : `${fu.visites.tauxVenue} % des bons`} />
           <Kpi label="Avis donnés (30 jours)" value={fu.avis30} />
           <Kpi label="Avis pour 100 passages" value={fu.avisPour100 === null ? "-" : fu.avisPour100} note="Mesure approximative" />
         </ul>

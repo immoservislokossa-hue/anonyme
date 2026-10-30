@@ -103,3 +103,14 @@ test("Supabase : lit au-delà de 1000 lignes, dans l'ordre, et n'envoie Bearer q
   await jwt.list("events", 5);
   assert.equal(seen[seen.length - 1].headers.Authorization, "Bearer eyJabc");
 });
+
+test("bon de visite : demande, confirmation unique, mauvais service et expiration", async () => {
+  const { findVoucher } = await import("../lib/visits");
+  const now = new Date("2026-11-10T10:00:00Z");
+  const events = [{ kind: "visite-demande", service: "s1", code: "AB234", besoin: "choisir", at: "2026-11-05T10:00:00Z" }];
+  assert.deepEqual(findVoucher(events, "s1", "ab234", now), { status: "ok", besoin: "choisir" });
+  assert.equal(findVoucher(events, "s2", "AB234", now).status, "inconnu");
+  assert.equal(findVoucher(events, "s1", "ZZZZZ", now).status, "inconnu");
+  assert.equal(findVoucher([...events, { kind: "visite-venue", service: "s1", code: "AB234", at: "2026-11-06T10:00:00Z" }], "s1", "AB234", now).status, "deja");
+  assert.equal(findVoucher(events, "s1", "AB234", new Date("2026-12-20T10:00:00Z")).status, "inconnu");
+});

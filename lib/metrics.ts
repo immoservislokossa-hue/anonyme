@@ -4,7 +4,7 @@ import { getStore } from "@/lib/store";
 // Stockage en mémoire pour le prototype : les compteurs sont remis à zéro au redémarrage.
 // La phase suivante les déplacera dans Supabase, avec une table d'événements sans données personnelles.
 
-export type EventKind = "question" | "urgence" | "diagnostic" | "protocole" | "orientation" | "scan" | UsageEvent;
+export type EventKind = "question" | "urgence" | "diagnostic" | "protocole" | "orientation" | "scan" | "visite-demande" | "visite-venue" | UsageEvent;
 
 // Usage des outils et de la série : seulement le nom de l'événement, jamais de réponse ni d'identifiant.
 export const USAGE_EVENTS = [
@@ -38,14 +38,14 @@ const MAX_EVENTS = 10000;
 const events: MetricEvent[] = [];
 
 // Données ajoutées à un événement : la fiche trouvée pour une question, ou le service d'un QR. Jamais de texte libre.
-export type EventExtra = { entry?: string; matched?: boolean; service?: string };
+export type EventExtra = { entry?: string; matched?: boolean; service?: string; code?: string; besoin?: string };
 
 export function record(kind: EventKind, theme?: string, zone?: string, extra: EventExtra = {}): void {
   events.push({ kind, theme, zone, at: new Date().toISOString() });
   if (events.length > MAX_EVENTS) events.shift();
   // Écriture dans le stockage de la plateforme (mémoire ou Supabase), pour le tableau de bord Pilotage. Ne bloque jamais la réponse.
   void getStore()
-    .insert("events", { kind, ...(theme ? { theme } : {}), ...(zone ? { zone } : {}), ...(extra.entry ? { entry: extra.entry } : {}), ...(extra.matched !== undefined ? { matched: extra.matched } : {}), ...(extra.service ? { service: extra.service } : {}) })
+    .insert("events", { kind, ...(theme ? { theme } : {}), ...(zone ? { zone } : {}), ...(extra.entry ? { entry: extra.entry } : {}), ...(extra.matched !== undefined ? { matched: extra.matched } : {}), ...(extra.service ? { service: extra.service } : {}), ...(extra.code ? { code: extra.code } : {}), ...(extra.besoin ? { besoin: extra.besoin } : {}) })
     .catch(() => undefined);
 }
 

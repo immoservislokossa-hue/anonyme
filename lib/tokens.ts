@@ -19,3 +19,13 @@ export function newCode(): string {
 export function isCode(value: unknown): value is string {
   return typeof value === "string" && /^[A-HJ-NP-Z2-9]{6}$/.test(value);
 }
+
+// Bon de visite d'un jeune : 5 signes, sans nom ni contact. Il ne sert qu'à compter la visite.
+export function newVoucher(): string {
+  const bytes = randomBytes(5);
+  return Array.from(bytes, (b) => CODE_ALPHABET[b % CODE_ALPHABET.length]).join("");
+}
+
+export function isVoucher(value: unknown): value is string {
+  return typeof value === "string" && /^[A-HJ-NP-Z2-9]{5}$/.test(value);
+}
