@@ -1,5 +1,20 @@
 # Alviosa et le Partenariat de Ouagadougou : de la donnée au choix de conception
 
+> Mise à jour du 30 octobre 2026 : Alviosa est devenue une plateforme en trois espaces (Jeunes, Prestataires, Pilotage) reliés par un annuaire de services.
+> La section 0 résume la logique ; les sections suivantes détaillent les données et les choix pour l'espace Jeunes.
+
+## 0. Du problème à l'espace
+
+| Problème nommé par les documents | Espace et fonction |
+|---|---|
+| Normes sociales, préjugés, restrictions d'âge ou de statut (Afrobaromètre, appel du Prix) | Jeunes : « Parler à quelqu'un », aucune condition d'âge ou de statut. Prestataires : entraînement avec de faux clients jeunes. |
+| Conseil incomplet (PMA2020 : autres méthodes 64,9 %, effets 52,1 %) | Jeunes : « Je prépare ma visite ». Prestataires : consultation guidée et liste de qualité du conseil, mesurée sur ces deux points. |
+| Services pour jeunes pas à l'échelle, orientation faible | Annuaire : inscription, validation, avis anonymes, signaux de rupture. |
+| Suivi des résultats pour les femmes et les jeunes, intégration aux soins de base, appropriation nationale (New York) | Pilotage : chiffres anonymes, alertes, export `ALV_*` pour les systèmes d'information sanitaire ; `lib/pays.ts` pour la configuration nationale. |
+| IA qui soutient les prestataires, l'orientation et les données de planification, hors connexion (appel du Prix) | IA : questions libres des jeunes, faux client et assistant pour les prestataires, synthèse des chiffres agrégés. Règles cliniques fixes. |
+| Jeunes acteurs et rémunérés (stratégie jeunes) | **Pas encore couvert.** À faire : un petit groupe de jeunes co-concepteurs, rémunérés et encadrés. |
+| Contextes fragiles | Tout fonctionne sans connexion, y compris les entraînements et le tableau de bord de démonstration. |
+
 Document de travail, à jour au 30 octobre 2026. Les chiffres viennent de documents publics lus en entier (liste en fin de page).
 Règle : une donnée n'est reprise que pour ce qu'elle mesure. Aucune n'est présentée comme un résultat d'Alviosa.
 
@@ -46,9 +61,9 @@ Alviosa n'est affiliée ni au PO ni à l'OMS. Elle ne remplace pas les services 
 1. Aucun retour d'utilisateur : test prévu avec 20 jeunes de 18 à 24 ans (les mineurs demandent plus de précautions).
 2. Relecture clinique : aucune validation signée à ce jour.
 3. Numéros d'urgence et liste de centres à renseigner pays par pays.
-4. Langues locales : démo yoruba non validée.
+4. Langues locales : démo yoruba non validée. 8. Jeunes co-concepteurs rémunérés : non réalisés. 9. Correspondance des codes d'export avec les éléments de données nationaux (par exemple DHIS2) : à faire avec le ministère.
 5. Autorisation d'usage du texte OMS à confirmer.
-6. Compteurs en mémoire : une base d'événements anonymes est nécessaire avant le pilote.
+6. Compteurs et annuaire en mémoire tant que Supabase n'est pas configuré (`docs/schema.sql`) : à configurer avant le pilote.
 7. Document hors sujet : le règlement du Prix national de la simplification administrative du Bénin (14/10/2026) porte sur la simplification des procédures publiques ; Alviosa n'y est pas recevable.
 
 ## Sources
