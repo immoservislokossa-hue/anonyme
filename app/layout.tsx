@@ -6,7 +6,7 @@ import Link from "next/link";
 import DesktopNav from "@/components/DesktopNav";
 import AudioHelp from "@/components/AudioHelp";
 import Icon from "@/components/Icon";
-import Logo from "@/components/Logo";
+import Brand from "@/components/Brand";
 import MoreMenu from "@/components/MoreMenu";
 import RegisterSW from "@/components/RegisterSW";
 import { APP_NAME, TAGLINE } from "@/lib/brand";
@@ -38,6 +38,7 @@ export const viewport: Viewport = {
 const footerLinks = [
   { href: "/aide#ia", label: "Comment fonctionne l'IA" },
   { href: "/aide#confidentialite", label: "Confidentialité" },
+  { href: "/all", label: "Alviosa : toutes les parties" },
   { href: "/a-propos", label: "À propos et preuves" },
   { href: "/aide", label: "Aide" },
 ];
@@ -51,10 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <div className="page">
           <header className="topbar">
-            <Link href="/" className="brand" aria-label={`${APP_NAME}, accueil`}>
-              <Logo size={36} />
-              <span>{APP_NAME}</span>
-            </Link>
+            <Brand />
             <DesktopNav />
             <div className="topbar-actions">
               <AudioHelp />

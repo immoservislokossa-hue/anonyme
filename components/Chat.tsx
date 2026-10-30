@@ -53,6 +53,7 @@ export type AutoMessage = { id: number; text: string };
 // Chat d'Afi. `embedded` : dans la bulle, sur toutes les pages. `tips` et `context` : adaptés à la page où l'on est.
 export default function Chat({
   voie,
+  audience = "jeune",
   embedded = false,
   tips,
   context,
@@ -60,6 +61,7 @@ export default function Chat({
   auto,
 }: {
   voie?: Voie;
+  audience?: "jeune" | "prestataire";
   embedded?: boolean;
   tips?: string[];
   context?: string;
@@ -102,7 +104,7 @@ export default function Chat({
 
     // Sans réseau, Afi répond sur l'appareil : mêmes règles de sécurité, fiche la plus proche.
     const answerOffline = () => {
-      const local = localReply(question, voie, context);
+      const local = localReply(question, voie, context, audience);
       const note = local.kind === "fallback" ? "**Mode sans connexion** : voici la fiche la plus proche de ta question.\n\n" : "";
       setMessages([...next, { role: "assistant", content: note + local.reply, kind: local.kind, sources: local.sources }]);
     };
@@ -119,6 +121,7 @@ export default function Chat({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           voie,
+          audience,
           context,
           messages: next.map(({ role, content }) => ({ role, content })),
         }),
@@ -171,20 +174,33 @@ export default function Chat({
 
   const examples = tips && tips.length > 0 ? tips : EXAMPLES[voie ?? "tout"];
   const persona = personaFor(voie);
+  const pro = audience === "prestataire";
+  // Pour les prestataires : un repère neutre à la place du visage d'Afi.
+  const avatar = pro ? <span className="avatar pro-avatar" aria-hidden="true">OMS</span> : null;
 
   return (
     <section aria-label="Conversation" className={`chat${embedded ? " embedded" : ""}`}>
       <div className="chat-log" aria-live="polite">
         {messages.length === 0 && (
           <div className="msg bot">
-            <span className="avatar">
-              <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
-            </span>
+            {avatar ?? (
+              <span className="avatar">
+                <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
+              </span>
+            )}
             <div className="intro">
               <p>
                 {greeting ?? (
                   <>
-                    Bonjour, je suis <strong>{persona.name}</strong>, {persona.role}. Pose ta question avec tes mots, ou choisis une idée :
+                    {pro ? (
+                      <>
+                        Assistant d'Alviosa pour les prestataires, fondé sur le guide de l'OMS. Pose ta question : je réponds court, avec les points à vérifier et quand orienter.
+                      </>
+                    ) : (
+                      <>
+                        Bonjour, je suis <strong>{persona.name}</strong>, {persona.role}. Pose ta question avec tes mots, ou choisis une idée :
+                      </>
+                    )}
                   </>
                 )}
               </p>
@@ -212,9 +228,11 @@ export default function Chat({
 
           return (
             <div key={index} className="msg bot">
-              <span className="avatar">
-                <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
-              </span>
+              {avatar ?? (
+                <span className="avatar">
+                  <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
+                </span>
+              )}
               <div className="col">
                 <div className={`bubble bot${isAlert ? " urgent" : ""}`}>
                   <RichText text={message.content} />
@@ -245,9 +263,11 @@ export default function Chat({
 
         {loading && (
           <div className="msg bot">
-            <span className="avatar">
-              <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
-            </span>
+            {avatar ?? (
+              <span className="avatar">
+                <Silhouette voie={voie ?? "sexuelle"} size={38} bust />
+              </span>
+            )}
             <div className="typing-bubble" role="status">
               <span className="sr-only">{persona.name} prépare une réponse</span>
               <i aria-hidden="true" />

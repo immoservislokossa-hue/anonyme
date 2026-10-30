@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { isVoie } from "@/lib/domain";
 import { generateReply, pickProvider } from "@/lib/llm";
 import { record } from "@/lib/metrics";
-import { buildContext, systemPromptFor } from "@/lib/prompt";
+import { buildContext, providerPrompt, systemPromptFor } from "@/lib/prompt";
 import { isContextKey } from "@/lib/afi";
 import { checkRate } from "@/lib/rateLimit";
 import { fallbackReply, findEntries } from "@/lib/localReply";
@@ -46,7 +46,8 @@ export async function POST(request: Request) {
   }
 
   const body: unknown = await request.json().catch(() => null);
-  const payload = body as { messages?: unknown; voie?: unknown; context?: unknown } | null;
+  const payload = body as { messages?: unknown; voie?: unknown; context?: unknown; audience?: unknown } | null;
+  const provider = payload?.audience === "prestataire";
   const context = isContextKey(payload?.context) ? payload.context : undefined;
   const messages = payload?.messages;
   const voie = isVoie(payload?.voie) ? payload.voie : undefined;
@@ -62,7 +63,9 @@ export async function POST(request: Request) {
   }
 
   // Détresse, urgence et demandes de diagnostic ne vont jamais au modèle, quelle que soit la voie.
-  const decision = triage(lastUser.content);
+  // Pour un prestataire, un message sur une violence décrit un client, pas lui-même : le message d'urgence destiné à une victime ne convient pas.
+  const raw = triage(lastUser.content);
+  const decision = provider && raw.kind === "urgent" ? ({ kind: "ok" } as const) : raw;
   if (decision.kind === "crisis") {
     record("urgence");
     return NextResponse.json({ reply: decision.reply, kind: "crisis", sources: [] });
@@ -89,7 +92,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const system = `${systemPromptFor(voie)}\n\nContexte :\n${buildContext(entries)}`;
+    const system = `${provider ? providerPrompt() : systemPromptFor(voie)}\n\nContexte :\n${buildContext(entries)}`;
     const reply = await generateReply(
       system,
       history.map((m) => ({ role: m.role, content: m.content })),

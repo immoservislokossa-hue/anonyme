@@ -1,3 +1,5 @@
+import { getStore } from "@/lib/store";
+
 // Compteurs agrégés. Aucun texte de message n'est enregistré : seulement le type d'événement et le thème.
 // Stockage en mémoire pour le prototype : les compteurs sont remis à zéro au redémarrage.
 // La phase suivante les déplacera dans Supabase, avec une table d'événements sans données personnelles.
@@ -28,15 +30,20 @@ export function isUsageEvent(value: unknown): value is UsageEvent {
 export type MetricEvent = {
   kind: EventKind;
   theme?: string;
+  zone?: string;
   at: string;
 };
 
 const MAX_EVENTS = 10000;
 const events: MetricEvent[] = [];
 
-export function record(kind: EventKind, theme?: string): void {
-  events.push({ kind, theme, at: new Date().toISOString() });
+export function record(kind: EventKind, theme?: string, zone?: string): void {
+  events.push({ kind, theme, zone, at: new Date().toISOString() });
   if (events.length > MAX_EVENTS) events.shift();
+  // Écriture dans le stockage de la plateforme (mémoire ou Supabase), pour le tableau de bord Pilotage. Ne bloque jamais la réponse.
+  void getStore()
+    .insert("events", { kind, ...(theme ? { theme } : {}), ...(zone ? { zone } : {}) })
+    .catch(() => undefined);
 }
 
 export type MetricsSummary = {

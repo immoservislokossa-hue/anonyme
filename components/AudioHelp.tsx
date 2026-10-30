@@ -6,6 +6,7 @@ import Coach from "@/components/Coach";
 import Icon from "@/components/Icon";
 import { useLang } from "@/components/useLang";
 import { TOUR } from "@/lib/guides";
+import { espaceOf } from "@/lib/espaces";
 import { defaultLangFor } from "@/lib/i18n";
 
 const TOUR_KEY = "tour-v3";
@@ -32,7 +33,7 @@ export default function AudioHelp() {
   const [open, setOpen] = useState<{ needsTap: boolean } | null>(null);
   const lang = chosen && chosenLang ? chosenLang : geoLang;
 
-  const eligible = !(pathname.startsWith("/urgence") || pathname.startsWith("/pro") || pathname.startsWith("/partenaires"));
+  const eligible = espaceOf(pathname) === "jeunes" && !pathname.startsWith("/urgence");
 
   useEffect(warmVoices, []);
 

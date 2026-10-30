@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { hrefOf, METHODES, SUJETS, TOOLS } from "@/lib/catalog";
 import { stories } from "@/lib/stories";
+import { SCENARIOS } from "@/lib/pro/scenarios";
 
 export const dynamic = "force-static";
 
@@ -18,6 +19,16 @@ export function GET() {
     "/aide",
     "/chat",
     "/a-propos",
+    "/all",
+    "/prestataires",
+    "/prestataires/consultation",
+    "/prestataires/entrainement",
+    "/prestataires/aide-memoire",
+    "/prestataires/mon-service",
+    "/prestataires/bilan",
+    "/prestataires/assistant",
+    "/pilotage/demo",
+    ...SCENARIOS.map((s) => `/prestataires/entrainement/${s.id}`),
     ...SUJETS.map((s) => hrefOf.sujet(s.id)),
     ...TOOLS.map((t) => hrefOf.outil(t.id)),
     ...METHODES.map((m) => hrefOf.methode(m.id)),

@@ -2,29 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Icon from "@/components/Icon";
+import { NAV, espaceOf } from "@/lib/espaces";
 import { isActive } from "@/lib/nav";
-import Icon, { type IconName } from "@/components/Icon";
 
-const items: { href: string; label: string; icon: IconName; tour: string }[] = [
-  { href: "/apprendre", label: "Apprendre", icon: "book", tour: "tab-learn" },
-  { href: "/orientation", label: "Centres", icon: "pin", tour: "tab-centres" },
-  { href: "/urgence", label: "Urgence", icon: "alert", tour: "urgent" },
-];
-
-// Menu du haut, visible seulement sur grand écran (sur téléphone, seules les icônes restent).
+// Menu du haut : il change selon l'espace (jeunes, prestataires, pilotage). Sur téléphone, seules les icônes restent.
 export default function DesktopNav() {
   const pathname = usePathname();
+  const espace = espaceOf(pathname);
 
   return (
     <nav className="desktop-nav" aria-label="Menu principal">
-      {items.map((item) => {
-        const active = isActive(pathname, item.href);
+      {NAV[espace].map((item) => {
+        const active = espace === "jeunes" ? isActive(pathname, item.href) : pathname === item.href || pathname.startsWith(`${item.href}/`);
         return (
           <Link
             key={item.href}
             data-tour={item.tour}
-            aria-label={item.label}
             href={item.href}
+            aria-label={item.label}
             aria-current={active ? "page" : undefined}
             className={`${active ? "active" : ""}${item.href === "/urgence" ? " alert" : ""}`}
           >

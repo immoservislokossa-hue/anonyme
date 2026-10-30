@@ -30,8 +30,10 @@ export function findEntries(question: string, voie?: Voie, context?: string): Kn
 }
 
 // Afi sans connexion : mêmes règles de sécurité que le serveur, puis la fiche la plus proche. Tout se passe sur l'appareil.
-export function localReply(question: string, voie?: Voie, context?: string): LocalReply {
-  const decision = triage(question);
+export function localReply(question: string, voie?: Voie, context?: string, audience: "jeune" | "prestataire" = "jeune"): LocalReply {
+  const raw = triage(question);
+  // Pour un prestataire, un message sur une violence décrit un client : on ne répond pas avec le message destiné à une victime.
+  const decision = audience === "prestataire" && raw.kind === "urgent" ? ({ kind: "ok" } as const) : raw;
   if (decision.kind === "crisis") return { reply: decision.reply, kind: "crisis", sources: [] };
   if (decision.kind === "urgent") return { reply: decision.reply, kind: "urgent", sources: [] };
   if (decision.kind === "diagnosis") return { reply: decision.reply, kind: "diagnosis", sources: [] };

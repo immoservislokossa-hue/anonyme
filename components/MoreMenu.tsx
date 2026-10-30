@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { leaveQuickly } from "@/components/QuickExit";
 
 const links = [
+  { href: "/all", label: "Alviosa : toutes les parties" },
   { href: "/aide#ia", label: "Comment fonctionne l'IA" },
   { href: "/aide#confidentialite", label: "Confidentialité" },
   { href: "/aide", label: "Aide" },

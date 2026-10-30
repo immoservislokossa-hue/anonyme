@@ -6,6 +6,7 @@ import { AFI_OPEN_EVENT } from "@/components/AskAfi";
 import Chat, { type AutoMessage } from "@/components/Chat";
 import Silhouette from "@/components/Silhouette";
 import { contextFor } from "@/lib/afi";
+import { espaceOf } from "@/lib/espaces";
 
 type Place = { side: "left" | "right"; bottom: number | null };
 
@@ -107,6 +108,9 @@ export default function AfiBubble() {
   const style: React.CSSProperties = dragAt
     ? { left: dragAt.x, top: dragAt.y, right: "auto", bottom: "auto" }
     : { [place.side]: 14, ...(place.bottom !== null ? { bottom: place.bottom } : {}) };
+
+  // Afi est l'assistante des jeunes : dans les espaces prestataires et pilotage, elle n'apparaît pas.
+  if (espaceOf(pathname) !== "jeunes") return null;
 
   return (
     <div className={`afi side-${place.side}${open ? " open" : ""}`} style={style}>

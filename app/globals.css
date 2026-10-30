@@ -5375,3 +5375,437 @@ body:has(.story-cartoon.immersive) .afi {
   margin: 12px 0 6px;
   font-size: 1rem;
 }
+
+/* ---------- Plateforme : trois espaces, trois couleurs ---------- */
+/* Prestataires : turquoise de confiance. Pilotage : bleu nuit et or, comme les documents institutionnels. */
+body:has([data-space="prestataires"]) {
+  --primary: #0b7a6d;
+  --primary-dark: #075a50;
+  --primary-soft: #dff4f0;
+  --rose: #14a08e;
+  --bg: #f7fbfa;
+  --beige: #d3e6e2;
+  --sable: #e9f3f1;
+  --sable-soft: #f1f8f6;
+}
+
+body:has([data-space="pilotage"]) {
+  --primary: #1f2f6b;
+  --primary-dark: #141f4a;
+  --primary-soft: #e4e8f6;
+  --rose: #4658a6;
+  --sun: #c99a2e;
+  --bg: #f8f9fc;
+  --beige: #d9deee;
+  --sable: #eceff8;
+  --sable-soft: #f3f5fb;
+}
+
+body:has([data-space="plateforme"]) {
+  --bg: #fffaf7;
+}
+
+/* Dans les espaces professionnels : pas de bouton d'urgence des jeunes, pas d'aide audio de la visite guidée. */
+body:has([data-space="prestataires"]) .urgent-btn,
+body:has([data-space="pilotage"]) .urgent-btn,
+body:has([data-space="plateforme"]) .urgent-btn,
+body:has([data-space="prestataires"]) [data-tour="audio"],
+body:has([data-space="pilotage"]) [data-tour="audio"],
+body:has([data-space="plateforme"]) [data-tour="audio"] {
+  display: none;
+}
+
+.all-hero h1 {
+  max-width: 22ch;
+}
+
+.doors {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 900px) {
+  .doors {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.door {
+  display: grid;
+  gap: 8px;
+  height: 100%;
+  padding: 18px;
+  border-radius: 22px;
+  border: 2px solid var(--door, var(--beige));
+  background: var(--bg);
+  color: var(--text);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.door:hover,
+.door:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.door strong {
+  font-size: 1.3rem;
+  color: var(--door, var(--primary));
+}
+
+.door-for {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.door-go {
+  justify-self: start;
+  margin-top: 4px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: var(--door, var(--primary));
+  color: #fff;
+  font-weight: 800;
+}
+
+.door-jeunes {
+  --door: #c2185b;
+}
+
+.door-prestataires {
+  --door: #0b7a6d;
+}
+
+.door-pilotage {
+  --door: #1f2f6b;
+}
+
+.thread {
+  list-style: none;
+  counter-reset: none;
+  padding: 0;
+  margin: 12px 0 16px;
+  display: grid;
+  gap: 8px;
+  border-left: 3px solid var(--primary-soft);
+  padding-left: 16px;
+}
+
+.thread li {
+  display: grid;
+  gap: 2px;
+}
+
+.thread li span {
+  color: var(--muted);
+}
+
+/* ---------- Prestataires, annuaire, pilotage ---------- */
+.b2b-banner {
+  margin: 0 0 8px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.client-line {
+  margin: 0;
+  padding: 16px 18px;
+  border-left: 5px solid var(--primary);
+  border-radius: 0 16px 16px 0;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.rp-progress {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.rp-choices {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.rp-choice {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--beige);
+  border-radius: 16px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rp-choice:hover:not(:disabled),
+.rp-choice:focus-visible {
+  border-color: var(--primary);
+}
+
+.rp-choice:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.rp-choice.picked {
+  opacity: 1;
+  border-width: 2px;
+}
+
+.rp-choice.tone-accueillant {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+}
+
+.rp-choice.tone-neutre {
+  border-color: var(--sun);
+  background: var(--notice-bg);
+}
+
+.rp-choice.tone-juge {
+  border-color: var(--alert);
+  background: var(--alert-bg);
+}
+
+.feedback-line {
+  margin: 8px 4px 0;
+  font-size: 0.95rem;
+}
+
+.feedback-line.tone-accueillant strong {
+  color: var(--teal);
+}
+
+.feedback-line.tone-neutre strong {
+  color: var(--notice-text);
+}
+
+.feedback-line.tone-juge strong {
+  color: var(--alert);
+}
+
+.yn {
+  display: grid;
+  gap: 6px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--beige);
+}
+
+.opts.inline {
+  display: flex;
+  gap: 8px;
+}
+
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.pro-avatar {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.error {
+  color: var(--alert);
+  font-size: 0.88rem;
+  font-style: normal;
+}
+
+.svc-filters {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--beige);
+  border-radius: 18px;
+  background: var(--bg);
+}
+
+.svc-filters label {
+  display: grid;
+  gap: 4px;
+  font-weight: 700;
+}
+
+@media (min-width: 720px) {
+  .svc-filters {
+    grid-template-columns: repeat(3, 1fr) auto;
+    align-items: end;
+  }
+}
+
+.service-flags {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0;
+  display: grid;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.service-flags li::before {
+  content: "• ";
+  color: var(--primary);
+}
+
+.service-flags li.ok {
+  color: var(--teal);
+  font-weight: 800;
+}
+
+.service-flags li.warn {
+  color: var(--alert);
+  font-weight: 800;
+}
+
+.review-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+  display: grid;
+  gap: 12px;
+}
+
+.review-list li {
+  display: grid;
+  gap: 6px;
+}
+
+code {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--sable);
+  word-break: break-all;
+}
+
+/* Tableau de bord Pilotage */
+.kpis {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 900px) {
+  .kpis {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.kpi {
+  display: grid;
+  gap: 2px;
+  align-content: start;
+  padding: 14px;
+  border: 1px solid var(--beige);
+  border-radius: 18px;
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.kpi-label {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.kpi-value {
+  font-size: 1.9rem;
+  line-height: 1.1;
+  color: var(--primary);
+}
+
+.kpi-note {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.alert-card {
+  display: grid;
+  gap: 2px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border-left: 6px solid var(--primary);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.alert-card span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.alert-card.niveau-urgent {
+  border-left-color: var(--alert);
+  background: var(--alert-bg);
+}
+
+.alert-card.niveau-attention {
+  border-left-color: var(--sun);
+}
+
+.demo-banner {
+  position: sticky;
+  top: 62px;
+  z-index: 5;
+}
+
+.small {
+  font-size: 0.82rem;
+}
+
+.row-empty th,
+.row-empty td {
+  color: var(--muted);
+  background: var(--sable-soft);
+}
+
+.demo-banner {
+  display: block;
+}
+
+.svc-filters label.check {
+  display: flex;
+  font-weight: 600;
+}
