@@ -15,7 +15,8 @@ export type IconName =
   | "heart"
   | "sun"
   | "circles"
-  | "shield";
+  | "shield"
+  | "search";
 
 const PATHS: Record<IconName, React.ReactNode> = {
   home: <path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" />,
@@ -83,6 +84,12 @@ const PATHS: Record<IconName, React.ReactNode> = {
     </>
   ),
   shield: <path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z" />,
+  search: (
+    <>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="M16 16l4.5 4.5" />
+    </>
+  ),
 };
 
 export default function Icon({ name, size = 22, filled = false }: { name: IconName; size?: number; filled?: boolean }) {

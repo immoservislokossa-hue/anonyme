@@ -48,7 +48,7 @@ export type ServiceInput = {
   confidentialite: boolean;
 };
 
-export type Service = ServiceInput & { id: string; statut: ServiceStatus; creeLe: string; majLe: string };
+export type Service = ServiceInput & { id: string; code?: string; statut: ServiceStatus; creeLe: string; majLe: string };
 
 export type FieldErrors = Record<string, string>;
 export type Validation<T> = { ok: true; value: T } | { ok: false; errors: FieldErrors };

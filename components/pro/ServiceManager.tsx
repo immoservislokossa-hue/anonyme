@@ -29,7 +29,7 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [saved, setSaved] = useState<Saved | null>(null);
-  const [fresh, setFresh] = useState<Saved | null>(null);
+  const [fresh, setFresh] = useState<(Saved & { code?: string }) | null>(null);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
   const [manageId, setManageId] = useState("");
@@ -55,9 +55,9 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
     setErrors({});
     setNotice("");
     const response = await fetch("/api/services", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) }).catch(() => null);
-    const data = (await response?.json().catch(() => null)) as { id?: string; jeton?: string; errors?: Record<string, string>; error?: string } | null;
+    const data = (await response?.json().catch(() => null)) as { id?: string; code?: string; jeton?: string; errors?: Record<string, string>; error?: string } | null;
     if (response?.status === 201 && data?.id && data.jeton) {
-      setFresh({ id: data.id, jeton: data.jeton });
+      setFresh({ id: data.id, jeton: data.jeton, code: data.code });
     } else if (data?.errors) {
       setErrors(data.errors);
     } else {
@@ -97,7 +97,14 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
               Identifiant : <code>{fresh.id}</code>
               <br />
               Jeton de gestion : <code>{fresh.jeton}</code>
+              {fresh.code && (
+                <>
+                  <br />
+                  Code du service : <code>{fresh.code}</code>
+                </>
+              )}
             </p>
+            {fresh.code && <p>Quand ton service sera validé, ta carte avec un QR sera ici : <code>/prestataires/carte/{fresh.code}</code></p>}
             <p>Note-le maintenant : il ne sera plus affiché. Il sert à mettre à jour ton service et à signaler les ruptures.</p>
             <button type="button" className="btn primary" onClick={() => remember(fresh)}>
               Garder sur cet appareil
@@ -227,6 +234,12 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
         <p className="muted">Les ruptures aident les jeunes à ne pas se déplacer pour rien, et les responsables de district à agir.</p>
       </section>
 
+      <section className="panel" aria-labelledby="carte">
+        <h2 id="carte">Ma carte avec QR</h2>
+        <p className="muted">Une carte à imprimer : un jeune qui la scanne arrive sur la page de ton service pour préparer sa visite. Chaque scan est compté, sans identité. Tu vois ensuite combien ont donné un avis.</p>
+        <CardLink />
+      </section>
+
       <section className="panel" aria-labelledby="accueil">
         <h2 id="accueil">Mon service accueille-t-il bien les jeunes ?</h2>
         <p className="muted">Dix questions pour savoir où progresser. C'est pour toi : rien n'est envoyé.</p>
@@ -256,6 +269,26 @@ export default function ServiceManager({ zones }: { zones: string[] }) {
           </>
         )}
       </section>
+    </div>
+  );
+}
+
+function CardLink() {
+  const [code, setCode] = useState("");
+  const valid = /^[A-Za-z0-9]{6}$/.test(code.trim());
+  return (
+    <div className="fields">
+      <label className="field">
+        <span>Code du service (6 signes)</span>
+        <input value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} maxLength={6} autoComplete="off" />
+      </label>
+      {valid ? (
+        <a className="btn primary" href={`/prestataires/carte/${code.trim()}`}>
+          Ouvrir ma carte
+        </a>
+      ) : (
+        <p className="muted">Le code s'affiche à l'inscription. Le service doit être validé.</p>
+      )}
     </div>
   );
 }

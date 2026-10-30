@@ -12,7 +12,7 @@ const DAY = 86_400_000;
 // Points de comparaison publiés (Burkina Faso, 2017-18, utilisatrices de méthodes modernes). Ils servent de repère, pas de cible pour le Bénin.
 export const PMA_BASELINE = { autresMethodes: 64.9, effets: 52.1, source: "PMA2020 Burkina Faso, vague 5 (2017-18)" } as const;
 
-export type EventRow = { kind: string; theme?: string; zone?: string; at: string };
+export type EventRow = { kind: string; theme?: string; zone?: string; service?: string; entry?: string; matched?: boolean; at: string };
 export type BilanRow = BilanPayload & { at: string };
 export type ReviewRow = Review;
 
@@ -61,6 +61,53 @@ export function overview(ds: Dataset, now: Date = new Date()): Overview {
     consultations: ds.bilans.reduce((s, b) => s + b.consultations, 0),
     prestataires: ds.bilans.length,
     services: { valides: valid.length, enAttente: ds.services.filter((s) => s.statut === "en-attente").length, accueilJeunes: valid.filter((s) => s.accueilJeunes).length },
+  };
+}
+
+export type FunnelRow = { nom: string; scans: number; avis: number };
+export type Funnel = { scans7: Masked; scans30: Masked; avis30: number; avisPour100: number | null; services: FunnelRow[]; autres: number };
+
+// De la recommandation à la visite, en comptes anonymes : passages par QR, puis avis donnés. Un service n'apparaît qu'à partir de 5 passages.
+export function funnel(ds: Dataset, now: Date = new Date()): Funnel {
+  const t = now.getTime();
+  const scans30 = within(ds.events, t - 30 * DAY, t + 1).filter((e) => e.kind === "scan" && e.service);
+  const scans7 = scans30.filter((e) => new Date(e.at).getTime() >= t - 7 * DAY);
+  const reviews30 = within(ds.reviews, t - 30 * DAY, t + 1);
+  const bySvc = new Map<string, number>();
+  for (const e of scans30) bySvc.set(e.service as string, (bySvc.get(e.service as string) ?? 0) + 1);
+  const rows: FunnelRow[] = [];
+  let autres = 0;
+  for (const [id, n] of bySvc) {
+    if (n < MIN_CELL) {
+      autres += 1;
+      continue;
+    }
+    const svc = ds.services.find((s) => s.id === id);
+    rows.push({ nom: svc?.nom ?? "Service", scans: n, avis: reviews30.filter((r) => r.serviceId === id).length });
+  }
+  rows.sort((a, b) => b.scans - a.scans);
+  return {
+    scans7: mask(scans7.length),
+    scans30: mask(scans30.length),
+    avis30: reviews30.length,
+    avisPour100: scans30.length >= MIN_CELL ? Math.round((reviews30.length / scans30.length) * 100) : null,
+    services: rows,
+    autres,
+  };
+}
+
+export type Gaps = { questions: number; sansFichePct: number | null; fichesTop: { id: string; titre: string; count: number }[] };
+
+// Ce que les jeunes demandent et que la base ne couvre pas : on compte les questions sans fiche trouvée, jamais leur texte.
+export function knowledgeGaps(ds: Dataset, now: Date = new Date(), titleOf: (id: string) => string = (id) => id): Gaps {
+  const t = now.getTime();
+  const q = within(ds.events, t - 30 * DAY, t + 1).filter((e) => e.kind === "question" && e.matched !== undefined);
+  const counts = new Map<string, number>();
+  for (const e of q) if (e.entry) counts.set(e.entry, (counts.get(e.entry) ?? 0) + 1);
+  return {
+    questions: q.length,
+    sansFichePct: q.length >= MIN_CELL ? Math.round((q.filter((e) => e.matched === false).length / q.length) * 100) : null,
+    fichesTop: [...counts.entries()].filter(([, n]) => n >= MIN_CELL).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([id, count]) => ({ id, titre: titleOf(id), count })),
   };
 }
 
@@ -175,7 +222,13 @@ export function alerts(ds: Dataset, now: Date = new Date()): Alert[] {
     if (c.services === 0 && typeof c.demandes === "number") out.push({ id: `sans-offre-${c.zone}`, niveau: "attention", titre: `Demande sans offre en ${c.zone}`, detail: `${c.demandes} questions en 30 jours, aucun service validé dans l'annuaire.` });
   }
 
-  // 5. Inscriptions en attente depuis trop longtemps.
+  // 5. Questions que la base ne couvre pas.
+  const gaps = knowledgeGaps(ds, now);
+  if (gaps.sansFichePct !== null && gaps.sansFichePct >= 30 && gaps.questions >= 20) {
+    out.push({ id: "base-lacunes", niveau: "attention", titre: `${gaps.sansFichePct} % des questions n'ont trouvé aucune fiche`, detail: "La base de contenu ne couvre pas ce que demandent les jeunes. À compléter avec les cliniciens." });
+  }
+
+  // 6. Inscriptions en attente depuis trop longtemps.
   const pending = ds.services.filter((s) => s.statut === "en-attente");
   const old = pending.filter((s) => t - new Date(s.creeLe).getTime() > 7 * DAY);
   if (old.length >= 1) out.push({ id: "attente", niveau: "info", titre: `${old.length} inscription${old.length > 1 ? "s" : ""} en attente depuis plus de 7 jours`, detail: "Valider ou refuser pour que l'annuaire reste utile aux jeunes." });
@@ -204,6 +257,10 @@ export function synthese(ds: Dataset, now: Date = new Date()): string[] {
   } else {
     lines.push("Pas encore assez de bilans de prestataires (au moins 3) pour afficher la qualité du conseil.");
   }
+  const f = funnel(ds, now);
+  if (f.scans30 !== "<5") lines.push(`${f.scans30} passages par QR de service sur 30 jours, ${f.avis30} avis donnés.`);
+  const g = knowledgeGaps(ds, now);
+  if (g.sansFichePct !== null) lines.push(`${g.sansFichePct} % des questions n'ont trouvé aucune fiche dans la base.`);
   const urgent = alerts(ds, now).filter((a) => a.niveau !== "info");
   lines.push(urgent.length ? `${urgent.length} alerte${urgent.length > 1 ? "s" : ""} à traiter : ${urgent.slice(0, 3).map((a) => a.titre).join(" ; ")}.` : "Aucune alerte prioritaire.");
   return lines;
@@ -220,6 +277,10 @@ export function indicatorRows(ds: Dataset, now: Date = new Date()): IndicatorRow
   rows.push({ code: "ALV_OUTILS_7J", indicateur: "Utilisations d'outils, 7 jours", zone: "Tout", periode, valeur: o.outils });
   rows.push({ code: "ALV_SERVICES_VALIDES", indicateur: "Services validés", zone: "Tout", periode, valeur: o.services.valides });
   rows.push({ code: "ALV_SERVICES_ACCUEIL_JEUNES", indicateur: "Services déclarant un accueil des jeunes", zone: "Tout", periode, valeur: o.services.accueilJeunes });
+  const fu = funnel(ds, now);
+  rows.push({ code: "ALV_QR_PASSAGES_30J", indicateur: "Passages par QR de service, 30 jours", zone: "Tout", periode, valeur: fu.scans30 });
+  const ga = knowledgeGaps(ds, now);
+  rows.push({ code: "ALV_QUESTIONS_SANS_FICHE_PCT", indicateur: "Questions sans fiche trouvée (%)", zone: "Tout", periode, valeur: ga.sansFichePct ?? "<5" });
   const q = quality(ds);
   for (const r of q.providerRows) rows.push({ code: `ALV_PRESTATAIRE_${r.id.toUpperCase()}`, indicateur: `Prestataires : ${r.label}`, zone: "Tout", periode, valeur: r.pct ?? "<5" });
   for (const r of q.youthRows) rows.push({ code: `ALV_JEUNES_${r.id.toUpperCase()}`, indicateur: `Jeunes : ${r.label}`, zone: "Tout", periode, valeur: r.pct ?? "<5" });

@@ -82,3 +82,45 @@ test("l'export à plat est complet, sans ligne individuelle, et le CSV protège 
   assert.ok(csv.includes('"Avec ""guillemets"", virgule"'));
   assert.ok(csv.split("\n")[0].startsWith("code,indicateur"));
 });
+
+import { funnel, knowledgeGaps } from "../lib/analytics";
+import { isCode, newCode } from "../lib/tokens";
+
+test("les codes de service sont courts, lisibles et uniques en pratique", () => {
+  const seen = new Set<string>();
+  for (let i = 0; i < 200; i += 1) {
+    const c = newCode();
+    assert.ok(isCode(c), c);
+    seen.add(c);
+  }
+  assert.ok(seen.size > 190);
+  assert.ok(!isCode("ABC0IO"), "les signes ambigus sont exclus");
+  assert.ok(!isCode("abcdef"));
+});
+
+test("l'entonnoir ne détaille un service qu'à partir de 5 passages", () => {
+  const ds = demoDataset(NOW);
+  const f = funnel(ds, NOW);
+  assert.ok(f.services.length >= 3, "les services avec assez de passages apparaissent");
+  assert.ok(f.services.every((s) => s.scans >= MIN_CELL));
+  assert.ok(f.autres >= 1, "les petits services sont comptés sans être détaillés");
+  assert.notEqual(f.scans30, "<5");
+  assert.equal(funnel(empty(), NOW).scans30, "<5");
+  assert.equal(funnel(empty(), NOW).avisPour100, null);
+});
+
+test("les lacunes de la base se mesurent sans garder aucun texte", () => {
+  const ds = demoDataset(NOW);
+  const g = knowledgeGaps(ds, NOW, (id) => `Titre ${id}`);
+  assert.ok(g.sansFichePct !== null && g.sansFichePct > 5 && g.sansFichePct < 60);
+  assert.ok(g.fichesTop.length > 0 && g.fichesTop[0].titre.startsWith("Titre "));
+  assert.ok(g.fichesTop.every((f) => f.count >= MIN_CELL));
+  assert.equal(knowledgeGaps(empty(), NOW).sansFichePct, null);
+  for (const e of ds.events) assert.ok(!("texte" in e) && !("message" in e), "aucun texte libre dans un événement");
+});
+
+test("l'export contient les nouveaux indicateurs de recommandation et de couverture de la base", () => {
+  const codes = indicatorRows(demoDataset(NOW), NOW).map((r) => r.code);
+  assert.ok(codes.includes("ALV_QR_PASSAGES_30J"));
+  assert.ok(codes.includes("ALV_QUESTIONS_SANS_FICHE_PCT"));
+});

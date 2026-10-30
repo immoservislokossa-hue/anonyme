@@ -110,7 +110,7 @@ export default function MethodChooser() {
   return (
     <div className="tool">
       {step !== "result" && (
-        <div className="tool-progress" aria-label={`Question ${index + 1} sur ${total}`}>
+        <div className="tool-progress" role="progressbar" aria-label="Avancement" aria-valuemin={1} aria-valuemax={total} aria-valuenow={index + 1} aria-valuetext={`Question ${index + 1} sur ${total}`}>
           <span style={{ width: `${((index + 1) / total) * 100}%` }} />
         </div>
       )}

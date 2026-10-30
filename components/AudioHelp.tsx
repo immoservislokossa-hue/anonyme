@@ -31,6 +31,7 @@ export default function AudioHelp() {
   const { lang: chosenLang, setLang, chosen } = useLang();
   const [geoLang, setGeoLang] = useState<ReturnType<typeof defaultLangFor>>("fr");
   const [open, setOpen] = useState<{ needsTap: boolean } | null>(null);
+  const [hint, setHint] = useState(false);
   const lang = chosen && chosenLang ? chosenLang : geoLang;
 
   const eligible = espaceOf(pathname) === "jeunes" && !pathname.startsWith("/urgence");
@@ -50,19 +51,33 @@ export default function AudioHelp() {
     };
   }, []);
 
+  // À la première visite, on propose la visite guidée sans la lancer : la personne vient peut-être pour une question urgente.
   useEffect(() => {
     if (!eligible) return;
     const timer = window.setTimeout(() => {
       try {
         if (window.localStorage.getItem(TOUR_KEY) === "1") return;
-        window.localStorage.setItem(TOUR_KEY, "1");
       } catch {
         return;
       }
-      setOpen({ needsTap: needsFirstTap() });
-    }, 700);
+      setHint(true);
+    }, 2500);
     return () => window.clearTimeout(timer);
   }, [eligible]);
+
+  function dismissHint() {
+    try {
+      window.localStorage.setItem(TOUR_KEY, "1");
+    } catch {
+      // Le choix ne sera pas gardé.
+    }
+    setHint(false);
+  }
+
+  function startTour() {
+    dismissHint();
+    setOpen({ needsTap: needsFirstTap() });
+  }
 
   return (
     <>
@@ -70,6 +85,20 @@ export default function AudioHelp() {
         <Icon name="speaker" size={20} />
         <span>Aide audio</span>
       </button>
+
+      {hint && !open && (
+        <div className="tour-hint" role="region" aria-label="Visite guidée">
+          <p>Première visite ? Écoute comment ça marche, en 30 secondes.</p>
+          <div className="row">
+            <button type="button" className="btn primary small" onClick={startTour}>
+              Écouter
+            </button>
+            <button type="button" className="btn ghost small" onClick={dismissHint}>
+              Non merci
+            </button>
+          </div>
+        </div>
+      )}
 
       {open && <Coach guide={TOUR} lang={lang} setLang={setLang} needsTap={open.needsTap} onClose={() => setOpen(null)} />}
     </>

@@ -24,6 +24,10 @@ export async function getService(id: string): Promise<Service | null> {
   return (await allServices()).find((s) => s.id === id) ?? null;
 }
 
+export async function serviceByCode(code: string): Promise<Service | null> {
+  return (await allServices()).find((s) => s.code === code && s.statut === "valide") ?? null;
+}
+
 export async function reviewsFor(serviceId: string): Promise<Review[]> {
   const rows = (await getStore().list("reviews")) as Row[];
   return rows.filter((r) => r.serviceId === serviceId).map((r) => ({ serviceId, answers: r.answers as Review["answers"], at: r.at }));

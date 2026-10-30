@@ -4,7 +4,10 @@ import { notFound } from "next/navigation";
 import { MethodArt } from "@/components/art/Art";
 import AskAfi from "@/components/AskAfi";
 import Crumbs from "@/components/Crumbs";
+import Deck from "@/components/Deck";
+import ListenButton from "@/components/ListenButton";
 import PageFeedback from "@/components/PageFeedback";
+import WhatsAppShare from "@/components/WhatsAppShare";
 import Icon from "@/components/Icon";
 import RelatedLinks from "@/components/RelatedLinks";
 import { METHODES, TIER_NAMES, getMethode, type ToolId } from "@/lib/catalog";
@@ -84,6 +87,11 @@ export default async function MethodePage({ params }: { params: Promise<{ id: st
         ))}
       </ul>
 
+      <div className="row actions-row">
+        <ListenButton text={`${m.nom}. ${m.resume.join(". ")}. ${m.a_retenir.join(" ")}`} />
+        <WhatsAppShare title={m.nom} />
+      </div>
+
       <section aria-labelledby="cest">
         <h2 id="cest">Ce que c'est</h2>
         <List items={m.ce_que_cest} />
@@ -120,16 +128,7 @@ export default async function MethodePage({ params }: { params: Promise<{ id: st
 
       <section aria-labelledby="retenir">
         <h2 id="retenir">À retenir</h2>
-        <ul className="point-grid">
-          {m.a_retenir.map((item, index) => (
-            <li key={item} className="point">
-              <span className="point-num" aria-hidden="true">
-                {index + 1}
-              </span>
-              <p>{item}</p>
-            </li>
-          ))}
-        </ul>
+        <Deck cards={m.a_retenir.map((text, i) => ({ id: `r${i}`, kind: "point" as const, title: `${i + 1} sur ${m.a_retenir.length}`, text }))} label={`À retenir sur ${m.nom}`} />
       </section>
 
       {excluded.length > 0 && (

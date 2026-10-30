@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AiSummary from "@/components/pilotage/AiSummary";
-import { MIN_CELL, PMA_BASELINE, alerts, coverage, overview, quality, synthese, themeRanking, type Dataset, type QualityRow } from "@/lib/analytics";
+import { MIN_CELL, PMA_BASELINE, alerts, coverage, funnel, knowledgeGaps, overview, quality, synthese, themeRanking, type Dataset, type QualityRow } from "@/lib/analytics";
+import { titleOfEntry } from "@/lib/knowledgeTitles";
 import { DOMAIN } from "@/lib/domain";
 import { methodLabel } from "@/lib/services";
 
@@ -42,6 +43,8 @@ export default function Dashboard({ ds, now = new Date() }: { ds: Dataset; now?:
   const q = quality(ds);
   const cover = coverage(ds, now);
   const lines = synthese(ds, now);
+  const fu = funnel(ds, now);
+  const gaps = knowledgeGaps(ds, now, titleOfEntry);
 
   return (
     <>
@@ -96,6 +99,66 @@ export default function Dashboard({ ds, now = new Date() }: { ds: Dataset; now?:
         )}
       </section>
 
+      <section aria-labelledby="qr">
+        <h2 id="qr">Des recommandations aux visites (30 jours)</h2>
+        <ul className="kpis" aria-label="Entonnoir">
+          <Kpi label="Passages par QR (7 jours)" value={fu.scans7} />
+          <Kpi label="Passages par QR (30 jours)" value={fu.scans30} />
+          <Kpi label="Avis donnés (30 jours)" value={fu.avis30} />
+          <Kpi label="Avis pour 100 passages" value={fu.avisPour100 === null ? "-" : fu.avisPour100} note="Mesure approximative" />
+        </ul>
+        {fu.services.length > 0 ? (
+          <div className="table-wrap" tabIndex={0} role="region" aria-label="Passages par service">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Service</th>
+                  <th scope="col">Passages</th>
+                  <th scope="col">Avis</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fu.services.map((r) => (
+                  <tr key={r.nom}>
+                    <th scope="row">{r.nom}</th>
+                    <td>{r.scans}</td>
+                    <td>{r.avis}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p className="panel">Pas encore de service avec au moins {MIN_CELL} passages. Les prestataires affichent leur carte QR (Prestataires, Mon service).</p>
+        )}
+        {fu.autres > 0 && <p className="muted">{fu.autres} autre(s) service(s) avec moins de {MIN_CELL} passages : non détaillés.</p>}
+      </section>
+
+      <section aria-labelledby="lacunes">
+        <h2 id="lacunes">Ce que la base ne couvre pas</h2>
+        {gaps.sansFichePct === null ? (
+          <p className="panel">Pas encore assez de questions (au moins {MIN_CELL}) pour mesurer ce que la base ne couvre pas.</p>
+        ) : (
+          <>
+            <p>
+              <strong>{gaps.sansFichePct} %</strong> des questions n'ont trouvé aucune fiche ({gaps.questions} questions sur 30 jours). Seul le fait d'avoir trouvé une fiche est compté : le texte des questions n'est jamais gardé.
+            </p>
+            {gaps.fichesTop.length > 0 && (
+              <>
+                <h3>Les fiches les plus consultées</h3>
+                <ul className="plain">
+                  {gaps.fichesTop.map((f) => (
+                    <li key={f.id}>
+                      {f.titre} <span className="muted">({f.count})</span>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </>
+        )}
+      </section>
+
       <section aria-labelledby="qualite">
         <h2 id="qualite">Qualité du conseil</h2>
         <h3>Déclarée par les prestataires</h3>
@@ -106,7 +169,7 @@ export default function Dashboard({ ds, now = new Date() }: { ds: Dataset; now?:
 
       <section aria-labelledby="couverture">
         <h2 id="couverture">Couverture par zone</h2>
-        <div className="table-wrap">
+        <div className="table-wrap" tabIndex={0} role="region" aria-label="Tableau : couverture par zone">
           <table>
             <thead>
               <tr>

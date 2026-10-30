@@ -163,7 +163,7 @@ export default function AboutPage() {
 
       <section aria-labelledby="preuves">
         <h2 id="preuves">Ce que disent les données, et ce que nous en avons fait</h2>
-        <div className="table-wrap">
+        <div className="table-wrap" tabIndex={0} role="region" aria-label="Données et choix de conception">
           <table>
             <thead>
               <tr>

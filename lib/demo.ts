@@ -61,12 +61,20 @@ export function demoDataset(now: Date = new Date()): Dataset {
     const base = 8 + Math.floor(rand() * 6);
     for (let n = 0; n < base; n += 1) {
       const [theme] = pick(themes.flatMap(([name, weight]) => Array.from({ length: weight }, () => [name, weight] as [string, number])));
-      events.push({ kind: "question", theme, at: iso(t - d * DAY - Math.floor(rand() * DAY)), zone: rand() < 0.3 ? pick(["Mono", "Zou", "Atlantique", "Couffo"]) : undefined });
+      const matched = rand() < 0.74;
+      events.push({ kind: "question", theme, matched, entry: matched ? pick(["pilule-usage", "contraception-urgence", "idees-fausses", "effets-secondaires-courants", "preservatif-usage", "retard-regles"]) : undefined, at: iso(t - d * DAY - Math.floor(rand() * DAY)), zone: rand() < 0.3 ? pick(["Mono", "Zou", "Atlantique", "Couffo"]) : undefined });
     }
     if (d < 7) for (let n = 0; n < 4; n += 1) events.push({ kind: "question", theme: "effets", at: iso(t - d * DAY - Math.floor(rand() * DAY)) });
     for (let n = 0; n < 3; n += 1) events.push({ kind: pick(["outil-choisir", "outil-risque", "outil-visite", "outil-plan", "outil-parler"]), at: iso(t - d * DAY - Math.floor(rand() * DAY)) });
     if (rand() < 0.5) events.push({ kind: "urgence", at: iso(t - d * DAY - Math.floor(rand() * DAY)) });
   }
+
+  // Passages par QR : six services, de quelques-uns à beaucoup.
+  const withQr = services.filter((x) => x.statut === "valide").slice(0, 6);
+  withQr.forEach((svc, i) => {
+    const n = [34, 21, 12, 8, 3, 2][i];
+    for (let k = 0; k < n; k += 1) events.push({ kind: "scan", service: svc.id, zone: svc.zone, at: iso(t - Math.floor(rand() * 28) * DAY) });
+  });
 
   // Avis de jeunes sur six services : accueil correct, autres méthodes et effets peu présentés.
   const reviews: Review[] = [];

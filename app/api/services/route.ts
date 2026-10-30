@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { allServices, validatedServices } from "@/lib/directory";
 import { limited, readJson } from "@/lib/http";
 import { validateServiceInput } from "@/lib/services";
-import { hashToken, newToken } from "@/lib/tokens";
+import { hashToken, newCode, newToken } from "@/lib/tokens";
 import { getStore } from "@/lib/store";
 
 export const runtime = "nodejs";
@@ -35,11 +35,14 @@ export async function POST(request: Request) {
   const checked = validateServiceInput(body);
   if (!checked.ok) return NextResponse.json({ errors: checked.errors }, { status: 422 });
 
-  const pending = (await allServices()).filter((s) => s.statut === "en-attente").length;
+  const known = await allServices();
+  const pending = known.filter((s) => s.statut === "en-attente").length;
   if (pending >= MAX_PENDING) return NextResponse.json({ error: "Trop d'inscriptions en attente. Réessaie plus tard." }, { status: 503 });
 
   const jeton = newToken();
+  let code = newCode();
+  for (let i = 0; i < 5 && known.some((s) => s.code === code); i += 1) code = newCode();
   const now = new Date().toISOString();
-  const row = await getStore().insert("services", { ...checked.value, statut: "en-attente", jetonHash: hashToken(jeton), majLe: now });
-  return NextResponse.json({ id: row.id, jeton }, { status: 201 });
+  const row = await getStore().insert("services", { ...checked.value, code, statut: "en-attente", jetonHash: hashToken(jeton), majLe: now });
+  return NextResponse.json({ id: row.id, code, jeton }, { status: 201 });
 }

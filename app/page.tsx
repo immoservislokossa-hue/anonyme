@@ -1,5 +1,5 @@
 import Link from "next/link";
-import AskAfi from "@/components/AskAfi";
+import AskBar from "@/components/AskBar";
 import Icon from "@/components/Icon";
 import MyPlanCard from "@/components/MyPlanCard";
 import OtherChannels from "@/components/OtherChannels";
@@ -14,6 +14,8 @@ export default function HomePage() {
         <p className="eyebrow">{TARGET_LABEL}</p>
         <h1>Décide quand avoir un enfant.</h1>
         <p>Planification familiale : des réponses claires, sans jugement. Personne ne voit ce que tu fais ici.</p>
+        <AskBar />
+        <p className="muted small">Écris ou dis ta question avec tes mots. Ou choisis ci-dessous.</p>
       </section>
 
       <MyPlanCard />
@@ -43,7 +45,6 @@ export default function HomePage() {
             {link.label}
           </Link>
         ))}
-        <AskAfi className="link-btn">Poser une question à Afi</AskAfi>
       </nav>
 
       <OtherChannels />

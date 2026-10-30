@@ -25,7 +25,7 @@ export async function loadDataset(): Promise<Dataset> {
     demo: false,
     zones: getPays().zones,
     services,
-    events: events.map((e) => ({ kind: String(e.kind), theme: typeof e.theme === "string" ? e.theme : undefined, zone: typeof e.zone === "string" ? e.zone : undefined, at: e.at }) as EventRow),
+    events: events.map((e) => ({ kind: String(e.kind), theme: typeof e.theme === "string" ? e.theme : undefined, zone: typeof e.zone === "string" ? e.zone : undefined, service: typeof e.service === "string" ? e.service : undefined, entry: typeof e.entry === "string" ? e.entry : undefined, matched: typeof e.matched === "boolean" ? e.matched : undefined, at: e.at }) as EventRow),
     bilans: bilans.map((b) => ({ ...(b as unknown as BilanRow), at: b.at })),
     reviews: reviews.map((r) => ({ serviceId: String(r.serviceId), answers: r.answers as Review["answers"], at: r.at })),
     stock: stock.map((s) => ({ serviceId: String(s.serviceId), methode: s.methode, etat: s.etat, at: s.at }) as StockSignal),

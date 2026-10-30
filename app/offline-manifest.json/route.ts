@@ -20,6 +20,8 @@ export function GET() {
     "/chat",
     "/a-propos",
     "/all",
+    "/accessibilite",
+    "/search-index.json",
     "/prestataires",
     "/prestataires/consultation",
     "/prestataires/entrainement",

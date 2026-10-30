@@ -114,3 +114,12 @@ Chaque règle est écrite dans `lib/tools/` et testée dans `tests/tools.test.ts
 - Pages d'outil : l'outil s'affiche tout de suite ; « Comment ça marche » et « Ce qu'il ne fait pas » sont repliés.
 - Pages méthode : « Qui ne peut pas la prendre » et « Après un accouchement » repliés.
 - Afi : ton non infantilisant (15 mots par phrase), aucune supposition sur le sexe ou le statut, une seule prochaine étape (outil) proposée, prudence sur la loi (« dépend du pays et du centre »).
+
+## 30 octobre 2026 (soir) : lire peu, comprendre vite
+- Constat : les jeunes, surtout stressés, ne lisent pas de longues pages ; ils vont sur ChatGPT, TikTok ou WhatsApp. Alviosa doit être plus rapide que ces choix, et rester sûre.
+- Accueil : une barre « Dis-moi ce qui se passe » (texte ou voix) qui ouvre Afi, puis quatre situations. La visite guidée n'est plus ouverte d'office : elle est proposée.
+- Sujets et méthodes : l'essentiel en cartes à faire défiler, « Écouter l'essentiel », partage WhatsApp. Les détails restent disponibles, repliés.
+- Recommandation mesurable : chaque service reçoit un code et une carte QR imprimable ; les passages sont comptés sans identité, puis rapprochés des avis donnés.
+- Données utiles sans message gardé : fiche trouvée ou non, fiches les plus consultées, zone facultative.
+- Style : fin des bandeaux colorés sur le côté des cartes, des pastilles numérotées et des majuscules espacées (voir `docs/guide-redactionnel.md`).
+- Coquille : sélecteur d'espace, recherche globale (touche « / », hors connexion), pied de page par colonnes, page accessibilité, sitemap, image de partage, manifeste avec icônes et raccourcis.

@@ -5,11 +5,14 @@ import { Figtree } from "next/font/google";
 import Link from "next/link";
 import DesktopNav from "@/components/DesktopNav";
 import AudioHelp from "@/components/AudioHelp";
+import SearchDialog from "@/components/SearchDialog";
+import SpaceMenu from "@/components/SpaceMenu";
 import Icon from "@/components/Icon";
 import Brand from "@/components/Brand";
 import MoreMenu from "@/components/MoreMenu";
 import RegisterSW from "@/components/RegisterSW";
 import { APP_NAME, TAGLINE } from "@/lib/brand";
+import { FOOTER_COLUMNS } from "@/lib/site";
 import "./globals.css";
 
 // Police de la marque, servie par le site lui-même.
@@ -20,11 +23,25 @@ const figtree = Figtree({
   variable: "--font-figtree",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
-  title: { default: APP_NAME, template: `%s · ${APP_NAME}` },
+  metadataBase: new URL(SITE_URL),
+  title: { default: `${APP_NAME} : planification familiale pour les jeunes`, template: `%s · ${APP_NAME}` },
   description: TAGLINE,
   applicationName: APP_NAME,
   appleWebApp: { capable: true, title: APP_NAME, statusBarStyle: "default" },
+  openGraph: { type: "website", locale: "fr_FR", siteName: APP_NAME, title: `${APP_NAME} : planification familiale pour les jeunes`, description: TAGLINE },
+  twitter: { card: "summary_large_image", title: APP_NAME, description: TAGLINE },
+  alternates: { canonical: "/" },
+};
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: APP_NAME,
+  description: TAGLINE,
+  inLanguage: "fr",
 };
 
 export const viewport: Viewport = {
@@ -35,18 +52,11 @@ export const viewport: Viewport = {
   themeColor: "#C2185B",
 };
 
-const footerLinks = [
-  { href: "/aide#ia", label: "Comment fonctionne l'IA" },
-  { href: "/aide#confidentialite", label: "Confidentialité" },
-  { href: "/all", label: "Alviosa : toutes les parties" },
-  { href: "/a-propos", label: "À propos et preuves" },
-  { href: "/aide", label: "Aide" },
-];
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className={figtree.variable}>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
         <a className="skip" href="#contenu">
           Aller au contenu
         </a>
@@ -55,6 +65,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Brand />
             <DesktopNav />
             <div className="topbar-actions">
+              <SearchDialog />
+              <SpaceMenu />
               <AudioHelp />
               <Link href="/urgence" className="urgent-btn" data-tour="urgent" aria-label="Urgence : que faire maintenant">
                 <Icon name="alert" size={20} />
@@ -67,16 +79,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main id="contenu">{children}</main>
 
           <footer className="footer">
-            <nav aria-label="Autres pages">
-              {footerLinks.map((link) => (
-                <Link key={link.href} href={link.href}>
-                  {link.label}
-                </Link>
+            <div className="footer-cols">
+              {FOOTER_COLUMNS.map((col) => (
+                <nav key={col.titre} aria-label={col.titre}>
+                  <h2>{col.titre}</h2>
+                  <ul>
+                    {col.liens.map((l) => (
+                      <li key={l.href + l.label}>
+                        <Link href={l.href}>{l.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
               ))}
-            </nav>
+            </div>
             <p className="muted">
-              Service d'information automatisé. Il ne remplace pas un professionnel de santé. Contenu en cours de
-              validation.
+              Alviosa informe et oriente : elle ne remplace pas un professionnel de santé. Contenu fondé sur le guide de l'OMS (2012), en cours de validation par des
+              professionnels de santé. Alviosa n'est affiliée ni à l'OMS ni au Partenariat de Ouagadougou.
             </p>
           </footer>
         </div>

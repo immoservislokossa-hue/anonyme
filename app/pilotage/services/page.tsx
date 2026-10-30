@@ -19,7 +19,7 @@ export default async function ServicesPage() {
       {services.length === 0 ? (
         <p className="panel">Aucun service inscrit. Les services s'inscrivent dans Alviosa Prestataires.</p>
       ) : (
-        <div className="table-wrap">
+        <div className="table-wrap" tabIndex={0} role="region" aria-label="Services inscrits">
           <table>
             <thead>
               <tr>

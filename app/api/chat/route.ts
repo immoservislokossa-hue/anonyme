@@ -80,7 +80,7 @@ export async function POST(request: Request) {
   }
 
   const entries = findEntries(lastUser.content, context);
-  record("question", entries[0]?.theme, zone);
+  record("question", entries[0]?.theme, zone, { entry: entries[0]?.id, matched: entries.length > 0 });
 
   // Sans fournisseur configuré, on répond avec la base seule.
   if (pickProvider() === "none") {
