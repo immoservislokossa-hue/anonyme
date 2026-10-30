@@ -1,9 +1,9 @@
 # Décisions et limites
 
 ## Public cible
-- **15 à 24 ans**, filles et garçons (définition `TARGET_AGE` dans `lib/brand.ts`, affichée sur la page d'accueil).
+- **15 à 35 ans**, filles et garçons (définition `TARGET_AGE` dans `lib/brand.ts`, affichée sur la page d'accueil). Priorité aux 15-24 ans.
 - 13 et 14 ans : le corps, les règles et à qui parler. Pas de conseil de méthode : renvoi vers un adulte de confiance ou un professionnel.
-- Plus de 24 ans : bienvenus, mais ce n'est pas la cible.
+- Plus de 35 ans : bienvenus, mais ce n'est pas la cible.
 - À vérifier avant toute affirmation sur les mineurs : l'âge légal de consentement et d'accès à la contraception dans chaque pays.
 
 ## Outils tirés du guide OMS
@@ -112,7 +112,7 @@ Chaque règle est écrite dans `lib/tools/` et testée dans `tests/tools.test.ts
 
 ## 30 octobre 2026 : simplification de l'interface
 
-- Public : on garde 15-24 ans, comme la stratégie jeunes du PO et l'appel du Prix (15-19 ans cités). Les données d'opinion disponibles couvrent les adultes 18+ (jeunes = 18-35 ans chez Afrobaromètre). Le pilote de test se fait avec des 18-24 ans.
+- Public (décision révisée) : 15 à 35 ans, priorité aux 15-24 ans. Raisons : l'âge médian du premier usage d'une méthode est de 22 ans (ville) à 25,3 ans (campagne) au Burkina Faso (PMA2020 2017-18) ; Afrobaromètre définit les jeunes à 18-35 ans ; l'appel du Prix cible les 18-35 ans comme candidats et cite les 15-19 ans pour l'écart d'usage. Le pilote de test se fait avec des 18-24 ans (précautions pour les mineurs).
 - Accueil : une question (« Où en es-tu ? »), quatre situations, trois liens secondaires. Retrait des avatars, de la pastille d'âge, des boutons de canaux « Bientôt » et du statut hors-ligne (resté dans Aide).
 - Pages Apprendre, Outils, Sujets : lignes compactes, outils rangés en trois moments (avant le centre, après un risque, au quotidien).
 - Pages d'outil : l'outil s'affiche tout de suite ; « Comment ça marche » et « Ce qu'il ne fait pas » sont repliés.

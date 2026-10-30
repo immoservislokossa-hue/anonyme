@@ -50,7 +50,7 @@ test("les consignes demandent un français très facile, avec des mots simples p
   const { systemPromptFor } = await import("../lib/prompt");
   for (const voie of [undefined, "sexuelle", "mentale", "bien-etre"] as const) {
     const prompt = systemPromptFor(voie);
-    assert.match(prompt, /15 à 24 ans/);
+    assert.match(prompt, /15 à 35 ans/);
     assert.match(prompt, /15 mots au maximum/);
     assert.match(prompt, /ovulation/);
   }

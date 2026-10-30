@@ -43,7 +43,7 @@ Alviosa n'est affiliée ni au PO ni à l'OMS. Elle ne remplace pas les services 
 
 ## 4. Ce qui manque encore (à ne pas cacher)
 
-1. Aucun retour d'utilisateur : test prévu avec 20 jeunes de 18 à 24 ans.
+1. Aucun retour d'utilisateur : test prévu avec 20 jeunes de 18 à 24 ans (les mineurs demandent plus de précautions).
 2. Relecture clinique : aucune validation signée à ce jour.
 3. Numéros d'urgence et liste de centres à renseigner pays par pays.
 4. Langues locales : démo yoruba non validée.

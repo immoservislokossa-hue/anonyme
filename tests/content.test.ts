@@ -54,6 +54,6 @@ test("les questions courantes retrouvent la bonne fiche", () => {
 test("le public cible est défini une seule fois et reste cohérent", async () => {
   const { TARGET_AGE, TARGET_LABEL } = await import("../lib/brand");
   assert.equal(TARGET_AGE.min, 15);
-  assert.equal(TARGET_AGE.max, 24);
-  assert.equal(TARGET_LABEL, "Pour les 15 à 24 ans");
+  assert.equal(TARGET_AGE.max, 35);
+  assert.equal(TARGET_LABEL, "Pour les jeunes de 15 à 35 ans");
 });

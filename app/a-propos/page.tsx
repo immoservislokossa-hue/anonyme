@@ -64,7 +64,7 @@ const ALIGN: { cadre: string; ce_que_dit: string; alviosa: string }[] = [
   {
     cadre: "Stratégie jeunes du PO (2019)",
     ce_que_dit: "Faire participer un éventail diversifié de jeunes ; développer leurs capacités avec des technologies adéquates ; l'usage des méthodes reste faible chez les 15-24 ans.",
-    alviosa: "Alviosa est conçue par un jeune fondateur, pour les 15-24 ans, avec une technologie légère. Le test avec des jeunes (18-24 ans) est notre prochaine étape.",
+    alviosa: "Alviosa est conçue par un jeune fondateur, pour les jeunes de 15 à 35 ans (priorité aux 15-24 ans, où l'usage est le plus faible), avec une technologie légère. Le test avec des jeunes de 18 à 24 ans est notre prochaine étape.",
   },
   {
     cadre: "Stratégie post-2025 du PO : pilier 2 (contextes fragiles)",
@@ -117,7 +117,7 @@ export default function AboutPage() {
         <p className="eyebrow">Pour les partenaires et les curieux</p>
         <h1>Pourquoi Alviosa existe, et sur quoi elle s'appuie</h1>
         <p className="lede">
-          Alviosa aide les jeunes de 15 à 24 ans d'Afrique de l'Ouest francophone à choisir, à se protéger, à attendre ou espacer une
+          Alviosa aide les jeunes de 15 à 35 ans d'Afrique de l'Ouest francophone à choisir, à se protéger, à attendre ou espacer une
           grossesse, et à aller au centre de santé en ayant compris. Voici les données qui guident nos choix, et ce que nous ne faisons pas.
         </p>
       </header>
