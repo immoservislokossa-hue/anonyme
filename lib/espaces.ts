@@ -6,7 +6,7 @@ export type EspaceId = "jeunes" | "prestataires" | "pilotage" | "plateforme";
 export type Espace = { id: Exclude<EspaceId, "plateforme">; nom: string; pour: string; promesse: string; href: string };
 
 export const ESPACES: Espace[] = [
-  { id: "jeunes", nom: "Alviosa Jeunes", pour: "Les jeunes de 15 à 35 ans", promesse: "Comprendre, choisir, aller au centre préparé. Sans jugement, sans compte, même sans internet.", href: "/" },
+  { id: "jeunes", nom: "Alviosa Jeunes", pour: "Les jeunes, en priorité de 15 à 24 ans", promesse: "Comprendre, choisir, aller au centre préparé. Sans jugement, sans compte, même sans internet.", href: "/" },
   { id: "prestataires", nom: "Alviosa Prestataires", pour: "Agents de santé, sages-femmes, pharmaciens", promesse: "Conseiller sans juger : une consultation guidée, des jeux de rôle avec de faux clients jeunes, les aide-mémoire de l'OMS.", href: "/prestataires" },
   { id: "pilotage", nom: "Alviosa Pilotage", pour: "Responsables de district, ministères, partenaires", promesse: "Voir ce que les jeunes demandent, la qualité du conseil et les services disponibles, avec des données anonymes.", href: "/pilotage" },
 ];

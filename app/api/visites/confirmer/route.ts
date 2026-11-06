@@ -5,7 +5,7 @@ import { mayManage } from "@/lib/manage";
 import { limited, readJson } from "@/lib/http";
 import { getStore } from "@/lib/store";
 import { isVoucher } from "@/lib/tokens";
-import { besoinLabel, findVoucher } from "@/lib/visits";
+import { besoinLabel, findVoucher, isChoix } from "@/lib/visits";
 
 export const runtime = "nodejs";
 
@@ -18,6 +18,11 @@ async function handlePOST(request: Request) {
   if (!body || typeof body.serviceId !== "string" || !isVoucher(code)) {
     return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
   }
+  // Le choix de la personne est facultatif ; s'il est envoyé, il doit être connu.
+  if (body.choix !== undefined && body.choix !== null && body.choix !== "" && !isChoix(body.choix)) {
+    return NextResponse.json({ error: "Requête invalide." }, { status: 400 });
+  }
+  const choix = isChoix(body.choix) ? body.choix : undefined;
   const service = await getService(body.serviceId);
   if (!service || !(await mayManage(body.serviceId, body.jeton))) return NextResponse.json({ error: "Accès refusé : connecte-toi au compte du service." }, { status: 403 });
 
@@ -25,7 +30,7 @@ async function handlePOST(request: Request) {
   const found = findVoucher(await store.list("events"), service.id, code);
   if (found.status === "inconnu") return NextResponse.json({ error: "Code inconnu pour ce service, ou trop ancien." }, { status: 404 });
   if (found.status === "deja") return NextResponse.json({ error: "Ce code a déjà été confirmé." }, { status: 409 });
-  await store.insert("events", { kind: "visite-venue", service: service.id, zone: service.zone, code, besoin: found.besoin });
+  await store.insert("events", { kind: "visite-venue", service: service.id, zone: service.zone, code, besoin: found.besoin, ...(choix ? { choix } : {}) });
   return NextResponse.json({ besoin: besoinLabel(found.besoin) });
 }
 

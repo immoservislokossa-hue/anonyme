@@ -1,5 +1,6 @@
 import type { BilanPayload, CheckId } from "@/lib/pro/consultation";
 import { COUNSELING_CHECKS } from "@/lib/pro/consultation";
+import { CHOIX } from "@/lib/visits";
 import { METHOD_LIST, REVIEW_QUESTIONS, isStale, latestStock, methodLabel, summarizeReviews, type Review, type Service, type StockSignal } from "@/lib/services";
 
 // Indicateurs du tableau de bord Pilotage. Tout est agrégé : aucune ligne individuelle n'est montrée,
@@ -12,7 +13,7 @@ const DAY = 86_400_000;
 // Points de comparaison publiés (Burkina Faso, 2017-18, utilisatrices de méthodes modernes). Ils servent de repère, pas de cible pour le Bénin.
 export const PMA_BASELINE = { autresMethodes: 64.9, effets: 52.1, source: "PMA2020 Burkina Faso, vague 5 (2017-18)" } as const;
 
-export type EventRow = { kind: string; theme?: string; zone?: string; service?: string; entry?: string; matched?: boolean; at: string };
+export type EventRow = { kind: string; choix?: string; theme?: string; zone?: string; service?: string; entry?: string; matched?: boolean; at: string };
 export type BilanRow = BilanPayload & { at: string };
 export type ReviewRow = Review;
 
@@ -66,7 +67,8 @@ export function overview(ds: Dataset, now: Date = new Date()): Overview {
 
 export type FunnelRow = { nom: string; scans: number; avis: number };
 export type Visites = { demandes30: Masked; venues30: Masked; tauxVenue: number | null };
-export type Funnel = { visites: Visites; scans7: Masked; scans30: Masked; avis30: number; avisPour100: number | null; services: FunnelRow[]; autres: number };
+export type ChoixRow = { id: string; label: string; count: number };
+export type Funnel = { visites: Visites; choix: { notes: Masked; lignes: ChoixRow[] }; scans7: Masked; scans30: Masked; avis30: number; avisPour100: number | null; services: FunnelRow[]; autres: number };
 
 // De la recommandation à la visite, en comptes anonymes : passages par QR, puis avis donnés. Un service n'apparaît qu'à partir de 5 passages.
 export function funnel(ds: Dataset, now: Date = new Date()): Funnel {
@@ -89,7 +91,18 @@ export function funnel(ds: Dataset, now: Date = new Date()): Funnel {
   rows.sort((a, b) => b.scans - a.scans);
   const asked = within(ds.events, t - 30 * DAY, t + 1).filter((e) => e.kind === "visite-demande");
   const came = within(ds.events, t - 30 * DAY, t + 1).filter((e) => e.kind === "visite-venue");
+  // Choix libres notés à la sortie : comptes par méthode, au niveau de la plateforme seulement, jamais par service.
+  const withChoix = came.filter((e) => typeof e.choix === "string");
+  const choixCounts = new Map<string, number>();
+  for (const e of withChoix) choixCounts.set(e.choix as string, (choixCounts.get(e.choix as string) ?? 0) + 1);
+  const choixLignes: ChoixRow[] =
+    withChoix.length < MIN_CELL
+      ? []
+      : CHOIX.map((c) => ({ id: c.id as string, label: c.label as string, count: choixCounts.get(c.id) ?? 0 }))
+          .filter((r) => r.count >= MIN_CELL)
+          .sort((a, b) => b.count - a.count);
   return {
+    choix: { notes: mask(withChoix.length), lignes: choixLignes },
     visites: { demandes30: mask(asked.length), venues30: mask(came.length), tauxVenue: asked.length >= MIN_CELL ? Math.round((came.length / asked.length) * 100) : null },
     scans7: mask(scans7.length),
     scans30: mask(scans30.length),
@@ -299,4 +312,24 @@ export function indicatorRows(ds: Dataset, now: Date = new Date()): IndicatorRow
 export function toCsv(rows: IndicatorRow[]): string {
   const esc = (v: string | number) => `"${String(v).replace(/"/g, '""')}"`;
   return ["code,indicateur,zone,periode,valeur", ...rows.map((r) => [r.code, r.indicateur, r.zone, r.periode, r.valeur].map(esc).join(","))].join("\n");
+}
+
+// Demande ou accès ? Une lecture simple, pour distinguer un faible usage dû à une faible demande, à un faible accès, ou aux deux.
+// Demande : questions et bons demandés. Accès : visites confirmées et ruptures. Rien n'est affiché sous 5 observations.
+export function demandeAcces(ds: Dataset, now: Date = new Date()): { lecture: string | null } {
+  const t = now.getTime();
+  const last = within(ds.events, t - 30 * DAY, t + 1);
+  const questions = last.filter((e) => e.kind === "question").length;
+  const demandes = last.filter((e) => e.kind === "visite-demande").length;
+  const venues = last.filter((e) => e.kind === "visite-venue").length;
+  const ruptures = latestStock(ds.stock).filter((s) => s.etat === "rupture" && !isStale(s, now)).length;
+  if (questions < MIN_CELL && demandes < MIN_CELL) return { lecture: null };
+  if (demandes >= MIN_CELL && venues / demandes < 0.5) {
+    return { lecture: "Des jeunes demandent un bon, mais moins de la moitié arrive jusqu'au service. Regarde l'accès : distance, ruptures de stock, accueil." };
+  }
+  if (questions >= MIN_CELL * 4 && demandes < MIN_CELL) {
+    return { lecture: "Les jeunes posent des questions mais demandent peu de bons de visite. Regarde la demande : confiance, honte, ou méconnaissance des services proches." };
+  }
+  if (ruptures > 0) return { lecture: "Des ruptures de stock sont actives. Un jeune qui arrive peut repartir sans sa méthode : regarde l'accès avant la demande." };
+  return { lecture: "Demande et accès avancent ensemble sur la période." };
 }

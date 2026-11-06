@@ -84,7 +84,7 @@ const ALIGN: { cadre: string; ce_que_dit: string; alviosa: string }[] = [
   {
     cadre: "Stratégie jeunes du PO (2019)",
     ce_que_dit: "Faire participer un éventail diversifié de jeunes ; développer leurs capacités avec des technologies adéquates ; l'usage des méthodes reste faible chez les 15-24 ans.",
-    alviosa: "Alviosa est conçue par un jeune fondateur, pour les jeunes de 15 à 35 ans (priorité aux 15-24 ans, où l'usage est le plus faible), avec une technologie légère. Le test avec des jeunes de 18 à 24 ans est notre prochaine étape.",
+    alviosa: "Alviosa est conçue par un jeune fondateur, pour les jeunes en priorité de 15 à 24 ans, où l'usage est le plus faible, avec une technologie légère. Le test avec des jeunes de 18 à 24 ans est notre prochaine étape.",
   },
   {
     cadre: "Stratégie post-2025 du PO : pilier 2 (contextes fragiles)",
@@ -101,9 +101,31 @@ const ALIGN: { cadre: string; ce_que_dit: string; alviosa: string }[] = [
     ce_que_dit: "Intégrer la planification familiale aux soins de santé primaires ; suivre les résultats pour les femmes et les jeunes ; efficience ; appropriation nationale.",
     alviosa: "Alviosa ne remplace pas les services : elle prépare les jeunes à y aller et les oriente vers les soins de santé primaires. Son coût par personne est faible et le contenu peut être adapté aux directives nationales.",
   },
+  {
+    cadre: "Stratégie post-2025 du PO : pilier 4 (ressources domestiques) et appropriation nationale",
+    ce_que_dit: "Mobiliser les ressources domestiques et aligner les financements ; passer de la dépendance à l'appropriation par les pays.",
+    alviosa: "Chaque pays a son fichier de configuration (zones, urgences, protocole national, validation clinique). Le coût de fonctionnement est faible, de l'ordre de quelques dizaines de dollars par mois (estimation à confirmer pendant le pilote) : un ministère ou un district peut reprendre l'outil sur son budget, sans dépendre d'un bailleur.",
+  },
+  {
+    cadre: "Stratégie post-2025 du PO : recherche, données et apprentissage",
+    ce_que_dit: "Combler le manque de données probantes sur la planification familiale des jeunes en Afrique de l'Ouest francophone.",
+    alviosa: "Alviosa compte, sans jamais garder le texte, ce que les jeunes demandent, ce que la base ne couvre pas, les bons demandés et les visites confirmées, par zone (valeurs sous 5 masquées). Le tableau de bord aide à distinguer un faible usage dû à la demande ou à l'accès. Il n'y a pas encore de données réelles : le pilote les produira.",
+  },
+  {
+    cadre: "Planification familiale fondée sur les droits (UNFPA, 2022-2030)",
+    ce_que_dit: "Vie privée et confidentialité, décision informée, large choix de méthodes avec avantages et risques, sans discrimination. Un objectif chiffré ne doit pas passer avant les besoins et les droits des personnes.",
+    alviosa: "Aucun compte ni nom pour les jeunes. Les méthodes sont présentées avec leurs avantages et leurs limites. Le choix noté à la sortie d'une visite est facultatif, jamais un objectif, et « pas de méthode pour l'instant » est un choix valable. Aucun service n'est classé sur cette donnée.",
+  },
+  {
+    cadre: "Le français en santé mondiale (article publié par le PO, 2024)",
+    ce_que_dit: "L'hégémonie de l'anglais freine le pouvoir des acteurs francophones en santé mondiale.",
+    alviosa: "Alviosa est pensée en français très simple d'abord, avec la voix. Les langues locales sont prévues avec des locuteurs natifs et une relecture, pas encore disponibles.",
+  },
 ];
 
 const LIMITS = [
+  "Alviosa n'a pas encore été testée avec des personnes en situation de handicap. Ce test est prévu, et le tableau de bord ne remplace pas leur voix.",
+  "Le choix libre noté à la sortie d'une visite est facultatif et agrégé. Il ne mesure ni l'adoption d'une méthode ni l'effet d'Alviosa : un jeune peut bien choisir de ne rien prendre.",
   "Alviosa n'est pas un service de santé : elle informe et oriente, elle ne diagnostique pas et ne prescrit pas.",
   `${reviewLine()} Il n'a pas été validé par un ministère de la Santé.`,
   "Elle ne règle pas les obstacles qui sont du côté des services : jugement de certains prestataires, ruptures de stock, coût, accord du conjoint.",
@@ -119,6 +141,7 @@ const LIMITS = [
 const INDICATORS = [
   { nom: "Compréhension et intention", detail: "Part des jeunes qui terminent « Choisir ma méthode » et savent nommer une méthode adaptée et où l'obtenir." },
   { nom: "Passage à l'action", detail: "Pages de centres ouvertes, listes de questions copiées, plans personnels créés avec rappel." },
+  { nom: "Demande ou accès", detail: "Questions et bons demandés d'un côté, visites confirmées et ruptures de l'autre : où agir pour que les jeunes arrivent jusqu'au service ?" },
   { nom: "Qualité et sécurité", detail: "Taux de réponses d'Afi jugées exactes et sûres par des cliniciens, sur un jeu de questions relancé à chaque mise à jour." },
 ];
 
@@ -128,6 +151,8 @@ const SOURCES = [
   "Partenariat de Ouagadougou, « Stratégie Jeunes PO » (2019).",
   "UCPO, « Réunion ministérielle du PO en marge de la 81e Assemblée générale des Nations Unies », New York, 24 septembre 2026 : synthèse des orientations.",
   "Speak Up Africa et UCPO, appel à candidatures du Prix des Jeunes Innovateurs Africains pour la Santé, 20 octobre 2026.",
+  "UNFPA, Stratégie en matière de planification familiale, 2022-2030.",
+  "Partenariat de Ouagadougou, site officiel : pages « PO après 2020 » et stratégie post-2025 (quatre piliers), consultées en novembre 2026.",
   "OMS, Guide de la planification familiale à l'intention des agents de santé communautaires et de leurs clients (2012) : règles des outils et des fiches.",
 ];
 
@@ -139,7 +164,7 @@ export default function AboutPage() {
         <p className="eyebrow">Pour les partenaires et les curieux</p>
         <h1>Pourquoi Alviosa existe, et sur quoi elle s'appuie</h1>
         <p className="lede">
-          Alviosa aide les jeunes de 15 à 35 ans d'Afrique de l'Ouest francophone à choisir, à se protéger, à attendre ou espacer une
+          Alviosa aide les jeunes d'Afrique de l'Ouest francophone, en priorité de 15 à 24 ans, à choisir, à se protéger, à attendre ou espacer une
           grossesse, et à aller au centre de santé en ayant compris. Voici les données qui guident nos choix, et ce que nous ne faisons pas.
         </p>
       </header>
@@ -210,7 +235,7 @@ export default function AboutPage() {
 
       <section aria-labelledby="mesure">
         <h2 id="mesure">Comment nous mesurons</h2>
-        <p>Trois indicateurs, fixés avec des partenaires cliniques pendant le pilote. Aucun message ni aucune personne n'est suivie : seuls des noms d'événements sont comptés.</p>
+        <p>Quatre indicateurs, fixés avec des partenaires cliniques pendant le pilote. Aucun message ni aucune personne n'est suivie : seuls des noms d'événements sont comptés.</p>
         <ol className="step-cards numbered">
           {INDICATORS.map((item) => (
             <li key={item.nom}>

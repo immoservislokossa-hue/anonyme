@@ -123,3 +123,10 @@ Chaque règle est écrite dans `lib/tools/` et testée dans `tests/tools.test.ts
 - Données utiles sans message gardé : fiche trouvée ou non, fiches les plus consultées, zone facultative.
 - Style : fin des bandeaux colorés sur le côté des cartes, des pastilles numérotées et des majuscules espacées (voir `docs/guide-redactionnel.md`).
 - Coquille : sélecteur d'espace, recherche globale (touche « / », hors connexion), pied de page par colonnes, page accessibilité, sitemap, image de partage, manifeste avec icônes et raccourcis.
+
+## Choix libre noté à la sortie d'une visite (novembre 2026)
+
+- Quand le service confirme un bon, il peut noter, **si le jeune est d'accord**, ce que le jeune a choisi (une méthode, « autre », ou « pas de méthode pour l'instant »). C'est facultatif.
+- Raison : l'UNFPA recommande une planification familiale fondée sur les droits, guidée par les besoins des personnes et non par des objectifs chiffrés. Le Partenariat dit manquer de données sur les jeunes. Une donnée de choix libre, agrégée et anonyme, éclaire sans pousser.
+- Garde-fous : jamais un objectif, jamais un classement des services (comptes au niveau de la plateforme seulement), valeurs sous 5 masquées, « pas de méthode pour l'instant » est un choix valable, aucune donnée individuelle.
+- Le tableau de bord ajoute une lecture « demande ou accès ? » : questions et bons demandés d'un côté, visites confirmées et ruptures actives de l'autre.

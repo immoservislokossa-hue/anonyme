@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AiSummary from "@/components/pilotage/AiSummary";
-import { MIN_CELL, PMA_BASELINE, alerts, coverage, funnel, knowledgeGaps, overview, quality, synthese, themeRanking, type Dataset, type QualityRow } from "@/lib/analytics";
+import { MIN_CELL, PMA_BASELINE, alerts, coverage, demandeAcces, funnel, knowledgeGaps, overview, quality, synthese, themeRanking, type Dataset, type QualityRow } from "@/lib/analytics";
 import { titleOfEntry } from "@/lib/knowledgeTitles";
 import { DOMAIN } from "@/lib/domain";
 import { methodLabel } from "@/lib/services";
@@ -44,6 +44,7 @@ export default function Dashboard({ ds, now = new Date() }: { ds: Dataset; now?:
   const cover = coverage(ds, now);
   const lines = synthese(ds, now);
   const fu = funnel(ds, now);
+  const da = demandeAcces(ds, now);
   const gaps = knowledgeGaps(ds, now, titleOfEntry);
 
   return (
@@ -134,6 +135,29 @@ export default function Dashboard({ ds, now = new Date() }: { ds: Dataset; now?:
           <p className="panel">Pas encore de service avec au moins {MIN_CELL} passages. Les prestataires affichent leur carte QR (Prestataires, Mon service).</p>
         )}
         {fu.autres > 0 && <p className="muted">{fu.autres} autre(s) service(s) avec moins de {MIN_CELL} passages : non détaillés.</p>}
+      </section>
+
+      <section aria-labelledby="demande-acces">
+        <h2 id="demande-acces">Demande ou accès ?</h2>
+        <p className="muted">Un faible usage vient d'une faible demande, d'un faible accès, ou des deux. Cette lecture aide à savoir où agir.</p>
+        {da.lecture === null ? <p className="panel">Pas encore assez de questions ou de bons (au moins {MIN_CELL}) pour faire cette lecture.</p> : <p className="panel">{da.lecture}</p>}
+      </section>
+
+      <section aria-labelledby="choix-libres">
+        <h2 id="choix-libres">Ce que les jeunes choisissent librement (30 jours)</h2>
+        <p className="muted">Noté seulement quand le jeune est d'accord, sans nom, au niveau de la plateforme. Jamais un objectif, jamais un classement des services. Choisir de ne pas prendre de méthode est un choix valable.</p>
+        {fu.choix.lignes.length === 0 ? (
+          <p className="panel">Pas encore assez de choix notés (au moins {MIN_CELL}) pour les afficher.</p>
+        ) : (
+          <ul className="stack">
+            {fu.choix.lignes.map((c) => (
+              <li key={c.id} className="row-between">
+                <span>{c.label}</span>
+                <strong>{c.count}</strong>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
       <section aria-labelledby="lacunes">

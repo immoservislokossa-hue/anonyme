@@ -82,7 +82,7 @@ export function demoDataset(now: Date = new Date()): Dataset {
     for (let k = 0; k < n; k += 1) {
       const when = iso(t - Math.floor(rand() * 28) * DAY);
       events.push({ kind: "visite-demande", service: svc.id, zone: svc.zone, at: when });
-      if (rand() < 0.66) events.push({ kind: "visite-venue", service: svc.id, zone: svc.zone, at: when });
+      if (rand() < 0.66) events.push({ kind: "visite-venue", service: svc.id, zone: svc.zone, at: when, ...(rand() < 0.7 ? { choix: pick(["aucune", "pilule", "injectables", "implants", "preservatif-masculin", "contraception-urgence"]) } : {}) });
     }
   });
 

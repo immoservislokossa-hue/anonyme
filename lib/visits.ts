@@ -1,3 +1,5 @@
+import { METHOD_LIST } from "@/lib/services";
+
 // Bon de visite anonyme : le jeune dit pourquoi il vient, reçoit un code, le montre au service, qui le confirme.
 // Aucun nom, aucun contact. On compte seulement : demandes, puis visites confirmées.
 
@@ -15,6 +17,23 @@ export function isBesoin(value: unknown): value is Besoin {
 
 export function besoinLabel(id: unknown): string {
   return BESOINS.find((b) => b.id === id)?.label ?? "Visite";
+}
+
+// Ce que la personne a choisi à l'issue de la visite. Facultatif : le service ne le note que si le jeune le souhaite.
+// Ce n'est jamais un objectif : « pas de méthode pour l'instant » est un choix valable. On ne classe aucun service sur cette donnée.
+export const CHOIX = [
+  { id: "aucune", label: "Pas de méthode pour l'instant" },
+  ...METHOD_LIST,
+  { id: "autre", label: "Autre" },
+] as const;
+export type Choix = (typeof CHOIX)[number]["id"];
+
+export function isChoix(value: unknown): value is Choix {
+  return CHOIX.some((c) => c.id === value);
+}
+
+export function choixLabel(id: unknown): string {
+  return CHOIX.find((c) => c.id === id)?.label ?? "Non noté";
 }
 
 export const VOUCHER_DAYS = 30;

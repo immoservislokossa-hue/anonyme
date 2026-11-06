@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { useWorkspace } from "@/components/pro/workspace/Workspace";
+import { CHOIX } from "@/lib/visits";
 
 // Visites : le jeune montre son code, le service le saisit. Pas de nom.
 export default function VisitsPanel() {
   const { active, setFlag } = useWorkspace();
   const [code, setCode] = useState("");
+  const [choix, setChoix] = useState("");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
   const [recent, setRecent] = useState<{ code: string; besoin: string }[]>([]);
@@ -16,13 +18,14 @@ export default function VisitsPanel() {
     if (!active) return;
     setBusy(true);
     setMessage(null);
-    const response = await fetch("/api/visites/confirmer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ serviceId: active.id, jeton: active.jeton, code }) }).catch(() => null);
+    const response = await fetch("/api/visites/confirmer", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ serviceId: active.id, jeton: active.jeton, code, choix: choix || undefined }) }).catch(() => null);
     const data = (await response?.json().catch(() => null)) as { besoin?: string; error?: string } | null;
     setBusy(false);
     if (response?.ok) {
       setRecent((r) => [{ code, besoin: data?.besoin ?? "Visite" }, ...r].slice(0, 5));
       setMessage({ ok: true, text: `Visite confirmée. Le jeune vient pour : ${data?.besoin ?? "une visite"}.` });
       setCode("");
+      setChoix("");
       setFlag("visite");
     } else {
       setMessage({ ok: false, text: data?.error ?? "Confirmation impossible. Vérifie le code." });
@@ -53,6 +56,20 @@ export default function VisitsPanel() {
           <input className="ws-code" value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} maxLength={5} autoComplete="off" inputMode="text" aria-describedby="code-aide" />
         </label>
         <p id="code-aide" className="muted">5 lettres ou chiffres, par exemple K7M2X.</p>
+        <label className="field">
+          <span>Ce que le jeune a choisi (facultatif)</span>
+          <select value={choix} onChange={(e) => setChoix(e.target.value)} aria-describedby="choix-aide">
+            <option value="">Ne pas noter</option>
+            {CHOIX.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <p id="choix-aide" className="muted">
+          Note-le seulement si le jeune est d'accord. Ce n'est jamais un objectif : ne pousse aucune méthode. « Pas de méthode pour l'instant » est un choix valable. Aucun service n'est classé sur cette donnée.
+        </p>
         <div className="ws-actions">
           <button type="submit" className="btn primary" disabled={busy || code.trim().length !== 5}>
             Confirmer la visite
