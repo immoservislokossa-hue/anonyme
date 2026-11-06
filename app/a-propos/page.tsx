@@ -84,7 +84,7 @@ const ALIGN: { cadre: string; ce_que_dit: string; alviosa: string }[] = [
   {
     cadre: "Stratégie jeunes du PO (2019)",
     ce_que_dit: "Faire participer un éventail diversifié de jeunes ; développer leurs capacités avec des technologies adéquates ; l'usage des méthodes reste faible chez les 15-24 ans.",
-    alviosa: "Alviosa est conçue par un jeune fondateur, pour les jeunes en priorité de 15 à 24 ans, où l'usage est le plus faible, avec une technologie légère. Le test avec des jeunes de 18 à 24 ans est notre prochaine étape.",
+    alviosa: "Nous sommes trois jeunes, de 19 à 25 ans, et nous avons conçu Alviosa pour les jeunes, en priorité de 15 à 24 ans, où l'usage est le plus faible, avec une technologie légère. Le test avec des jeunes de 18 à 24 ans est notre prochaine étape.",
   },
   {
     cadre: "Stratégie post-2025 du PO : pilier 2 (contextes fragiles)",
@@ -94,7 +94,7 @@ const ALIGN: { cadre: string; ce_que_dit: string; alviosa: string }[] = [
   {
     cadre: "Stratégie post-2025 du PO : pilier 3 (jeunes)",
     ce_que_dit: "Engagement et leadership des jeunes.",
-    alviosa: "Projet porté par un jeune. L'application évite le jugement et ne pose aucune condition d'âge ou de statut.",
+    alviosa: "Ce projet est porté par des jeunes. L'application évite le jugement et ne pose aucune condition d'âge ou de statut.",
   },
   {
     cadre: "Réunion ministérielle de New York (24 septembre 2026)",
